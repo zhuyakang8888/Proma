@@ -208,5 +208,6 @@ deb:
 # ============================================
 publish:
   provider: github
-  owner: proma-ai
+  # 指向本仓库（fork）自身，避免 --publish always 误传上游 proma-ai/Proma
+  owner: zhuyakang8888
   repo: Proma

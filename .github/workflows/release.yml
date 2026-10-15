@@ -10,6 +10,10 @@
 # - APPLE_APP_SPECIFIC_PASSWORD: App-Specific 密码（公证用）
 # - APPLE_TEAM_ID: Apple Developer Team ID
 # GITHUB_TOKEN 由 GitHub Actions 自动提供，无需手动配置
+#
+# 说明：未配置 MAC_CERTS / MAC_CERTS_PASSWORD 时，preflight 会把 macOS 任务整体跳过，
+# 只产出 Windows (nsis) 与 Linux (AppImage/deb) 产物。
+# 另：electron-builder 默认把 Release 创建为 draft，构建完成后需在 Releases 页手动发布。
 
 name: Release
 
@@ -22,9 +26,33 @@ permissions:
   contents: write
 
 jobs:
+  # 探测 macOS 签名所需的 Secrets 是否存在。
+  # GitHub 不允许在 job 级 if 中使用 secrets 上下文，因此用该 job 的输出门控 mac 构建。
+  preflight:
+    name: 探测 macOS 签名配置
+    runs-on: ubuntu-latest
+    outputs:
+      mac: ${{ steps.detect.outputs.mac }}
+    steps:
+      - name: 检测 Secrets
+        id: detect
+        env:
+          MAC_CERTS: ${{ secrets.MAC_CERTS }}
+          MAC_CERTS_PASSWORD: ${{ secrets.MAC_CERTS_PASSWORD }}
+        run: |
+          if [ -n "${MAC_CERTS}" ] && [ -n "${MAC_CERTS_PASSWORD}" ]; then
+            echo "检测到 macOS 签名证书，将构建 macOS 产物"
+            echo "mac=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "未检测到 MAC_CERTS/MAC_CERTS_PASSWORD，跳过 macOS 构建，仅产出 Windows 与 Linux 产物"
+            echo "mac=false" >> "$GITHUB_OUTPUT"
+          fi
+
   build-mac-arm64:
     name: build (macos-latest, mac, arm64, --arm64)
     runs-on: macos-latest
+    needs: preflight
+    if: needs.preflight.outputs.mac == 'true'
 
     steps:
       - name: 检出代码
@@ -106,6 +134,8 @@ jobs:
   build-mac-x64:
     name: build (macos-15-intel, mac, x64, --x64)
     runs-on: macos-15-intel
+    needs: preflight
+    if: needs.preflight.outputs.mac == 'true'
 
     steps:
       - name: 检出代码
@@ -187,7 +217,8 @@ jobs:
   merge-mac-yml:
     name: Merge latest-mac.yml (arm64 + x64)
     runs-on: ubuntu-latest
-    needs: [build-mac-arm64, build-mac-x64]
+    needs: [preflight, build-mac-arm64, build-mac-x64]
+    if: needs.preflight.outputs.mac == 'true'
 
     steps:
       - name: 合并两个架构的 latest-mac.yml
