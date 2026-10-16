@@ -10,6 +10,10 @@
 # - APPLE_APP_SPECIFIC_PASSWORD: App-Specific 密码（公证用）
 # - APPLE_TEAM_ID: Apple Developer Team ID
 # GITHUB_TOKEN 由 GitHub Actions 自动提供，无需手动配置
+#
+# 说明：macOS 任务始终执行，未配置 MAC_CERTS / MAC_CERTS_PASSWORD 时产出未签名产物，
+# 在 macOS 上需先解除隔离（xattr -cr）才能打开；配置证书后自动签名并公证。
+# 另：electron-builder 默认把 Release 创建为 draft，构建完成后需在 Releases 页手动发布。
 
 name: Release
 
@@ -22,9 +26,33 @@ permissions:
   contents: write
 
 jobs:
+  # 探测 macOS 签名所需的 Secrets 是否存在。
+  # GitHub 不允许在 job 级 if 中使用 secrets 上下文，因此用该 job 的输出门控签名步骤。
+  # mac 构建始终执行：有证书则签名+公证，无证书则产出未签名产物（CSC_IDENTITY_AUTO_DISCOVERY=false）。
+  preflight:
+    name: 探测 macOS 签名配置
+    runs-on: ubuntu-latest
+    outputs:
+      sign: ${{ steps.detect.outputs.sign }}
+    steps:
+      - name: 检测 Secrets
+        id: detect
+        env:
+          MAC_CERTS: ${{ secrets.MAC_CERTS }}
+          MAC_CERTS_PASSWORD: ${{ secrets.MAC_CERTS_PASSWORD }}
+        run: |
+          if [ -n "${MAC_CERTS}" ] && [ -n "${MAC_CERTS_PASSWORD}" ]; then
+            echo "检测到 macOS 签名证书，将签名并公证 macOS 产物"
+            echo "sign=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "未检测到 MAC_CERTS/MAC_CERTS_PASSWORD，将构建未签名的 macOS 产物"
+            echo "sign=false" >> "$GITHUB_OUTPUT"
+          fi
+
   build-mac-arm64:
     name: build (macos-latest, mac, arm64, --arm64)
     runs-on: macos-latest
+    needs: preflight
 
     steps:
       - name: 检出代码
@@ -47,8 +75,9 @@ jobs:
       - name: 准备 OfficeCLI（macOS arm64）
         run: bun run --filter='@proma/electron' prepare:officecli
 
-      # macOS 代码签名准备
+      # macOS 代码签名准备（仅在检测到证书时执行）
       - name: 导入 macOS 签名证书
+        if: needs.preflight.outputs.sign == 'true'
         env:
           MAC_CERTS: ${{ secrets.MAC_CERTS }}
           MAC_CERTS_PASSWORD: ${{ secrets.MAC_CERTS_PASSWORD }}
@@ -87,6 +116,8 @@ jobs:
           APPLE_ID: ${{ secrets.APPLE_ID }}
           APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
           APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          # 无证书时关闭签名身份自动发现，产出未签名 dmg/zip 而不是中断构建
+          CSC_IDENTITY_AUTO_DISCOVERY: ${{ needs.preflight.outputs.sign == 'true' && 'true' || 'false' }}
         run: |
           for i in 1 2 3; do
             if npx electron-builder --mac --arm64 --publish always; then
@@ -106,6 +137,7 @@ jobs:
   build-mac-x64:
     name: build (macos-15-intel, mac, x64, --x64)
     runs-on: macos-15-intel
+    needs: preflight
 
     steps:
       - name: 检出代码
@@ -128,8 +160,9 @@ jobs:
       - name: 准备 OfficeCLI（macOS x64）
         run: bun run --filter='@proma/electron' prepare:officecli
 
-      # macOS 代码签名准备
+      # macOS 代码签名准备（仅在检测到证书时执行）
       - name: 导入 macOS 签名证书
+        if: needs.preflight.outputs.sign == 'true'
         env:
           MAC_CERTS: ${{ secrets.MAC_CERTS }}
           MAC_CERTS_PASSWORD: ${{ secrets.MAC_CERTS_PASSWORD }}
@@ -168,6 +201,8 @@ jobs:
           APPLE_ID: ${{ secrets.APPLE_ID }}
           APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
           APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          # 无证书时关闭签名身份自动发现，产出未签名 dmg/zip 而不是中断构建
+          CSC_IDENTITY_AUTO_DISCOVERY: ${{ needs.preflight.outputs.sign == 'true' && 'true' || 'false' }}
         run: |
           for i in 1 2 3; do
             if npx electron-builder --mac --x64 --publish always; then
@@ -187,7 +222,7 @@ jobs:
   merge-mac-yml:
     name: Merge latest-mac.yml (arm64 + x64)
     runs-on: ubuntu-latest
-    needs: [build-mac-arm64, build-mac-x64]
+    needs: [preflight, build-mac-arm64, build-mac-x64]
 
     steps:
       - name: 合并两个架构的 latest-mac.yml

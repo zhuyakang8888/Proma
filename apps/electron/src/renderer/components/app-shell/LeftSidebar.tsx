@@ -11,17 +11,16 @@
 import * as React from 'react'
 import { useAtom, useSetAtom, useAtomValue, useStore } from 'jotai'
 import { toast } from 'sonner'
-import { Pin, PinOff, Star, Settings, Plus, CirclePlus, Trash2, Pencil, PanelLeft, PanelRight, ArrowRightLeft, Search, Archive, ArchiveRestore, ArrowLeft, Bot, MessageSquare, MoreHorizontal, FolderOpen, FolderInput, FolderPlus, Clock, CalendarDays, ChevronRight, ChevronDown, ChevronUp, ChevronsDownUp, Blocks, Brain, ListTodo, GitBranch, Download, Loader2, RotateCw, Info } from 'lucide-react'
+import { Pin, PinOff, Star, Settings, Plus, CirclePlus, Trash2, Pencil, PanelLeft, PanelRight, ArrowRightLeft, Search, Archive, ArchiveRestore, ArrowLeft, Bot, MessageSquare, MoreHorizontal, FolderOpen, FolderInput, FolderPlus, Clock, CalendarDays, ChevronRight, ChevronDown, ChevronUp, ChevronsDownUp, Blocks, Brain, ListTodo, GitBranch, Info } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip'
 import { ModeSwitcher } from './ModeSwitcher'
 import { SearchDialog } from './SearchDialog'
-import { UserAvatar } from '@/components/chat/UserAvatar'
 import { activeViewAtom, agentSkillsTabAtom } from '@/atoms/active-view'
 import { automationFormAtom, automationsAtom } from '@/atoms/automation-atoms'
 import { planningTabAtom } from '@/atoms/planning-atoms'
 import { appModeAtom, type AppMode } from '@/atoms/app-mode'
-import { settingsOpenAtom, settingsTabAtom } from '@/atoms/settings-tab'
+import { settingsOpenAtom } from '@/atoms/settings-tab'
 import {
   conversationsAtom,
   currentConversationIdAtom,
@@ -96,7 +95,6 @@ import {
 import { userProfileAtom } from '@/atoms/user-profile'
 import { sidebarViewModeAtom } from '@/atoms/sidebar-atoms'
 import { searchDialogOpenAtom } from '@/atoms/search-atoms'
-import { hasUpdateAtom, updateStatusAtom, type UpdateStatus } from '@/atoms/updater'
 import { draftSessionIdsAtom } from '@/atoms/draft-session-atoms'
 import { clearBrowserSessionStateAtom } from '@/atoms/browser-atoms'
 import { hasEnvironmentIssuesAtom } from '@/atoms/environment'
@@ -174,84 +172,6 @@ import type { ConversationMeta, AgentSessionMeta, AgentWorkspace, WorkspaceCapab
 
 function formatAutomationCount(count: number): string {
   return count > 99 ? '99+' : String(count)
-}
-
-function getSidebarUpdateLabel(status: string, version?: string): string {
-  const versionText = version ? ` v${version}` : ''
-  switch (status) {
-    case 'available':
-      return `发现新版本${versionText}`
-    case 'downloading':
-      return `正在下载更新${versionText}`
-    case 'downloaded':
-      return `立即重启更新${versionText}`
-    default:
-      return '软件更新'
-  }
-}
-
-function getSidebarUpdateButtonText(status: string): string {
-  switch (status) {
-    case 'available':
-      return '查看'
-    case 'downloading':
-      return '下载中'
-    case 'downloaded':
-      return '更新'
-    default:
-      return '更新'
-  }
-}
-
-interface SidebarUpdateButtonProps {
-  status: UpdateStatus
-  onClick: () => void
-  tooltipSide: React.ComponentPropsWithoutRef<typeof TooltipContent>['side']
-  className: string
-  readyDotClassName: string
-  showText?: boolean
-  hideIcon?: boolean
-}
-
-function SidebarUpdateButton({
-  status,
-  onClick,
-  tooltipSide,
-  className,
-  readyDotClassName,
-  showText = false,
-  hideIcon = false,
-}: SidebarUpdateButtonProps): React.ReactElement {
-  const label = getSidebarUpdateLabel(status.status, status.version)
-  const buttonText = getSidebarUpdateButtonText(status.status)
-
-  return (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <button
-          type="button"
-          aria-label={label}
-          onClick={onClick}
-          className={cn('relative bg-primary/10 text-primary transition-colors titlebar-no-drag hover:bg-primary/15', className)}
-        >
-          {!hideIcon && (
-            status.status === 'downloading' ? (
-              <Loader2 size={16} className="animate-spin" />
-            ) : status.status === 'downloaded' ? (
-              <RotateCw size={16} />
-            ) : (
-              <Download size={16} />
-            )
-          )}
-          {showText && <span>{buttonText}</span>}
-          {status.status === 'downloaded' && (
-            <span className={readyDotClassName} />
-          )}
-        </button>
-      </TooltipTrigger>
-      <TooltipContent side={tooltipSide}>{label}</TooltipContent>
-    </Tooltip>
-  )
 }
 
 interface WorkspaceComponentSidebarEntryProps {
@@ -611,7 +531,6 @@ export function LeftSidebar({ width, noTransition }: LeftSidebarProps): React.Re
   const automationCount = automations.length
   const settingsOpen = useAtomValue(settingsOpenAtom)
   const setSettingsOpen = useSetAtom(settingsOpenAtom)
-  const setSettingsTab = useSetAtom(settingsTabAtom)
   const [conversations, setConversations] = useAtom(conversationsAtom)
   const [currentConversationId, setCurrentConversationId] = useAtom(currentConversationIdAtom)
   const draftSessionIds = useAtomValue(draftSessionIdsAtom)
@@ -649,12 +568,11 @@ export function LeftSidebar({ width, noTransition }: LeftSidebarProps): React.Re
   const [newProjectName, setNewProjectName] = React.useState('')
   const newProjectInputRef = React.useRef<HTMLInputElement>(null)
   const [relativeTimeNow, setRelativeTimeNow] = React.useState(() => Date.now())
-  const [userProfile, setUserProfile] = useAtom(userProfileAtom)
+  // 内部版侧边栏不展示账号资料，仅保留写入（启动时加载本地用户资料）。
+  const [, setUserProfile] = useAtom(userProfileAtom)
   const streamingIds = useAtomValue(streamingConversationIdsAtom)
   const mode = useAtomValue(appModeAtom)
   const isMac = React.useMemo(() => detectIsMac(), [])
-  const hasUpdate = useAtomValue(hasUpdateAtom)
-  const updateStatus = useAtomValue(updateStatusAtom)
   const hasEnvironmentIssues = useAtomValue(hasEnvironmentIssuesAtom)
   const sessionHoverPreviewEnabled = useAtomValue(sessionHoverPreviewEnabledAtom)
   const productivityTools = useAtomValue(productivityToolsAtom)
@@ -749,11 +667,6 @@ export function LeftSidebar({ width, noTransition }: LeftSidebarProps): React.Re
     if (mode !== 'agent') return
     refreshAgentSidebarSessions(viewMode === 'archived').catch(console.error)
   }, [mode, refreshAgentSidebarSessions, viewMode])
-
-  const handleUpdateButtonClick = React.useCallback((): void => {
-    setSettingsTab('about')
-    setSettingsOpen(true)
-  }, [setSettingsOpen, setSettingsTab])
 
   React.useEffect(() => {
     const id = window.setInterval(() => setRelativeTimeNow(Date.now()), 60_000)
@@ -3381,17 +3294,8 @@ export function LeftSidebar({ width, noTransition }: LeftSidebarProps): React.Re
           }}
         />
 
-        {/* 底部只保留全局状态与账户入口，工作区工具统一从搜索下方进入。 */}
+        {/* 底部：内部版仅保留设置入口，不展示更新按钮与账号头像。 */}
         <div className="flex flex-col items-center gap-0.5 py-2">
-          {hasUpdate && (
-            <SidebarUpdateButton
-              status={updateStatus}
-              onClick={handleUpdateButtonClick}
-              tooltipSide="right"
-              className="group flex size-10 items-center justify-center p-1"
-              readyDotClassName="absolute right-1 top-1 size-2 rounded-full bg-primary"
-            />
-          )}
           <Tooltip>
             <TooltipTrigger asChild>
               <button
@@ -3400,8 +3304,8 @@ export function LeftSidebar({ width, noTransition }: LeftSidebarProps): React.Re
                 onClick={handleOpenSettings}
                 className="group relative flex size-10 items-center justify-center p-1 titlebar-no-drag"
               >
-                <span className="flex size-8 items-center justify-center rounded-[10px] transition-colors duration-150 group-hover:bg-foreground/[0.06]">
-                  <UserAvatar avatar={userProfile.avatar} size={24} />
+                <span className="flex size-8 items-center justify-center rounded-[10px] text-foreground/45 transition-colors duration-15 group-hover:bg-foreground/[0.06] group-hover:text-foreground/75">
+                  <Settings size={16} />
                 </span>
                 {hasEnvironmentIssues && (
                   <span className="absolute right-1 top-1 size-2 rounded-full bg-red-500" />
@@ -3672,41 +3576,21 @@ export function LeftSidebar({ width, noTransition }: LeftSidebarProps): React.Re
         )}
       </div>
 
-      {/* 底部：用户资料 + 设置入口 */}
+      {/* 底部：内部版仅保留设置入口，不展示账号资料与更新按钮。 */}
       <div className="px-3 pb-3">
-        <div className="flex items-center gap-2 rounded-[10px] px-3 py-2 text-foreground/70 transition-colors titlebar-no-drag hover:bg-foreground/[0.04] hover:text-foreground">
-          <button
-            onClick={handleOpenSettings}
-            className="min-w-0 flex flex-1 items-center gap-3 text-left"
-          >
-            <UserAvatar avatar={userProfile.avatar} size={28} />
-            <span className="flex-1 text-sm truncate text-left">{userProfile.userName}</span>
-          </button>
-          {hasUpdate && (
-            <SidebarUpdateButton
-              status={updateStatus}
-              onClick={handleUpdateButtonClick}
-              tooltipSide="top"
-              className="h-6 flex-shrink-0 inline-flex items-center justify-center rounded-full bg-primary/10 px-2 text-[11px] font-medium leading-none text-primary hover:bg-primary/15"
-              readyDotClassName="hidden"
-              showText
-              hideIcon
-            />
-          )}
-          <button
-            type="button"
-            aria-label="打开设置"
-            onClick={handleOpenSettings}
-            className="relative flex size-7 flex-shrink-0 items-center justify-center rounded-[8px] text-foreground/40 transition-colors hover:bg-foreground/[0.05] hover:text-foreground/70"
-          >
-            <div className="relative flex-shrink-0 text-foreground/40">
-              <Settings size={16} />
-              {hasEnvironmentIssues && (
-                <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-red-500" />
-              )}
-            </div>
-          </button>
-        </div>
+        <button
+          type="button"
+          aria-label="打开设置"
+          onClick={handleOpenSettings}
+          className="relative flex h-9 w-full items-center rounded-[10px] px-3 text-foreground/50 transition-colors titlebar-no-drag hover:bg-foreground/[0.04] hover:text-foreground/80"
+        >
+          <span className="relative flex-shrink-0">
+            <Settings size={17} />
+            {hasEnvironmentIssues && (
+              <span className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-red-500" />
+            )}
+          </span>
+        </button>
       </div>
 
       {deleteDialog}
