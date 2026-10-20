@@ -1,0 +1,4 @@
+# 技能包内的 shell 脚本必须保持 LF 换行。
+# 本机 core.autocrlf=true 且 Windows CI 检出时会把文本转成 CRLF，
+# 带 CRLF 的脚本在 bash 下会报 "bad interpreter"，因此对 .sh 强制 LF。
+*.sh text eol=lf
