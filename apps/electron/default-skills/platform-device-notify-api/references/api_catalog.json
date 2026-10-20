@@ -1,0 +1,1518 @@
+{
+ "_meta": {
+  "package": "platform-device-notify-api",
+  "domain_label": "消息通知（云手机消息/通知公告/SMS/飞书）",
+  "source_docs": [
+   "callfans-standard.md",
+   "mobile-cloud-center.md"
+  ],
+  "operation_count": 38,
+  "login": {
+   "operation_id": "auth_post_login",
+   "method": "POST",
+   "path": "/auth/login",
+   "params": {
+    "username": "string",
+    "password": "string",
+    "code": "string(留空,验证码已关闭)",
+    "uuid": "string(留空)"
+   },
+   "token_field": "token",
+   "auth_header": "Authorization: Bearer <token>",
+   "note": "验证码已关闭：code/uuid 传空。401 时执行器自动重新登录并重试一次。"
+  },
+  "route_prefixes": {
+   "?": 15,
+   "/mcc": 23
+  },
+  "route_prefix_note": "多服务网关部署：每个 operation 自带 route_prefix（来源文档对应服务前缀）。执行器按 operation 的 route_prefix 路由；单一服务包可用 API_PATH_PREFIX 兜底。"
+ },
+ "operations": [
+  {
+   "operation_id": "device-notify_delete_mcc_api_notify_clear_all",
+   "operation_id_generated": true,
+   "summary": "一键清除：物理删除当前登录用户的全部通知消息（已读+未读）。",
+   "description": null,
+   "method": "DELETE",
+   "path": "/mcc/api/notify/clear-all",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 11678,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_delete_mcc_api_system_notice_delete",
+   "operation_id_generated": true,
+   "summary": "删除通知公告",
+   "description": null,
+   "method": "DELETE",
+   "path": "/mcc/api/system/notice/delete",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 23751,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_delete_system_notice_delete",
+   "operation_id_generated": true,
+   "summary": "deleteNotice",
+   "description": null,
+   "method": "DELETE",
+   "path": "/system/notice/delete",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1302,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_delete_system_notify_template_delete",
+   "operation_id_generated": true,
+   "summary": "deleteNotifyTemplate",
+   "description": null,
+   "method": "DELETE",
+   "path": "/system/notify-template/delete",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 225,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_get_mcc_api_notify_detail_notifyid",
+   "operation_id_generated": true,
+   "summary": "获取某条消息详情",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/notify/detail/{notifyId}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "creatorId",
+    "createTime",
+    "updatorId",
+    "updateTime",
+    "deleted",
+    "version",
+    "deptId",
+    "params",
+    "key",
+    "notifyId",
+    "author",
+    "messageTitle",
+    "messageDesc",
+    "messageContent",
+    "messageState",
+    "messageType",
+    "notifyType",
+    "notifyUser",
+    "pushTime",
+    "delivered",
+    "payloadJson",
+    "msgId",
+    "sceneCode",
+    "businessDomain",
+    "resultText",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 11734,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_get_mcc_api_notify_get",
+   "operation_id_generated": true,
+   "summary": "获取系统消息通知信息",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/notify/get",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "createBy",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updateBy",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "备注"
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": "请求参数"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "onlyUnread",
+      "type": "boolean",
+      "required": false,
+      "desc": "是否获取全部，true：仅获取未读，false：获取全部"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "createBy",
+    "createTime",
+    "updateBy",
+    "updateTime",
+    "remark",
+    "params",
+    "key",
+    "notifyId",
+    "author",
+    "messageTitle",
+    "messageDesc",
+    "messageContent",
+    "messageState",
+    "pushTime",
+    "messageType",
+    "notifyType",
+    "notifyUser",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 11786,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_get_mcc_api_system_notice_get",
+   "operation_id_generated": true,
+   "summary": "查询通知公告详情",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/system/notice/get",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "title",
+    "type",
+    "content",
+    "status",
+    "createTime",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 23819,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_get_mcc_api_system_notice_info_nodeid",
+   "operation_id_generated": true,
+   "summary": "获取实时节点系统运行信息",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/system/notice/info/{nodeId}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "createBy",
+    "createTime",
+    "updateBy",
+    "updateTime",
+    "remark",
+    "params",
+    "key",
+    "nodeId",
+    "nodeIp",
+    "nodeName",
+    "systemName",
+    "systemVersion",
+    "partitions",
+    "partitionName",
+    "size",
+    "type",
+    "used",
+    "avail",
+    "use",
+    "mountedOn",
+    "cpuInfos",
+    "createBy",
+    "createTime",
+    "updateBy",
+    "updateTime",
+    "remark",
+    "params",
+    "key",
+    "cpuNo",
+    "percentage",
+    "memoryInfo",
+    "createBy",
+    "createTime",
+    "updateBy",
+    "updateTime",
+    "remark",
+    "params",
+    "key",
+    "total",
+    "used",
+    "free",
+    "available",
+    "networkInfo",
+    "createBy",
+    "createTime",
+    "updateBy",
+    "updateTime",
+    "remark",
+    "params",
+    "key",
+    "upstream",
+    "downstream",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 23848,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_get_mcc_api_system_notice_page",
+   "operation_id_generated": true,
+   "summary": "分页查询通知公告",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/system/notice/page",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "id",
+    "title",
+    "type",
+    "content",
+    "status",
+    "createTime",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 23677,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_get_notify_detail_notifyid",
+   "operation_id_generated": true,
+   "summary": "获取某条消息详情",
+   "description": null,
+   "method": "GET",
+   "path": "/notify/detail/{notifyId}",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 26,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_get_notify_get",
+   "operation_id_generated": true,
+   "summary": "获取系统消息通知信息",
+   "description": null,
+   "method": "GET",
+   "path": "/notify/get",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "onlyUnread",
+      "type": "boolean",
+      "required": false,
+      "desc": "是否获取全部，true：仅获取未读，false：获取全部"
+     }
+    ]
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 44,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_get_social_sms_page",
+   "operation_id_generated": true,
+   "summary": "获取当前用户未读消息（分页）",
+   "description": null,
+   "method": "GET",
+   "path": "/social/sms/page",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 11381,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_get_social_sms_read_smsid",
+   "operation_id_generated": true,
+   "summary": "单条消息已读（标记为已读，若消息携带失败文件则一并下载）",
+   "description": null,
+   "method": "GET",
+   "path": "/social/sms/read/{smsId}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 11328,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_get_system_notice_get",
+   "operation_id_generated": true,
+   "summary": "getNotice",
+   "description": null,
+   "method": "GET",
+   "path": "/system/notice/get",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1320,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_get_system_notice_info_nodeid",
+   "operation_id_generated": true,
+   "summary": "获取实时节点系统运行信息",
+   "description": null,
+   "method": "GET",
+   "path": "/system/notice/info/{nodeId}",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1403,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_get_system_notice_page",
+   "operation_id_generated": true,
+   "summary": "getNoticePage",
+   "description": null,
+   "method": "GET",
+   "path": "/system/notice/page",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1338,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_get_system_notify_message_get",
+   "operation_id_generated": true,
+   "summary": "getNotifyMessage",
+   "description": null,
+   "method": "GET",
+   "path": "/system/notify-message/get",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 93,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_get_system_notify_message_get_unread_count",
+   "operation_id_generated": true,
+   "summary": "getUnreadNotifyMessageCount",
+   "description": null,
+   "method": "GET",
+   "path": "/system/notify-message/get-unread-count",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 133,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_get_system_notify_message_get_unread_list",
+   "operation_id_generated": true,
+   "summary": "getUnreadNotifyMessageList",
+   "description": null,
+   "method": "GET",
+   "path": "/system/notify-message/get-unread-list",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 146,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_get_system_notify_message_my_page",
+   "operation_id_generated": true,
+   "summary": "getMyMyNotifyMessagePage",
+   "description": null,
+   "method": "GET",
+   "path": "/system/notify-message/my-page",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 74,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_get_system_notify_message_page",
+   "operation_id_generated": true,
+   "summary": "getNotifyMessagePage",
+   "description": null,
+   "method": "GET",
+   "path": "/system/notify-message/page",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 111,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_get_system_notify_template_get",
+   "operation_id_generated": true,
+   "summary": "getNotifyTemplate",
+   "description": null,
+   "method": "GET",
+   "path": "/system/notify-template/get",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 243,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_get_system_notify_template_page",
+   "operation_id_generated": true,
+   "summary": "getNotifyTemplatePage",
+   "description": null,
+   "method": "GET",
+   "path": "/system/notify-template/page",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 261,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_post_mcc_api_system_notice_create",
+   "operation_id_generated": true,
+   "summary": "创建通知公告",
+   "description": null,
+   "method": "POST",
+   "path": "/mcc/api/system/notice/create",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": "岗位公告编号"
+     },
+     {
+      "name": "title",
+      "type": "string",
+      "required": "必须",
+      "desc": "公告标题"
+     },
+     {
+      "name": "type",
+      "type": "integer",
+      "required": "必须",
+      "desc": "公告类型"
+     },
+     {
+      "name": "content",
+      "type": "string",
+      "required": false,
+      "desc": "公告内容"
+     },
+     {
+      "name": "status",
+      "type": "integer",
+      "required": false,
+      "desc": "状态，参见 CommonStatusEnum 枚举类"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 23712,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_post_mcc_api_system_notice_push",
+   "operation_id_generated": true,
+   "summary": "通过 WebSocket 推送公告给在线用户",
+   "description": null,
+   "method": "POST",
+   "path": "/mcc/api/system/notice/push",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 23877,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_post_social_lark_send",
+   "operation_id_generated": true,
+   "summary": "飞书机器人发送消息",
+   "description": null,
+   "method": "POST",
+   "path": "/social/lark/send",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "title",
+      "type": "string",
+      "required": false,
+      "desc": "消息标题"
+     },
+     {
+      "name": "content",
+      "type": "string",
+      "required": false,
+      "desc": "消息内容"
+     },
+     {
+      "name": "userId",
+      "type": "string",
+      "required": false,
+      "desc": "消息接收人 all代表所有人"
+     },
+     {
+      "name": "prompt",
+      "type": "string",
+      "required": false,
+      "desc": "提示语"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 23239,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_post_system_notice_create",
+   "operation_id_generated": true,
+   "summary": "createNotice",
+   "description": null,
+   "method": "POST",
+   "path": "/system/notice/create",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": "岗位公告编号"
+     },
+     {
+      "name": "title",
+      "type": "string",
+      "required": "必须",
+      "desc": "公告标题"
+     },
+     {
+      "name": "type",
+      "type": "integer",
+      "required": "必须",
+      "desc": "公告类型"
+     },
+     {
+      "name": "content",
+      "type": "string",
+      "required": false,
+      "desc": "公告内容"
+     },
+     {
+      "name": "status",
+      "type": "integer",
+      "required": false,
+      "desc": "状态，参见 CommonStatusEnum 枚举类"
+     }
+    ]
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1274,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_post_system_notice_push",
+   "operation_id_generated": true,
+   "summary": "push",
+   "description": null,
+   "method": "POST",
+   "path": "/system/notice/push",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1357,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_post_system_notify_template_create",
+   "operation_id_generated": true,
+   "summary": "createNotifyTemplate",
+   "description": null,
+   "method": "POST",
+   "path": "/system/notify-template/create",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "name",
+      "type": "string",
+      "required": "必须",
+      "desc": null
+     },
+     {
+      "name": "code",
+      "type": "string",
+      "required": "必须",
+      "desc": null
+     },
+     {
+      "name": "type",
+      "type": "integer",
+      "required": "必须",
+      "desc": null
+     },
+     {
+      "name": "nickname",
+      "type": "string",
+      "required": "必须",
+      "desc": null
+     },
+     {
+      "name": "content",
+      "type": "string",
+      "required": "必须",
+      "desc": null
+     },
+     {
+      "name": "status",
+      "type": "integer",
+      "required": "必须",
+      "desc": null
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": null
+     }
+    ]
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 197,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_post_system_notify_template_send_notify",
+   "operation_id_generated": true,
+   "summary": "sendNotify",
+   "description": null,
+   "method": "POST",
+   "path": "/system/notify-template/send-notify",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "userId",
+      "type": "integer",
+      "required": "必须",
+      "desc": null
+     },
+     {
+      "name": "userType",
+      "type": "integer",
+      "required": "必须",
+      "desc": null
+     },
+     {
+      "name": "templateCode",
+      "type": "string",
+      "required": "必须",
+      "desc": null
+     },
+     {
+      "name": "templateParams",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     }
+    ]
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 282,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_put_mcc_api_notify_modify_notifyid",
+   "operation_id_generated": true,
+   "summary": "消息已读",
+   "description": null,
+   "method": "PUT",
+   "path": "/mcc/api/notify/modify/{notifyId}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 11705,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_put_mcc_api_system_notice_update",
+   "operation_id_generated": true,
+   "summary": "更新通知公告",
+   "description": null,
+   "method": "PUT",
+   "path": "/mcc/api/system/notice/update",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": "岗位公告编号"
+     },
+     {
+      "name": "title",
+      "type": "string",
+      "required": "必须",
+      "desc": "公告标题"
+     },
+     {
+      "name": "type",
+      "type": "integer",
+      "required": "必须",
+      "desc": "公告类型"
+     },
+     {
+      "name": "content",
+      "type": "string",
+      "required": false,
+      "desc": "公告内容"
+     },
+     {
+      "name": "status",
+      "type": "integer",
+      "required": false,
+      "desc": "状态，参见 CommonStatusEnum 枚举类"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 23780,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_put_notify_modify_notifyid",
+   "operation_id_generated": true,
+   "summary": "消息已读",
+   "description": null,
+   "method": "PUT",
+   "path": "/notify/modify/{notifyId}",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 8,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_put_social_sms_read_all",
+   "operation_id_generated": true,
+   "summary": "清除某用户下全部未读消息",
+   "description": null,
+   "method": "PUT",
+   "path": "/social/sms/read/all",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 11357,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_put_system_notice_update",
+   "operation_id_generated": true,
+   "summary": "updateNotice",
+   "description": null,
+   "method": "PUT",
+   "path": "/system/notice/update",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": "岗位公告编号"
+     },
+     {
+      "name": "title",
+      "type": "string",
+      "required": "必须",
+      "desc": "公告标题"
+     },
+     {
+      "name": "type",
+      "type": "integer",
+      "required": "必须",
+      "desc": "公告类型"
+     },
+     {
+      "name": "content",
+      "type": "string",
+      "required": false,
+      "desc": "公告内容"
+     },
+     {
+      "name": "status",
+      "type": "integer",
+      "required": false,
+      "desc": "状态，参见 CommonStatusEnum 枚举类"
+     }
+    ]
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1375,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_put_system_notify_message_update_all_read",
+   "operation_id_generated": true,
+   "summary": "updateAllNotifyMessageRead",
+   "description": null,
+   "method": "PUT",
+   "path": "/system/notify-message/update-all-read",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 164,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_put_system_notify_message_update_read",
+   "operation_id_generated": true,
+   "summary": "updateNotifyMessageRead",
+   "description": null,
+   "method": "PUT",
+   "path": "/system/notify-message/update-read",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 177,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-notify_put_system_notify_template_update",
+   "operation_id_generated": true,
+   "summary": "updateNotifyTemplate",
+   "description": null,
+   "method": "PUT",
+   "path": "/system/notify-template/update",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "name",
+      "type": "string",
+      "required": "必须",
+      "desc": null
+     },
+     {
+      "name": "code",
+      "type": "string",
+      "required": "必须",
+      "desc": null
+     },
+     {
+      "name": "type",
+      "type": "integer",
+      "required": "必须",
+      "desc": null
+     },
+     {
+      "name": "nickname",
+      "type": "string",
+      "required": "必须",
+      "desc": null
+     },
+     {
+      "name": "content",
+      "type": "string",
+      "required": "必须",
+      "desc": null
+     },
+     {
+      "name": "status",
+      "type": "integer",
+      "required": "必须",
+      "desc": null
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": null
+     }
+    ]
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 310,
+   "pagination": null
+  }
+ ]
+}

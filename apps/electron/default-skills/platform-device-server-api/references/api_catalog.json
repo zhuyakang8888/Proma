@@ -1,0 +1,2745 @@
+{
+ "_meta": {
+  "package": "platform-device-server-api",
+  "domain_label": "服务器/存储/节点（ARM、磁盘挂载）",
+  "source_docs": [
+   "callfans-standard.md",
+   "mobile-cloud-center.md"
+  ],
+  "operation_count": 55,
+  "login": {
+   "operation_id": "auth_post_login",
+   "method": "POST",
+   "path": "/auth/login",
+   "params": {
+    "username": "string",
+    "password": "string",
+    "code": "string(留空,验证码已关闭)",
+    "uuid": "string(留空)"
+   },
+   "token_field": "token",
+   "auth_header": "Authorization: Bearer <token>",
+   "note": "验证码已关闭：code/uuid 传空。401 时执行器自动重新登录并重试一次。"
+  },
+  "route_prefixes": {
+   "/mcc": 27,
+   "?": 28
+  },
+  "route_prefix_note": "多服务网关部署：每个 operation 自带 route_prefix（来源文档对应服务前缀）。执行器按 operation 的 route_prefix 路由；单一服务包可用 API_PATH_PREFIX 兜底。"
+ },
+ "operations": [
+  {
+   "operation_id": "device-server_delete_arm_del_armid",
+   "operation_id_generated": true,
+   "summary": "删除服务器信息",
+   "description": null,
+   "method": "DELETE",
+   "path": "/arm/del/{armId}",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "data",
+    "msg",
+    "timestamp",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1905,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_delete_mcc_api_arm_del_armid",
+   "operation_id_generated": true,
+   "summary": "删除服务器信息",
+   "description": null,
+   "method": "DELETE",
+   "path": "/mcc/api/arm/del/{armId}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 13879,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_delete_mcc_api_mount_diskid",
+   "operation_id_generated": true,
+   "summary": "删除外部磁盘信息",
+   "description": null,
+   "method": "DELETE",
+   "path": "/mcc/api/mount/{diskId}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 13166,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_delete_mcc_api_mount_remove",
+   "operation_id_generated": true,
+   "summary": "移除外部磁盘信息",
+   "description": null,
+   "method": "DELETE",
+   "path": "/mcc/api/mount/remove",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "createBy",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updateBy",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "备注"
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": "请求参数"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "nodeId",
+      "type": "string",
+      "required": "必须",
+      "desc": "节点编号"
+     },
+     {
+      "name": "diskId",
+      "type": "string",
+      "required": false,
+      "desc": "磁盘编号"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 13382,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_delete_mount_diskid",
+   "operation_id_generated": true,
+   "summary": "删除外部磁盘信息",
+   "description": null,
+   "method": "DELETE",
+   "path": "/mount/{diskId}",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1423,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_delete_mount_remove",
+   "operation_id_generated": true,
+   "summary": "移除外部磁盘信息",
+   "description": null,
+   "method": "DELETE",
+   "path": "/mount/remove",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "nodeId",
+      "type": "string",
+      "required": "必须",
+      "desc": "节点编号"
+     },
+     {
+      "name": "diskId",
+      "type": "string",
+      "required": false,
+      "desc": "磁盘编号"
+     }
+    ]
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1573,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_get_arm_config_ip",
+   "operation_id_generated": true,
+   "summary": "获取服务器配置信息",
+   "description": null,
+   "method": "GET",
+   "path": "/arm/config/{ip}",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "data",
+    "msg",
+    "timestamp",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 2029,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_get_arm_download_temp",
+   "operation_id_generated": true,
+   "summary": "下载服务器导出模板",
+   "description": null,
+   "method": "GET",
+   "path": "/arm/download/temp",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1892,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_get_arm_get",
+   "operation_id_generated": true,
+   "summary": "获取armIP列表",
+   "description": null,
+   "method": "GET",
+   "path": "/arm/get",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "data",
+    "armId",
+    "armIp",
+    "armName",
+    "msg",
+    "timestamp",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 2005,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_get_arm_get_armid",
+   "operation_id_generated": true,
+   "summary": "ARM服务器详情查询",
+   "description": null,
+   "method": "GET",
+   "path": "/arm/get/{armId}",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "data",
+    "armId",
+    "armName",
+    "configInfo",
+    "manufacturer",
+    "machineRoom",
+    "manager",
+    "chipCode",
+    "description",
+    "address",
+    "nodeIpSegment",
+    "containerIpSegment",
+    "armPort",
+    "nodeUser",
+    "nodePasswd",
+    "msg",
+    "timestamp",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1863,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_get_arm_page",
+   "operation_id_generated": true,
+   "summary": "服务器分页查询",
+   "description": null,
+   "method": "GET",
+   "path": "/arm/page",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "data",
+    "armId",
+    "armName",
+    "armState",
+    "deviceNum",
+    "configInfo",
+    "manufacturer",
+    "machineRoom",
+    "manager",
+    "description",
+    "address",
+    "createTime",
+    "updateTime",
+    "msg",
+    "timestamp",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1934,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_get_mcc_api_arm_config_ip",
+   "operation_id_generated": true,
+   "summary": "获取服务器配置信息",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/arm/config/{ip}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 14011,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_get_mcc_api_arm_download_temp",
+   "operation_id_generated": true,
+   "summary": "下载服务器导出模板",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/arm/download/temp",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 13827,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_get_mcc_api_arm_get",
+   "operation_id_generated": true,
+   "summary": "获取armIP列表",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/arm/get",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "createBy",
+    "createTime",
+    "updateBy",
+    "updateTime",
+    "remark",
+    "params",
+    "key",
+    "armId",
+    "armIp",
+    "armName",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 13982,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_get_mcc_api_arm_get_armid",
+   "operation_id_generated": true,
+   "summary": "ARM服务器详情查询",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/arm/get/{armId}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "createBy",
+    "createTime",
+    "updateBy",
+    "updateTime",
+    "remark",
+    "params",
+    "key",
+    "armId",
+    "armName",
+    "configInfo",
+    "manufacturer",
+    "machineRoom",
+    "manager",
+    "chipCode",
+    "description",
+    "address",
+    "nodeIpSegment",
+    "containerIpSegment",
+    "armPort",
+    "nodeUser",
+    "nodePasswd",
+    "armArea",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 13798,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_get_mcc_api_arm_page",
+   "operation_id_generated": true,
+   "summary": "服务器分页查询",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/arm/page",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "createBy",
+    "createTime",
+    "updateBy",
+    "updateTime",
+    "remark",
+    "params",
+    "key",
+    "armId",
+    "armName",
+    "armState",
+    "deviceNum",
+    "configInfo",
+    "manufacturer",
+    "machineRoom",
+    "manager",
+    "description",
+    "address",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 13908,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_get_mcc_api_mount_detail_diskid",
+   "operation_id_generated": true,
+   "summary": "获取磁盘详情",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/mount/detail/{diskId}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "createBy",
+    "createTime",
+    "updateBy",
+    "updateTime",
+    "remark",
+    "params",
+    "key",
+    "diskId",
+    "diskIp",
+    "diskName",
+    "diskUserName",
+    "diskPawd",
+    "mountDirectory",
+    "isAvailable",
+    "notAvailableReason",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 13450,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_get_mcc_api_mount_list_nodeid",
+   "operation_id_generated": true,
+   "summary": "获取可用外部磁盘列表",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/mount/list/{nodeId}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "createBy",
+    "createTime",
+    "updateBy",
+    "updateTime",
+    "remark",
+    "params",
+    "key",
+    "diskId",
+    "diskName",
+    "diskIp",
+    "diskSize",
+    "isAvailable",
+    "notAvailableReason",
+    "partitionName",
+    "size",
+    "type",
+    "used",
+    "avail",
+    "use",
+    "mountedOn",
+    "outDirPath",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 13421,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_get_mcc_api_node_chip_type_get",
+   "operation_id_generated": true,
+   "summary": "获取支持的芯片列表",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/node/chip_type/get",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "key",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 13665,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_get_mcc_api_node_download_temp",
+   "operation_id_generated": true,
+   "summary": "下载节点导出模板",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/node/download/temp",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 13481,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_get_mcc_api_node_get_armid",
+   "operation_id_generated": true,
+   "summary": "获取armIP列表",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/node/get/{armId}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "createBy",
+    "createTime",
+    "updateBy",
+    "updateTime",
+    "remark",
+    "params",
+    "key",
+    "nodeInfos",
+    "createBy",
+    "createTime",
+    "updateBy",
+    "updateTime",
+    "remark",
+    "params",
+    "key",
+    "nodeIp",
+    "nodeId",
+    "nodeCode",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 13636,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_get_mcc_api_node_page",
+   "operation_id_generated": true,
+   "summary": "节点信息列表查询",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/node/page",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "createBy",
+    "createTime",
+    "updateBy",
+    "updateTime",
+    "remark",
+    "params",
+    "key",
+    "nodeId",
+    "nodeCode",
+    "nodeIp",
+    "chipCode",
+    "deviceNum",
+    "nodeState",
+    "nodeMac",
+    "ram",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 13562,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_get_mcc_api_operator_list",
+   "operation_id_generated": true,
+   "summary": "获取运营商列表",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/operator/list",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "createBy",
+    "createTime",
+    "updateBy",
+    "updateTime",
+    "remark",
+    "params",
+    "key",
+    "id",
+    "operatorZhName",
+    "operatorEnName",
+    "allName",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 13140,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_get_mount_detail_diskid",
+   "operation_id_generated": true,
+   "summary": "获取磁盘详情",
+   "description": null,
+   "method": "GET",
+   "path": "/mount/detail/{diskId}",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1619,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_get_mount_list_nodeid",
+   "operation_id_generated": true,
+   "summary": "获取可用外部磁盘列表",
+   "description": null,
+   "method": "GET",
+   "path": "/mount/list/{nodeId}",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1601,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_get_node_chip_type_get",
+   "operation_id_generated": true,
+   "summary": "获取支持的芯片列表",
+   "description": null,
+   "method": "GET",
+   "path": "/node/chip_type/get",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1763,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_get_node_download_temp",
+   "operation_id_generated": true,
+   "summary": "下载节点导出模板",
+   "description": null,
+   "method": "GET",
+   "path": "/node/download/temp",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1639,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_get_node_get_armid",
+   "operation_id_generated": true,
+   "summary": "获取armIP列表",
+   "description": null,
+   "method": "GET",
+   "path": "/node/get/{armId}",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1745,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_get_node_page",
+   "operation_id_generated": true,
+   "summary": "节点信息列表查询",
+   "description": null,
+   "method": "GET",
+   "path": "/node/page",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1698,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_get_operator_list",
+   "operation_id_generated": true,
+   "summary": "获取运营商列表",
+   "description": null,
+   "method": "GET",
+   "path": "/operator/list",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1259,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_post_arm_update",
+   "operation_id_generated": true,
+   "summary": "ARM服务器更新接口",
+   "description": null,
+   "method": "POST",
+   "path": "/arm/update",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "armId",
+      "type": "string",
+      "required": false,
+      "desc": "服务器编号"
+     },
+     {
+      "name": "armName",
+      "type": "string",
+      "required": false,
+      "desc": "服务器名称"
+     },
+     {
+      "name": "configInfo",
+      "type": "string",
+      "required": false,
+      "desc": "配置信息"
+     },
+     {
+      "name": "machineRoom",
+      "type": "string",
+      "required": false,
+      "desc": "所属机房"
+     },
+     {
+      "name": "nodeIpSegment",
+      "type": "string",
+      "required": false,
+      "desc": "节点IP段"
+     },
+     {
+      "name": "containerIpSegment",
+      "type": "string",
+      "required": false,
+      "desc": "容器IP段"
+     },
+     {
+      "name": "manufacturer",
+      "type": "string",
+      "required": false,
+      "desc": "厂商"
+     },
+     {
+      "name": "manager",
+      "type": "string",
+      "required": false,
+      "desc": "管理人员"
+     },
+     {
+      "name": "description",
+      "type": "string",
+      "required": false,
+      "desc": "描述"
+     },
+     {
+      "name": "address",
+      "type": "string",
+      "required": false,
+      "desc": "地址"
+     },
+     {
+      "name": "chipCode",
+      "type": "string",
+      "required": "必须",
+      "desc": "芯片类型,ARM_3588/ARM_3399"
+     },
+     {
+      "name": "armPort",
+      "type": "string",
+      "required": false,
+      "desc": "arm服务器端口（默认80）"
+     },
+     {
+      "name": "nodeUser",
+      "type": "string",
+      "required": false,
+      "desc": "服务器节点用户（空值取默认）"
+     },
+     {
+      "name": "nodePasswd",
+      "type": "string",
+      "required": false,
+      "desc": "服务器节点密码（空值取默认）"
+     },
+     {
+      "name": "armArea",
+      "type": "string",
+      "required": false,
+      "desc": "地区"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "data",
+    "msg",
+    "timestamp",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1824,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_post_arm_upload",
+   "operation_id_generated": true,
+   "summary": "服务器模板导入",
+   "description": null,
+   "method": "POST",
+   "path": "/arm/upload",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "data",
+    "msg",
+    "timestamp",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1969,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_post_mcc_api_arm_update",
+   "operation_id_generated": true,
+   "summary": "ARM服务器更新接口",
+   "description": null,
+   "method": "POST",
+   "path": "/mcc/api/arm/update",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "createBy",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updateBy",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "备注"
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": "请求参数"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "armId",
+      "type": "string",
+      "required": false,
+      "desc": "服务器编号"
+     },
+     {
+      "name": "armName",
+      "type": "string",
+      "required": false,
+      "desc": "服务器名称"
+     },
+     {
+      "name": "configInfo",
+      "type": "string",
+      "required": false,
+      "desc": "配置信息"
+     },
+     {
+      "name": "machineRoom",
+      "type": "string",
+      "required": false,
+      "desc": "所属机房"
+     },
+     {
+      "name": "nodeIpSegment",
+      "type": "string",
+      "required": false,
+      "desc": "节点IP段"
+     },
+     {
+      "name": "containerIpSegment",
+      "type": "string",
+      "required": false,
+      "desc": "容器IP段"
+     },
+     {
+      "name": "manufacturer",
+      "type": "string",
+      "required": false,
+      "desc": "厂商"
+     },
+     {
+      "name": "manager",
+      "type": "string",
+      "required": false,
+      "desc": "管理人员"
+     },
+     {
+      "name": "description",
+      "type": "string",
+      "required": false,
+      "desc": "描述"
+     },
+     {
+      "name": "address",
+      "type": "string",
+      "required": false,
+      "desc": "地址"
+     },
+     {
+      "name": "chipCode",
+      "type": "string",
+      "required": "必须",
+      "desc": "芯片类型,ARM_3588/ARM_3399"
+     },
+     {
+      "name": "armPort",
+      "type": "string",
+      "required": false,
+      "desc": "arm服务器端口（默认80）"
+     },
+     {
+      "name": "nodeUser",
+      "type": "string",
+      "required": false,
+      "desc": "服务器节点用户（空值取默认）"
+     },
+     {
+      "name": "nodePasswd",
+      "type": "string",
+      "required": false,
+      "desc": "服务器节点密码（空值取默认）"
+     },
+     {
+      "name": "armArea",
+      "type": "string",
+      "required": false,
+      "desc": "区域"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 13759,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_post_mcc_api_arm_upload",
+   "operation_id_generated": true,
+   "summary": "服务器模板导入",
+   "description": null,
+   "method": "POST",
+   "path": "/mcc/api/arm/upload",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 13946,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_post_mcc_api_mount_update",
+   "operation_id_generated": true,
+   "summary": "新增或编辑磁盘信息",
+   "description": null,
+   "method": "POST",
+   "path": "/mcc/api/mount/update",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "createBy",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updateBy",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "备注"
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": "请求参数"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "diskId",
+      "type": "string",
+      "required": false,
+      "desc": "磁盘编号"
+     },
+     {
+      "name": "nodeId",
+      "type": "string",
+      "required": false,
+      "desc": "@NotNull(message = \"节点编号不可为空\")"
+     },
+     {
+      "name": "diskIp",
+      "type": "string",
+      "required": "必须",
+      "desc": "磁盘地址"
+     },
+     {
+      "name": "diskName",
+      "type": "string",
+      "required": "必须",
+      "desc": "磁盘名称"
+     },
+     {
+      "name": "diskUserName",
+      "type": "string",
+      "required": "必须",
+      "desc": "用户名"
+     },
+     {
+      "name": "diskPawd",
+      "type": "string",
+      "required": "必须",
+      "desc": "密码"
+     },
+     {
+      "name": "mountDirectory",
+      "type": "string",
+      "required": "必须",
+      "desc": "挂载目录"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "createBy",
+    "createTime",
+    "updateBy",
+    "updateTime",
+    "remark",
+    "params",
+    "key",
+    "diskId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 13304,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_post_mcc_api_node_reload",
+   "operation_id_generated": true,
+   "summary": "重新加载获取某节点下设备信息",
+   "description": null,
+   "method": "POST",
+   "path": "/mcc/api/node/reload",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "createBy",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updateBy",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "备注"
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": "请求参数"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "armId",
+      "type": "string",
+      "required": false,
+      "desc": "服务器地址信息，可空"
+     },
+     {
+      "name": "nodeIds",
+      "type": "string []",
+      "required": "必须",
+      "desc": "节点地址不可为空"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 13718,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_post_mcc_api_node_update",
+   "operation_id_generated": true,
+   "summary": "服务器节点操作",
+   "description": null,
+   "method": "POST",
+   "path": "/mcc/api/node/update",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "createBy",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updateBy",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "备注"
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": "请求参数"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "nodeIds",
+      "type": "string []",
+      "required": false,
+      "desc": "节点编号集合"
+     },
+     {
+      "name": "operation",
+      "type": "string",
+      "required": false,
+      "desc": "操作指令，SHUTDOWN:关机/POWER_ON:开机/RESTART:重启"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 13494,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_post_mcc_api_node_upload",
+   "operation_id_generated": true,
+   "summary": "节点及设备信息模板导入",
+   "description": null,
+   "method": "POST",
+   "path": "/mcc/api/node/upload",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 13600,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_post_mount_update",
+   "operation_id_generated": true,
+   "summary": "新增或编辑磁盘信息",
+   "description": null,
+   "method": "POST",
+   "path": "/mount/update",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "diskId",
+      "type": "string",
+      "required": false,
+      "desc": "磁盘编号"
+     },
+     {
+      "name": "nodeId",
+      "type": "string",
+      "required": false,
+      "desc": "@NotNull(message = \"节点编号不可为空\")"
+     },
+     {
+      "name": "diskIp",
+      "type": "string",
+      "required": "必须",
+      "desc": "磁盘地址"
+     },
+     {
+      "name": "diskName",
+      "type": "string",
+      "required": "必须",
+      "desc": "磁盘名称"
+     },
+     {
+      "name": "diskUserName",
+      "type": "string",
+      "required": "必须",
+      "desc": "用户名"
+     },
+     {
+      "name": "diskPawd",
+      "type": "string",
+      "required": "必须",
+      "desc": "密码"
+     },
+     {
+      "name": "mountDirectory",
+      "type": "string",
+      "required": "必须",
+      "desc": "挂载目录"
+     }
+    ]
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1545,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_post_node_reload",
+   "operation_id_generated": true,
+   "summary": "重新加载获取某节点下设备信息",
+   "description": null,
+   "method": "POST",
+   "path": "/node/reload",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "armId",
+      "type": "string",
+      "required": false,
+      "desc": "服务器地址信息，可空"
+     },
+     {
+      "name": "nodeIds",
+      "type": "string []",
+      "required": "必须",
+      "desc": "节点地址不可为空"
+     }
+    ]
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1794,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_post_node_update",
+   "operation_id_generated": true,
+   "summary": "服务器节点操作",
+   "description": null,
+   "method": "POST",
+   "path": "/node/update",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "nodeIds",
+      "type": "string []",
+      "required": false,
+      "desc": "节点编号集合"
+     },
+     {
+      "name": "operation",
+      "type": "string",
+      "required": false,
+      "desc": "操作指令，SHUTDOWN:关机/POWER_ON:开机/RESTART:重启"
+     }
+    ]
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1652,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_post_node_upload",
+   "operation_id_generated": true,
+   "summary": "节点及设备信息模板导入",
+   "description": null,
+   "method": "POST",
+   "path": "/node/upload",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1720,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_put_mcc_api_arm_board",
+   "operation_id_generated": true,
+   "summary": "修改Board映射集合",
+   "description": null,
+   "method": "PUT",
+   "path": "/mcc/api/arm/board",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "createBy",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updateBy",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "备注"
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": "请求参数"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "armIds",
+      "type": "string []",
+      "required": false,
+      "desc": "服务器编号集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 13840,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_put_mcc_api_mount_backup",
+   "operation_id_generated": true,
+   "summary": "备份节点数据",
+   "description": null,
+   "method": "PUT",
+   "path": "/mcc/api/mount/backup",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "createBy",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updateBy",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "备注"
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": "请求参数"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "diskId",
+      "type": "string",
+      "required": "必须",
+      "desc": "磁盘编号"
+     },
+     {
+      "name": "nodeId",
+      "type": "string",
+      "required": "必须",
+      "desc": "节点编号"
+     },
+     {
+      "name": "mountDir",
+      "type": "string",
+      "required": false,
+      "desc": "目录当备份方式为内部备份时不可为空"
+     },
+     {
+      "name": "backupType",
+      "type": "string",
+      "required": "必须",
+      "desc": "备份方式"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 13195,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_put_mcc_api_mount_check",
+   "operation_id_generated": true,
+   "summary": "外部磁盘健康检查",
+   "description": null,
+   "method": "PUT",
+   "path": "/mcc/api/mount/check",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "createBy",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updateBy",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "备注"
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": "请求参数"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "diskId",
+      "type": "string",
+      "required": false,
+      "desc": "磁盘编号"
+     },
+     {
+      "name": "nodeId",
+      "type": "string",
+      "required": false,
+      "desc": "@NotNull(message = \"节点编号不可为空\")"
+     },
+     {
+      "name": "diskIp",
+      "type": "string",
+      "required": "必须",
+      "desc": "磁盘地址"
+     },
+     {
+      "name": "diskName",
+      "type": "string",
+      "required": "必须",
+      "desc": "磁盘名称"
+     },
+     {
+      "name": "diskUserName",
+      "type": "string",
+      "required": "必须",
+      "desc": "用户名"
+     },
+     {
+      "name": "diskPawd",
+      "type": "string",
+      "required": "必须",
+      "desc": "密码"
+     },
+     {
+      "name": "mountDirectory",
+      "type": "string",
+      "required": "必须",
+      "desc": "挂载目录"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 13236,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_put_mcc_api_mount_doing",
+   "operation_id_generated": true,
+   "summary": "磁盘挂载",
+   "description": null,
+   "method": "PUT",
+   "path": "/mcc/api/mount/doing",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "createBy",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updateBy",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "备注"
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": "请求参数"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "diskId",
+      "type": "string",
+      "required": "必须",
+      "desc": "磁盘编号"
+     },
+     {
+      "name": "nodeId",
+      "type": "string",
+      "required": "必须",
+      "desc": "节点编号"
+     },
+     {
+      "name": "mountDir",
+      "type": "string",
+      "required": false,
+      "desc": "节点挂载目录"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 13343,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_put_mcc_api_mount_install_diskid",
+   "operation_id_generated": true,
+   "summary": "安装 nftserver 插件",
+   "description": null,
+   "method": "PUT",
+   "path": "/mcc/api/mount/install/{diskId}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 13275,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_put_mcc_api_node_admin_push_armid",
+   "operation_id_generated": true,
+   "summary": "管理人员使用，推送端口python环境",
+   "description": null,
+   "method": "PUT",
+   "path": "/mcc/api/node/admin/push/{armId}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 13533,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_put_mcc_api_node_admin_restart_armid",
+   "operation_id_generated": true,
+   "summary": "重启节点端口代理服务",
+   "description": null,
+   "method": "PUT",
+   "path": "/mcc/api/node/admin/restart/{armId}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 13689,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_put_mount_backup",
+   "operation_id_generated": true,
+   "summary": "备份",
+   "description": null,
+   "method": "PUT",
+   "path": "/mount/backup",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "diskId",
+      "type": "string",
+      "required": "必须",
+      "desc": "磁盘编号"
+     },
+     {
+      "name": "nodeId",
+      "type": "string",
+      "required": "必须",
+      "desc": "节点编号"
+     },
+     {
+      "name": "mountDir",
+      "type": "string",
+      "required": false,
+      "desc": "目录当备份方式为内部备份时不可为空"
+     },
+     {
+      "name": "backupType",
+      "type": "string",
+      "required": "必须",
+      "desc": "备份方式"
+     }
+    ]
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1441,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_put_mount_check",
+   "operation_id_generated": true,
+   "summary": "外部磁盘检查",
+   "description": null,
+   "method": "PUT",
+   "path": "/mount/check",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "diskId",
+      "type": "string",
+      "required": false,
+      "desc": "磁盘编号"
+     },
+     {
+      "name": "nodeId",
+      "type": "string",
+      "required": false,
+      "desc": "@NotNull(message = \"节点编号不可为空\")"
+     },
+     {
+      "name": "diskIp",
+      "type": "string",
+      "required": "必须",
+      "desc": "磁盘地址"
+     },
+     {
+      "name": "diskName",
+      "type": "string",
+      "required": "必须",
+      "desc": "磁盘名称"
+     },
+     {
+      "name": "diskUserName",
+      "type": "string",
+      "required": "必须",
+      "desc": "用户名"
+     },
+     {
+      "name": "diskPawd",
+      "type": "string",
+      "required": "必须",
+      "desc": "密码"
+     },
+     {
+      "name": "mountDirectory",
+      "type": "string",
+      "required": "必须",
+      "desc": "挂载目录"
+     }
+    ]
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1471,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_put_mount_doing",
+   "operation_id_generated": true,
+   "summary": "挂载",
+   "description": null,
+   "method": "PUT",
+   "path": "/mount/doing",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "diskId",
+      "type": "string",
+      "required": "必须",
+      "desc": "磁盘编号"
+     },
+     {
+      "name": "nodeId",
+      "type": "string",
+      "required": "必须",
+      "desc": "节点编号"
+     },
+     {
+      "name": "mountDir",
+      "type": "string",
+      "required": false,
+      "desc": "节点挂载目录"
+     }
+    ]
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1517,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_put_mount_install_diskid",
+   "operation_id_generated": true,
+   "summary": "安装nfserver插件",
+   "description": null,
+   "method": "PUT",
+   "path": "/mount/install/{diskId}",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1499,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_put_node_admin_push_armid",
+   "operation_id_generated": true,
+   "summary": "管理人员使用，推送端口python环境",
+   "description": null,
+   "method": "PUT",
+   "path": "/node/admin/push/{armId}",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1680,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-server_put_node_admin_restart_armid",
+   "operation_id_generated": true,
+   "summary": "重启节点端口代理服务",
+   "description": null,
+   "method": "PUT",
+   "path": "/node/admin/restart/{armId}",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1776,
+   "pagination": null
+  }
+ ]
+}

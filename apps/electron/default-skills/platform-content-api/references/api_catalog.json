@@ -1,0 +1,3945 @@
+{
+ "_meta": {
+  "package": "platform-content-api",
+  "domain_label": "内容素材库（素材/文本/模板/标签群组/人设）",
+  "source_docs": [
+   "callfans-standard.md"
+  ],
+  "operation_count": 61,
+  "login": {
+   "operation_id": "auth_post_login",
+   "method": "POST",
+   "path": "/auth/login",
+   "params": {
+    "username": "string",
+    "password": "string",
+    "code": "string(留空,验证码已关闭)",
+    "uuid": "string(留空)"
+   },
+   "token_field": "token",
+   "auth_header": "Authorization: Bearer <token>",
+   "note": "验证码已关闭：code/uuid 传空。401 时执行器自动重新登录并重试一次。"
+  },
+  "route_prefixes": {
+   "/social": 7,
+   "?": 54
+  },
+  "route_prefix_note": "多服务网关部署：每个 operation 自带 route_prefix（来源文档对应服务前缀）。执行器按 operation 的 route_prefix 路由；单一服务包可用 API_PATH_PREFIX 兜底。"
+ },
+ "operations": [
+  {
+   "operation_id": "content_delete_label_group_del",
+   "operation_id_generated": true,
+   "summary": "删除群组",
+   "description": null,
+   "method": "DELETE",
+   "path": "/label/group/del",
+   "route_prefix": "/social",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "labelGroupId",
+      "type": "string",
+      "required": false,
+      "desc": "标签群组id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 5103,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_delete_social_label_group_del",
+   "operation_id_generated": true,
+   "summary": "删除群组",
+   "description": null,
+   "method": "DELETE",
+   "path": "/social/label/group/del",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "labelGroupId",
+      "type": "string",
+      "required": false,
+      "desc": "标签群组id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 5142,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_delete_social_material_batch_delete",
+   "operation_id_generated": true,
+   "summary": "批量删除素材",
+   "description": null,
+   "method": "DELETE",
+   "path": "/social/material/batch/delete",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "ids",
+      "type": "string []",
+      "required": "必须",
+      "desc": "素材id列表"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 4185,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_delete_social_material_folder",
+   "operation_id_generated": true,
+   "summary": "删除素材文件夹",
+   "description": null,
+   "method": "DELETE",
+   "path": "/social/material/folder",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "materialFolderId",
+      "type": "string",
+      "required": false,
+      "desc": "文件夹id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 4480,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_delete_social_template_del",
+   "operation_id_generated": true,
+   "summary": "批量删除模板库",
+   "description": null,
+   "method": "DELETE",
+   "path": "/social/template/del",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "templateLibraryIds",
+      "type": "string []",
+      "required": false,
+      "desc": "模板id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 3073,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_delete_social_text_library_del",
+   "operation_id_generated": true,
+   "summary": "删除文本库信息(支持批量)",
+   "description": null,
+   "method": "DELETE",
+   "path": "/social/text-library/del",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "textIds",
+      "type": "string []",
+      "required": false,
+      "desc": "文本库主键"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 9705,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_get_label_group_list",
+   "operation_id_generated": true,
+   "summary": "查询群组集合",
+   "description": null,
+   "method": "GET",
+   "path": "/label/group/list",
+   "route_prefix": "/social",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "groupName",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 5385,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_get_label_group_total",
+   "operation_id_generated": true,
+   "summary": "查询群组下标签数量",
+   "description": null,
+   "method": "GET",
+   "path": "/label/group/total",
+   "route_prefix": "/social",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "key",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 5337,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_get_social_interested_page",
+   "operation_id_generated": true,
+   "summary": "获取人设列表分页",
+   "description": null,
+   "method": "GET",
+   "path": "/social/interested/page",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 1516,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_get_social_label_group_list",
+   "operation_id_generated": true,
+   "summary": "查询群组集合",
+   "description": null,
+   "method": "GET",
+   "path": "/social/label/group/list",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "groupName",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 5409,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_get_social_label_group_total",
+   "operation_id_generated": true,
+   "summary": "查询群组下标签数量",
+   "description": null,
+   "method": "GET",
+   "path": "/social/label/group/total",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "key",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 5361,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_get_social_material_folder_total",
+   "operation_id_generated": true,
+   "summary": "查询文件夹下素材数量",
+   "description": null,
+   "method": "GET",
+   "path": "/social/material/folder/total",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "0",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 4636,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_get_social_material_folder_tree",
+   "operation_id_generated": true,
+   "summary": "查询素材文件夹树结构",
+   "description": null,
+   "method": "GET",
+   "path": "/social/material/folder/tree",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "folderName",
+    "parentId",
+    "fileCount",
+    "materialFolderIds",
+    "sortIndex",
+    "children",
+    "id",
+    "folderName",
+    "parentId",
+    "fileCount",
+    "materialFolderIds",
+    "sortIndex",
+    "children",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 4699,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_get_social_material_id",
+   "operation_id_generated": true,
+   "summary": "根据id查询素材库素材详情信息",
+   "description": null,
+   "method": "GET",
+   "path": "/social/material/{id}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "fileName",
+    "fileDimension",
+    "fileSize",
+    "fileType",
+    "addDate",
+    "remarks",
+    "updateTime",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 4345,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_get_social_material_label_total",
+   "operation_id_generated": true,
+   "summary": "查询标签数量",
+   "description": null,
+   "method": "GET",
+   "path": "/social/material/label/total",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "all",
+    "ungrouped",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 4842,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_get_social_material_total",
+   "operation_id_generated": true,
+   "summary": "获取素材分类数量",
+   "description": null,
+   "method": "GET",
+   "path": "/social/material/total",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "all",
+    "unclassified",
+    "unlabeled",
+    "unscored",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 4415,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_get_social_template_id",
+   "operation_id_generated": true,
+   "summary": "根据id查询模板库",
+   "description": null,
+   "method": "GET",
+   "path": "/social/template/{id}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "templateName",
+    "triggerTime",
+    "lastEndTime",
+    "executionTimes",
+    "templateStatus",
+    "assembles",
+    "key",
+    "connections",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 3230,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_get_social_text_library_detail_id",
+   "operation_id_generated": true,
+   "summary": "获取文本库详情",
+   "description": null,
+   "method": "GET",
+   "path": "/social/text-library/detail/{id}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "themeSettings",
+    "suiteName",
+    "topic",
+    "title",
+    "hashTags",
+    "mainTextRef",
+    "mainText",
+    "keyWords",
+    "coverText",
+    "execState",
+    "state",
+    "taskRef",
+    "generationTime",
+    "source",
+    "aigcId",
+    "aigcName",
+    "componentParam",
+    "key",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 10046,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_get_social_text_library_field",
+   "operation_id_generated": true,
+   "summary": "获取文本库字段信息",
+   "description": null,
+   "method": "GET",
+   "path": "/social/text-library/field",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "fieldEn",
+    "fieldCh",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 10022,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_get_social_text_library_list_id",
+   "operation_id_generated": true,
+   "summary": "获取文本库列表详情",
+   "description": null,
+   "method": "GET",
+   "path": "/social/text-library/list/{id}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "themeSettings",
+    "suiteName",
+    "topic",
+    "title",
+    "hashTags",
+    "mainTextRef",
+    "mainText",
+    "keyWords",
+    "coverText",
+    "execState",
+    "state",
+    "taskRef",
+    "generationTime",
+    "source",
+    "aigcId",
+    "aigcName",
+    "componentParam",
+    "key",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 9989,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_post_label_group_add",
+   "operation_id_generated": true,
+   "summary": "新增标签和群组关联关系",
+   "description": null,
+   "method": "POST",
+   "path": "/label/group/add",
+   "route_prefix": "/social",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "labelIds",
+      "type": "string []",
+      "required": false,
+      "desc": "标签id集合"
+     },
+     {
+      "name": "labelGroupId",
+      "type": "string",
+      "required": false,
+      "desc": "标签群组id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 5259,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_post_label_group_cancel",
+   "operation_id_generated": true,
+   "summary": "取消标签和群组关联关系",
+   "description": null,
+   "method": "POST",
+   "path": "/label/group/cancel",
+   "route_prefix": "/social",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "labelIds",
+      "type": "string []",
+      "required": false,
+      "desc": "标签id集合"
+     },
+     {
+      "name": "labelGroupId",
+      "type": "string",
+      "required": false,
+      "desc": "标签群组id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 5181,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_post_label_group_save",
+   "operation_id_generated": true,
+   "summary": "保存群组",
+   "description": null,
+   "method": "POST",
+   "path": "/label/group/save",
+   "route_prefix": "/social",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "groupName",
+      "type": "string",
+      "required": false,
+      "desc": "标签群组名称"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 4947,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_post_social_label_group_add",
+   "operation_id_generated": true,
+   "summary": "新增标签和群组关联关系",
+   "description": null,
+   "method": "POST",
+   "path": "/social/label/group/add",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "labelIds",
+      "type": "string []",
+      "required": false,
+      "desc": "标签id集合"
+     },
+     {
+      "name": "labelGroupId",
+      "type": "string",
+      "required": false,
+      "desc": "标签群组id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 5298,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_post_social_label_group_cancel",
+   "operation_id_generated": true,
+   "summary": "取消标签和群组关联关系",
+   "description": null,
+   "method": "POST",
+   "path": "/social/label/group/cancel",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "labelIds",
+      "type": "string []",
+      "required": false,
+      "desc": "标签id集合"
+     },
+     {
+      "name": "labelGroupId",
+      "type": "string",
+      "required": false,
+      "desc": "标签群组id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 5220,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_post_social_label_group_save",
+   "operation_id_generated": true,
+   "summary": "保存群组",
+   "description": null,
+   "method": "POST",
+   "path": "/social/label/group/save",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "groupName",
+      "type": "string",
+      "required": false,
+      "desc": "标签群组名称"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 4986,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_post_social_material_batch_download",
+   "operation_id_generated": true,
+   "summary": "批量下载素材",
+   "description": null,
+   "method": "POST",
+   "path": "/social/material/batch/download",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "ids",
+      "type": "string []",
+      "required": "必须",
+      "desc": "素材id列表"
+     }
+    ]
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 4157,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_post_social_material_folder",
+   "operation_id_generated": true,
+   "summary": "新增文件夹",
+   "description": null,
+   "method": "POST",
+   "path": "/social/material/folder",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "folderName",
+      "type": "string",
+      "required": false,
+      "desc": "文件夹名称"
+     },
+     {
+      "name": "parentId",
+      "type": "string",
+      "required": false,
+      "desc": "父id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 4558,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_post_social_material_folder_add",
+   "operation_id_generated": true,
+   "summary": "新增素材文件夹和素材关联",
+   "description": null,
+   "method": "POST",
+   "path": "/social/material/folder/add",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "materialIds",
+      "type": "string []",
+      "required": false,
+      "desc": "素材id集合"
+     },
+     {
+      "name": "folderIds",
+      "type": "string []",
+      "required": false,
+      "desc": "新增文件夹id"
+     },
+     {
+      "name": "folderDelIds",
+      "type": "string []",
+      "required": false,
+      "desc": "删除文件夹id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 4597,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_post_social_material_folder_cancel",
+   "operation_id_generated": true,
+   "summary": "取消素材文件夹和素材关联",
+   "description": null,
+   "method": "POST",
+   "path": "/social/material/folder/cancel",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "materialIds",
+      "type": "string []",
+      "required": false,
+      "desc": "素材id集合"
+     },
+     {
+      "name": "folderIds",
+      "type": "string []",
+      "required": false,
+      "desc": "文件夹id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 4519,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_post_social_material_folder_download",
+   "operation_id_generated": true,
+   "summary": "下载文件夹下的所有素材",
+   "description": null,
+   "method": "POST",
+   "path": "/social/material/folder/download",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "folderId",
+      "type": "string",
+      "required": false,
+      "desc": "文件夹id"
+     }
+    ]
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 4047,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_post_social_material_folder_tree",
+   "operation_id_generated": true,
+   "summary": "查询素材文件夹",
+   "description": null,
+   "method": "POST",
+   "path": "/social/material/folder/tree",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "folderName",
+      "type": "string",
+      "required": false,
+      "desc": "文件夹名称"
+     },
+     {
+      "name": "parentId",
+      "type": "integer",
+      "required": false,
+      "desc": "文件夹层级"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "folderName",
+    "parentId",
+    "fileCount",
+    "materialFolderIds",
+    "sortIndex",
+    "children",
+    "id",
+    "folderName",
+    "parentId",
+    "fileCount",
+    "materialFolderIds",
+    "sortIndex",
+    "children",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 4660,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_post_social_material_label_add",
+   "operation_id_generated": true,
+   "summary": "新增素材和标签关联",
+   "description": null,
+   "method": "POST",
+   "path": "/social/material/label/add",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "materialIds",
+      "type": "string []",
+      "required": false,
+      "desc": "素材id集合"
+     },
+     {
+      "name": "materialLabelId",
+      "type": "string",
+      "required": false,
+      "desc": "标签id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 4803,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_post_social_material_label_cancel",
+   "operation_id_generated": true,
+   "summary": "取消素材和标签关联",
+   "description": null,
+   "method": "POST",
+   "path": "/social/material/label/cancel",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "materialIds",
+      "type": "string []",
+      "required": false,
+      "desc": "素材id集合"
+     },
+     {
+      "name": "materialLabelId",
+      "type": "string",
+      "required": false,
+      "desc": "标签id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 4764,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_post_social_material_label_list",
+   "operation_id_generated": true,
+   "summary": "根据枚举值或群组id查询标签集合",
+   "description": null,
+   "method": "POST",
+   "path": "/social/material/label/list",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "materialLabelEnum",
+      "type": "string",
+      "required": false,
+      "desc": "标签分类"
+     },
+     {
+      "name": "groupId",
+      "type": "string",
+      "required": false,
+      "desc": "群组id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "labelName",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 4866,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_post_social_material_label_name",
+   "operation_id_generated": true,
+   "summary": "模糊查询标签",
+   "description": null,
+   "method": "POST",
+   "path": "/social/material/label/name",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "labelName",
+      "type": "string",
+      "required": false,
+      "desc": "标签名称"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "labelName",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 4906,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_post_social_material_label_save",
+   "operation_id_generated": true,
+   "summary": "保存素材标签",
+   "description": null,
+   "method": "POST",
+   "path": "/social/material/label/save",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "labelName",
+      "type": "string",
+      "required": false,
+      "desc": "标签名称"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 4725,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_post_social_material_list",
+   "operation_id_generated": true,
+   "summary": "分页查询素材信息",
+   "description": null,
+   "method": "POST",
+   "path": "/social/material/list",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "records",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "creatorId",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updatorId",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "deleted",
+      "type": "boolean",
+      "required": false,
+      "desc": "删除标识，0未删 1已删"
+     },
+     {
+      "name": "version",
+      "type": "integer",
+      "required": false,
+      "desc": "版本"
+     },
+     {
+      "name": "deptId",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "key",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": "主键id"
+     },
+     {
+      "name": "fileUrl",
+      "type": "string",
+      "required": false,
+      "desc": "文件url"
+     },
+     {
+      "name": "fileName",
+      "type": "string",
+      "required": false,
+      "desc": "文件名称"
+     },
+     {
+      "name": "fileScore",
+      "type": "integer",
+      "required": false,
+      "desc": "文件评分 0表示未评分"
+     },
+     {
+      "name": "fileDimension",
+      "type": "string",
+      "required": false,
+      "desc": "文件尺寸"
+     },
+     {
+      "name": "fileSize",
+      "type": "string",
+      "required": false,
+      "desc": "文件大小"
+     },
+     {
+      "name": "fileType",
+      "type": "string",
+      "required": false,
+      "desc": "文件格式"
+     },
+     {
+      "name": "addDate",
+      "type": "string",
+      "required": false,
+      "desc": "文件添加时间"
+     },
+     {
+      "name": "remarks",
+      "type": "string",
+      "required": false,
+      "desc": "文件备注"
+     },
+     {
+      "name": "recordId",
+      "type": "integer",
+      "required": false,
+      "desc": "执行记录编号"
+     },
+     {
+      "name": "total",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "size",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "current",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "orders",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "column",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "asc",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "searchCount",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeJoinOfCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "maxLimit",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "countId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "materialClassify",
+      "type": "string",
+      "required": false,
+      "desc": "素材分类"
+     },
+     {
+      "name": "onlyFolderIds",
+      "type": "string []",
+      "required": false,
+      "desc": "文件夹集合（仅展示文件夹下图片）"
+     },
+     {
+      "name": "folderId",
+      "type": "string",
+      "required": false,
+      "desc": "文件夹（包含子文件）"
+     },
+     {
+      "name": "fileSuffix",
+      "type": "string",
+      "required": false,
+      "desc": "文件后缀"
+     },
+     {
+      "name": "tagIds",
+      "type": "string []",
+      "required": false,
+      "desc": "便签IDs"
+     },
+     {
+      "name": "fileScores",
+      "type": "integer []",
+      "required": false,
+      "desc": "评分"
+     },
+     {
+      "name": "fileName",
+      "type": "string",
+      "required": false,
+      "desc": "文件名"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 4075,
+   "pagination": {
+    "possible": true,
+    "note": "该接口 Body 的 YApi 文档把 MyBatis-Plus Page 响应对象也写进了请求体（`asc`, `column`, `countId`, `maxLimit`, `optimizeCountSql`, `optimizeJoinOfCountSql`, `orders`, `records`, `searchCount`, `total`）。实际请求请只发送筛选条件 + 分页参数（`current`、`size`，或 `pageNum`/`pageSize` 视接口而定），不要发送响应侧字段。"
+   }
+  },
+  {
+   "operation_id": "content_post_social_material_totalnum",
+   "operation_id_generated": true,
+   "summary": "查询素材分类总数",
+   "description": null,
+   "method": "POST",
+   "path": "/social/material/totalNum",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "materialClassify",
+      "type": "string",
+      "required": false,
+      "desc": "素材分类"
+     },
+     {
+      "name": "folderId",
+      "type": "string",
+      "required": false,
+      "desc": "文件夹id"
+     },
+     {
+      "name": "fileSuffix",
+      "type": "string",
+      "required": false,
+      "desc": "文件后缀"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "totalFileNum",
+    "totalFileSize",
+    "totalFolderNum",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 4302,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_post_social_material_update",
+   "operation_id_generated": true,
+   "summary": "更新素材信息",
+   "description": null,
+   "method": "POST",
+   "path": "/social/material/update",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "素材id"
+     },
+     {
+      "name": "fileName",
+      "type": "string",
+      "required": false,
+      "desc": "文件名称"
+     },
+     {
+      "name": "remarks",
+      "type": "string",
+      "required": false,
+      "desc": "文件备注"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 4224,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_post_social_material_upload",
+   "operation_id_generated": true,
+   "summary": "素材库导入素材",
+   "description": null,
+   "method": "POST",
+   "path": "/social/material/upload",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 4374,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_post_social_template_add",
+   "operation_id_generated": true,
+   "summary": "新增模板库",
+   "description": null,
+   "method": "POST",
+   "path": "/social/template/add",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "templateName",
+      "type": "string",
+      "required": false,
+      "desc": "模板名称 限制 30个字符"
+     },
+     {
+      "name": "triggerTime",
+      "type": "string",
+      "required": false,
+      "desc": "触发时间"
+     },
+     {
+      "name": "assembles",
+      "type": "object []",
+      "required": false,
+      "desc": "模板组件集合"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "connections",
+      "type": "object []",
+      "required": false,
+      "desc": "模板连接"
+     },
+     {
+      "name": "templateType",
+      "type": "string",
+      "required": false,
+      "desc": "模板类型（text:文本库、template:模板库）"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 3190,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_post_social_template_disable",
+   "operation_id_generated": true,
+   "summary": "批量禁用模板库",
+   "description": null,
+   "method": "POST",
+   "path": "/social/template/disable",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "templateLibraryIds",
+      "type": "string []",
+      "required": false,
+      "desc": "模板id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 3151,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_post_social_template_enable",
+   "operation_id_generated": true,
+   "summary": "批量启用模板库 0禁用 1启用",
+   "description": null,
+   "method": "POST",
+   "path": "/social/template/enable",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "templateLibraryIds",
+      "type": "string []",
+      "required": false,
+      "desc": "模板id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 3112,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_post_social_template_execute",
+   "operation_id_generated": true,
+   "summary": "执行模板库",
+   "description": null,
+   "method": "POST",
+   "path": "/social/template/execute",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "templateId",
+      "type": "string",
+      "required": false,
+      "desc": "模板id"
+     },
+     {
+      "name": "execSource",
+      "type": "string",
+      "required": false,
+      "desc": "触发来源"
+     },
+     {
+      "name": "execId",
+      "type": "string",
+      "required": false,
+      "desc": "触发编号（主键）"
+     },
+     {
+      "name": "templateLibrary",
+      "type": "object",
+      "required": false,
+      "desc": "运行指定模板"
+     },
+     {
+      "name": "creatorId",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updatorId",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "deleted",
+      "type": "boolean",
+      "required": false,
+      "desc": "删除标识，0未删 1已删"
+     },
+     {
+      "name": "version",
+      "type": "integer",
+      "required": false,
+      "desc": "版本"
+     },
+     {
+      "name": "deptId",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "key",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": "主键id"
+     },
+     {
+      "name": "templateName",
+      "type": "string",
+      "required": false,
+      "desc": "模板名称"
+     },
+     {
+      "name": "triggerTime",
+      "type": "string",
+      "required": false,
+      "desc": "触发时间"
+     },
+     {
+      "name": "lastEndTime",
+      "type": "string",
+      "required": false,
+      "desc": "上次执行结束时间"
+     },
+     {
+      "name": "executionTimes",
+      "type": "integer",
+      "required": false,
+      "desc": "执行次数"
+     },
+     {
+      "name": "templateStatus",
+      "type": "integer",
+      "required": false,
+      "desc": "模板状态"
+     },
+     {
+      "name": "assembles",
+      "type": "object []",
+      "required": false,
+      "desc": "模板组件集合"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "connections",
+      "type": "object []",
+      "required": false,
+      "desc": "模板连接"
+     },
+     {
+      "name": "jobId",
+      "type": "integer",
+      "required": false,
+      "desc": "job平台的任务id"
+     },
+     {
+      "name": "cronExpr",
+      "type": "string",
+      "required": false,
+      "desc": "cron表达式"
+     },
+     {
+      "name": "templateType",
+      "type": "string",
+      "required": false,
+      "desc": null
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 3034,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_post_social_template_page",
+   "operation_id_generated": true,
+   "summary": "模板库列表分页",
+   "description": null,
+   "method": "POST",
+   "path": "/social/template/page",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "records",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "creatorId",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updatorId",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "deleted",
+      "type": "boolean",
+      "required": false,
+      "desc": "删除标识，0未删 1已删"
+     },
+     {
+      "name": "version",
+      "type": "integer",
+      "required": false,
+      "desc": "版本"
+     },
+     {
+      "name": "deptId",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "key",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": "主键id"
+     },
+     {
+      "name": "templateName",
+      "type": "string",
+      "required": false,
+      "desc": "模板名称"
+     },
+     {
+      "name": "triggerTime",
+      "type": "string",
+      "required": false,
+      "desc": "触发时间"
+     },
+     {
+      "name": "lastEndTime",
+      "type": "string",
+      "required": false,
+      "desc": "上次执行结束时间"
+     },
+     {
+      "name": "executionTimes",
+      "type": "integer",
+      "required": false,
+      "desc": "执行次数"
+     },
+     {
+      "name": "templateStatus",
+      "type": "integer",
+      "required": false,
+      "desc": "模板状态"
+     },
+     {
+      "name": "assembles",
+      "type": "object []",
+      "required": false,
+      "desc": "模板组件集合"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "connections",
+      "type": "object []",
+      "required": false,
+      "desc": "模板连接"
+     },
+     {
+      "name": "jobId",
+      "type": "integer",
+      "required": false,
+      "desc": "job平台的任务id"
+     },
+     {
+      "name": "cronExpr",
+      "type": "string",
+      "required": false,
+      "desc": "cron表达式"
+     },
+     {
+      "name": "templateType",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "total",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "size",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "current",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "orders",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "column",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "asc",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "searchCount",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeJoinOfCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "maxLimit",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "countId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "templateName",
+      "type": "string",
+      "required": false,
+      "desc": "模板名称"
+     },
+     {
+      "name": "templateStatus",
+      "type": "integer",
+      "required": false,
+      "desc": "模板状态"
+     },
+     {
+      "name": "lastEndTime",
+      "type": "string []",
+      "required": false,
+      "desc": "上次执行结束时间"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "id",
+    "templateName",
+    "triggerTime",
+    "lastEndTime",
+    "executionTimes",
+    "templateStatus",
+    "assembles",
+    "key",
+    "connections",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 3259,
+   "pagination": {
+    "possible": true,
+    "note": "该接口 Body 的 YApi 文档把 MyBatis-Plus Page 响应对象也写进了请求体（`asc`, `column`, `countId`, `maxLimit`, `optimizeCountSql`, `optimizeJoinOfCountSql`, `orders`, `records`, `searchCount`, `total`）。实际请求请只发送筛选条件 + 分页参数（`current`、`size`，或 `pageNum`/`pageSize` 视接口而定），不要发送响应侧字段。"
+   }
+  },
+  {
+   "operation_id": "content_post_social_text_library_batch",
+   "operation_id_generated": true,
+   "summary": "文本库批量关联",
+   "description": null,
+   "method": "POST",
+   "path": "/social/text-library/batch",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "textLibs",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "textId",
+      "type": "string",
+      "required": false,
+      "desc": "文本库主键"
+     },
+     {
+      "name": "filePath",
+      "type": "string",
+      "required": false,
+      "desc": "文件地址"
+     },
+     {
+      "name": "source",
+      "type": "string",
+      "required": false,
+      "desc": "来源"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 9867,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_post_social_text_library_batch_update",
+   "operation_id_generated": true,
+   "summary": "批量更新文本库",
+   "description": null,
+   "method": "POST",
+   "path": "/social/text-library/batch/update",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "batchDtos",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "textId",
+      "type": "string",
+      "required": false,
+      "desc": "文本库主键"
+     },
+     {
+      "name": "themeSettings",
+      "type": "string",
+      "required": false,
+      "desc": "方向设置（L->左 R->右）"
+     },
+     {
+      "name": "suiteName",
+      "type": "string",
+      "required": false,
+      "desc": "分组"
+     },
+     {
+      "name": "topic",
+      "type": "string",
+      "required": false,
+      "desc": "主题"
+     },
+     {
+      "name": "title",
+      "type": "string",
+      "required": false,
+      "desc": "发布文案"
+     },
+     {
+      "name": "hashTags",
+      "type": "string",
+      "required": false,
+      "desc": "标签"
+     },
+     {
+      "name": "mainTextRef",
+      "type": "string",
+      "required": false,
+      "desc": "主文案参照"
+     },
+     {
+      "name": "mainText",
+      "type": "string",
+      "required": false,
+      "desc": "文案"
+     },
+     {
+      "name": "keyWords",
+      "type": "string",
+      "required": false,
+      "desc": "关键字"
+     },
+     {
+      "name": "coverText",
+      "type": "string",
+      "required": false,
+      "desc": "封面文案"
+     },
+     {
+      "name": "taskRef",
+      "type": "string",
+      "required": false,
+      "desc": "图片、视频minio地址"
+     },
+     {
+      "name": "aigcId",
+      "type": "string",
+      "required": false,
+      "desc": "Aigc编号"
+     },
+     {
+      "name": "componentParam",
+      "type": "object []",
+      "required": false,
+      "desc": "关联aigc组件信息"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "source",
+      "type": "string",
+      "required": false,
+      "desc": "文件来源"
+     },
+     {
+      "name": "execState",
+      "type": "string",
+      "required": false,
+      "desc": "执行状态"
+     },
+     {
+      "name": "state",
+      "type": "string",
+      "required": false,
+      "desc": "状态"
+     },
+     {
+      "name": "comfyuiTask",
+      "type": "string",
+      "required": false,
+      "desc": "执行任务类型"
+     },
+     {
+      "name": "columnState",
+      "type": "object",
+      "required": false,
+      "desc": "字段状态信息"
+     },
+     {
+      "name": "generationTime",
+      "type": "string",
+      "required": false,
+      "desc": "生成时间"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 9823,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_post_social_text_library_page",
+   "operation_id_generated": true,
+   "summary": "分页查询",
+   "description": null,
+   "method": "POST",
+   "path": "/social/text-library/page",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "records",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "creatorId",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updatorId",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "deleted",
+      "type": "boolean",
+      "required": false,
+      "desc": "删除标识，0未删 1已删"
+     },
+     {
+      "name": "version",
+      "type": "integer",
+      "required": false,
+      "desc": "版本"
+     },
+     {
+      "name": "deptId",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "key",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "文本库主键"
+     },
+     {
+      "name": "themeSettings",
+      "type": "string",
+      "required": false,
+      "desc": "方向设置（L->左 R->右）"
+     },
+     {
+      "name": "suiteName",
+      "type": "string",
+      "required": false,
+      "desc": "分组"
+     },
+     {
+      "name": "topic",
+      "type": "string",
+      "required": false,
+      "desc": "主题"
+     },
+     {
+      "name": "title",
+      "type": "string",
+      "required": false,
+      "desc": "发布文案"
+     },
+     {
+      "name": "hashTags",
+      "type": "string",
+      "required": false,
+      "desc": "标签"
+     },
+     {
+      "name": "mainTextRef",
+      "type": "string",
+      "required": false,
+      "desc": "主文案参照"
+     },
+     {
+      "name": "mainText",
+      "type": "string",
+      "required": false,
+      "desc": "文案"
+     },
+     {
+      "name": "keyWords",
+      "type": "string",
+      "required": false,
+      "desc": "关键字"
+     },
+     {
+      "name": "promptId",
+      "type": "string",
+      "required": false,
+      "desc": "comfyui任务ID"
+     },
+     {
+      "name": "queueNum",
+      "type": "integer",
+      "required": false,
+      "desc": "comfyui 队列编号"
+     },
+     {
+      "name": "nextPromptId",
+      "type": "string",
+      "required": false,
+      "desc": "下一次comfyui任务ID"
+     },
+     {
+      "name": "nextQueueNum",
+      "type": "integer",
+      "required": false,
+      "desc": "下一次comfyui 队列编号"
+     },
+     {
+      "name": "coverText",
+      "type": "string",
+      "required": false,
+      "desc": "封面文案"
+     },
+     {
+      "name": "execState",
+      "type": "string",
+      "required": false,
+      "desc": "执行状态BE_EXECUTED(\"待执行\"), IN_EXECUTION(\"执行中\"), SUCCESS(\"成功\"), FAIL(\"失败\"), CANCEL(\"已取消\"), IN_QUEUE(\"队列中\"){@link cn.callfans.social.api.config.api.enums.TaskStatusEnum}"
+     },
+     {
+      "name": "state",
+      "type": "string",
+      "required": false,
+      "desc": "状态 ENABLE(\"启用\"),DISABLED(\"停用\")"
+     },
+     {
+      "name": "aigcId",
+      "type": "integer",
+      "required": false,
+      "desc": "aigc编号"
+     },
+     {
+      "name": "componentParam",
+      "type": "object []",
+      "required": false,
+      "desc": "关联aigc组件信息"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "source",
+      "type": "string",
+      "required": false,
+      "desc": "文件来源local、template、aigc"
+     },
+     {
+      "name": "taskRef",
+      "type": "string",
+      "required": false,
+      "desc": "图片、视频minio地址"
+     },
+     {
+      "name": "errorMsg",
+      "type": "string",
+      "required": false,
+      "desc": "错误原因"
+     },
+     {
+      "name": "generationTime",
+      "type": "string",
+      "required": false,
+      "desc": "生成时间"
+     },
+     {
+      "name": "columnState",
+      "type": "object",
+      "required": false,
+      "desc": "字段禁启用"
+     },
+     {
+      "name": "key",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "isLock",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "thirdPromptId",
+      "type": "string",
+      "required": false,
+      "desc": "三次comfyui任务编号"
+     },
+     {
+      "name": "thirdQueueNum",
+      "type": "integer",
+      "required": false,
+      "desc": "三次comfyui任务编号"
+     },
+     {
+      "name": "comfyuiTask",
+      "type": "string",
+      "required": false,
+      "desc": "当前任务类型"
+     },
+     {
+      "name": "total",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "size",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "current",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "orders",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "column",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "asc",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "searchCount",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeJoinOfCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "maxLimit",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "countId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "tag",
+      "type": "string",
+      "required": false,
+      "desc": "标签"
+     },
+     {
+      "name": "keyWord",
+      "type": "string",
+      "required": false,
+      "desc": "关键字"
+     },
+     {
+      "name": "title",
+      "type": "string",
+      "required": false,
+      "desc": "发布文案"
+     },
+     {
+      "name": "suiteName",
+      "type": "string",
+      "required": false,
+      "desc": "自定义分组"
+     },
+     {
+      "name": "state",
+      "type": "string",
+      "required": false,
+      "desc": "状态"
+     },
+     {
+      "name": "execState",
+      "type": "string",
+      "required": false,
+      "desc": "执行状态"
+     },
+     {
+      "name": "generationTimeRange",
+      "type": "string []",
+      "required": false,
+      "desc": "时间"
+     },
+     {
+      "name": "isEnd",
+      "type": "boolean",
+      "required": false,
+      "desc": "是否查询结束态true 查询成功、失败、已取消，false则查询全部与执行状态字段同时生效"
+     },
+     {
+      "name": "mixField",
+      "type": "string",
+      "required": false,
+      "desc": "混合查询字段"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 9649,
+   "pagination": {
+    "possible": true,
+    "note": "该接口 Body 的 YApi 文档把 MyBatis-Plus Page 响应对象也写进了请求体（`asc`, `column`, `countId`, `maxLimit`, `optimizeCountSql`, `optimizeJoinOfCountSql`, `orders`, `records`, `searchCount`, `total`）。实际请求请只发送筛选条件 + 分页参数（`current`、`size`，或 `pageNum`/`pageSize` 视接口而定），不要发送响应侧字段。"
+   }
+  },
+  {
+   "operation_id": "content_post_social_text_library_update",
+   "operation_id_generated": true,
+   "summary": "更新文本库",
+   "description": null,
+   "method": "POST",
+   "path": "/social/text-library/update",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "textId",
+      "type": "string",
+      "required": false,
+      "desc": "文本库主键"
+     },
+     {
+      "name": "themeSettings",
+      "type": "string",
+      "required": false,
+      "desc": "方向设置（L->左 R->右）"
+     },
+     {
+      "name": "suiteName",
+      "type": "string",
+      "required": false,
+      "desc": "分组"
+     },
+     {
+      "name": "topic",
+      "type": "string",
+      "required": false,
+      "desc": "主题"
+     },
+     {
+      "name": "title",
+      "type": "string",
+      "required": false,
+      "desc": "发布文案"
+     },
+     {
+      "name": "hashTags",
+      "type": "string",
+      "required": false,
+      "desc": "标签"
+     },
+     {
+      "name": "mainTextRef",
+      "type": "string",
+      "required": false,
+      "desc": "主文案参照"
+     },
+     {
+      "name": "mainText",
+      "type": "string",
+      "required": false,
+      "desc": "文案"
+     },
+     {
+      "name": "keyWords",
+      "type": "string",
+      "required": false,
+      "desc": "关键字"
+     },
+     {
+      "name": "coverText",
+      "type": "string",
+      "required": false,
+      "desc": "封面文案"
+     },
+     {
+      "name": "taskRef",
+      "type": "string",
+      "required": false,
+      "desc": "图片、视频minio地址"
+     },
+     {
+      "name": "aigcId",
+      "type": "string",
+      "required": false,
+      "desc": "Aigc编号"
+     },
+     {
+      "name": "componentParam",
+      "type": "object []",
+      "required": false,
+      "desc": "关联aigc组件信息"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "source",
+      "type": "string",
+      "required": false,
+      "desc": "文件来源"
+     },
+     {
+      "name": "execState",
+      "type": "string",
+      "required": false,
+      "desc": "执行状态"
+     },
+     {
+      "name": "state",
+      "type": "string",
+      "required": false,
+      "desc": "状态"
+     },
+     {
+      "name": "comfyuiTask",
+      "type": "string",
+      "required": false,
+      "desc": "执行任务类型"
+     },
+     {
+      "name": "columnState",
+      "type": "object",
+      "required": false,
+      "desc": "字段状态信息"
+     },
+     {
+      "name": "generationTime",
+      "type": "string",
+      "required": false,
+      "desc": "生成时间"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 9906,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_put_label_group_update",
+   "operation_id_generated": true,
+   "summary": "修改群组名称",
+   "description": null,
+   "method": "PUT",
+   "path": "/label/group/update",
+   "route_prefix": "/social",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "标签群组id"
+     },
+     {
+      "name": "groupName",
+      "type": "string",
+      "required": false,
+      "desc": "标签群组名称"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 5025,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_put_social_interested_set",
+   "operation_id_generated": true,
+   "summary": "为账号设置人设",
+   "description": null,
+   "method": "PUT",
+   "path": "/social/interested/set",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "interestedId",
+      "type": "integer",
+      "required": false,
+      "desc": "兴趣主键"
+     },
+     {
+      "name": "accountId",
+      "type": "string",
+      "required": false,
+      "desc": "账号主键"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 1477,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_put_social_label_group_update",
+   "operation_id_generated": true,
+   "summary": "修改群组名称",
+   "description": null,
+   "method": "PUT",
+   "path": "/social/label/group/update",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "标签群组id"
+     },
+     {
+      "name": "groupName",
+      "type": "string",
+      "required": false,
+      "desc": "标签群组名称"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 5064,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_put_social_material_callback",
+   "operation_id_generated": true,
+   "summary": "回收站素材还原",
+   "description": null,
+   "method": "PUT",
+   "path": "/social/material/callback",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "ids",
+      "type": "string []",
+      "required": "必须",
+      "desc": "素材id列表"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 4118,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_put_social_material_folder",
+   "operation_id_generated": true,
+   "summary": "修改素材文件夹",
+   "description": null,
+   "method": "PUT",
+   "path": "/social/material/folder",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "materialFolderId",
+      "type": "string",
+      "required": false,
+      "desc": "文件夹id"
+     },
+     {
+      "name": "folderName",
+      "type": "string",
+      "required": false,
+      "desc": "文件夹名称"
+     },
+     {
+      "name": "parentId",
+      "type": "integer",
+      "required": false,
+      "desc": "父级文件夹"
+     },
+     {
+      "name": "sortIndex",
+      "type": "integer",
+      "required": false,
+      "desc": "下标排序"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 4441,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_put_social_material_score",
+   "operation_id_generated": true,
+   "summary": "更新素材评分",
+   "description": null,
+   "method": "PUT",
+   "path": "/social/material/score",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "materialIds",
+      "type": "string []",
+      "required": false,
+      "desc": "素材id"
+     },
+     {
+      "name": "fileScore",
+      "type": "integer",
+      "required": false,
+      "desc": "素材分数"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 4263,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_put_social_template_cancel_tempid",
+   "operation_id_generated": true,
+   "summary": "取消任务",
+   "description": null,
+   "method": "PUT",
+   "path": "/social/template/cancel/{tempId}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 3005,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_put_social_template_update",
+   "operation_id_generated": true,
+   "summary": "修改模板库",
+   "description": null,
+   "method": "PUT",
+   "path": "/social/template/update",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "templateLibraryId",
+      "type": "string",
+      "required": false,
+      "desc": "模板id"
+     },
+     {
+      "name": "templateName",
+      "type": "string",
+      "required": false,
+      "desc": "模板名称"
+     },
+     {
+      "name": "triggerTime",
+      "type": "string",
+      "required": false,
+      "desc": "触发时间"
+     },
+     {
+      "name": "assembles",
+      "type": "object []",
+      "required": false,
+      "desc": "模板组件集合"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "connections",
+      "type": "object []",
+      "required": false,
+      "desc": "模板连接"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 2966,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_put_social_text_library_cancel",
+   "operation_id_generated": true,
+   "summary": "取消执行(支持批量)",
+   "description": null,
+   "method": "PUT",
+   "path": "/social/text-library/cancel",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "textIds",
+      "type": "string []",
+      "required": false,
+      "desc": "文本库主键"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 9744,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_put_social_text_library_modify",
+   "operation_id_generated": true,
+   "summary": "启用或禁用文本库 (支持批量)",
+   "description": null,
+   "method": "PUT",
+   "path": "/social/text-library/modify",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "textIds",
+      "type": "string []",
+      "required": false,
+      "desc": "文本库主键"
+     },
+     {
+      "name": "libState",
+      "type": "string",
+      "required": false,
+      "desc": null
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 9783,
+   "pagination": null
+  },
+  {
+   "operation_id": "content_put_social_text_library_start",
+   "operation_id_generated": true,
+   "summary": "立即执行",
+   "description": null,
+   "method": "PUT",
+   "path": "/social/text-library/start",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "textIds",
+      "type": "string []",
+      "required": false,
+      "desc": "文本库主键"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 9950,
+   "pagination": null
+  }
+ ]
+}

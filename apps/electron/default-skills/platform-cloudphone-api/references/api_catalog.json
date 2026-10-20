@@ -1,0 +1,952 @@
+{
+ "_meta": {
+  "package": "platform-cloudphone-api",
+  "domain_label": "云手机相关",
+  "source_docs": [
+   "callfans-standard.md"
+  ],
+  "operation_count": 20,
+  "login": {
+   "operation_id": "auth_post_login",
+   "method": "POST",
+   "path": "/auth/login",
+   "params": {
+    "username": "string",
+    "password": "string",
+    "code": "string(留空,验证码已关闭)",
+    "uuid": "string(留空)"
+   },
+   "token_field": "token",
+   "auth_header": "Authorization: Bearer <token>",
+   "note": "验证码已关闭：code/uuid 传空。401 时执行器自动重新登录并重试一次。"
+  },
+  "route_prefixes": {
+   "?": 20
+  },
+  "route_prefix_note": "本包全部接口位于同一服务前缀 ?（可用 API_PATH_PREFIX 兜底）。"
+ },
+ "operations": [
+  {
+   "operation_id": "cloudphone_get_social_device_applist_devicename",
+   "operation_id_generated": true,
+   "summary": "获取应用列表",
+   "description": null,
+   "method": "GET",
+   "path": "/social/device/appList/{deviceName}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "apkName",
+    "packageName",
+    "logo",
+    "activityName",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 747,
+   "pagination": null
+  },
+  {
+   "operation_id": "cloudphone_get_social_device_detail_deviceid",
+   "operation_id_generated": true,
+   "summary": "获取设备详情",
+   "description": null,
+   "method": "GET",
+   "path": "/social/device/detail/{deviceId}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 819,
+   "pagination": null
+  },
+  {
+   "operation_id": "cloudphone_get_social_device_open_deviceid",
+   "operation_id_generated": true,
+   "summary": "查看单个设备下是否在执行任务",
+   "description": null,
+   "method": "GET",
+   "path": "/social/device/open/{deviceId}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 427,
+   "pagination": null
+  },
+  {
+   "operation_id": "cloudphone_get_social_device_page",
+   "operation_id_generated": true,
+   "summary": "社交媒体设备分页信息查询",
+   "description": null,
+   "method": "GET",
+   "path": "/social/device/page",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 621,
+   "pagination": null
+  },
+  {
+   "operation_id": "cloudphone_get_social_device_risk_count",
+   "operation_id_generated": true,
+   "summary": "查询风控设备数量",
+   "description": null,
+   "method": "GET",
+   "path": "/social/device/risk/count",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 456,
+   "pagination": null
+  },
+  {
+   "operation_id": "cloudphone_get_social_device_unused_get",
+   "operation_id_generated": true,
+   "summary": "获取绑定设备",
+   "description": null,
+   "method": "GET",
+   "path": "/social/device/unused/get",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "orgId",
+    "appId",
+    "appType",
+    "appAccount",
+    "deviceId",
+    "deviceIdx",
+    "deviceNo",
+    "deviceState",
+    "chipType",
+    "deviceIp",
+    "deviceAliases",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 776,
+   "pagination": null
+  },
+  {
+   "operation_id": "cloudphone_patch_social_device_update",
+   "operation_id_generated": true,
+   "summary": "社交媒体操作设备执行手机更多功能及开关机",
+   "description": null,
+   "method": "PATCH",
+   "path": "/social/device/update",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备ID集合"
+     },
+     {
+      "name": "operation",
+      "type": "string",
+      "required": false,
+      "desc": "操作标识 SHUTDOWN (\"关机\"), POWER_ON (\"开机\"), RESTART (\"重启\") VOLUME_UP (\"音量+\") VOLUME_DOWN (\"音量-\") ROTATE (\"旋转\") APK (\"安装软件\"), SCREENSHOT_TO_COMPUTER (\"截图到电脑\"), SCREENSHOT_TO_ALBUM (\"截图到相册\"), LOCATION (\"位置信息\"), RESOLUTION_RATIO (\"分辨率\") SCREEN_DENSITY (\"画质\")"
+     },
+     {
+      "name": "locationReqVo",
+      "type": "object",
+      "required": false,
+      "desc": "经纬度信息"
+     },
+     {
+      "name": "emu_location_alt",
+      "type": "number",
+      "required": false,
+      "desc": "海拔"
+     },
+     {
+      "name": "emu_location_lat",
+      "type": "number",
+      "required": false,
+      "desc": "纬度"
+     },
+     {
+      "name": "emu_location_lon",
+      "type": "number",
+      "required": false,
+      "desc": "经度"
+     },
+     {
+      "name": "ratioValue",
+      "type": "integer",
+      "required": false,
+      "desc": "分辨率 （ex：1-ex）"
+     },
+     {
+      "name": "filePathId",
+      "type": "integer",
+      "required": false,
+      "desc": "上传应用位置编号"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 570,
+   "pagination": null
+  },
+  {
+   "operation_id": "cloudphone_post_social_device_clearspeed",
+   "operation_id_generated": true,
+   "summary": "清理加速",
+   "description": null,
+   "method": "POST",
+   "path": "/social/device/clearSpeed",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceNames",
+      "type": "string []",
+      "required": "必须",
+      "desc": null
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 480,
+   "pagination": null
+  },
+  {
+   "operation_id": "cloudphone_post_social_device_goback",
+   "operation_id_generated": true,
+   "summary": "返回上一步",
+   "description": null,
+   "method": "POST",
+   "path": "/social/device/goBack",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceNames",
+      "type": "string []",
+      "required": "必须",
+      "desc": null
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 848,
+   "pagination": null
+  },
+  {
+   "operation_id": "cloudphone_post_social_device_gohome",
+   "operation_id_generated": true,
+   "summary": "回到主页面",
+   "description": null,
+   "method": "POST",
+   "path": "/social/device/goHome",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceNames",
+      "type": "string []",
+      "required": "必须",
+      "desc": null
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 220,
+   "pagination": null
+  },
+  {
+   "operation_id": "cloudphone_post_social_device_multitask",
+   "operation_id_generated": true,
+   "summary": "打开多任务窗口",
+   "description": null,
+   "method": "POST",
+   "path": "/social/device/multitask",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceNames",
+      "type": "string []",
+      "required": "必须",
+      "desc": null
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 310,
+   "pagination": null
+  },
+  {
+   "operation_id": "cloudphone_post_social_device_openapp",
+   "operation_id_generated": true,
+   "summary": "打开应用",
+   "description": null,
+   "method": "POST",
+   "path": "/social/device/openApp",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceNames",
+      "type": "string []",
+      "required": "必须",
+      "desc": null
+     },
+     {
+      "name": "packageName",
+      "type": "string",
+      "required": false,
+      "desc": "包名"
+     },
+     {
+      "name": "activityName",
+      "type": "string",
+      "required": false,
+      "desc": "启动类名"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 349,
+   "pagination": null
+  },
+  {
+   "operation_id": "cloudphone_post_social_device_screencap",
+   "operation_id_generated": true,
+   "summary": "截图到电脑（SCREENSHOT_TO_COMPUTER 操作）",
+   "description": null,
+   "method": "POST",
+   "path": "/social/device/screenCap",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备ID集合"
+     },
+     {
+      "name": "operation",
+      "type": "string",
+      "required": false,
+      "desc": "操作标识 SHUTDOWN (\"关机\"), POWER_ON (\"开机\"), RESTART (\"重启\") VOLUME_UP (\"音量+\") VOLUME_DOWN (\"音量-\") ROTATE (\"旋转\") APK (\"安装软件\"), SCREENSHOT_TO_COMPUTER (\"截图到电脑\"), SCREENSHOT_TO_ALBUM (\"截图到相册\"), LOCATION (\"位置信息\"), RESOLUTION_RATIO (\"分辨率\") SCREEN_DENSITY (\"画质\")"
+     },
+     {
+      "name": "locationReqVo",
+      "type": "object",
+      "required": false,
+      "desc": "经纬度信息"
+     },
+     {
+      "name": "emu_location_alt",
+      "type": "number",
+      "required": false,
+      "desc": "海拔"
+     },
+     {
+      "name": "emu_location_lat",
+      "type": "number",
+      "required": false,
+      "desc": "纬度"
+     },
+     {
+      "name": "emu_location_lon",
+      "type": "number",
+      "required": false,
+      "desc": "经度"
+     },
+     {
+      "name": "ratioValue",
+      "type": "integer",
+      "required": false,
+      "desc": "分辨率 （ex：1-ex）"
+     },
+     {
+      "name": "filePathId",
+      "type": "integer",
+      "required": false,
+      "desc": "上传应用位置编号"
+     }
+    ]
+   },
+   "response_fields": [],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 259,
+   "pagination": null
+  },
+  {
+   "operation_id": "cloudphone_post_social_device_task_ai_log_push",
+   "operation_id_generated": true,
+   "summary": "RPA任务上传AI任务关联图片",
+   "description": null,
+   "method": "POST",
+   "path": "/social/device/task/ai_log/push",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 57,
+   "pagination": null
+  },
+  {
+   "operation_id": "cloudphone_post_social_device_task_callback",
+   "operation_id_generated": true,
+   "summary": "RPA 任务状态/结果回调（RPA 平台无 token，匿名访问，SecurityConfig + JwtFilter 双放行）。",
+   "description": null,
+   "method": "POST",
+   "path": "/social/device/task/callback",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "rpaJobId",
+      "type": "string",
+      "required": false,
+      "desc": "RPA 作业ID（必填，用于关联社媒侧任务）"
+     },
+     {
+      "name": "state",
+      "type": "string",
+      "required": false,
+      "desc": "RPA 主任务状态（可选，SUCCESSFUL/FAILED/CANCELED/TIMEOUT）。不传时由社媒侧轮询 RPA 确认终态。"
+     },
+     {
+      "name": "endTime",
+      "type": "integer",
+      "required": false,
+      "desc": "任务结束时间戳（可选，秒级或毫秒级均可，内部自动归一化为秒）。传入时优先作为任务结束时间落库，不传则由监听链路轮询 RPA 的 finishTime 获取。"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 8,
+   "pagination": null
+  },
+  {
+   "operation_id": "cloudphone_post_social_device_task_doc_upload_rpataskid",
+   "operation_id_generated": true,
+   "summary": "RPA任务上传任务关联文档",
+   "description": null,
+   "method": "POST",
+   "path": "/social/device/task/doc/upload/{rpaTaskId}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 139,
+   "pagination": null
+  },
+  {
+   "operation_id": "cloudphone_post_social_device_task_upload_rpataskid",
+   "operation_id_generated": true,
+   "summary": "RPA任务上传任务关联图片",
+   "description": null,
+   "method": "POST",
+   "path": "/social/device/task/upload/{rpaTaskId}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "files",
+      "type": "object []",
+      "required": false,
+      "desc": "文件信息"
+     },
+     {
+      "name": "file",
+      "type": "string",
+      "required": false,
+      "desc": "文件信息"
+     },
+     {
+      "name": "fileName",
+      "type": "string",
+      "required": false,
+      "desc": "文件名字"
+     },
+     {
+      "name": "fileOriginalName",
+      "type": "string",
+      "required": false,
+      "desc": "minio文件名"
+     },
+     {
+      "name": "rpaJobId",
+      "type": "string",
+      "required": false,
+      "desc": "rpa任务编号"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 95,
+   "pagination": null
+  },
+  {
+   "operation_id": "cloudphone_post_social_device_upload",
+   "operation_id_generated": true,
+   "summary": "社交媒体安装包上传",
+   "description": null,
+   "method": "POST",
+   "path": "/social/device/upload",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "filePathId",
+    "appIcon",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 519,
+   "pagination": null
+  },
+  {
+   "operation_id": "cloudphone_put_social_device_modify",
+   "operation_id_generated": true,
+   "summary": "更新设备信息",
+   "description": null,
+   "method": "PUT",
+   "path": "/social/device/modify",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceId",
+      "type": "string",
+      "required": "必须",
+      "desc": "设备编号"
+     },
+     {
+      "name": "deviceAliases",
+      "type": "string",
+      "required": false,
+      "desc": "设备别名"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 388,
+   "pagination": null
+  },
+  {
+   "operation_id": "cloudphone_put_social_device_refresh",
+   "operation_id_generated": true,
+   "summary": "刷新设备投屏",
+   "description": null,
+   "method": "PUT",
+   "path": "/social/device/refresh",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": "必须",
+      "desc": "需检查投屏服务的设备ID集合"
+     },
+     {
+      "name": "isRestart",
+      "type": "boolean",
+      "required": false,
+      "desc": "是否强制刷新投屏服务，true强制停止后重启false 则检查服务是否启动，若服务未启动则执行"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 180,
+   "pagination": null
+  }
+ ]
+}
