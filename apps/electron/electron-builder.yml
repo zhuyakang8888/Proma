@@ -1,8 +1,17 @@
 # electron-builder 配置
 # 文档: https://www.electron.build/configuration/configuration
 
-appId: com.proma.app
-productName: Proma
+# 与商业版同机共存：使用独立的 appId / productName，
+# 安装目录、快捷方式、NSIS 卸载项、%APPDATA% userData 与单实例锁随之独立。
+appId: com.proma.oss
+productName: Proma OSS
+# 打包产物里的包名会被 electron-builder 用来派生更新缓存目录
+# （appInfo.updaterCacheDirName = name + "-updater"，写在 app-update.yml 与
+# NSIS 的 store 路径里）。源码包名 @proma/electron 会与商业版共用
+# @promaelectron-updater，这里仅在打包产物内覆盖为 proma-oss，避免互相覆盖
+# 已下载的安装包与安装来源记录。源码 package.json 保持不变以免影响 workspace。
+extraMetadata:
+  name: proma-oss
 copyright: Copyright © 2024-2026 Erlich Liu
 
 # Electron 版本（CI 环境 bun workspace 下无法自动检测，需显式指定）
@@ -72,7 +81,7 @@ extraResources:
     to: officecli
     filter:
       - "**/*"
-  # 默认 Skills 模板（首次启动时同步到 ~/.proma/default-skills/）
+  # 默认 Skills 模板（首次启动时同步到 ~/.proma-oss/default-skills/）
   - from: default-skills
     to: default-skills
     filter:
@@ -163,7 +172,7 @@ linux:
     StartupWMClass: proma
   category: Development
   synopsis: 本地优先的 AI 桌面 Agent
-  description: Proma 把多模型 Chat、通用 Agent、工作区、Skills、MCP 与记忆能力放进同一个开源客户端，数据和配置默认留在本地（~/.proma/）。
+  description: Proma 把多模型 Chat、通用 Agent、工作区、Skills、MCP 与记忆能力放进同一个开源客户端，数据和配置默认留在本地（~/.proma-oss/）。
   maintainer: ErlichLiu <erlichliu@gmail.com>
   target:
     - target: AppImage

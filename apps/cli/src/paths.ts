@@ -2,9 +2,9 @@
  * 会话存储路径解析（electron-free）。
  *
  * Proma 主进程用 config-paths.ts 里的 getConfigDir()，其中通过 require('electron')
- * 判断 isPackaged 来在 .proma / .proma-dev 间切换——CLI 没有 electron 运行时，
+ * 判断 isPackaged 来在 .proma-oss / .proma-dev 间切换——CLI 没有 electron 运行时，
  * 因此这里独立实现一份等价逻辑：
- *   - 默认 ~/.proma
+ *   - 默认 ~/.proma-oss（与商业版 ~/.proma 隔离，支持同机共存）
  *   - 环境变量 PROMA_DEV=1 → ~/.proma-dev
  *   - 显式 configDir 覆盖（CLI 的 --config-dir）优先级最高
  *
@@ -25,7 +25,7 @@ export interface PathOptions {
 export function resolveConfigDir(opts: PathOptions = {}): string {
   if (opts.configDir) return opts.configDir
   const useDev = opts.dev || process.env.PROMA_DEV === '1'
-  return join(homedir(), useDev ? '.proma-dev' : '.proma')
+  return join(homedir(), useDev ? '.proma-dev' : '.proma-oss')
 }
 
 export function getSessionsIndexPath(opts: PathOptions = {}): string {

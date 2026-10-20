@@ -731,7 +731,7 @@ async function bootstrap(): Promise<void> {
   // 或由用户从设置手动检测；启动时不应将其作为 Agent 的前置要求。
   await safeAwait('initializeRuntime', () => initializeRuntime({ skipNodeDetection: true }))
 
-  // 同步默认 Skills 模板到 ~/.proma/default-skills/
+  // 同步默认 Skills 模板到 ~/.proma-oss/default-skills/
   safeRun('seedDefaultSkills', seedDefaultSkills)
 
   // 升级所有工作区中版本过旧的默认 Skills
@@ -914,8 +914,8 @@ function handleBootstrapFailure(err: unknown): void {
         `日志位置：${app.getPath('logs')}\n\n` +
         `常见原因与排查：\n` +
         `1. 旧版 Proma 进程未退出（终端运行 killall Proma 后重试）\n` +
-        `2. ~/.proma/ 配置损坏（重命名 ~/.proma 后重启）\n` +
-        `3. 系统 Keychain 无法解密保存的凭证（删除 ~/.proma/feishu.json 等后重新登录）\n\n` +
+        `2. ~/.proma-oss/ 配置损坏（重命名 ~/.proma-oss 后重启）\n` +
+        `3. 系统 Keychain 无法解密保存的凭证（删除 ~/.proma-oss/feishu.json 等后重新登录）\n\n` +
         `如需协助请到 GitHub Issues 反馈。`,
     )
   } catch {

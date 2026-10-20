@@ -7,7 +7,7 @@
 
 export type SlackBridgeStatus = 'disconnected' | 'connecting' | 'connected' | 'error'
 
-/** 单个本地 Slack Bot 配置（持久化到 ~/.proma/slack.json）。 */
+/** 单个本地 Slack Bot 配置（持久化到 ~/.proma-oss/slack.json）。 */
 export interface SlackBotConfig {
   id: string
   name: string

@@ -751,7 +751,7 @@ export interface ElectronAPI {
   /** 获取其他工作区的 Skill 列表 */
   getOtherWorkspaceSkills: (currentSlug: string) => Promise<OtherWorkspaceSkillsGroup[]>
 
-  /** 获取默认 Skills 的 slug 列表（来自 ~/.proma/default-skills/） */
+  /** 获取默认 Skills 的 slug 列表（来自 ~/.proma-oss/default-skills/） */
   getDefaultSkillSlugs: () => Promise<string[]>
 
   /** 从其他工作区导入 Skill */

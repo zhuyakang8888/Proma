@@ -39,8 +39,8 @@ beforeAll(async () => {
 })
 
 beforeEach(() => {
-  rmSync(join(tempHome, '.proma'), { recursive: true, force: true })
-  mkdirSync(join(tempHome, '.proma'), { recursive: true })
+  rmSync(join(tempHome, '.proma-oss'), { recursive: true, force: true })
+  mkdirSync(join(tempHome, '.proma-oss'), { recursive: true })
 })
 
 afterAll(() => {
