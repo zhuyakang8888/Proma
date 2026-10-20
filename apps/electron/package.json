@@ -1,7 +1,7 @@
 {
   "name": "@proma/electron",
   "productName": "Proma OSS",
-  "version": "0.19.67",
+  "version": "0.19.68",
   "description": "Proma，为专业用户设计的 Agent",
   "main": "dist/main.cjs",
   "author": {
@@ -185,5 +185,5 @@
     "extends": "electron-builder.yml"
   },
   "proma": {},
-  "homepage": "https://github.com/proma-ai/Proma"
+  "homepage": "https://github.com/zhuyakang8888/Proma"
 }
