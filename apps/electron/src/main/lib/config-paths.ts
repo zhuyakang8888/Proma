@@ -505,6 +505,8 @@ function compareSemver(a: string, b: string): number {
 export const RETIRED_DEFAULT_SKILL_SLUGS: readonly string[] = [
   'brainstorming',
   'vault',
+  // 由 16 个 platform-*-api 域技能包替代，旧单包不再分发
+  'internal-platform-api',
 ]
 
 const RETIRED_DEFAULT_SKILL_SLUG_SET = new Set(RETIRED_DEFAULT_SKILL_SLUGS)

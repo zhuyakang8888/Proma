@@ -1,0 +1,7417 @@
+{
+ "_meta": {
+  "package": "platform-device-network-api",
+  "domain_label": "设备与网络资产",
+  "source_docs": [
+   "callfans-standard.md",
+   "mobile-cloud-center.md",
+   "callfans-platform.md"
+  ],
+  "operation_count": 104,
+  "login": {
+   "operation_id": "auth_post_login",
+   "method": "POST",
+   "path": "/auth/login",
+   "params": {
+    "username": "string",
+    "password": "string",
+    "code": "string(留空,验证码已关闭)",
+    "uuid": "string(留空)"
+   },
+   "token_field": "token",
+   "auth_header": "Authorization: Bearer <token>",
+   "note": "验证码已关闭：code/uuid 传空。401 时执行器自动重新登录并重试一次。"
+  },
+  "route_prefixes": {
+   "/mcc": 22,
+   "?": 65,
+   "/platform": 13,
+   "/social": 4
+  },
+  "route_prefix_note": "多服务网关部署：每个 operation 自带 route_prefix（来源文档对应服务前缀）。执行器按 operation 的 route_prefix 路由；单一服务包可用 API_PATH_PREFIX 兜底。"
+ },
+ "operations": [
+  {
+   "operation_id": "device-network_delete_device_del",
+   "operation_id_generated": true,
+   "summary": "删除设备信息",
+   "description": null,
+   "method": "DELETE",
+   "path": "/device/del",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": "必须",
+      "desc": "设备编码集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "data",
+    "msg",
+    "timestamp",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 422,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_delete_device_org_del",
+   "operation_id_generated": true,
+   "summary": "设备用户关联关系-删除",
+   "description": null,
+   "method": "DELETE",
+   "path": "/device/org/del",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "userIds",
+      "type": "string []",
+      "required": "必须",
+      "desc": "用户编码集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "data",
+    "msg",
+    "timestamp",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 963,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_delete_mcc_api_device_del",
+   "operation_id_generated": true,
+   "summary": "删除设备信息",
+   "description": null,
+   "method": "DELETE",
+   "path": "/mcc/api/device/del",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "createBy",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updateBy",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "备注"
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": "请求参数"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": "必须",
+      "desc": "设备编码集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 11952,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_delete_mcc_api_device_org_del",
+   "operation_id_generated": true,
+   "summary": "设备用户关联关系-删除",
+   "description": null,
+   "method": "DELETE",
+   "path": "/mcc/api/device/org/del",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "createBy",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updateBy",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "备注"
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": "请求参数"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "userIds",
+      "type": "string []",
+      "required": "必须",
+      "desc": "用户编码集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 12728,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_delete_social_mobile_network_cancel_dedicated_line",
+   "operation_id_generated": true,
+   "summary": "取消网络配置",
+   "description": null,
+   "method": "DELETE",
+   "path": "/social/mobile-network/cancel/dedicated-line",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "createBy",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updateBy",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "备注"
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": "请求参数"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "容器ID"
+     },
+     {
+      "name": "routeIp",
+      "type": "string",
+      "required": false,
+      "desc": "路由IP"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "totalCount",
+    "successCount",
+    "failedCount",
+    "failedDevices",
+    "deviceId",
+    "deviceIp",
+    "reason",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 5730,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_delete_social_mobile_network_delete",
+   "operation_id_generated": true,
+   "summary": "删除网络配置",
+   "description": null,
+   "method": "DELETE",
+   "path": "/social/mobile-network/delete",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "ids",
+      "type": "string []",
+      "required": false,
+      "desc": "id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 5691,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_delete_social_mobile_network_delete_bind_data",
+   "operation_id_generated": true,
+   "summary": "物理删除网络绑定的数据",
+   "description": null,
+   "method": "DELETE",
+   "path": "/social/mobile-network/delete-bind-data",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceId",
+      "type": "string",
+      "required": false,
+      "desc": "设备id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 6149,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_device_brand_future_get",
+   "operation_id_generated": true,
+   "summary": "获取云巅未来手机品牌列表",
+   "description": null,
+   "method": "GET",
+   "path": "/device/brand/future/get",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "data",
+    "mobileDeviceModels",
+    "brand",
+    "title",
+    "categories",
+    "model",
+    "deiceName",
+    "msg",
+    "timestamp",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 650,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_device_brand_get",
+   "operation_id_generated": true,
+   "summary": "获取手机品牌列表",
+   "description": null,
+   "method": "GET",
+   "path": "/device/brand/get",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "data",
+    "mobileDeviceModels",
+    "brand",
+    "title",
+    "categories",
+    "model",
+    "deiceName",
+    "msg",
+    "timestamp",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 674,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_device_conn_deviceid",
+   "operation_id_generated": true,
+   "summary": "测试是否设备是否可以建立链接",
+   "description": null,
+   "method": "GET",
+   "path": "/device/conn/{deviceId}",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "data",
+    "msg",
+    "timestamp",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 557,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_device_detail_deviceid",
+   "operation_id_generated": true,
+   "summary": "设备信息详情查询",
+   "description": null,
+   "method": "GET",
+   "path": "/device/detail/{deviceId}",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "data",
+    "id",
+    "deviceCode",
+    "deviceMode",
+    "deviceName",
+    "category",
+    "manufacturer",
+    "deviceStatus",
+    "resolutionRatio",
+    "nodeId",
+    "deviceIp",
+    "devicePort",
+    "connIp",
+    "connPort",
+    "proxyIp",
+    "proxyPort",
+    "systemVersion",
+    "createTime",
+    "updateTime",
+    "imgVersion",
+    "imei",
+    "imsi",
+    "baseBand",
+    "brand",
+    "iccid",
+    "deviceMac",
+    "serialNumber",
+    "phoneNumber",
+    "battery",
+    "netOperator",
+    "productType",
+    "sn",
+    "chipCode",
+    "msg",
+    "timestamp",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 930,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_device_fold_floor_page",
+   "operation_id_generated": true,
+   "summary": "折叠二层查询",
+   "description": null,
+   "method": "GET",
+   "path": "/device/fold/floor/page",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "server",
+    "inputTime",
+    "chip",
+    "deviceIp",
+    "romVersion",
+    "phoneBrand",
+    "phoneModel",
+    "operator",
+    "phoneNum",
+    "suiteNames",
+    "remark",
+    "accountNames",
+    "proxy",
+    "assId",
+    "proxyIp",
+    "area",
+    "proxyId",
+    "accountInfos",
+    "appId",
+    "appLogo",
+    "accountId",
+    "userAccount",
+    "accountNickname",
+    "color",
+    "deviceVersion",
+    "deviceId",
+    "deviceIdx",
+    "deviceStatus",
+    "deviceNum",
+    "deviceAliases",
+    "connIp",
+    "connPort",
+    "riskColor",
+    "riskTip",
+    "brand",
+    "isLock",
+    "deviceStatusName",
+    "riskStatus",
+    "proxyStatus",
+    "isTop",
+    "hasDedicatedLine",
+    "manuallyDisabled",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 4095,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_device_fold_page",
+   "operation_id_generated": true,
+   "summary": "折叠查询（一级）",
+   "description": null,
+   "method": "GET",
+   "path": "/device/fold/page",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "objectId",
+    "objectName",
+    "deviceNum",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 4157,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_device_org_userid",
+   "operation_id_generated": true,
+   "summary": "设备用户关联关系-查询",
+   "description": null,
+   "method": "GET",
+   "path": "/device/org/{userId}",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "data",
+    "msg",
+    "timestamp",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1041,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_device_page",
+   "operation_id_generated": true,
+   "summary": "设备信息分页查询",
+   "description": null,
+   "method": "GET",
+   "path": "/device/page",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "data",
+    "id",
+    "deviceCode",
+    "deviceMode",
+    "deviceName",
+    "deviceCategory",
+    "deviceIdx",
+    "manufacturer",
+    "deviceStatus",
+    "resolutionRatio",
+    "nodeId",
+    "deviceIp",
+    "connIp",
+    "proxyIp",
+    "proxyPort",
+    "battery",
+    "netOperator",
+    "devicePort",
+    "connPort",
+    "systemVersion",
+    "orgId",
+    "createTime",
+    "updateTime",
+    "imei",
+    "imsi",
+    "baseBand",
+    "brand",
+    "iccid",
+    "deviceMac",
+    "serialNumber",
+    "phoneNumber",
+    "suiteName",
+    "sn",
+    "chipCode",
+    "msg",
+    "timestamp",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 808,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_device_page_2",
+   "operation_id_generated": true,
+   "summary": "移动设备分页查询",
+   "description": null,
+   "method": "GET",
+   "path": "/device/page",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "server",
+    "inputTime",
+    "chip",
+    "deviceIp",
+    "romVersion",
+    "phoneBrand",
+    "phoneModel",
+    "operator",
+    "phoneNum",
+    "suiteNames",
+    "remark",
+    "accountNames",
+    "proxy",
+    "assId",
+    "proxyIp",
+    "area",
+    "proxyId",
+    "accountInfos",
+    "appId",
+    "appLogo",
+    "accountId",
+    "userAccount",
+    "accountNickname",
+    "color",
+    "deviceVersion",
+    "deviceId",
+    "deviceIdx",
+    "deviceStatus",
+    "deviceNum",
+    "deviceAliases",
+    "connIp",
+    "connPort",
+    "riskColor",
+    "riskTip",
+    "brand",
+    "isLock",
+    "deviceStatusName",
+    "riskStatus",
+    "proxyStatus",
+    "isTop",
+    "hasDedicatedLine",
+    "manuallyDisabled",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 4219,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_device_page_allocation",
+   "operation_id_generated": true,
+   "summary": "待分配设备信息分页查询",
+   "description": null,
+   "method": "GET",
+   "path": "/device/page/allocation",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "data",
+    "id",
+    "deviceCode",
+    "deviceName",
+    "deviceCategory",
+    "deviceStatus",
+    "nodeId",
+    "deviceIp",
+    "devicePort",
+    "systemVersion",
+    "msg",
+    "timestamp",
+    "licenseState",
+    "licenseExpireDate",
+    "count",
+    "hasNext",
+    "pageNum",
+    "results",
+    "id",
+    "deviceCode",
+    "deviceName",
+    "deviceCategory",
+    "deviceStatus",
+    "nodeId",
+    "deviceIp",
+    "devicePort",
+    "systemVersion"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 485,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_device_page_ex",
+   "operation_id_generated": true,
+   "summary": "获取设备信息（拓展）",
+   "description": null,
+   "method": "GET",
+   "path": "/device/page/ex",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "data",
+    "msg",
+    "timestamp",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 777,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_device_server_list",
+   "operation_id_generated": true,
+   "summary": "获取服务器列表信息",
+   "description": null,
+   "method": "GET",
+   "path": "/device/server/list/",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "armId",
+    "armIp",
+    "address",
+    "armName",
+    "deviceNum"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 4260,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_device_sync",
+   "operation_id_generated": true,
+   "summary": "同步当前设备",
+   "description": null,
+   "method": "GET",
+   "path": "/device/sync",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "data",
+    "msg",
+    "timestamp",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 461,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_device_uitree_xml_ip_port",
+   "operation_id_generated": true,
+   "summary": "获取设备uiTree.xml信息，文件流返回",
+   "description": null,
+   "method": "GET",
+   "path": "/device/uitree/xml/{ip}/{port}",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 758,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_device_uitree_xml_json_ip_port",
+   "operation_id_generated": true,
+   "summary": "获取设备uiTree.xml信息，json返回",
+   "description": null,
+   "method": "GET",
+   "path": "/device/uitree/xml_json/{ip}/{port}",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "data",
+    "msg",
+    "timestamp",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 698,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_device_uitree_xml_str_ip_port",
+   "operation_id_generated": true,
+   "summary": "获取设备uiTree.xml信息，字符串返回",
+   "description": null,
+   "method": "GET",
+   "path": "/device/uitree/xml_str/{ip}/{port}",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "data",
+    "msg",
+    "timestamp",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 728,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_fingerprint_get",
+   "operation_id_generated": true,
+   "summary": "获取设备指纹",
+   "description": null,
+   "method": "GET",
+   "path": "/fingerprint/get",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 4620,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_mcc_api_device_brand_future_get",
+   "operation_id_generated": true,
+   "summary": "获取云巅未来手机品牌列表",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/device/brand/future/get",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "createBy",
+    "createTime",
+    "updateBy",
+    "updateTime",
+    "remark",
+    "params",
+    "key",
+    "mobileDeviceModels",
+    "createBy",
+    "createTime",
+    "updateBy",
+    "updateTime",
+    "remark",
+    "params",
+    "key",
+    "brand",
+    "title",
+    "categories",
+    "createBy",
+    "createTime",
+    "updateBy",
+    "updateTime",
+    "remark",
+    "params",
+    "key",
+    "model",
+    "deiceName",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 12461,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_mcc_api_device_brand_get",
+   "operation_id_generated": true,
+   "summary": "获取手机品牌列表",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/device/brand/get",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "createBy",
+    "createTime",
+    "updateBy",
+    "updateTime",
+    "remark",
+    "params",
+    "key",
+    "mobileDeviceModels",
+    "createBy",
+    "createTime",
+    "updateBy",
+    "updateTime",
+    "remark",
+    "params",
+    "key",
+    "brand",
+    "title",
+    "categories",
+    "createBy",
+    "createTime",
+    "updateBy",
+    "updateTime",
+    "remark",
+    "params",
+    "key",
+    "model",
+    "deiceName",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 12485,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_mcc_api_device_conn_deviceid",
+   "operation_id_generated": true,
+   "summary": "测试是否设备是否可以建立链接",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/device/conn/{deviceId}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 12368,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_mcc_api_device_count",
+   "operation_id_generated": true,
+   "summary": "查询设备数量",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/device/count",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 12211,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_mcc_api_device_detail_deviceid",
+   "operation_id_generated": true,
+   "summary": "设备信息详情查询",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/device/detail/{deviceId}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "createBy",
+    "createTime",
+    "updateBy",
+    "updateTime",
+    "remark",
+    "params",
+    "key",
+    "id",
+    "deviceCode",
+    "deviceMode",
+    "deviceName",
+    "category",
+    "manufacturer",
+    "deviceStatus",
+    "resolutionRatio",
+    "nodeId",
+    "deviceIp",
+    "devicePort",
+    "connIp",
+    "connPort",
+    "proxyIp",
+    "proxyPort",
+    "systemVersion",
+    "imgVersion",
+    "imei",
+    "imsi",
+    "baseBand",
+    "brand",
+    "iccid",
+    "deviceMac",
+    "serialNumber",
+    "phoneNumber",
+    "battery",
+    "netOperator",
+    "productType",
+    "sn",
+    "chipCode",
+    "chipName",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 12695,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_mcc_api_device_isbind",
+   "operation_id_generated": true,
+   "summary": "查询设备是否绑定过账号",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/device/isBind",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 12235,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_mcc_api_device_list",
+   "operation_id_generated": true,
+   "summary": "查询设备集合",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/device/list",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "creatorId",
+    "createTime",
+    "updatorId",
+    "updateTime",
+    "deleted",
+    "version",
+    "deptId",
+    "params",
+    "key",
+    "id",
+    "deviceCode",
+    "deviceMode",
+    "deviceName",
+    "deviceCategory",
+    "manufacturer",
+    "deviceStatus",
+    "resolutionRatio",
+    "armId",
+    "nodeId",
+    "nodeIp",
+    "deviceIp",
+    "battery",
+    "netOperator",
+    "connIp",
+    "proxyIp",
+    "proxyPort",
+    "deviceMac",
+    "devicePort",
+    "connPort",
+    "systemVersion",
+    "deployed",
+    "conIdx",
+    "deviceIdx",
+    "deviceAliases",
+    "deviceNo",
+    "imei",
+    "imsi",
+    "baseBand",
+    "brand",
+    "deviceHost",
+    "model",
+    "iccid",
+    "sn",
+    "serialNumber",
+    "agentVersion",
+    "systemImageSrc",
+    "imageId",
+    "phoneNumber",
+    "tags",
+    "isRealPhone",
+    "wsPort",
+    "remark",
+    "routeIp",
+    "isLock",
+    "relationStatus",
+    "riskStatus",
+    "isBindAccount",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 12264,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_mcc_api_device_org_userid",
+   "operation_id_generated": true,
+   "summary": "设备用户关联关系-查询",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/device/org/{userId}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 12806,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_mcc_api_device_page",
+   "operation_id_generated": true,
+   "summary": "设备信息分页查询",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/device/page",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "createBy",
+    "createTime",
+    "updateBy",
+    "updateTime",
+    "remark",
+    "params",
+    "key",
+    "id",
+    "deviceCode",
+    "deviceMode",
+    "deviceName",
+    "deviceCategory",
+    "deviceIdx",
+    "manufacturer",
+    "deviceStatus",
+    "resolutionRatio",
+    "nodeId",
+    "deviceIp",
+    "connIp",
+    "proxyIp",
+    "proxyPort",
+    "battery",
+    "netOperator",
+    "devicePort",
+    "connPort",
+    "systemVersion",
+    "orgId",
+    "imei",
+    "imsi",
+    "baseBand",
+    "brand",
+    "iccid",
+    "deviceMac",
+    "serialNumber",
+    "phoneNumber",
+    "suiteName",
+    "sn",
+    "chipCode",
+    "armArea",
+    "isLock",
+    "relationStatus",
+    "riskStatus",
+    "userInfos",
+    "userId",
+    "userName",
+    "nickName",
+    "status",
+    "server",
+    "creator",
+    "owner",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 12588,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_mcc_api_device_page_allocation",
+   "operation_id_generated": true,
+   "summary": "待分配设备信息分页查询",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/device/page/allocation",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "records",
+    "createBy",
+    "createTime",
+    "updateBy",
+    "updateTime",
+    "remark",
+    "params",
+    "key",
+    "id",
+    "deviceCode",
+    "deviceName",
+    "deviceCategory",
+    "deviceStatus",
+    "nodeId",
+    "deviceIp",
+    "devicePort",
+    "systemVersion",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 12015,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_mcc_api_device_page_category",
+   "operation_id_generated": true,
+   "summary": "按类别汇总分页查询设备",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/device/page/category",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "deviceCategory",
+    "totalCount",
+    "onlineCount",
+    "offlineCount",
+    "boundCount",
+    "unboundCount",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 12094,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_mcc_api_device_sync",
+   "operation_id_generated": true,
+   "summary": "同步当前设备",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/device/sync",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 11991,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_mcc_api_device_uitree_xml_ip_port",
+   "operation_id_generated": true,
+   "summary": "获取设备uiTree.xml信息，文件流返回",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/device/uitree/xml/{ip}/{port}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 12569,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_mcc_api_device_uitree_xml_json_ip_port",
+   "operation_id_generated": true,
+   "summary": "获取设备uiTree.xml信息，json返回",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/device/uitree/xml_json/{ip}/{port}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 12509,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_mcc_api_device_uitree_xml_str_ip_port",
+   "operation_id_generated": true,
+   "summary": "获取设备uiTree.xml信息，字符串返回",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/device/uitree/xml_str/{ip}/{port}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 12539,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_social_fingerprint_get",
+   "operation_id_generated": true,
+   "summary": "获取设备指纹",
+   "description": null,
+   "method": "GET",
+   "path": "/social/fingerprint/get",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 23280,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_social_mobile_network_agreements_list",
+   "operation_id_generated": true,
+   "summary": "获取网络协议列表",
+   "description": null,
+   "method": "GET",
+   "path": "/social/mobile-network/agreements/list",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 6370,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_social_mobile_network_download_temp",
+   "operation_id_generated": true,
+   "summary": "下载模板",
+   "description": null,
+   "method": "GET",
+   "path": "/social/mobile-network/download/temp",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 5463,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_social_mobile_network_id",
+   "operation_id_generated": true,
+   "summary": "根据id查询网络配置",
+   "description": null,
+   "method": "GET",
+   "path": "/social/mobile-network/{id}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "ip",
+    "area",
+    "phones",
+    "assId",
+    "phoneId",
+    "phoneIp",
+    "deviceIdx",
+    "deviceNum",
+    "deviceAliases",
+    "connIp",
+    "connPort",
+    "deviceStatus",
+    "agreement",
+    "agreementName",
+    "networkStatus",
+    "networkStatusName",
+    "expirationTime",
+    "networkLink",
+    "isNearExpire",
+    "operationStatus",
+    "remark",
+    "proxyLinkIp",
+    "proxyLinkPort",
+    "username",
+    "password",
+    "suiteId",
+    "suiteName",
+    "appAccounts",
+    "riskTips",
+    "color",
+    "surplusDays",
+    "surplusDaysColor",
+    "bandingCount",
+    "createTime",
+    "available",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 5998,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_social_mobile_network_nodes",
+   "operation_id_generated": true,
+   "summary": "查询节点列表",
+   "description": null,
+   "method": "GET",
+   "path": "/social/mobile-network/nodes",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "deviceIp",
+    "deviceId",
+    "disabled",
+    "isLock",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 5962,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_social_mobile_network_proxy_bind_account_risk_num",
+   "operation_id_generated": true,
+   "summary": "查询代理绑定账号的风控数",
+   "description": null,
+   "method": "GET",
+   "path": "/social/mobile-network/proxy/bind-account-risk-num",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 5938,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_social_mobile_network_proxy_bind_device_list",
+   "operation_id_generated": true,
+   "summary": "获取代理绑定的设备列表",
+   "description": null,
+   "method": "GET",
+   "path": "/social/mobile-network/proxy/bind-device-list",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "deviceIds",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 6307,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_social_mobile_network_proxy_bind_device_num_id",
+   "operation_id_generated": true,
+   "summary": "查询代理绑定设备数量",
+   "description": null,
+   "method": "GET",
+   "path": "/social/mobile-network/proxy/bind-device-num/{id}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 5909,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_get_social_mobile_network_proxy_num",
+   "operation_id_generated": true,
+   "summary": "查询代理数量和被使用的代理数量",
+   "description": null,
+   "method": "GET",
+   "path": "/social/mobile-network/proxy/num",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "proxyTotalNum",
+    "proxyUsedNum",
+    "proxyWaitNum",
+    "proxyRiskNum",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 5885,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_allocation_container_allocate",
+   "operation_id_generated": true,
+   "summary": "分配容器给用户",
+   "description": null,
+   "method": "POST",
+   "path": "/allocation/container/allocate",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "userIds",
+      "type": "string []",
+      "required": false,
+      "desc": "用户id"
+     },
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备id集合"
+     },
+     {
+      "name": "bindDirection",
+      "type": "boolean",
+      "required": false,
+      "desc": "绑定方向 true是设备分配给用户 false是用户分配设备"
+     },
+     {
+      "name": "delIds",
+      "type": "string []",
+      "required": false,
+      "desc": "删除的id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 3896,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_allocation_container_list",
+   "operation_id_generated": true,
+   "summary": "根据设备id查询用户列表",
+   "description": null,
+   "method": "POST",
+   "path": "/allocation/container/list",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "userId",
+    "userName",
+    "nickName",
+    "status",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 4013,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_allocation_container_page",
+   "operation_id_generated": true,
+   "summary": "容器配置分页查询",
+   "description": null,
+   "method": "POST",
+   "path": "/allocation/container/page",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "records",
+      "type": "object []",
+      "required": false,
+      "desc": "查询数据列表"
+     },
+     {
+      "name": "total",
+      "type": "integer",
+      "required": false,
+      "desc": "总数"
+     },
+     {
+      "name": "size",
+      "type": "integer",
+      "required": false,
+      "desc": "每页显示条数，默认 10"
+     },
+     {
+      "name": "current",
+      "type": "integer",
+      "required": false,
+      "desc": "当前页"
+     },
+     {
+      "name": "orders",
+      "type": "object []",
+      "required": false,
+      "desc": "排序字段信息"
+     },
+     {
+      "name": "column",
+      "type": "string",
+      "required": false,
+      "desc": "需要进行排序的字段"
+     },
+     {
+      "name": "asc",
+      "type": "boolean",
+      "required": false,
+      "desc": "是否正序排列，默认 true"
+     },
+     {
+      "name": "optimizeCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": "自动优化 COUNT SQL"
+     },
+     {
+      "name": "searchCount",
+      "type": "boolean",
+      "required": false,
+      "desc": "是否进行 count 查询"
+     },
+     {
+      "name": "optimizeJoinOfCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": "{@link #optimizeJoinOfCountSql()}"
+     },
+     {
+      "name": "maxLimit",
+      "type": "integer",
+      "required": false,
+      "desc": "单页分页条数限制"
+     },
+     {
+      "name": "countId",
+      "type": "string",
+      "required": false,
+      "desc": "countId"
+     },
+     {
+      "name": "condition",
+      "type": "string",
+      "required": false,
+      "desc": "搜索条件"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "userInfos",
+    "userId",
+    "userName",
+    "nickName",
+    "status",
+    "server",
+    "deviceId",
+    "deviceIp",
+    "deviceVersion",
+    "suiteNames",
+    "remark",
+    "isLock",
+    "creator",
+    "owner",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 3935,
+   "pagination": {
+    "possible": true,
+    "note": "该接口 Body 的 YApi 文档把 MyBatis-Plus Page 响应对象也写进了请求体（`asc`, `column`, `countId`, `maxLimit`, `optimizeCountSql`, `optimizeJoinOfCountSql`, `orders`, `records`, `searchCount`, `total`）。实际请求请只发送筛选条件 + 分页参数（`current`、`size`，或 `pageNum`/`pageSize` 视接口而定），不要发送响应侧字段。"
+   }
+  },
+  {
+   "operation_id": "device-network_post_allocation_container_user_list",
+   "operation_id_generated": true,
+   "summary": "根据用户id查询设备列表",
+   "description": null,
+   "method": "POST",
+   "path": "/allocation/container/user/list",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "userIds",
+      "type": "string []",
+      "required": false,
+      "desc": "用户id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "userInfos",
+    "userId",
+    "userName",
+    "nickName",
+    "status",
+    "server",
+    "deviceId",
+    "deviceIp",
+    "deviceVersion",
+    "suiteNames",
+    "remark",
+    "isLock",
+    "creator",
+    "owner",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 3974,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_allocation_network_allocate",
+   "operation_id_generated": true,
+   "summary": "分配网络",
+   "description": null,
+   "method": "POST",
+   "path": "/allocation/network/allocate",
+   "route_prefix": "/social",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "userIds",
+      "type": "string []",
+      "required": false,
+      "desc": "用户id"
+     },
+     {
+      "name": "networkIds",
+      "type": "string []",
+      "required": false,
+      "desc": "网络id集合"
+     },
+     {
+      "name": "bindDirection",
+      "type": "boolean",
+      "required": false,
+      "desc": "绑定方向 true是网络分配给用户 false是用户分配网络"
+     },
+     {
+      "name": "delIds",
+      "type": "string []",
+      "required": false,
+      "desc": "删除的id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 2432,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_allocation_network_allocate_2",
+   "operation_id_generated": true,
+   "summary": "分配网络（代理）给用户",
+   "description": null,
+   "method": "POST",
+   "path": "/allocation/network/allocate",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "userIds",
+      "type": "string []",
+      "required": false,
+      "desc": "用户id"
+     },
+     {
+      "name": "networkIds",
+      "type": "string []",
+      "required": false,
+      "desc": "网络id集合"
+     },
+     {
+      "name": "bindDirection",
+      "type": "boolean",
+      "required": false,
+      "desc": "绑定方向 true是网络分配给用户 false是用户分配网络"
+     },
+     {
+      "name": "delIds",
+      "type": "string []",
+      "required": false,
+      "desc": "删除的id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 3738,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_allocation_network_list",
+   "operation_id_generated": true,
+   "summary": "根据代理id查询用户列表",
+   "description": null,
+   "method": "POST",
+   "path": "/allocation/network/list",
+   "route_prefix": "/social",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "networkIds",
+      "type": "string []",
+      "required": false,
+      "desc": "网络id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "userId",
+    "userName",
+    "nickName",
+    "status",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 2510,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_allocation_network_list_2",
+   "operation_id_generated": true,
+   "summary": "根据代理id查询用户列表",
+   "description": null,
+   "method": "POST",
+   "path": "/allocation/network/list",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "networkIds",
+      "type": "string []",
+      "required": false,
+      "desc": "网络id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "userId",
+    "userName",
+    "nickName",
+    "status",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 3777,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_allocation_network_page",
+   "operation_id_generated": true,
+   "summary": "网络分配分页",
+   "description": null,
+   "method": "POST",
+   "path": "/allocation/network/page",
+   "route_prefix": "/social",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "records",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "creatorId",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updatorId",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "deleted",
+      "type": "boolean",
+      "required": false,
+      "desc": "删除标识，0未删 1已删"
+     },
+     {
+      "name": "version",
+      "type": "integer",
+      "required": false,
+      "desc": "版本"
+     },
+     {
+      "name": "deptId",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "key",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": "主键id"
+     },
+     {
+      "name": "userId",
+      "type": "integer",
+      "required": false,
+      "desc": "用户id"
+     },
+     {
+      "name": "userName",
+      "type": "string",
+      "required": false,
+      "desc": "用户名称"
+     },
+     {
+      "name": "nickName",
+      "type": "string",
+      "required": false,
+      "desc": "昵称"
+     },
+     {
+      "name": "networkId",
+      "type": "integer",
+      "required": false,
+      "desc": "网络id"
+     },
+     {
+      "name": "total",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "size",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "current",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "orders",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "column",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "asc",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "searchCount",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeJoinOfCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "maxLimit",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "countId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "condition",
+      "type": "string",
+      "required": false,
+      "desc": "搜索条件 所有者-所属地区-IP-链接-到期时间-代理分组-备注"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "userInfos",
+    "userId",
+    "userName",
+    "nickName",
+    "status",
+    "area",
+    "ip",
+    "networkLink",
+    "expirationTime",
+    "suiteId",
+    "suiteName",
+    "remark",
+    "networkId",
+    "owner",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 2666,
+   "pagination": {
+    "possible": true,
+    "note": "该接口 Body 的 YApi 文档把 MyBatis-Plus Page 响应对象也写进了请求体（`asc`, `column`, `countId`, `maxLimit`, `optimizeCountSql`, `optimizeJoinOfCountSql`, `orders`, `records`, `searchCount`, `total`）。实际请求请只发送筛选条件 + 分页参数（`current`、`size`，或 `pageNum`/`pageSize` 视接口而定），不要发送响应侧字段。"
+   }
+  },
+  {
+   "operation_id": "device-network_post_allocation_network_page_2",
+   "operation_id_generated": true,
+   "summary": "网络分配分页查询",
+   "description": null,
+   "method": "POST",
+   "path": "/allocation/network/page",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "records",
+      "type": "object []",
+      "required": false,
+      "desc": "查询数据列表"
+     },
+     {
+      "name": "total",
+      "type": "integer",
+      "required": false,
+      "desc": "总数"
+     },
+     {
+      "name": "size",
+      "type": "integer",
+      "required": false,
+      "desc": "每页显示条数，默认 10"
+     },
+     {
+      "name": "current",
+      "type": "integer",
+      "required": false,
+      "desc": "当前页"
+     },
+     {
+      "name": "orders",
+      "type": "object []",
+      "required": false,
+      "desc": "排序字段信息"
+     },
+     {
+      "name": "column",
+      "type": "string",
+      "required": false,
+      "desc": "需要进行排序的字段"
+     },
+     {
+      "name": "asc",
+      "type": "boolean",
+      "required": false,
+      "desc": "是否正序排列，默认 true"
+     },
+     {
+      "name": "optimizeCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": "自动优化 COUNT SQL"
+     },
+     {
+      "name": "searchCount",
+      "type": "boolean",
+      "required": false,
+      "desc": "是否进行 count 查询"
+     },
+     {
+      "name": "optimizeJoinOfCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": "{@link #optimizeJoinOfCountSql()}"
+     },
+     {
+      "name": "maxLimit",
+      "type": "integer",
+      "required": false,
+      "desc": "单页分页条数限制"
+     },
+     {
+      "name": "countId",
+      "type": "string",
+      "required": false,
+      "desc": "countId"
+     },
+     {
+      "name": "condition",
+      "type": "string",
+      "required": false,
+      "desc": "搜索条件"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "userInfos",
+    "userId",
+    "userName",
+    "nickName",
+    "status",
+    "area",
+    "ip",
+    "networkLink",
+    "expirationTime",
+    "suiteId",
+    "suiteName",
+    "remark",
+    "networkId",
+    "isLock",
+    "owner",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 3855,
+   "pagination": {
+    "possible": true,
+    "note": "该接口 Body 的 YApi 文档把 MyBatis-Plus Page 响应对象也写进了请求体（`asc`, `column`, `countId`, `maxLimit`, `optimizeCountSql`, `optimizeJoinOfCountSql`, `orders`, `records`, `searchCount`, `total`）。实际请求请只发送筛选条件 + 分页参数（`current`、`size`，或 `pageNum`/`pageSize` 视接口而定），不要发送响应侧字段。"
+   }
+  },
+  {
+   "operation_id": "device-network_post_allocation_network_user_list",
+   "operation_id_generated": true,
+   "summary": "根据用户id查询代理列表",
+   "description": null,
+   "method": "POST",
+   "path": "/allocation/network/user/list",
+   "route_prefix": "/social",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "userIds",
+      "type": "string []",
+      "required": false,
+      "desc": "用户id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "userInfos",
+    "userId",
+    "userName",
+    "nickName",
+    "status",
+    "area",
+    "ip",
+    "networkLink",
+    "expirationTime",
+    "suiteId",
+    "suiteName",
+    "remark",
+    "networkId",
+    "owner",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 2588,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_allocation_network_user_list_2",
+   "operation_id_generated": true,
+   "summary": "根据用户id查询代理列表",
+   "description": null,
+   "method": "POST",
+   "path": "/allocation/network/user/list",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "userIds",
+      "type": "string []",
+      "required": false,
+      "desc": "用户id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "userInfos",
+    "userId",
+    "userName",
+    "nickName",
+    "status",
+    "area",
+    "ip",
+    "networkLink",
+    "expirationTime",
+    "suiteId",
+    "suiteName",
+    "remark",
+    "networkId",
+    "isLock",
+    "owner",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 3816,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_device_add",
+   "operation_id_generated": true,
+   "summary": "新增真机设备",
+   "description": null,
+   "method": "POST",
+   "path": "/device/add",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceCode",
+      "type": "string",
+      "required": false,
+      "desc": "设备编号(容器编号)"
+     },
+     {
+      "name": "deviceMode",
+      "type": "string",
+      "required": false,
+      "desc": "设备型号"
+     },
+     {
+      "name": "systemVersion",
+      "type": "string",
+      "required": false,
+      "desc": "系统版本"
+     },
+     {
+      "name": "deviceName",
+      "type": "string",
+      "required": false,
+      "desc": "设备名称"
+     },
+     {
+      "name": "deviceCategory",
+      "type": "string",
+      "required": false,
+      "desc": "设备类别（apply、huawei、oppo等）"
+     },
+     {
+      "name": "manufacturer",
+      "type": "string",
+      "required": false,
+      "desc": "厂商"
+     },
+     {
+      "name": "deviceStatus",
+      "type": "string",
+      "required": false,
+      "desc": "设备状态（OFFLINE:离线，ONLINE:在线，SHUTDOWN:关机）"
+     },
+     {
+      "name": "resolutionRatio",
+      "type": "string",
+      "required": false,
+      "desc": "分辨率"
+     },
+     {
+      "name": "deviceIp",
+      "type": "string",
+      "required": false,
+      "desc": "设备宿主机Ip地址"
+     },
+     {
+      "name": "deviceMac",
+      "type": "string",
+      "required": false,
+      "desc": "设备MAC地址"
+     },
+     {
+      "name": "devicePort",
+      "type": "string",
+      "required": false,
+      "desc": "端口号"
+     },
+     {
+      "name": "deviceNo",
+      "type": "string",
+      "required": false,
+      "desc": "设备序号"
+     },
+     {
+      "name": "deviceAliases",
+      "type": "string",
+      "required": false,
+      "desc": "设备别名"
+     },
+     {
+      "name": "imei",
+      "type": "string",
+      "required": false,
+      "desc": "imei"
+     },
+     {
+      "name": "brand",
+      "type": "string",
+      "required": false,
+      "desc": "品牌"
+     },
+     {
+      "name": "serialNumber",
+      "type": "string",
+      "required": false,
+      "desc": "手机序列号"
+     },
+     {
+      "name": "sn",
+      "type": "string",
+      "required": false,
+      "desc": "序号"
+     },
+     {
+      "name": "battery",
+      "type": "string",
+      "required": false,
+      "desc": "电量"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "data",
+    "msg",
+    "timestamp",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 518,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_device_mock_opera",
+   "operation_id_generated": true,
+   "summary": "Mock相关(开启、关闭)",
+   "description": null,
+   "method": "POST",
+   "path": "/device/mock/opera",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceId",
+      "type": "string",
+      "required": "必须",
+      "desc": "设备编号"
+     },
+     {
+      "name": "operaState",
+      "type": "boolean",
+      "required": "必须",
+      "desc": "mock状态 true :建立链接 / false :断开连接"
+     },
+     {
+      "name": "appId",
+      "type": "string",
+      "required": false,
+      "desc": "应用ID"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "data",
+    "msg",
+    "timestamp",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 340,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_device_org_update",
+   "operation_id_generated": true,
+   "summary": "设备用户关联关系-更新",
+   "description": null,
+   "method": "POST",
+   "path": "/device/org/update",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备编号集合"
+     },
+     {
+      "name": "userId",
+      "type": "string",
+      "required": "必须",
+      "desc": "用户编号"
+     },
+     {
+      "name": "isHasAll",
+      "type": "boolean",
+      "required": false,
+      "desc": "是否拥有全部，true：全部，false：部分"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "data",
+    "msg",
+    "timestamp",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1002,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_device_reset",
+   "operation_id_generated": true,
+   "summary": "重置设备",
+   "description": null,
+   "method": "POST",
+   "path": "/device/reset",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": "必须",
+      "desc": "设备编号集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "data",
+    "msg",
+    "timestamp",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1070,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_device_update",
+   "operation_id_generated": true,
+   "summary": "设备信息更新",
+   "description": null,
+   "method": "POST",
+   "path": "/device/update",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": "必须",
+      "desc": "设备ID集合"
+     },
+     {
+      "name": "operation",
+      "type": "string",
+      "required": "必须",
+      "desc": "操作指令，SHUTDOWN：关机/POWER_ON:开机/RESTART:重启/CHANGE_IMG:更换镜像/MODIFY:更新设备信息/GPS:修改定位信息"
+     },
+     {
+      "name": "imgId",
+      "type": "string",
+      "required": false,
+      "desc": "镜像ID"
+     },
+     {
+      "name": "modifyDeviceInfoReq",
+      "type": "object",
+      "required": false,
+      "desc": "设备信息"
+     },
+     {
+      "name": "brand",
+      "type": "string",
+      "required": false,
+      "desc": "手机品牌"
+     },
+     {
+      "name": "category",
+      "type": "string",
+      "required": false,
+      "desc": "手机型号"
+     },
+     {
+      "name": "phoneNumber",
+      "type": "string",
+      "required": false,
+      "desc": "手机号码"
+     },
+     {
+      "name": "lon",
+      "type": "number",
+      "required": false,
+      "desc": "经度"
+     },
+     {
+      "name": "lat",
+      "type": "number",
+      "required": false,
+      "desc": "纬度"
+     },
+     {
+      "name": "alt",
+      "type": "number",
+      "required": false,
+      "desc": "海拔"
+     },
+     {
+      "name": "imei",
+      "type": "string",
+      "required": false,
+      "desc": "imei码"
+     },
+     {
+      "name": "serialNumber",
+      "type": "string",
+      "required": false,
+      "desc": "序列号"
+     },
+     {
+      "name": "battery",
+      "type": "string",
+      "required": false,
+      "desc": "电量"
+     },
+     {
+      "name": "netOperator",
+      "type": "string",
+      "required": false,
+      "desc": "运营商"
+     },
+     {
+      "name": "imsi",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "sn",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "iccid",
+      "type": "string",
+      "required": false,
+      "desc": null
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "data",
+    "msg",
+    "timestamp",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 852,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_device_update_ex",
+   "operation_id_generated": true,
+   "summary": "设备信息更新（拓展）",
+   "description": null,
+   "method": "POST",
+   "path": "/device/update/ex",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "conIp",
+      "type": "string",
+      "required": "必须",
+      "desc": "设备IP"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "data",
+    "msg",
+    "timestamp",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 891,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_mcc_api_device_add",
+   "operation_id_generated": true,
+   "summary": "新增真机设备",
+   "description": null,
+   "method": "POST",
+   "path": "/mcc/api/device/add",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "createBy",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updateBy",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "备注"
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": "请求参数"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "deviceCode",
+      "type": "string",
+      "required": false,
+      "desc": "设备编号(容器编号)"
+     },
+     {
+      "name": "deviceMode",
+      "type": "string",
+      "required": false,
+      "desc": "设备型号"
+     },
+     {
+      "name": "systemVersion",
+      "type": "string",
+      "required": false,
+      "desc": "系统版本"
+     },
+     {
+      "name": "deviceName",
+      "type": "string",
+      "required": false,
+      "desc": "设备名称"
+     },
+     {
+      "name": "deviceCategory",
+      "type": "string",
+      "required": false,
+      "desc": "设备类别（apply、huawei、oppo等）"
+     },
+     {
+      "name": "manufacturer",
+      "type": "string",
+      "required": false,
+      "desc": "厂商"
+     },
+     {
+      "name": "deviceStatus",
+      "type": "string",
+      "required": false,
+      "desc": "设备状态（OFFLINE:离线，ONLINE:在线，SHUTDOWN:关机）"
+     },
+     {
+      "name": "resolutionRatio",
+      "type": "string",
+      "required": false,
+      "desc": "分辨率"
+     },
+     {
+      "name": "deviceIp",
+      "type": "string",
+      "required": false,
+      "desc": "设备宿主机Ip地址"
+     },
+     {
+      "name": "deviceMac",
+      "type": "string",
+      "required": false,
+      "desc": "设备MAC地址"
+     },
+     {
+      "name": "devicePort",
+      "type": "string",
+      "required": false,
+      "desc": "端口号"
+     },
+     {
+      "name": "deviceNo",
+      "type": "string",
+      "required": false,
+      "desc": "设备序号"
+     },
+     {
+      "name": "deviceAliases",
+      "type": "string",
+      "required": false,
+      "desc": "设备别名"
+     },
+     {
+      "name": "imei",
+      "type": "string",
+      "required": false,
+      "desc": "imei"
+     },
+     {
+      "name": "brand",
+      "type": "string",
+      "required": false,
+      "desc": "品牌"
+     },
+     {
+      "name": "serialNumber",
+      "type": "string",
+      "required": false,
+      "desc": "手机序列号"
+     },
+     {
+      "name": "sn",
+      "type": "string",
+      "required": false,
+      "desc": "序号"
+     },
+     {
+      "name": "battery",
+      "type": "string",
+      "required": false,
+      "desc": "电量"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 12133,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_mcc_api_device_add_remark",
+   "operation_id_generated": true,
+   "summary": "新增设备备注",
+   "description": null,
+   "method": "POST",
+   "path": "/mcc/api/device/add/remark",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceId",
+      "type": "string",
+      "required": false,
+      "desc": "设备ID"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "设备备注"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 12172,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_mcc_api_device_lock",
+   "operation_id_generated": true,
+   "summary": "设备锁定和解锁",
+   "description": null,
+   "method": "POST",
+   "path": "/mcc/api/device/lock",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备ID集合"
+     },
+     {
+      "name": "isLock",
+      "type": "boolean",
+      "required": false,
+      "desc": "是否锁"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 12835,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_mcc_api_device_mock_opera",
+   "operation_id_generated": true,
+   "summary": "Mock相关(开启、关闭)",
+   "description": null,
+   "method": "POST",
+   "path": "/mcc/api/device/mock/opera",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "createBy",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updateBy",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "备注"
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": "请求参数"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "deviceId",
+      "type": "string",
+      "required": "必须",
+      "desc": "设备编号"
+     },
+     {
+      "name": "operaState",
+      "type": "boolean",
+      "required": "必须",
+      "desc": "mock状态 true :建立链接 / false :断开连接"
+     },
+     {
+      "name": "appId",
+      "type": "string",
+      "required": false,
+      "desc": "应用ID"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 11831,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_mcc_api_device_org_update",
+   "operation_id_generated": true,
+   "summary": "设备用户关联关系-更新",
+   "description": null,
+   "method": "POST",
+   "path": "/mcc/api/device/org/update",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "createBy",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updateBy",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "备注"
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": "请求参数"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备编号集合"
+     },
+     {
+      "name": "userId",
+      "type": "string",
+      "required": false,
+      "desc": "用户编号"
+     },
+     {
+      "name": "isHasAll",
+      "type": "boolean",
+      "required": false,
+      "desc": "是否拥有全部，true：全部，false：部分"
+     },
+     {
+      "name": "bindDirection",
+      "type": "boolean",
+      "required": false,
+      "desc": "绑定方向 true是容器分配给用户 false是用户分配容器"
+     },
+     {
+      "name": "userIds",
+      "type": "string []",
+      "required": false,
+      "desc": "用户编号集合"
+     },
+     {
+      "name": "delIds",
+      "type": "string []",
+      "required": false,
+      "desc": "删除id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 12767,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_mcc_api_device_reset",
+   "operation_id_generated": true,
+   "summary": "重置设备",
+   "description": null,
+   "method": "POST",
+   "path": "/mcc/api/device/reset",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "createBy",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updateBy",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "备注"
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": "请求参数"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": "必须",
+      "desc": "设备编号集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 12874,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_mcc_api_device_select_device",
+   "operation_id_generated": true,
+   "summary": "根据用户id查询设备信息",
+   "description": null,
+   "method": "POST",
+   "path": "/mcc/api/device/select/device",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "userIds",
+      "type": "string []",
+      "required": false,
+      "desc": "用户ID集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "userInfos",
+    "userId",
+    "userName",
+    "nickName",
+    "status",
+    "server",
+    "deviceId",
+    "deviceIp",
+    "deviceVersion",
+    "suiteName",
+    "remark",
+    "isLock",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 12290,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_mcc_api_device_select_user",
+   "operation_id_generated": true,
+   "summary": "根据设备id查询用户信息",
+   "description": null,
+   "method": "POST",
+   "path": "/mcc/api/device/select/user",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备ID集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "userId",
+    "userName",
+    "nickName",
+    "status",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 12329,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_mcc_api_device_update",
+   "operation_id_generated": true,
+   "summary": "设备信息更新",
+   "description": null,
+   "method": "POST",
+   "path": "/mcc/api/device/update",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "createBy",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updateBy",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "备注"
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": "请求参数"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": "必须",
+      "desc": "设备ID集合"
+     },
+     {
+      "name": "operation",
+      "type": "string",
+      "required": "必须",
+      "desc": "操作指令，SHUTDOWN：关机/POWER_ON:开机/RESTART:重启/CHANGE_IMG:更换镜像/MODIFY:更新设备信息/GPS:修改定位信息"
+     },
+     {
+      "name": "imgId",
+      "type": "string",
+      "required": false,
+      "desc": "镜像ID"
+     },
+     {
+      "name": "modifyDeviceInfoReq",
+      "type": "object",
+      "required": false,
+      "desc": "设备信息"
+     },
+     {
+      "name": "createBy",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updateBy",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "备注"
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": "请求参数"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "brand",
+      "type": "string",
+      "required": false,
+      "desc": "手机品牌"
+     },
+     {
+      "name": "category",
+      "type": "string",
+      "required": false,
+      "desc": "手机型号"
+     },
+     {
+      "name": "phoneNumber",
+      "type": "string",
+      "required": false,
+      "desc": "手机号码"
+     },
+     {
+      "name": "lon",
+      "type": "number",
+      "required": false,
+      "desc": "经度"
+     },
+     {
+      "name": "lat",
+      "type": "number",
+      "required": false,
+      "desc": "纬度"
+     },
+     {
+      "name": "alt",
+      "type": "number",
+      "required": false,
+      "desc": "海拔"
+     },
+     {
+      "name": "imei",
+      "type": "string",
+      "required": false,
+      "desc": "imei码"
+     },
+     {
+      "name": "serialNumber",
+      "type": "string",
+      "required": false,
+      "desc": "序列号"
+     },
+     {
+      "name": "battery",
+      "type": "string",
+      "required": false,
+      "desc": "电量"
+     },
+     {
+      "name": "netOperator",
+      "type": "string",
+      "required": false,
+      "desc": "运营商"
+     },
+     {
+      "name": "imsi",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "sn",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "iccid",
+      "type": "string",
+      "required": false,
+      "desc": null
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 12656,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_mcc_api_device_update_bind",
+   "operation_id_generated": true,
+   "summary": "修改是否绑定过账号",
+   "description": null,
+   "method": "POST",
+   "path": "/mcc/api/device/update/bind",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceId",
+      "type": "string",
+      "required": false,
+      "desc": "设备ID"
+     },
+     {
+      "name": "isBind",
+      "type": "string",
+      "required": false,
+      "desc": "是否绑定"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 11913,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_social_allocation_network_allocate",
+   "operation_id_generated": true,
+   "summary": "分配网络",
+   "description": null,
+   "method": "POST",
+   "path": "/social/allocation/network/allocate",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "userIds",
+      "type": "string []",
+      "required": false,
+      "desc": "用户id"
+     },
+     {
+      "name": "networkIds",
+      "type": "string []",
+      "required": false,
+      "desc": "网络id集合"
+     },
+     {
+      "name": "bindDirection",
+      "type": "boolean",
+      "required": false,
+      "desc": "绑定方向 true是网络分配给用户 false是用户分配网络"
+     },
+     {
+      "name": "delIds",
+      "type": "string []",
+      "required": false,
+      "desc": "删除的id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 2471,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_social_allocation_network_list",
+   "operation_id_generated": true,
+   "summary": "根据代理id查询用户列表",
+   "description": null,
+   "method": "POST",
+   "path": "/social/allocation/network/list",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "networkIds",
+      "type": "string []",
+      "required": false,
+      "desc": "网络id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "userId",
+    "userName",
+    "nickName",
+    "status",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 2549,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_social_allocation_network_page",
+   "operation_id_generated": true,
+   "summary": "网络分配分页",
+   "description": null,
+   "method": "POST",
+   "path": "/social/allocation/network/page",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "records",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "creatorId",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updatorId",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "deleted",
+      "type": "boolean",
+      "required": false,
+      "desc": "删除标识，0未删 1已删"
+     },
+     {
+      "name": "version",
+      "type": "integer",
+      "required": false,
+      "desc": "版本"
+     },
+     {
+      "name": "deptId",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "key",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": "主键id"
+     },
+     {
+      "name": "userId",
+      "type": "integer",
+      "required": false,
+      "desc": "用户id"
+     },
+     {
+      "name": "userName",
+      "type": "string",
+      "required": false,
+      "desc": "用户名称"
+     },
+     {
+      "name": "nickName",
+      "type": "string",
+      "required": false,
+      "desc": "昵称"
+     },
+     {
+      "name": "networkId",
+      "type": "integer",
+      "required": false,
+      "desc": "网络id"
+     },
+     {
+      "name": "total",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "size",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "current",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "orders",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "column",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "asc",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "searchCount",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeJoinOfCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "maxLimit",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "countId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "condition",
+      "type": "string",
+      "required": false,
+      "desc": "搜索条件 所有者-所属地区-IP-链接-到期时间-代理分组-备注"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "userInfos",
+    "userId",
+    "userName",
+    "nickName",
+    "status",
+    "area",
+    "ip",
+    "networkLink",
+    "expirationTime",
+    "suiteId",
+    "suiteName",
+    "remark",
+    "networkId",
+    "owner",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 2705,
+   "pagination": {
+    "possible": true,
+    "note": "该接口 Body 的 YApi 文档把 MyBatis-Plus Page 响应对象也写进了请求体（`asc`, `column`, `countId`, `maxLimit`, `optimizeCountSql`, `optimizeJoinOfCountSql`, `orders`, `records`, `searchCount`, `total`）。实际请求请只发送筛选条件 + 分页参数（`current`、`size`，或 `pageNum`/`pageSize` 视接口而定），不要发送响应侧字段。"
+   }
+  },
+  {
+   "operation_id": "device-network_post_social_allocation_network_user_list",
+   "operation_id_generated": true,
+   "summary": "根据用户id查询代理列表",
+   "description": null,
+   "method": "POST",
+   "path": "/social/allocation/network/user/list",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "userIds",
+      "type": "string []",
+      "required": false,
+      "desc": "用户id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "userInfos",
+    "userId",
+    "userName",
+    "nickName",
+    "status",
+    "area",
+    "ip",
+    "networkLink",
+    "expirationTime",
+    "suiteId",
+    "suiteName",
+    "remark",
+    "networkId",
+    "owner",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 2627,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_social_mobile_network_add_remark",
+   "operation_id_generated": true,
+   "summary": "添加备注",
+   "description": null,
+   "method": "POST",
+   "path": "/social/mobile-network/add-remark",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "networkId",
+      "type": "string",
+      "required": false,
+      "desc": "网络id"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "备注"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 6110,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_social_mobile_network_batch_unbind_proxy",
+   "operation_id_generated": true,
+   "summary": "批量解绑代理",
+   "description": null,
+   "method": "POST",
+   "path": "/social/mobile-network/batch-unbind-proxy",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "proxyIds",
+      "type": "string []",
+      "required": false,
+      "desc": "代理id 集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 5807,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_social_mobile_network_dedicated_line",
+   "operation_id_generated": true,
+   "summary": "网络配置",
+   "description": null,
+   "method": "POST",
+   "path": "/social/mobile-network/dedicated-line",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "createBy",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updateBy",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "备注"
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": "请求参数"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "容器ID"
+     },
+     {
+      "name": "routeIp",
+      "type": "string",
+      "required": false,
+      "desc": "路由IP"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "totalCount",
+    "successCount",
+    "failedCount",
+    "failedDevices",
+    "deviceId",
+    "deviceIp",
+    "reason",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 6266,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_social_mobile_network_device_bind_account",
+   "operation_id_generated": true,
+   "summary": "获取设备绑定的账号和代理",
+   "description": null,
+   "method": "POST",
+   "path": "/social/mobile-network/device/bind-account",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "accountIds",
+    "proxyIds",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 6394,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_social_mobile_network_download",
+   "operation_id_generated": true,
+   "summary": "下载",
+   "description": null,
+   "method": "POST",
+   "path": "/social/mobile-network/download",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "ids",
+      "type": "string []",
+      "required": false,
+      "desc": "id集合"
+     }
+    ]
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 5435,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_social_mobile_network_import_csv",
+   "operation_id_generated": true,
+   "summary": "导入模板",
+   "description": null,
+   "method": "POST",
+   "path": "/social/mobile-network/import/csv",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 5771,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_social_mobile_network_page",
+   "operation_id_generated": true,
+   "summary": "分页查询网络配置",
+   "description": null,
+   "method": "POST",
+   "path": "/social/mobile-network/page",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "records",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "creatorId",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updatorId",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "deleted",
+      "type": "boolean",
+      "required": false,
+      "desc": "删除标识，0未删 1已删"
+     },
+     {
+      "name": "version",
+      "type": "integer",
+      "required": false,
+      "desc": "版本"
+     },
+     {
+      "name": "deptId",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "key",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": "主键ID"
+     },
+     {
+      "name": "ip",
+      "type": "string",
+      "required": false,
+      "desc": "IP地址"
+     },
+     {
+      "name": "nodeId",
+      "type": "string",
+      "required": false,
+      "desc": "节点ID"
+     },
+     {
+      "name": "area",
+      "type": "string",
+      "required": false,
+      "desc": "地区（如：北京、旧金山）"
+     },
+     {
+      "name": "nodeIp",
+      "type": "string",
+      "required": false,
+      "desc": "节点IP"
+     },
+     {
+      "name": "agreement",
+      "type": "string",
+      "required": false,
+      "desc": "协议类型（如HTTP/HTTPS、TCP/UDP）"
+     },
+     {
+      "name": "networkStatus",
+      "type": "string",
+      "required": false,
+      "desc": "网络状态 BINDING(已绑定)/ARREARAGE(欠费)/LEISURE(空闲)/INVALID(无效)"
+     },
+     {
+      "name": "expirationTime",
+      "type": "string",
+      "required": false,
+      "desc": "过期时间"
+     },
+     {
+      "name": "networkLink",
+      "type": "string",
+      "required": false,
+      "desc": "网络链接URL"
+     },
+     {
+      "name": "batchNumber",
+      "type": "string",
+      "required": false,
+      "desc": "批次号"
+     },
+     {
+      "name": "operationStatus",
+      "type": "string",
+      "required": false,
+      "desc": "代理操作状态(true 开启 false 关闭)"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "备注"
+     },
+     {
+      "name": "inboundTag",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "outboundTag",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "proxyAddr",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "proxyIp",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "proxyPort",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "proxyLinkIp",
+      "type": "string",
+      "required": false,
+      "desc": "代理ip"
+     },
+     {
+      "name": "proxyLinkPort",
+      "type": "string",
+      "required": false,
+      "desc": "代理端口"
+     },
+     {
+      "name": "username",
+      "type": "string",
+      "required": false,
+      "desc": "用户名"
+     },
+     {
+      "name": "password",
+      "type": "string",
+      "required": false,
+      "desc": "密码"
+     },
+     {
+      "name": "total",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "size",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "current",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "orders",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "column",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "asc",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "searchCount",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeJoinOfCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "maxLimit",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "countId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "ip",
+      "type": "string",
+      "required": false,
+      "desc": "IP地址"
+     },
+     {
+      "name": "area",
+      "type": "string",
+      "required": false,
+      "desc": "地区"
+     },
+     {
+      "name": "areas",
+      "type": "string []",
+      "required": false,
+      "desc": "地区（如：北京、旧金山）"
+     },
+     {
+      "name": "phoneIp",
+      "type": "string",
+      "required": false,
+      "desc": "节点IP"
+     },
+     {
+      "name": "agreement",
+      "type": "string",
+      "required": false,
+      "desc": "协议类型（如HTTP/HTTPS、TCP/UDP）"
+     },
+     {
+      "name": "networkStatus",
+      "type": "string",
+      "required": false,
+      "desc": "网络状态（LEISURE/IN_USE/MAINTENANCE）"
+     },
+     {
+      "name": "isNearExpire",
+      "type": "boolean",
+      "required": false,
+      "desc": "待续费"
+     },
+     {
+      "name": "proxy",
+      "type": "string",
+      "required": false,
+      "desc": "代理"
+     },
+     {
+      "name": "sortType",
+      "type": "string",
+      "required": false,
+      "desc": "排序条件 1. 按风险排序（低风险的靠上） 2. 按录入时间排序（新录入的先显示）"
+     },
+     {
+      "name": "suiteIds",
+      "type": "string []",
+      "required": false,
+      "desc": "分组id"
+     },
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备 ID 集合:只查绑定了这些设备的网络配置。链路{@code social_mobile_network_association.phone_id IN (deviceIds) AND deleted=0 → * networkId → social_mobile_network};任一设备命中即保留该网络。前端以字符串数组形式提交(防 JS 长整数丢精度);为空 / null 时不参与过滤。"
+     },
+     {
+      "name": "proxyIds",
+      "type": "string []",
+      "required": false,
+      "desc": "代理id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "id",
+    "ip",
+    "area",
+    "phones",
+    "assId",
+    "phoneId",
+    "phoneIp",
+    "deviceIdx",
+    "deviceNum",
+    "deviceAliases",
+    "connIp",
+    "connPort",
+    "deviceStatus",
+    "agreement",
+    "agreementName",
+    "networkStatus",
+    "networkStatusName",
+    "expirationTime",
+    "networkLink",
+    "isNearExpire",
+    "operationStatus",
+    "remark",
+    "proxyLinkIp",
+    "proxyLinkPort",
+    "username",
+    "password",
+    "suiteId",
+    "suiteName",
+    "appAccounts",
+    "riskTips",
+    "color",
+    "surplusDays",
+    "surplusDaysColor",
+    "bandingCount",
+    "createTime",
+    "available",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 5599,
+   "pagination": {
+    "possible": true,
+    "note": "该接口 Body 的 YApi 文档把 MyBatis-Plus Page 响应对象也写进了请求体（`asc`, `column`, `countId`, `maxLimit`, `optimizeCountSql`, `optimizeJoinOfCountSql`, `orders`, `records`, `searchCount`, `total`）。实际请求请只发送筛选条件 + 分页参数（`current`、`size`，或 `pageNum`/`pageSize` 视接口而定），不要发送响应侧字段。"
+   }
+  },
+  {
+   "operation_id": "device-network_post_social_mobile_network_proxy_bind_account",
+   "operation_id_generated": true,
+   "summary": "获取代理绑定的账号和设备",
+   "description": null,
+   "method": "POST",
+   "path": "/social/mobile-network/proxy/bind-account",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "proxyIds",
+      "type": "string []",
+      "required": false,
+      "desc": "代理id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "accountIds",
+    "deviceIds",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 6331,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_social_mobile_network_proxy_bind_proxy_by_device",
+   "operation_id_generated": true,
+   "summary": "根据设备查询绑定的代理",
+   "description": null,
+   "method": "POST",
+   "path": "/social/mobile-network/proxy/bind-proxy-by-device",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceId",
+      "type": "string",
+      "required": false,
+      "desc": "设备id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "assId",
+    "proxyId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 6032,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_social_mobile_network_proxy_disable",
+   "operation_id_generated": true,
+   "summary": "停用代理服务",
+   "description": null,
+   "method": "POST",
+   "path": "/social/mobile-network/proxy/disable",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "networkId",
+      "type": "string",
+      "required": false,
+      "desc": "网络id"
+     },
+     {
+      "name": "operationStatus",
+      "type": "boolean",
+      "required": false,
+      "desc": "代理操作状态(true 开启 false 关闭)"
+     },
+     {
+      "name": "assIds",
+      "type": "string []",
+      "required": false,
+      "desc": "解绑ids"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 5560,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_social_mobile_network_proxy_split_link",
+   "operation_id_generated": true,
+   "summary": "切割代理链接获取ip和端口",
+   "description": null,
+   "method": "POST",
+   "path": "/social/mobile-network/proxy/split-link",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "networkLink",
+      "type": "string",
+      "required": false,
+      "desc": "网络链接"
+     },
+     {
+      "name": "agreement",
+      "type": "string",
+      "required": false,
+      "desc": "协议"
+     },
+     {
+      "name": "proxyLinkIp",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "proxyLinkPort",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "username",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "password",
+      "type": "string",
+      "required": false,
+      "desc": null
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "proxyLinkIp",
+    "proxyLinkPort",
+    "username",
+    "password",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 5652,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_social_mobile_network_proxy_update",
+   "operation_id_generated": true,
+   "summary": "更新代理配置",
+   "description": null,
+   "method": "POST",
+   "path": "/social/mobile-network/proxy/update",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "networkId",
+      "type": "string",
+      "required": false,
+      "desc": "网络id"
+     },
+     {
+      "name": "operationStatus",
+      "type": "boolean",
+      "required": false,
+      "desc": "代理操作状态(true 开启 false 关闭)"
+     },
+     {
+      "name": "assIds",
+      "type": "string []",
+      "required": false,
+      "desc": "解绑ids"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 5846,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_social_mobile_network_save",
+   "operation_id_generated": true,
+   "summary": "保存网络配置",
+   "description": null,
+   "method": "POST",
+   "path": "/social/mobile-network/save",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "ip",
+      "type": "string",
+      "required": false,
+      "desc": "IP地址"
+     },
+     {
+      "name": "area",
+      "type": "string",
+      "required": false,
+      "desc": "地区（如：北京、旧金山）"
+     },
+     {
+      "name": "agreement",
+      "type": "string",
+      "required": false,
+      "desc": "协议类型（如HTTP/HTTPS、TCP/UDP）"
+     },
+     {
+      "name": "networkStatus",
+      "type": "string",
+      "required": false,
+      "desc": "网络状态 BINDING(已绑定)/ARREARAGE(欠费)/LEISURE(空闲)/INVALID(无效)"
+     },
+     {
+      "name": "expirationTime",
+      "type": "string",
+      "required": false,
+      "desc": "过期时间"
+     },
+     {
+      "name": "networkLink",
+      "type": "string",
+      "required": false,
+      "desc": "网络链接URL"
+     },
+     {
+      "name": "phones",
+      "type": "object []",
+      "required": false,
+      "desc": "节点信息集合"
+     },
+     {
+      "name": "phoneId",
+      "type": "string",
+      "required": false,
+      "desc": "节点id"
+     },
+     {
+      "name": "phoneIp",
+      "type": "string",
+      "required": false,
+      "desc": "节点地址"
+     },
+     {
+      "name": "proxyLinkIp",
+      "type": "string",
+      "required": false,
+      "desc": "代理ip"
+     },
+     {
+      "name": "proxyLinkPort",
+      "type": "string",
+      "required": false,
+      "desc": "代理端口"
+     },
+     {
+      "name": "username",
+      "type": "string",
+      "required": false,
+      "desc": "用户名"
+     },
+     {
+      "name": "password",
+      "type": "string",
+      "required": false,
+      "desc": "密码"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 5476,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_social_mobile_network_test",
+   "operation_id_generated": true,
+   "summary": "测试网络连接是否可用",
+   "description": null,
+   "method": "POST",
+   "path": "/social/mobile-network/test",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "ids",
+      "type": "string []",
+      "required": false,
+      "desc": null
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "ip",
+    "area",
+    "available",
+    "message",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 6071,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_post_social_realphone_add",
+   "operation_id_generated": true,
+   "summary": "新增真机设备",
+   "description": null,
+   "method": "POST",
+   "path": "/social/realPhone/add",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceCode",
+      "type": "string",
+      "required": false,
+      "desc": "设备编号(容器编号)"
+     },
+     {
+      "name": "deviceMode",
+      "type": "string",
+      "required": false,
+      "desc": "设备型号"
+     },
+     {
+      "name": "systemVersion",
+      "type": "string",
+      "required": false,
+      "desc": "系统版本"
+     },
+     {
+      "name": "deviceName",
+      "type": "string",
+      "required": false,
+      "desc": "设备名称"
+     },
+     {
+      "name": "deviceCategory",
+      "type": "string",
+      "required": false,
+      "desc": "设备类别（apply、huawei、oppo等）"
+     },
+     {
+      "name": "manufacturer",
+      "type": "string",
+      "required": false,
+      "desc": "厂商"
+     },
+     {
+      "name": "deviceStatus",
+      "type": "string",
+      "required": false,
+      "desc": "设备状态（OFFLINE:离线，ONLINE:在线，SHUTDOWN:关机）"
+     },
+     {
+      "name": "resolutionRatio",
+      "type": "string",
+      "required": false,
+      "desc": "分辨率"
+     },
+     {
+      "name": "deviceIp",
+      "type": "string",
+      "required": false,
+      "desc": "设备宿主机Ip地址"
+     },
+     {
+      "name": "deviceMac",
+      "type": "string",
+      "required": false,
+      "desc": "设备MAC地址"
+     },
+     {
+      "name": "devicePort",
+      "type": "string",
+      "required": false,
+      "desc": "端口号"
+     },
+     {
+      "name": "deviceNo",
+      "type": "string",
+      "required": false,
+      "desc": "设备序号"
+     },
+     {
+      "name": "deviceAliases",
+      "type": "string",
+      "required": false,
+      "desc": "设备别名"
+     },
+     {
+      "name": "imei",
+      "type": "string",
+      "required": false,
+      "desc": "imei"
+     },
+     {
+      "name": "brand",
+      "type": "string",
+      "required": false,
+      "desc": "品牌"
+     },
+     {
+      "name": "serialNumber",
+      "type": "string",
+      "required": false,
+      "desc": "手机序列号"
+     },
+     {
+      "name": "sn",
+      "type": "string",
+      "required": false,
+      "desc": "序号"
+     },
+     {
+      "name": "battery",
+      "type": "string",
+      "required": false,
+      "desc": "电量"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 23306,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_put_device_gen",
+   "operation_id_generated": true,
+   "summary": "生成设备信息",
+   "description": null,
+   "method": "PUT",
+   "path": "/device/gen",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "运营商编号"
+     },
+     {
+      "name": "netOperator",
+      "type": "string",
+      "required": false,
+      "desc": "运营商"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "data",
+    "phoneNum",
+    "power",
+    "serialNumber",
+    "imei",
+    "imsi",
+    "sn",
+    "iccid",
+    "androidId",
+    "areaCodeZone",
+    "msg",
+    "timestamp",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 586,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_put_device_new",
+   "operation_id_generated": true,
+   "summary": "一键新机",
+   "description": null,
+   "method": "PUT",
+   "path": "/device/new",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceId",
+      "type": "string",
+      "required": "必须",
+      "desc": "设备编号"
+     },
+     {
+      "name": "armId",
+      "type": "string",
+      "required": false,
+      "desc": "服务器编号"
+     },
+     {
+      "name": "nodeId",
+      "type": "string",
+      "required": false,
+      "desc": "节点编号"
+     },
+     {
+      "name": "brand",
+      "type": "string",
+      "required": "必须",
+      "desc": "品牌"
+     },
+     {
+      "name": "category",
+      "type": "string",
+      "required": false,
+      "desc": "型号"
+     },
+     {
+      "name": "phoneNumber",
+      "type": "string",
+      "required": false,
+      "desc": "手机号码"
+     },
+     {
+      "name": "imei",
+      "type": "string",
+      "required": false,
+      "desc": "imei码"
+     },
+     {
+      "name": "serialNumber",
+      "type": "string",
+      "required": false,
+      "desc": "序列号"
+     },
+     {
+      "name": "battery",
+      "type": "string",
+      "required": false,
+      "desc": "电量"
+     },
+     {
+      "name": "netOperator",
+      "type": "string",
+      "required": false,
+      "desc": "运营商"
+     },
+     {
+      "name": "imsi",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "sn",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "iccid",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "chipCode",
+      "type": "string",
+      "required": false,
+      "desc": "芯片类型"
+     },
+     {
+      "name": "areaCodeZone",
+      "type": "string",
+      "required": false,
+      "desc": "时区"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "data",
+    "msg",
+    "timestamp",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 379,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_put_mcc_api_device_gen",
+   "operation_id_generated": true,
+   "summary": "生成设备信息",
+   "description": null,
+   "method": "PUT",
+   "path": "/mcc/api/device/gen",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "createBy",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updateBy",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "备注"
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": "请求参数"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "运营商编号"
+     },
+     {
+      "name": "netOperator",
+      "type": "string",
+      "required": false,
+      "desc": "运营商"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "createBy",
+    "createTime",
+    "updateBy",
+    "updateTime",
+    "remark",
+    "params",
+    "key",
+    "phoneNum",
+    "power",
+    "serialNumber",
+    "imei",
+    "imsi",
+    "sn",
+    "iccid",
+    "androidId",
+    "areaCodeZone",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 12397,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_put_mcc_api_device_new",
+   "operation_id_generated": true,
+   "summary": "一键新机",
+   "description": null,
+   "method": "PUT",
+   "path": "/mcc/api/device/new",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "createBy",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updateBy",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "备注"
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": "请求参数"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "deviceId",
+      "type": "string",
+      "required": "必须",
+      "desc": "设备编号"
+     },
+     {
+      "name": "armId",
+      "type": "string",
+      "required": false,
+      "desc": "服务器编号"
+     },
+     {
+      "name": "nodeId",
+      "type": "string",
+      "required": false,
+      "desc": "节点编号"
+     },
+     {
+      "name": "brand",
+      "type": "string",
+      "required": "必须",
+      "desc": "品牌"
+     },
+     {
+      "name": "category",
+      "type": "string",
+      "required": false,
+      "desc": "型号"
+     },
+     {
+      "name": "phoneNumber",
+      "type": "string",
+      "required": false,
+      "desc": "手机号码"
+     },
+     {
+      "name": "imei",
+      "type": "string",
+      "required": false,
+      "desc": "imei码"
+     },
+     {
+      "name": "serialNumber",
+      "type": "string",
+      "required": false,
+      "desc": "序列号"
+     },
+     {
+      "name": "battery",
+      "type": "string",
+      "required": false,
+      "desc": "电量"
+     },
+     {
+      "name": "netOperator",
+      "type": "string",
+      "required": false,
+      "desc": "运营商"
+     },
+     {
+      "name": "imsi",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "sn",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "iccid",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "chipCode",
+      "type": "string",
+      "required": false,
+      "desc": "芯片类型"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 11870,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_put_mcc_api_device_new_batch",
+   "operation_id_generated": true,
+   "summary": "批量一键新机",
+   "description": null,
+   "method": "PUT",
+   "path": "/mcc/api/device/new/batch",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "createBy",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updateBy",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "备注"
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": "请求参数"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "deviceReqs",
+      "type": "object []",
+      "required": false,
+      "desc": "一键新机设备信息集合"
+     },
+     {
+      "name": "createBy",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updateBy",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "备注"
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": "请求参数"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "deviceId",
+      "type": "string",
+      "required": false,
+      "desc": "设备编号"
+     },
+     {
+      "name": "armId",
+      "type": "string",
+      "required": false,
+      "desc": "服务器编号"
+     },
+     {
+      "name": "nodeId",
+      "type": "string",
+      "required": false,
+      "desc": "节点编号"
+     },
+     {
+      "name": "chipCode",
+      "type": "string",
+      "required": false,
+      "desc": "芯片类型"
+     },
+     {
+      "name": "onClickNewBrandReqs",
+      "type": "object []",
+      "required": false,
+      "desc": "手机品牌、运营商信息集合"
+     },
+     {
+      "name": "createBy",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updateBy",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "备注"
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": "请求参数"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "brand",
+      "type": "string",
+      "required": false,
+      "desc": "品牌"
+     },
+     {
+      "name": "category",
+      "type": "string",
+      "required": false,
+      "desc": "型号"
+     },
+     {
+      "name": "operatorReqs",
+      "type": "object []",
+      "required": false,
+      "desc": "运营商集合"
+     },
+     {
+      "name": "createBy",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updateBy",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "备注"
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": "请求参数"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "netOperatorId",
+      "type": "string",
+      "required": false,
+      "desc": "运营商编号"
+     },
+     {
+      "name": "netOperator",
+      "type": "string",
+      "required": false,
+      "desc": "运营商"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "totalCount",
+    "successCount",
+    "failedCount",
+    "totalDuration",
+    "results",
+    "deviceIp",
+    "success",
+    "message",
+    "duration",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 12051,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_put_social_mobile_network_bind",
+   "operation_id_generated": true,
+   "summary": "绑定网络",
+   "description": null,
+   "method": "PUT",
+   "path": "/social/mobile-network/bind",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "主键ID"
+     },
+     {
+      "name": "phones",
+      "type": "object []",
+      "required": false,
+      "desc": "节点信息集合"
+     },
+     {
+      "name": "phoneId",
+      "type": "string",
+      "required": false,
+      "desc": "节点id"
+     },
+     {
+      "name": "phoneIp",
+      "type": "string",
+      "required": false,
+      "desc": "节点地址"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 6188,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_put_social_mobile_network_renew",
+   "operation_id_generated": true,
+   "summary": "续费网络配置",
+   "description": null,
+   "method": "PUT",
+   "path": "/social/mobile-network/renew",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "主键ID"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 6227,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_put_social_mobile_network_unbind",
+   "operation_id_generated": true,
+   "summary": "解绑网络",
+   "description": null,
+   "method": "PUT",
+   "path": "/social/mobile-network/unbind",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "主键id"
+     },
+     {
+      "name": "assIds",
+      "type": "string []",
+      "required": false,
+      "desc": "关联编号集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 6433,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-network_put_social_mobile_network_update",
+   "operation_id_generated": true,
+   "summary": "修改网络配置",
+   "description": null,
+   "method": "PUT",
+   "path": "/social/mobile-network/update",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "主键ID"
+     },
+     {
+      "name": "ip",
+      "type": "string",
+      "required": false,
+      "desc": "IP地址"
+     },
+     {
+      "name": "area",
+      "type": "string",
+      "required": false,
+      "desc": "地区（如：北京、旧金山）"
+     },
+     {
+      "name": "nodeIp",
+      "type": "string",
+      "required": false,
+      "desc": "节点IP"
+     },
+     {
+      "name": "agreement",
+      "type": "string",
+      "required": false,
+      "desc": "协议类型（如HTTP/HTTPS、TCP/UDP）"
+     },
+     {
+      "name": "networkStatus",
+      "type": "string",
+      "required": false,
+      "desc": "网络状态 BINDING(已绑定)/ARREARAGE(欠费)/LEISURE(空闲)/INVALID(无效)"
+     },
+     {
+      "name": "expirationTime",
+      "type": "string",
+      "required": false,
+      "desc": "过期时间"
+     },
+     {
+      "name": "networkLink",
+      "type": "string",
+      "required": false,
+      "desc": "网络链接URL"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 5518,
+   "pagination": null
+  }
+ ]
+}

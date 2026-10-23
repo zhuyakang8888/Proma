@@ -1,0 +1,610 @@
+{
+ "_meta": {
+  "package": "platform-customer-api",
+  "domain_label": "客户与许可证管理",
+  "source_docs": [
+   "callfans-platform.md"
+  ],
+  "operation_count": 5,
+  "login": {
+   "operation_id": "auth_post_login",
+   "method": "POST",
+   "path": "/auth/login",
+   "params": {
+    "username": "string",
+    "password": "string",
+    "code": "string(留空,验证码已关闭)",
+    "uuid": "string(留空)"
+   },
+   "token_field": "token",
+   "auth_header": "Authorization: Bearer <token>",
+   "note": "验证码已关闭：code/uuid 传空。401 时执行器自动重新登录并重试一次。"
+  },
+  "route_prefixes": {
+   "/platform": 5
+  },
+  "route_prefix_note": "本包全部接口位于同一服务前缀 /platform（可用 API_PATH_PREFIX 兜底）。"
+ },
+ "operations": [
+  {
+   "operation_id": "customer_delete_license_customer_delete",
+   "operation_id_generated": true,
+   "summary": "批量删除客户",
+   "description": null,
+   "method": "DELETE",
+   "path": "/license/customer/delete",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "ids",
+      "type": "string []",
+      "required": false,
+      "desc": "客户ID列表"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 4375,
+   "pagination": null
+  },
+  {
+   "operation_id": "customer_get_license_customer_id",
+   "operation_id_generated": true,
+   "summary": "根据id查询客户信息",
+   "description": null,
+   "method": "GET",
+   "path": "/license/customer/{id}",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "customersName",
+    "customersType",
+    "customersTypeName",
+    "unifiedSocialCreditCode",
+    "legalPerson",
+    "legalPersonIdType",
+    "legalPersonIdNumber",
+    "personalIdType",
+    "personalIdNumber",
+    "individualBusinessLicenseCode",
+    "shareholderInfos",
+    "id",
+    "shareholderName",
+    "shareholderIdType",
+    "shareholderIdTypeName",
+    "shareholderIdNumber"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 4574,
+   "pagination": null
+  },
+  {
+   "operation_id": "customer_post_license_customer_page",
+   "operation_id_generated": true,
+   "summary": "客户列表",
+   "description": null,
+   "method": "POST",
+   "path": "/license/customer/page",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "records",
+      "type": "object []",
+      "required": false,
+      "desc": "查询数据列表"
+     },
+     {
+      "name": "creatorId",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updatorId",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "deleted",
+      "type": "boolean",
+      "required": false,
+      "desc": "删除标识，0未删 1已删"
+     },
+     {
+      "name": "version",
+      "type": "integer",
+      "required": false,
+      "desc": "版本"
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "key",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": "主键ID"
+     },
+     {
+      "name": "customersName",
+      "type": "string",
+      "required": false,
+      "desc": "客户名称"
+     },
+     {
+      "name": "customersType",
+      "type": "string",
+      "required": false,
+      "desc": "客户类型"
+     },
+     {
+      "name": "unifiedSocialCreditCode",
+      "type": "string",
+      "required": false,
+      "desc": "社会统一信用代码"
+     },
+     {
+      "name": "legalPerson",
+      "type": "string",
+      "required": false,
+      "desc": "法人姓名"
+     },
+     {
+      "name": "legalPersonIdType",
+      "type": "string",
+      "required": false,
+      "desc": "法人证件类型"
+     },
+     {
+      "name": "legalPersonIdNumber",
+      "type": "string",
+      "required": false,
+      "desc": "法人证件号码"
+     },
+     {
+      "name": "individualBusinessLicenseCode",
+      "type": "string",
+      "required": false,
+      "desc": "个体工商经营代码"
+     },
+     {
+      "name": "personalIdType",
+      "type": "string",
+      "required": false,
+      "desc": "个人证件类型"
+     },
+     {
+      "name": "personalIdNumber",
+      "type": "string",
+      "required": false,
+      "desc": "个人证件号码"
+     },
+     {
+      "name": "total",
+      "type": "integer",
+      "required": false,
+      "desc": "总数"
+     },
+     {
+      "name": "size",
+      "type": "integer",
+      "required": false,
+      "desc": "每页显示条数，默认 10"
+     },
+     {
+      "name": "current",
+      "type": "integer",
+      "required": false,
+      "desc": "当前页"
+     },
+     {
+      "name": "orders",
+      "type": "object []",
+      "required": false,
+      "desc": "排序字段信息"
+     },
+     {
+      "name": "column",
+      "type": "string",
+      "required": false,
+      "desc": "需要进行排序的字段"
+     },
+     {
+      "name": "asc",
+      "type": "boolean",
+      "required": false,
+      "desc": "是否正序排列，默认 true"
+     },
+     {
+      "name": "optimizeCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": "自动优化 COUNT SQL"
+     },
+     {
+      "name": "searchCount",
+      "type": "boolean",
+      "required": false,
+      "desc": "是否进行 count 查询"
+     },
+     {
+      "name": "optimizeJoinOfCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": "{@link #optimizeJoinOfCountSql()}"
+     },
+     {
+      "name": "maxLimit",
+      "type": "integer",
+      "required": false,
+      "desc": "单页分页条数限制"
+     },
+     {
+      "name": "countId",
+      "type": "string",
+      "required": false,
+      "desc": "countId"
+     },
+     {
+      "name": "customersName",
+      "type": "string",
+      "required": false,
+      "desc": "客户名称"
+     },
+     {
+      "name": "customersType",
+      "type": "string",
+      "required": false,
+      "desc": "客户类型"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "id",
+    "customersName",
+    "customersType",
+    "customersTypeName",
+    "certificateCode",
+    "legalPerson",
+    "legalPersonIdType",
+    "legalPersonIdTypeName",
+    "legalPersonIdNumber",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 4291,
+   "pagination": {
+    "possible": true,
+    "note": "该接口 Body 的 YApi 文档把 MyBatis-Plus Page 响应对象也写进了请求体（`asc`, `column`, `countId`, `maxLimit`, `optimizeCountSql`, `optimizeJoinOfCountSql`, `orders`, `records`, `searchCount`, `total`）。实际请求请只发送筛选条件 + 分页参数（`current`、`size`，或 `pageNum`/`pageSize` 视接口而定），不要发送响应侧字段。"
+   }
+  },
+  {
+   "operation_id": "customer_post_license_customer_save",
+   "operation_id_generated": true,
+   "summary": "新增客户",
+   "description": null,
+   "method": "POST",
+   "path": "/license/customer/save",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "customersName",
+      "type": "string",
+      "required": false,
+      "desc": "客户名称"
+     },
+     {
+      "name": "customersType",
+      "type": "string",
+      "required": false,
+      "desc": "客户类型"
+     },
+     {
+      "name": "unifiedSocialCreditCode",
+      "type": "string",
+      "required": false,
+      "desc": "社会统一信用代码"
+     },
+     {
+      "name": "legalPerson",
+      "type": "string",
+      "required": false,
+      "desc": "法人姓名"
+     },
+     {
+      "name": "legalPersonIdType",
+      "type": "string",
+      "required": false,
+      "desc": "法人证件类型"
+     },
+     {
+      "name": "legalPersonIdNumber",
+      "type": "string",
+      "required": false,
+      "desc": "法人证件号码"
+     },
+     {
+      "name": "individualBusinessLicenseCode",
+      "type": "string",
+      "required": false,
+      "desc": "个体工商经验代码"
+     },
+     {
+      "name": "personalIdType",
+      "type": "string",
+      "required": false,
+      "desc": "个人证件类型"
+     },
+     {
+      "name": "personalIdNumber",
+      "type": "string",
+      "required": false,
+      "desc": "个人证件号码"
+     },
+     {
+      "name": "shareholderInfos",
+      "type": "object []",
+      "required": false,
+      "desc": "股东信息集合"
+     },
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "股东id"
+     },
+     {
+      "name": "shareholderName",
+      "type": "string",
+      "required": false,
+      "desc": "股东姓名"
+     },
+     {
+      "name": "shareholderIdType",
+      "type": "string",
+      "required": false,
+      "desc": "股东证件类型"
+     },
+     {
+      "name": "shareholderIdNumber",
+      "type": "string",
+      "required": false,
+      "desc": "股东证件号码"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 4414,
+   "pagination": null
+  },
+  {
+   "operation_id": "customer_put_license_customer_update",
+   "operation_id_generated": true,
+   "summary": "更新客户信息",
+   "description": null,
+   "method": "PUT",
+   "path": "/license/customer/update",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "客户id"
+     },
+     {
+      "name": "customersName",
+      "type": "string",
+      "required": false,
+      "desc": "客户名称"
+     },
+     {
+      "name": "customersType",
+      "type": "string",
+      "required": false,
+      "desc": "客户类型"
+     },
+     {
+      "name": "unifiedSocialCreditCode",
+      "type": "string",
+      "required": false,
+      "desc": "社会统一信用代码"
+     },
+     {
+      "name": "legalPerson",
+      "type": "string",
+      "required": false,
+      "desc": "法人姓名"
+     },
+     {
+      "name": "legalPersonIdType",
+      "type": "string",
+      "required": false,
+      "desc": "法人证件类型"
+     },
+     {
+      "name": "legalPersonIdNumber",
+      "type": "string",
+      "required": false,
+      "desc": "法人证件号码"
+     },
+     {
+      "name": "personalIdType",
+      "type": "string",
+      "required": false,
+      "desc": "个人证件类型"
+     },
+     {
+      "name": "personalIdNumber",
+      "type": "string",
+      "required": false,
+      "desc": "个人证件号码"
+     },
+     {
+      "name": "individualBusinessLicenseCode",
+      "type": "string",
+      "required": false,
+      "desc": "个体工商经验代码"
+     },
+     {
+      "name": "shareholderInfos",
+      "type": "object []",
+      "required": false,
+      "desc": "股东信息集合"
+     },
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "股东id"
+     },
+     {
+      "name": "shareholderName",
+      "type": "string",
+      "required": false,
+      "desc": "股东姓名"
+     },
+     {
+      "name": "shareholderIdType",
+      "type": "string",
+      "required": false,
+      "desc": "股东证件类型"
+     },
+     {
+      "name": "shareholderIdNumber",
+      "type": "string",
+      "required": false,
+      "desc": "股东证件号码"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 4494,
+   "pagination": null
+  }
+ ]
+}

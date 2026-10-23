@@ -1,0 +1,4314 @@
+{
+ "_meta": {
+  "package": "platform-asset-api",
+  "domain_label": "关联中心（账号/代理/容器资产池）",
+  "source_docs": [
+   "callfans-platform.md",
+   "callfans-standard.md"
+  ],
+  "operation_count": 64,
+  "login": {
+   "operation_id": "auth_post_login",
+   "method": "POST",
+   "path": "/auth/login",
+   "params": {
+    "username": "string",
+    "password": "string",
+    "code": "string(留空,验证码已关闭)",
+    "uuid": "string(留空)"
+   },
+   "token_field": "token",
+   "auth_header": "Authorization: Bearer <token>",
+   "note": "验证码已关闭：code/uuid 传空。401 时执行器自动重新登录并重试一次。"
+  },
+  "route_prefixes": {
+   "/platform": 62,
+   "?": 2
+  },
+  "route_prefix_note": "多服务网关部署：每个 operation 自带 route_prefix（来源文档对应服务前缀）。执行器按 operation 的 route_prefix 路由；单一服务包可用 API_PATH_PREFIX 兜底。"
+ },
+ "operations": [
+  {
+   "operation_id": "asset_delete_batch_del_account",
+   "operation_id_generated": true,
+   "summary": "批量删除账号",
+   "description": null,
+   "method": "DELETE",
+   "path": "/asset/batch/del-account",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "accountIds",
+      "type": "string []",
+      "required": false,
+      "desc": "账号id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 345,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_delete_batch_del_proxy",
+   "operation_id_generated": true,
+   "summary": "批量删除代理",
+   "description": null,
+   "method": "DELETE",
+   "path": "/asset/batch/del-proxy",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "proxyIds",
+      "type": "string []",
+      "required": false,
+      "desc": "代理id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 306,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_delete_dedicated_line",
+   "operation_id_generated": true,
+   "summary": "取消配置专线",
+   "description": null,
+   "method": "DELETE",
+   "path": "/asset/dedicated-line",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "容器ID"
+     },
+     {
+      "name": "routeIp",
+      "type": "string",
+      "required": false,
+      "desc": "路由IP"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 112,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_get_account_detail_accountid",
+   "operation_id_generated": true,
+   "summary": "查询账号详情",
+   "description": null,
+   "method": "GET",
+   "path": "/asset/account/detail/{accountId}",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "appAccount",
+    "nickName",
+    "accountPasswd",
+    "appName",
+    "appId",
+    "emailAddr",
+    "emailPasswd",
+    "deviceIdx",
+    "deviceIp",
+    "loginStatus",
+    "loginTime",
+    "riskLevel",
+    "twiceCheck",
+    "remark",
+    "suiteId",
+    "suiteName"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 1180,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_get_account_num",
+   "operation_id_generated": true,
+   "summary": "获取账号池数量",
+   "description": null,
+   "method": "GET",
+   "path": "/asset/account/num",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "accountTotalNum",
+    "accountUsedNum",
+    "accountWaitNum",
+    "accountRiskNum"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 1689,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_get_aibox_device",
+   "operation_id_generated": true,
+   "summary": "查询aibox设备",
+   "description": null,
+   "method": "GET",
+   "path": "/asset/aibox-device",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "mobileDeviceModels",
+    "brand",
+    "title",
+    "categories",
+    "model",
+    "deiceName"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 1055,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_get_cloud_device",
+   "operation_id_generated": true,
+   "summary": "查询cloud设备",
+   "description": null,
+   "method": "GET",
+   "path": "/asset/cloud-device",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "mobileDeviceModels",
+    "brand",
+    "title",
+    "categories",
+    "model",
+    "deiceName"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 1079,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_get_container_num",
+   "operation_id_generated": true,
+   "summary": "获取容器池数量",
+   "description": null,
+   "method": "GET",
+   "path": "/asset/container/num",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "deviceTotalNum",
+    "deviceUsedNum",
+    "deviceWaitingNum",
+    "deviceRiskNum"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 1554,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_get_device_brand",
+   "operation_id_generated": true,
+   "summary": "获取所有设备和品牌",
+   "description": null,
+   "method": "GET",
+   "path": "/asset/device/brand",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "mobileDeviceModels",
+    "brand",
+    "title",
+    "categories",
+    "model",
+    "deiceName"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 1617,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_get_device_detail_deviceid",
+   "operation_id_generated": true,
+   "summary": "查询设备详情",
+   "description": null,
+   "method": "GET",
+   "path": "/asset/device/detail/{deviceId}",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "deviceCode",
+    "deviceMode",
+    "deviceName",
+    "category",
+    "manufacturer",
+    "deviceStatus",
+    "resolutionRatio",
+    "nodeId",
+    "deviceIp",
+    "devicePort",
+    "connIp",
+    "connPort",
+    "proxyIp",
+    "proxyPort",
+    "systemVersion",
+    "createTime",
+    "updateTime",
+    "imgVersion",
+    "imei",
+    "imsi",
+    "baseBand",
+    "brand",
+    "iccid",
+    "deviceMac",
+    "serialNumber",
+    "phoneNumber",
+    "battery",
+    "netOperator",
+    "productType",
+    "sn",
+    "chipCode"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 1151,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_get_device_group",
+   "operation_id_generated": true,
+   "summary": "查询设备分组",
+   "description": null,
+   "method": "GET",
+   "path": "/asset/device/group",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "groupId",
+    "groupName"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 1127,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_get_enums",
+   "operation_id_generated": true,
+   "summary": "获取枚举",
+   "description": null,
+   "method": "GET",
+   "path": "/asset/enums",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 1641,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_get_group",
+   "operation_id_generated": true,
+   "summary": "查询分组",
+   "description": null,
+   "method": "GET",
+   "path": "/asset/group",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "suiteName",
+    "suiteDesc",
+    "amount",
+    "proxyAmount",
+    "accAmount"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 1103,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_get_operator",
+   "operation_id_generated": true,
+   "summary": "查询运营商",
+   "description": null,
+   "method": "GET",
+   "path": "/asset/operator",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "operatorZhName",
+    "operatorEnName",
+    "allName"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 1209,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_get_proxy_num",
+   "operation_id_generated": true,
+   "summary": "获取代理池数量",
+   "description": null,
+   "method": "GET",
+   "path": "/asset/proxy/num",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "proxyTotalNum",
+    "proxyUsedNum",
+    "proxyWaitNum",
+    "proxyRiskNum"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 1491,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_get_proxy_region_tree",
+   "operation_id_generated": true,
+   "summary": "获取代理地区树",
+   "description": null,
+   "method": "GET",
+   "path": "/asset/proxy/region-tree",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "name",
+    "level",
+    "children",
+    "name",
+    "level",
+    "children"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 1467,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_get_summary",
+   "operation_id_generated": true,
+   "summary": "获取汇总信息",
+   "description": null,
+   "method": "GET",
+   "path": "/asset/summary",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "deviceTotalNum",
+    "deviceUsedNum",
+    "accountTotalNum",
+    "accountUsedNum",
+    "proxyTotalNum",
+    "proxyUsedNum",
+    "userTotalNum",
+    "userUsedNum"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 1665,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_get_template_account",
+   "operation_id_generated": true,
+   "summary": "下载账号模板",
+   "description": null,
+   "method": "GET",
+   "path": "/asset/template/account",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 21,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_get_template_proxy",
+   "operation_id_generated": true,
+   "summary": "下载代理模板",
+   "description": null,
+   "method": "GET",
+   "path": "/asset/template/proxy",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 8,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_account_import",
+   "operation_id_generated": true,
+   "summary": "导入账号",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/account/import",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 226,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_account_page",
+   "operation_id_generated": true,
+   "summary": "获取账号资产分页信息",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/account/page",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "records",
+      "type": "object []",
+      "required": false,
+      "desc": "查询数据列表"
+     },
+     {
+      "name": "total",
+      "type": "integer",
+      "required": false,
+      "desc": "总数"
+     },
+     {
+      "name": "size",
+      "type": "integer",
+      "required": false,
+      "desc": "每页显示条数，默认 10"
+     },
+     {
+      "name": "current",
+      "type": "integer",
+      "required": false,
+      "desc": "当前页"
+     },
+     {
+      "name": "orders",
+      "type": "object []",
+      "required": false,
+      "desc": "排序字段信息"
+     },
+     {
+      "name": "column",
+      "type": "string",
+      "required": false,
+      "desc": "需要进行排序的字段"
+     },
+     {
+      "name": "asc",
+      "type": "boolean",
+      "required": false,
+      "desc": "是否正序排列，默认 true"
+     },
+     {
+      "name": "optimizeCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": "自动优化 COUNT SQL"
+     },
+     {
+      "name": "searchCount",
+      "type": "boolean",
+      "required": false,
+      "desc": "是否进行 count 查询"
+     },
+     {
+      "name": "optimizeJoinOfCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": "{@link #optimizeJoinOfCountSql()}"
+     },
+     {
+      "name": "maxLimit",
+      "type": "integer",
+      "required": false,
+      "desc": "单页分页条数限制"
+     },
+     {
+      "name": "countId",
+      "type": "string",
+      "required": false,
+      "desc": "countId"
+     },
+     {
+      "name": "appIds",
+      "type": "string []",
+      "required": false,
+      "desc": "应用id"
+     },
+     {
+      "name": "accountName",
+      "type": "string",
+      "required": false,
+      "desc": "账号"
+     },
+     {
+      "name": "suiteIds",
+      "type": "string []",
+      "required": false,
+      "desc": "分组id集合"
+     },
+     {
+      "name": "sortType",
+      "type": "string",
+      "required": false,
+      "desc": "排序条件 1. 按风险排序（低风险的靠上） 2. 按录入时间排序（新录入的先显示）"
+     },
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备id集合"
+     },
+     {
+      "name": "accountIds",
+      "type": "string []",
+      "required": false,
+      "desc": "账号id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "platform",
+    "appId",
+    "inputTime",
+    "riskTips",
+    "nickName",
+    "account",
+    "accountId",
+    "userAccount",
+    "accountPassword",
+    "email",
+    "emailPassword",
+    "remark",
+    "suiteName",
+    "suiteId",
+    "deviceIp",
+    "proxy",
+    "color",
+    "logoPath",
+    "isLock",
+    "twiceCheck",
+    "loginStatus",
+    "loginStatusName",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 1713,
+   "pagination": {
+    "possible": true,
+    "note": "该接口 Body 的 YApi 文档把 MyBatis-Plus Page 响应对象也写进了请求体（`asc`, `column`, `countId`, `maxLimit`, `optimizeCountSql`, `optimizeJoinOfCountSql`, `orders`, `records`, `searchCount`, `total`）。实际请求请只发送筛选条件 + 分页参数（`current`、`size`，或 `pageNum`/`pageSize` 视接口而定），不要发送响应侧字段。"
+   }
+  },
+  {
+   "operation_id": "asset_post_account_unbind",
+   "operation_id_generated": true,
+   "summary": "解绑账号",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/account/unbind",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "accountIds",
+      "type": "string []",
+      "required": false,
+      "desc": "账号ID"
+     },
+     {
+      "name": "deviceId",
+      "type": "string",
+      "required": false,
+      "desc": "设备ID"
+     },
+     {
+      "name": "bind",
+      "type": "string",
+      "required": false,
+      "desc": "绑定状态 \"UNBINDING\""
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 1752,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_add_account",
+   "operation_id_generated": true,
+   "summary": "新增账号",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/add/account",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "账号id"
+     },
+     {
+      "name": "nickName",
+      "type": "string",
+      "required": false,
+      "desc": "用户昵称"
+     },
+     {
+      "name": "appAccount",
+      "type": "string",
+      "required": false,
+      "desc": "账号"
+     },
+     {
+      "name": "accountPasswd",
+      "type": "string",
+      "required": false,
+      "desc": "账号密码"
+     },
+     {
+      "name": "emailAddr",
+      "type": "string",
+      "required": false,
+      "desc": "邮箱地址"
+     },
+     {
+      "name": "emailPasswd",
+      "type": "string",
+      "required": false,
+      "desc": "邮箱密码"
+     },
+     {
+      "name": "loginStatus",
+      "type": "string",
+      "required": false,
+      "desc": "登录状态"
+     },
+     {
+      "name": "twiceCheck",
+      "type": "string",
+      "required": false,
+      "desc": "二次确认信息"
+     },
+     {
+      "name": "appId",
+      "type": "string",
+      "required": false,
+      "desc": "所属应用编号"
+     },
+     {
+      "name": "appName",
+      "type": "string",
+      "required": false,
+      "desc": "应用名称"
+     },
+     {
+      "name": "riskLevel",
+      "type": "string",
+      "required": false,
+      "desc": "风险等级"
+     },
+     {
+      "name": "suiteId",
+      "type": "string",
+      "required": false,
+      "desc": "分组编号"
+     },
+     {
+      "name": "suiteName",
+      "type": "string",
+      "required": false,
+      "desc": "分组名称"
+     },
+     {
+      "name": "suiteDesc",
+      "type": "string",
+      "required": false,
+      "desc": "分组描述"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "备注"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 817,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_add_account_group",
+   "operation_id_generated": true,
+   "summary": "账号分组新增",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/add/account-group",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "suiteId",
+      "type": "string",
+      "required": false,
+      "desc": "分组编号"
+     },
+     {
+      "name": "suiteName",
+      "type": "string",
+      "required": false,
+      "desc": "分组名称"
+     },
+     {
+      "name": "suiteDesc",
+      "type": "string",
+      "required": false,
+      "desc": "分组描述"
+     },
+     {
+      "name": "accountIds",
+      "type": "string []",
+      "required": false,
+      "desc": "账号id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 1947,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_add_account_remark",
+   "operation_id_generated": true,
+   "summary": "新增账号备注",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/add/account-remark",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "accountId",
+      "type": "string",
+      "required": false,
+      "desc": "账号id"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "账号备注"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 856,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_add_device_group",
+   "operation_id_generated": true,
+   "summary": "设备分组新增",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/add/device-group",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "suiteId",
+      "type": "string",
+      "required": false,
+      "desc": "分组编号"
+     },
+     {
+      "name": "suiteName",
+      "type": "string",
+      "required": "必须",
+      "desc": "分组名称"
+     },
+     {
+      "name": "suiteDesc",
+      "type": "string",
+      "required": false,
+      "desc": "分组描述"
+     },
+     {
+      "name": "mobiles",
+      "type": "object []",
+      "required": false,
+      "desc": "设备信息"
+     },
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "关联编号"
+     },
+     {
+      "name": "deviceId",
+      "type": "string",
+      "required": false,
+      "desc": "设备编号"
+     },
+     {
+      "name": "deviceIp",
+      "type": "string",
+      "required": false,
+      "desc": "设备Ip"
+     },
+     {
+      "name": "deviceCategory",
+      "type": "string",
+      "required": false,
+      "desc": "品牌"
+     },
+     {
+      "name": "deviceStatus",
+      "type": "string",
+      "required": false,
+      "desc": "设备状态"
+     },
+     {
+      "name": "deviceIdx",
+      "type": "string",
+      "required": false,
+      "desc": "设备序号"
+     },
+     {
+      "name": "deviceAliases",
+      "type": "string",
+      "required": false,
+      "desc": "设备别名"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 1830,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_add_proxy",
+   "operation_id_generated": true,
+   "summary": "新增代理",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/add/proxy",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "ip",
+      "type": "string",
+      "required": false,
+      "desc": "IP地址"
+     },
+     {
+      "name": "area",
+      "type": "string",
+      "required": false,
+      "desc": "地区（如：北京、旧金山）"
+     },
+     {
+      "name": "agreement",
+      "type": "string",
+      "required": false,
+      "desc": "协议类型（如HTTP/HTTPS、TCP/UDP）"
+     },
+     {
+      "name": "networkStatus",
+      "type": "string",
+      "required": false,
+      "desc": "网络状态 BINDING(已绑定)/ARREARAGE(欠费)/LEISURE(空闲)/INVALID(无效)"
+     },
+     {
+      "name": "expirationTime",
+      "type": "string",
+      "required": false,
+      "desc": "过期时间"
+     },
+     {
+      "name": "networkLink",
+      "type": "string",
+      "required": false,
+      "desc": "网络链接URL"
+     },
+     {
+      "name": "phones",
+      "type": "object []",
+      "required": false,
+      "desc": "节点信息集合"
+     },
+     {
+      "name": "phoneId",
+      "type": "string",
+      "required": false,
+      "desc": "节点id"
+     },
+     {
+      "name": "phoneIp",
+      "type": "string",
+      "required": false,
+      "desc": "节点地址"
+     },
+     {
+      "name": "proxyLinkIp",
+      "type": "string",
+      "required": false,
+      "desc": "代理ip"
+     },
+     {
+      "name": "proxyLinkPort",
+      "type": "integer",
+      "required": false,
+      "desc": "代理端口"
+     },
+     {
+      "name": "username",
+      "type": "string",
+      "required": false,
+      "desc": "用户名"
+     },
+     {
+      "name": "password",
+      "type": "string",
+      "required": false,
+      "desc": "密码"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 661,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_add_proxy_group",
+   "operation_id_generated": true,
+   "summary": "新增代理分组",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/add/proxy-group",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "suiteId",
+      "type": "string",
+      "required": false,
+      "desc": "分组编号"
+     },
+     {
+      "name": "suiteName",
+      "type": "string",
+      "required": false,
+      "desc": "分组名称"
+     },
+     {
+      "name": "suiteDesc",
+      "type": "string",
+      "required": false,
+      "desc": "分组描述"
+     },
+     {
+      "name": "proxyIds",
+      "type": "string []",
+      "required": false,
+      "desc": "代理id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 700,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_add_proxy_remark",
+   "operation_id_generated": true,
+   "summary": "新增代理备注",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/add/proxy-remark",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "proxyId",
+      "type": "string",
+      "required": false,
+      "desc": "代理ID"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "代理备注"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 739,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_app_list",
+   "operation_id_generated": true,
+   "summary": "应用列表",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/app/list",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "records",
+      "type": "object []",
+      "required": false,
+      "desc": "查询数据列表"
+     },
+     {
+      "name": "total",
+      "type": "integer",
+      "required": false,
+      "desc": "总数"
+     },
+     {
+      "name": "size",
+      "type": "integer",
+      "required": false,
+      "desc": "每页显示条数，默认 10"
+     },
+     {
+      "name": "current",
+      "type": "integer",
+      "required": false,
+      "desc": "当前页"
+     },
+     {
+      "name": "orders",
+      "type": "object []",
+      "required": false,
+      "desc": "排序字段信息"
+     },
+     {
+      "name": "column",
+      "type": "string",
+      "required": false,
+      "desc": "需要进行排序的字段"
+     },
+     {
+      "name": "asc",
+      "type": "boolean",
+      "required": false,
+      "desc": "是否正序排列，默认 true"
+     },
+     {
+      "name": "optimizeCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": "自动优化 COUNT SQL"
+     },
+     {
+      "name": "searchCount",
+      "type": "boolean",
+      "required": false,
+      "desc": "是否进行 count 查询"
+     },
+     {
+      "name": "optimizeJoinOfCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": "{@link #optimizeJoinOfCountSql()}"
+     },
+     {
+      "name": "maxLimit",
+      "type": "integer",
+      "required": false,
+      "desc": "单页分页条数限制"
+     },
+     {
+      "name": "countId",
+      "type": "string",
+      "required": false,
+      "desc": "countId"
+     },
+     {
+      "name": "applicationName",
+      "type": "string",
+      "required": false,
+      "desc": "应用名称"
+     },
+     {
+      "name": "applicationStatus",
+      "type": "integer",
+      "required": false,
+      "desc": "应用状态 0：启用 1：禁用"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "id",
+    "applicationName",
+    "programType",
+    "id",
+    "logoPath",
+    "programName",
+    "scriptId",
+    "form",
+    "key",
+    "extendedColumn",
+    "key",
+    "systemConfig",
+    "applicationStatus",
+    "logoPath",
+    "programName",
+    "packageName",
+    "activityName",
+    "orderNum",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 267,
+   "pagination": {
+    "possible": true,
+    "note": "该接口 Body 的 YApi 文档把 MyBatis-Plus Page 响应对象也写进了请求体（`asc`, `column`, `countId`, `maxLimit`, `optimizeCountSql`, `optimizeJoinOfCountSql`, `orders`, `records`, `searchCount`, `total`）。实际请求请只发送筛选条件 + 分页参数（`current`、`size`，或 `pageNum`/`pageSize` 视接口而定），不要发送响应侧字段。"
+   }
+  },
+  {
+   "operation_id": "asset_post_batch_new_device",
+   "operation_id_generated": true,
+   "summary": "批量新机",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/batch/new-device",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceReqs",
+      "type": "object []",
+      "required": false,
+      "desc": "一键新机设备信息集合"
+     },
+     {
+      "name": "deviceId",
+      "type": "string",
+      "required": "必须",
+      "desc": "设备编号"
+     },
+     {
+      "name": "armId",
+      "type": "string",
+      "required": false,
+      "desc": "服务器编号"
+     },
+     {
+      "name": "nodeId",
+      "type": "string",
+      "required": false,
+      "desc": "节点编号"
+     },
+     {
+      "name": "chipCode",
+      "type": "string",
+      "required": false,
+      "desc": "芯片类型"
+     },
+     {
+      "name": "onClickNewBrandReqs",
+      "type": "object []",
+      "required": false,
+      "desc": "手机品牌、运营商信息集合"
+     },
+     {
+      "name": "brand",
+      "type": "string",
+      "required": "必须",
+      "desc": "品牌"
+     },
+     {
+      "name": "category",
+      "type": "string",
+      "required": false,
+      "desc": "型号"
+     },
+     {
+      "name": "operatorReqs",
+      "type": "object []",
+      "required": false,
+      "desc": "运营商集合"
+     },
+     {
+      "name": "netOperatorId",
+      "type": "string",
+      "required": false,
+      "desc": "运营商编号"
+     },
+     {
+      "name": "netOperator",
+      "type": "string",
+      "required": false,
+      "desc": "运营商"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "totalCount",
+    "successCount",
+    "failedCount",
+    "totalDuration",
+    "results",
+    "deviceIp",
+    "success",
+    "message",
+    "duration"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 384,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_batch_reset_device",
+   "operation_id_generated": true,
+   "summary": "批量重置设备",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/batch/reset-device",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "容器id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 622,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_batch_unbind",
+   "operation_id_generated": true,
+   "summary": "批量解绑账号与代理",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/batch/unbind",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备id集合"
+     },
+     {
+      "name": "type",
+      "type": "string",
+      "required": false,
+      "desc": "解绑类型 代理/账号/全部"
+     },
+     {
+      "name": "isDel",
+      "type": "boolean",
+      "required": false,
+      "desc": "是否删除"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 583,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_batch_unbind_account",
+   "operation_id_generated": true,
+   "summary": "批量解绑账号",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/batch/unbind-account",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "accountIds",
+      "type": "string []",
+      "required": false,
+      "desc": "账号id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 544,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_batch_unbind_proxy",
+   "operation_id_generated": true,
+   "summary": "批量解绑代理",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/batch/unbind-proxy",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "proxyIds",
+      "type": "string []",
+      "required": false,
+      "desc": "代理id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 505,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_batch_update_account",
+   "operation_id_generated": true,
+   "summary": "批量更新账号",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/batch/update-account",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "accountIds",
+      "type": "string []",
+      "required": false,
+      "desc": "账号id集合"
+     },
+     {
+      "name": "riskLevel",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "loginStatus",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": null
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 427,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_check_account_device",
+   "operation_id_generated": true,
+   "summary": "校验账号与容器，代理与容器",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/check/account-device",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceEnables",
+      "type": "object []",
+      "required": false,
+      "desc": "启用参数"
+     },
+     {
+      "name": "deviceId",
+      "type": "string",
+      "required": false,
+      "desc": "容器（设备）ID 集合"
+     },
+     {
+      "name": "deviceIp",
+      "type": "string",
+      "required": false,
+      "desc": "容器（设备）IP"
+     },
+     {
+      "name": "accountIds",
+      "type": "string []",
+      "required": false,
+      "desc": "账号 ID 集合"
+     },
+     {
+      "name": "proxyId",
+      "type": "string",
+      "required": false,
+      "desc": "代理（网络）id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 1233,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_container_page",
+   "operation_id_generated": true,
+   "summary": "容器分页",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/container/page",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "records",
+      "type": "object []",
+      "required": false,
+      "desc": "查询数据列表"
+     },
+     {
+      "name": "total",
+      "type": "integer",
+      "required": false,
+      "desc": "总数"
+     },
+     {
+      "name": "size",
+      "type": "integer",
+      "required": false,
+      "desc": "每页显示条数，默认 10"
+     },
+     {
+      "name": "current",
+      "type": "integer",
+      "required": false,
+      "desc": "当前页"
+     },
+     {
+      "name": "orders",
+      "type": "object []",
+      "required": false,
+      "desc": "排序字段信息"
+     },
+     {
+      "name": "column",
+      "type": "string",
+      "required": false,
+      "desc": "需要进行排序的字段"
+     },
+     {
+      "name": "asc",
+      "type": "boolean",
+      "required": false,
+      "desc": "是否正序排列，默认 true"
+     },
+     {
+      "name": "optimizeCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": "自动优化 COUNT SQL"
+     },
+     {
+      "name": "searchCount",
+      "type": "boolean",
+      "required": false,
+      "desc": "是否进行 count 查询"
+     },
+     {
+      "name": "optimizeJoinOfCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": "{@link #optimizeJoinOfCountSql()}"
+     },
+     {
+      "name": "maxLimit",
+      "type": "integer",
+      "required": false,
+      "desc": "单页分页条数限制"
+     },
+     {
+      "name": "countId",
+      "type": "string",
+      "required": false,
+      "desc": "countId"
+     },
+     {
+      "name": "screening",
+      "type": "string",
+      "required": false,
+      "desc": "设备筛选"
+     },
+     {
+      "name": "search",
+      "type": "string",
+      "required": false,
+      "desc": "设备搜索"
+     },
+     {
+      "name": "suiteIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备分组名称"
+     },
+     {
+      "name": "relationStatus",
+      "type": "string",
+      "required": false,
+      "desc": "关联状态"
+     },
+     {
+      "name": "sortType",
+      "type": "string",
+      "required": false,
+      "desc": "排序字段"
+     },
+     {
+      "name": "server",
+      "type": "string []",
+      "required": false,
+      "desc": "所属服务器"
+     },
+     {
+      "name": "startTime",
+      "type": "string",
+      "required": false,
+      "desc": "开始 时间"
+     },
+     {
+      "name": "endTime",
+      "type": "string",
+      "required": false,
+      "desc": "结束 时间"
+     },
+     {
+      "name": "chip",
+      "type": "string",
+      "required": false,
+      "desc": "所属芯片"
+     },
+     {
+      "name": "systemVersion",
+      "type": "string",
+      "required": false,
+      "desc": "rom版"
+     },
+     {
+      "name": "brand",
+      "type": "string",
+      "required": false,
+      "desc": "手机品牌"
+     },
+     {
+      "name": "deviceMode",
+      "type": "string",
+      "required": false,
+      "desc": "手机型号"
+     },
+     {
+      "name": "netOperator",
+      "type": "string",
+      "required": false,
+      "desc": "运营商"
+     },
+     {
+      "name": "phoneNumber",
+      "type": "string",
+      "required": false,
+      "desc": "手机号码"
+     },
+     {
+      "name": "deviceArea",
+      "type": "string",
+      "required": false,
+      "desc": "设备版本"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "备注"
+     },
+     {
+      "name": "appAccount",
+      "type": "string",
+      "required": false,
+      "desc": "关联账号"
+     },
+     {
+      "name": "networkIp",
+      "type": "string",
+      "required": false,
+      "desc": "关联代理"
+     },
+     {
+      "name": "mobileDeviceIp",
+      "type": "string",
+      "required": false,
+      "desc": "手机设备ip"
+     },
+     {
+      "name": "lockIds",
+      "type": "string []",
+      "required": false,
+      "desc": "锁id"
+     },
+     {
+      "name": "armId",
+      "type": "string",
+      "required": false,
+      "desc": "所属服务器编号"
+     },
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备id结合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "server",
+    "inputTime",
+    "chip",
+    "deviceIp",
+    "romVersion",
+    "phoneBrand",
+    "phoneModel",
+    "operator",
+    "phoneNum",
+    "suiteNames",
+    "remark",
+    "accountNames",
+    "proxy",
+    "assId",
+    "proxyIp",
+    "area",
+    "proxyId",
+    "accountInfos",
+    "appId",
+    "appLogo",
+    "accountId",
+    "userAccount",
+    "accountNickname",
+    "color",
+    "deviceVersion",
+    "deviceId",
+    "deviceIdx",
+    "deviceStatus",
+    "deviceNum",
+    "deviceAliases",
+    "connIp",
+    "connPort",
+    "riskColor",
+    "riskTip",
+    "brand",
+    "isLock",
+    "deviceStatusName",
+    "riskStatus",
+    "proxyStatus",
+    "isTop",
+    "hasDedicatedLine",
+    "manuallyDisabled",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 151,
+   "pagination": {
+    "possible": true,
+    "note": "该接口 Body 的 YApi 文档把 MyBatis-Plus Page 响应对象也写进了请求体（`asc`, `column`, `countId`, `maxLimit`, `optimizeCountSql`, `optimizeJoinOfCountSql`, `orders`, `records`, `searchCount`, `total`）。实际请求请只发送筛选条件 + 分页参数（`current`、`size`，或 `pageNum`/`pageSize` 视接口而定），不要发送响应侧字段。"
+   }
+  },
+  {
+   "operation_id": "asset_post_container_reset",
+   "operation_id_generated": true,
+   "summary": "重置容器",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/container/reset",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备ID集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 2064,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_dedicated_line",
+   "operation_id_generated": true,
+   "summary": "配置专线",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/dedicated-line",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "容器ID"
+     },
+     {
+      "name": "routeIp",
+      "type": "string",
+      "required": false,
+      "desc": "路由IP"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 2025,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_device_disable",
+   "operation_id_generated": true,
+   "summary": "调度禁用设备（标记设备不被调度中心选中）",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/device/disable",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "projectId",
+      "type": "integer",
+      "required": false,
+      "desc": "项目 ID"
+     },
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备 ID 列表（支持批量）"
+     },
+     {
+      "name": "reason",
+      "type": "string",
+      "required": false,
+      "desc": "禁用原因（可选）"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 1908,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_device_enable",
+   "operation_id_generated": true,
+   "summary": "取消调度禁用（恢复设备可被调度）",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/device/enable",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "projectId",
+      "type": "integer",
+      "required": false,
+      "desc": "项目 ID"
+     },
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备 ID 列表（支持批量）"
+     },
+     {
+      "name": "reason",
+      "type": "string",
+      "required": false,
+      "desc": "禁用原因（可选）"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 73,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_device_list",
+   "operation_id_generated": true,
+   "summary": "设备列表",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/device/list",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "records",
+      "type": "object []",
+      "required": false,
+      "desc": "查询数据列表"
+     },
+     {
+      "name": "total",
+      "type": "integer",
+      "required": false,
+      "desc": "总数"
+     },
+     {
+      "name": "size",
+      "type": "integer",
+      "required": false,
+      "desc": "每页显示条数，默认 10"
+     },
+     {
+      "name": "current",
+      "type": "integer",
+      "required": false,
+      "desc": "当前页"
+     },
+     {
+      "name": "orders",
+      "type": "object []",
+      "required": false,
+      "desc": "排序字段信息"
+     },
+     {
+      "name": "column",
+      "type": "string",
+      "required": false,
+      "desc": "需要进行排序的字段"
+     },
+     {
+      "name": "asc",
+      "type": "boolean",
+      "required": false,
+      "desc": "是否正序排列，默认 true"
+     },
+     {
+      "name": "optimizeCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": "自动优化 COUNT SQL"
+     },
+     {
+      "name": "searchCount",
+      "type": "boolean",
+      "required": false,
+      "desc": "是否进行 count 查询"
+     },
+     {
+      "name": "optimizeJoinOfCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": "{@link #optimizeJoinOfCountSql()}"
+     },
+     {
+      "name": "maxLimit",
+      "type": "integer",
+      "required": false,
+      "desc": "单页分页条数限制"
+     },
+     {
+      "name": "countId",
+      "type": "string",
+      "required": false,
+      "desc": "countId"
+     },
+     {
+      "name": "deviceIp",
+      "type": "string",
+      "required": false,
+      "desc": "设备ip"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "deviceIp",
+    "deviceId",
+    "disabled",
+    "isLock",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 1869,
+   "pagination": {
+    "possible": true,
+    "note": "该接口 Body 的 YApi 文档把 MyBatis-Plus Page 响应对象也写进了请求体（`asc`, `column`, `countId`, `maxLimit`, `optimizeCountSql`, `optimizeJoinOfCountSql`, `orders`, `records`, `searchCount`, `total`）。实际请求请只发送筛选条件 + 分页参数（`current`、`size`，或 `pageNum`/`pageSize` 视接口而定），不要发送响应侧字段。"
+   }
+  },
+  {
+   "operation_id": "asset_post_device_page",
+   "operation_id_generated": true,
+   "summary": "获取容器资产分页信息",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/device/page",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "records",
+      "type": "object []",
+      "required": false,
+      "desc": "查询数据列表"
+     },
+     {
+      "name": "total",
+      "type": "integer",
+      "required": false,
+      "desc": "总数"
+     },
+     {
+      "name": "size",
+      "type": "integer",
+      "required": false,
+      "desc": "每页显示条数，默认 10"
+     },
+     {
+      "name": "current",
+      "type": "integer",
+      "required": false,
+      "desc": "当前页"
+     },
+     {
+      "name": "orders",
+      "type": "object []",
+      "required": false,
+      "desc": "排序字段信息"
+     },
+     {
+      "name": "column",
+      "type": "string",
+      "required": false,
+      "desc": "需要进行排序的字段"
+     },
+     {
+      "name": "asc",
+      "type": "boolean",
+      "required": false,
+      "desc": "是否正序排列，默认 true"
+     },
+     {
+      "name": "optimizeCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": "自动优化 COUNT SQL"
+     },
+     {
+      "name": "searchCount",
+      "type": "boolean",
+      "required": false,
+      "desc": "是否进行 count 查询"
+     },
+     {
+      "name": "optimizeJoinOfCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": "{@link #optimizeJoinOfCountSql()}"
+     },
+     {
+      "name": "maxLimit",
+      "type": "integer",
+      "required": false,
+      "desc": "单页分页条数限制"
+     },
+     {
+      "name": "countId",
+      "type": "string",
+      "required": false,
+      "desc": "countId"
+     },
+     {
+      "name": "screening",
+      "type": "string",
+      "required": false,
+      "desc": "容器筛选"
+     },
+     {
+      "name": "search",
+      "type": "string",
+      "required": false,
+      "desc": "容器搜索"
+     },
+     {
+      "name": "groupId",
+      "type": "string",
+      "required": false,
+      "desc": "容器分组"
+     },
+     {
+      "name": "sort",
+      "type": "object",
+      "required": false,
+      "desc": "排序"
+     },
+     {
+      "name": "key",
+      "type": "string",
+      "required": false,
+      "desc": null
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "server",
+    "inputTime",
+    "chip",
+    "deviceIp",
+    "deviceId",
+    "romVersion",
+    "phoneBrand",
+    "phoneModel",
+    "operator",
+    "phoneNumber",
+    "deviceGroup",
+    "remark",
+    "account",
+    "proxy",
+    "deviceStatus",
+    "color",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 1578,
+   "pagination": {
+    "possible": true,
+    "note": "该接口 Body 的 YApi 文档把 MyBatis-Plus Page 响应对象也写进了请求体（`asc`, `column`, `countId`, `maxLimit`, `optimizeCountSql`, `optimizeJoinOfCountSql`, `orders`, `records`, `searchCount`, `total`）。实际请求请只发送筛选条件 + 分页参数（`current`、`size`，或 `pageNum`/`pageSize` 视接口而定），不要发送响应侧字段。"
+   }
+  },
+  {
+   "operation_id": "asset_post_device_remark",
+   "operation_id_generated": true,
+   "summary": "新增设备备注",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/device/remark",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceId",
+      "type": "string",
+      "required": false,
+      "desc": "设备ID"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "设备备注"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 778,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_enable",
+   "operation_id_generated": true,
+   "summary": "正式启用",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/enable",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceEnables",
+      "type": "object []",
+      "required": false,
+      "desc": "启用参数"
+     },
+     {
+      "name": "deviceId",
+      "type": "string",
+      "required": false,
+      "desc": "容器（设备）ID 集合"
+     },
+     {
+      "name": "deviceIp",
+      "type": "string",
+      "required": false,
+      "desc": "容器（设备）IP"
+     },
+     {
+      "name": "accountIds",
+      "type": "string []",
+      "required": false,
+      "desc": "账号 ID 集合"
+     },
+     {
+      "name": "proxyId",
+      "type": "string",
+      "required": false,
+      "desc": "代理（网络）id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 1272,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_intelligent_recognition",
+   "operation_id_generated": true,
+   "summary": "智能识别",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/intelligent/recognition",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "networkLink",
+      "type": "string",
+      "required": false,
+      "desc": "代理链接"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "proxyLinkIp",
+    "proxyLinkPort",
+    "username",
+    "password"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 938,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_lock_account",
+   "operation_id_generated": true,
+   "summary": "锁定账号",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/lock-account",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "accountIds",
+      "type": "string []",
+      "required": false,
+      "desc": "账号id集合"
+     },
+     {
+      "name": "lock",
+      "type": "boolean",
+      "required": false,
+      "desc": "是否锁定"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 2142,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_lock_device",
+   "operation_id_generated": true,
+   "summary": "锁定/解锁设备",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/lock-device",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备ID集合"
+     },
+     {
+      "name": "isLock",
+      "type": "boolean",
+      "required": false,
+      "desc": "是否锁"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 2103,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_network_test",
+   "operation_id_generated": true,
+   "summary": "测试网络代理是否可用",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/network/test",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "ids",
+      "type": "string []",
+      "required": false,
+      "desc": "代理id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 1311,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_new_device",
+   "operation_id_generated": true,
+   "summary": "新机",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/new-device",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceId",
+      "type": "string",
+      "required": false,
+      "desc": "设备编号"
+     },
+     {
+      "name": "armId",
+      "type": "string",
+      "required": false,
+      "desc": "服务器编号"
+     },
+     {
+      "name": "nodeId",
+      "type": "string",
+      "required": false,
+      "desc": "节点编号"
+     },
+     {
+      "name": "brand",
+      "type": "string",
+      "required": false,
+      "desc": "品牌"
+     },
+     {
+      "name": "category",
+      "type": "string",
+      "required": false,
+      "desc": "型号"
+     },
+     {
+      "name": "phoneNumber",
+      "type": "string",
+      "required": false,
+      "desc": "手机号码"
+     },
+     {
+      "name": "imei",
+      "type": "string",
+      "required": false,
+      "desc": "imei码"
+     },
+     {
+      "name": "serialNumber",
+      "type": "string",
+      "required": false,
+      "desc": "序列号"
+     },
+     {
+      "name": "battery",
+      "type": "string",
+      "required": false,
+      "desc": "电量"
+     },
+     {
+      "name": "netOperator",
+      "type": "string",
+      "required": false,
+      "desc": "运营商"
+     },
+     {
+      "name": "imsi",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "sn",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "iccid",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "chipCode",
+      "type": "string",
+      "required": false,
+      "desc": "芯片类型"
+     },
+     {
+      "name": "areaCodeZone",
+      "type": "string",
+      "required": false,
+      "desc": "时区"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 895,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_proxy_batch_update",
+   "operation_id_generated": true,
+   "summary": "批量编辑代理",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/proxy/batch/update",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "proxyIds",
+      "type": "string []",
+      "required": false,
+      "desc": "地区"
+     },
+     {
+      "name": "area",
+      "type": "string",
+      "required": false,
+      "desc": "地区（如：北京、旧金山）"
+     },
+     {
+      "name": "agreement",
+      "type": "string",
+      "required": false,
+      "desc": "协议类型（如HTTP/HTTPS、TCP/UDP）"
+     },
+     {
+      "name": "isRenew",
+      "type": "boolean",
+      "required": false,
+      "desc": "是否续费"
+     },
+     {
+      "name": "expirationTime",
+      "type": "string",
+      "required": false,
+      "desc": "过期时间"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 466,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_proxy_import",
+   "operation_id_generated": true,
+   "summary": "导入代理",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/proxy/import",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 190,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_proxy_page",
+   "operation_id_generated": true,
+   "summary": "获取代理资产分页信息",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/proxy/page",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "records",
+      "type": "object []",
+      "required": false,
+      "desc": "查询数据列表"
+     },
+     {
+      "name": "total",
+      "type": "integer",
+      "required": false,
+      "desc": "总数"
+     },
+     {
+      "name": "size",
+      "type": "integer",
+      "required": false,
+      "desc": "每页显示条数，默认 10"
+     },
+     {
+      "name": "current",
+      "type": "integer",
+      "required": false,
+      "desc": "当前页"
+     },
+     {
+      "name": "orders",
+      "type": "object []",
+      "required": false,
+      "desc": "排序字段信息"
+     },
+     {
+      "name": "column",
+      "type": "string",
+      "required": false,
+      "desc": "需要进行排序的字段"
+     },
+     {
+      "name": "asc",
+      "type": "boolean",
+      "required": false,
+      "desc": "是否正序排列，默认 true"
+     },
+     {
+      "name": "optimizeCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": "自动优化 COUNT SQL"
+     },
+     {
+      "name": "searchCount",
+      "type": "boolean",
+      "required": false,
+      "desc": "是否进行 count 查询"
+     },
+     {
+      "name": "optimizeJoinOfCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": "{@link #optimizeJoinOfCountSql()}"
+     },
+     {
+      "name": "maxLimit",
+      "type": "integer",
+      "required": false,
+      "desc": "单页分页条数限制"
+     },
+     {
+      "name": "countId",
+      "type": "string",
+      "required": false,
+      "desc": "countId"
+     },
+     {
+      "name": "area",
+      "type": "string []",
+      "required": false,
+      "desc": "地区"
+     },
+     {
+      "name": "proxy",
+      "type": "string",
+      "required": false,
+      "desc": "代理"
+     },
+     {
+      "name": "suiteIds",
+      "type": "string []",
+      "required": false,
+      "desc": "分组"
+     },
+     {
+      "name": "sortType",
+      "type": "string",
+      "required": false,
+      "desc": "排序条件 1. 按风险排序（低风险的靠上） 2. 按录入时间排序（新录入的先显示）"
+     },
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备id集合"
+     },
+     {
+      "name": "proxyIds",
+      "type": "string []",
+      "required": false,
+      "desc": "代理id结合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "proxyId",
+    "area",
+    "inputTime",
+    "protocol",
+    "ip",
+    "proxyLinkIp",
+    "proxyLinkPort",
+    "username",
+    "password",
+    "link",
+    "expireTime",
+    "networkStatus",
+    "networkStatusName",
+    "isNearExpire",
+    "remark",
+    "deviceIp",
+    "appAccounts",
+    "riskTips",
+    "color",
+    "surplusDays",
+    "surplusDaysColor",
+    "bandingCount",
+    "suiteId",
+    "suiteName",
+    "available",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 1515,
+   "pagination": {
+    "possible": true,
+    "note": "该接口 Body 的 YApi 文档把 MyBatis-Plus Page 响应对象也写进了请求体（`asc`, `column`, `countId`, `maxLimit`, `optimizeCountSql`, `optimizeJoinOfCountSql`, `orders`, `records`, `searchCount`, `total`）。实际请求请只发送筛选条件 + 分页参数（`current`、`size`，或 `pageNum`/`pageSize` 视接口而定），不要发送响应侧字段。"
+   }
+  },
+  {
+   "operation_id": "asset_post_proxy_unbind",
+   "operation_id_generated": true,
+   "summary": "解除绑定代理",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/proxy/unbind",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "assId",
+      "type": "string",
+      "required": false,
+      "desc": "关联id集合"
+     },
+     {
+      "name": "proxyId",
+      "type": "string",
+      "required": false,
+      "desc": "代理id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 1791,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_remove_top",
+   "operation_id_generated": true,
+   "summary": "移除置顶",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/remove-top",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备ID"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 1389,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_reverse_query",
+   "operation_id_generated": true,
+   "summary": "反向查询",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/reverse/query",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "accountIds",
+      "type": "string []",
+      "required": false,
+      "desc": "账号id集合"
+     },
+     {
+      "name": "proxyIds",
+      "type": "string []",
+      "required": false,
+      "desc": "代理id集合"
+     },
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "容器id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "accountInfos",
+    "account",
+    "accountId",
+    "color",
+    "logoPath",
+    "nickName",
+    "proxyInfos",
+    "proxyId",
+    "area",
+    "ip",
+    "color",
+    "surplusDays",
+    "surplusDaysColor",
+    "bandingCount",
+    "deviceInfos",
+    "deviceIp",
+    "suiteNames",
+    "proxy",
+    "assId",
+    "proxyIp",
+    "area",
+    "proxyId",
+    "accountInfos",
+    "appId",
+    "appLogo",
+    "accountId",
+    "userAccount",
+    "accountNickname",
+    "color",
+    "deviceVersion",
+    "deviceId",
+    "deviceStatus",
+    "connIp",
+    "connPort",
+    "riskColor",
+    "riskTip",
+    "brand",
+    "proxyStatus"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 34,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_social_proxy_suite_add",
+   "operation_id_generated": true,
+   "summary": "增加代理到分组",
+   "description": null,
+   "method": "POST",
+   "path": "/social/proxy-suite/add",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "suiteId",
+      "type": "string",
+      "required": false,
+      "desc": "分组编号"
+     },
+     {
+      "name": "suiteName",
+      "type": "string",
+      "required": "必须",
+      "desc": "分组名称"
+     },
+     {
+      "name": "suiteDesc",
+      "type": "string",
+      "required": false,
+      "desc": "分组描述"
+     },
+     {
+      "name": "mobiles",
+      "type": "object []",
+      "required": false,
+      "desc": "设备信息"
+     },
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "关联编号"
+     },
+     {
+      "name": "deviceId",
+      "type": "string",
+      "required": false,
+      "desc": "设备编号"
+     },
+     {
+      "name": "deviceIp",
+      "type": "string",
+      "required": false,
+      "desc": "设备Ip"
+     },
+     {
+      "name": "deviceCategory",
+      "type": "string",
+      "required": false,
+      "desc": "品牌"
+     },
+     {
+      "name": "deviceStatus",
+      "type": "string",
+      "required": false,
+      "desc": "设备状态"
+     },
+     {
+      "name": "deviceIdx",
+      "type": "string",
+      "required": false,
+      "desc": "设备序号"
+     },
+     {
+      "name": "deviceAliases",
+      "type": "string",
+      "required": false,
+      "desc": "设备别名"
+     },
+     {
+      "name": "accountIds",
+      "type": "string []",
+      "required": false,
+      "desc": "账号编号集合"
+     },
+     {
+      "name": "proxyIds",
+      "type": "string []",
+      "required": false,
+      "desc": "代理id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 23636,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_social_proxy_suite_update",
+   "operation_id_generated": true,
+   "summary": "全量更新分组下的代理信息",
+   "description": null,
+   "method": "POST",
+   "path": "/social/proxy-suite/update",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "suiteId",
+      "type": "string",
+      "required": false,
+      "desc": "分组编号"
+     },
+     {
+      "name": "suiteName",
+      "type": "string",
+      "required": "必须",
+      "desc": "分组名称"
+     },
+     {
+      "name": "suiteDesc",
+      "type": "string",
+      "required": false,
+      "desc": "分组描述"
+     },
+     {
+      "name": "mobiles",
+      "type": "object []",
+      "required": false,
+      "desc": "设备信息"
+     },
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "关联编号"
+     },
+     {
+      "name": "deviceId",
+      "type": "string",
+      "required": false,
+      "desc": "设备编号"
+     },
+     {
+      "name": "deviceIp",
+      "type": "string",
+      "required": false,
+      "desc": "设备Ip"
+     },
+     {
+      "name": "deviceCategory",
+      "type": "string",
+      "required": false,
+      "desc": "品牌"
+     },
+     {
+      "name": "deviceStatus",
+      "type": "string",
+      "required": false,
+      "desc": "设备状态"
+     },
+     {
+      "name": "deviceIdx",
+      "type": "string",
+      "required": false,
+      "desc": "设备序号"
+     },
+     {
+      "name": "deviceAliases",
+      "type": "string",
+      "required": false,
+      "desc": "设备别名"
+     },
+     {
+      "name": "accountIds",
+      "type": "string []",
+      "required": false,
+      "desc": "账号编号集合"
+     },
+     {
+      "name": "proxyIds",
+      "type": "string []",
+      "required": false,
+      "desc": "代理id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 23589,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_top",
+   "operation_id_generated": true,
+   "summary": "置顶",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/top",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备ID"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 1428,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_update_device_info",
+   "operation_id_generated": true,
+   "summary": "更新设备信息",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/update-device-info",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": "必须",
+      "desc": "设备ID集合"
+     },
+     {
+      "name": "operation",
+      "type": "string",
+      "required": false,
+      "desc": "操作指令，SHUTDOWN：关机/POWER_ON:开机/RESTART:重启/CHANGE_IMG:更换镜像/MODIFY:更新设备信息/GPS:修改定位信息"
+     },
+     {
+      "name": "imgId",
+      "type": "string",
+      "required": false,
+      "desc": "镜像ID"
+     },
+     {
+      "name": "modifyDeviceInfoReq",
+      "type": "object",
+      "required": false,
+      "desc": "设备信息"
+     },
+     {
+      "name": "brand",
+      "type": "string",
+      "required": false,
+      "desc": "手机品牌"
+     },
+     {
+      "name": "category",
+      "type": "string",
+      "required": false,
+      "desc": "手机型号"
+     },
+     {
+      "name": "phoneNumber",
+      "type": "string",
+      "required": false,
+      "desc": "手机号码"
+     },
+     {
+      "name": "lon",
+      "type": "number",
+      "required": false,
+      "desc": "经度"
+     },
+     {
+      "name": "lat",
+      "type": "number",
+      "required": false,
+      "desc": "纬度"
+     },
+     {
+      "name": "alt",
+      "type": "number",
+      "required": false,
+      "desc": "海拔"
+     },
+     {
+      "name": "imei",
+      "type": "string",
+      "required": false,
+      "desc": "imei码"
+     },
+     {
+      "name": "serialNumber",
+      "type": "string",
+      "required": false,
+      "desc": "序列号"
+     },
+     {
+      "name": "battery",
+      "type": "string",
+      "required": false,
+      "desc": "电量"
+     },
+     {
+      "name": "netOperator",
+      "type": "string",
+      "required": false,
+      "desc": "运营商"
+     },
+     {
+      "name": "imsi",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "sn",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "iccid",
+      "type": "string",
+      "required": false,
+      "desc": null
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 1016,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_update_proxy_group",
+   "operation_id_generated": true,
+   "summary": "更新代理分组",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/update/proxy-group",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "suiteId",
+      "type": "string",
+      "required": false,
+      "desc": "分组编号"
+     },
+     {
+      "name": "suiteName",
+      "type": "string",
+      "required": false,
+      "desc": "分组名称"
+     },
+     {
+      "name": "suiteDesc",
+      "type": "string",
+      "required": false,
+      "desc": "分组描述"
+     },
+     {
+      "name": "proxyIds",
+      "type": "string []",
+      "required": false,
+      "desc": "代理id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 977,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_post_user_allocation",
+   "operation_id_generated": true,
+   "summary": "用户分配",
+   "description": null,
+   "method": "POST",
+   "path": "/asset/user/allocation",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备id集合"
+     },
+     {
+      "name": "userIds",
+      "type": "string []",
+      "required": false,
+      "desc": "用户id集合"
+     },
+     {
+      "name": "networkIds",
+      "type": "string []",
+      "required": false,
+      "desc": "网络id集合"
+     },
+     {
+      "name": "accountIds",
+      "type": "string []",
+      "required": false,
+      "desc": "账号id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 1350,
+   "pagination": null
+  },
+  {
+   "operation_id": "asset_put_operator_update",
+   "operation_id_generated": true,
+   "summary": "运营商详情或编辑",
+   "description": null,
+   "method": "PUT",
+   "path": "/asset/operator/update",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "operatorId",
+      "type": "string",
+      "required": false,
+      "desc": "运营商id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "phoneNum",
+    "power",
+    "serialNumber",
+    "imei",
+    "imsi",
+    "sn",
+    "iccid",
+    "androidId",
+    "areaCodeZone"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 1986,
+   "pagination": null
+  }
+ ]
+}

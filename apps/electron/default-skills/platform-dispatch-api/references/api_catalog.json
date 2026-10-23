@@ -1,0 +1,8584 @@
+{
+ "_meta": {
+  "package": "platform-dispatch-api",
+  "domain_label": "任务调度（调度中心/发帖任务/脚本流程/执行记录）",
+  "source_docs": [
+   "callfans-standard.md"
+  ],
+  "operation_count": 87,
+  "login": {
+   "operation_id": "auth_post_login",
+   "method": "POST",
+   "path": "/auth/login",
+   "params": {
+    "username": "string",
+    "password": "string",
+    "code": "string(留空,验证码已关闭)",
+    "uuid": "string(留空)"
+   },
+   "token_field": "token",
+   "auth_header": "Authorization: Bearer <token>",
+   "note": "验证码已关闭：code/uuid 传空。401 时执行器自动重新登录并重试一次。"
+  },
+  "route_prefixes": {
+   "/social": 87
+  },
+  "route_prefix_note": "本包接口路径已包含 /social 服务前缀，通常无需再设置 API_PATH_PREFIX。"
+ },
+ "operations": [
+  {
+   "operation_id": "dispatch_delete_social_cache_clear",
+   "operation_id_generated": true,
+   "summary": "清空缓存列表（不允许存在正在执行中的任务）",
+   "description": null,
+   "method": "DELETE",
+   "path": "/social/cache/clear",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 9623,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_delete_social_dispatch_delete",
+   "operation_id_generated": true,
+   "summary": "删除项目",
+   "description": null,
+   "method": "DELETE",
+   "path": "/social/dispatch/delete",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "projectId",
+      "type": "string",
+      "required": false,
+      "desc": "项目ID"
+     },
+     {
+      "name": "liveRoomOverCountdownMinutes",
+      "type": "integer",
+      "required": false,
+      "desc": "倒计时时间"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 20005,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_delete_social_dispatch_deleteevent",
+   "operation_id_generated": true,
+   "summary": "删除事件",
+   "description": null,
+   "method": "DELETE",
+   "path": "/social/dispatch/deleteEvent",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "eventId",
+      "type": "string",
+      "required": false,
+      "desc": "事件ID"
+     },
+     {
+      "name": "topicId",
+      "type": "string",
+      "required": false,
+      "desc": "话题id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 19966,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_delete_social_dispatch_removetask",
+   "operation_id_generated": true,
+   "summary": "移除任务",
+   "description": null,
+   "method": "DELETE",
+   "path": "/social/dispatch/removeTask",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "projectId",
+      "type": "string",
+      "required": false,
+      "desc": "项目id"
+     },
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备ID集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 20937,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_delete_social_dispatch_removewaterlevelstep",
+   "operation_id_generated": true,
+   "summary": "移除单个水位阶梯点 —— 按子表 social_dispatch_water_level_config_det 主键 ID 逻辑删除。",
+   "description": null,
+   "method": "DELETE",
+   "path": "/social/dispatch/removeWaterLevelStep",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": "子表 social_dispatch_water_level_config_det 主键 id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 20976,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_delete_social_script_flow_delete",
+   "operation_id_generated": true,
+   "summary": "删除脚本流程",
+   "description": null,
+   "method": "DELETE",
+   "path": "/social/script/flow/delete",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "scriptIds",
+      "type": "string []",
+      "required": false,
+      "desc": "脚本id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 23441,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_delete_social_system_component_del",
+   "operation_id_generated": true,
+   "summary": "删除组件",
+   "description": null,
+   "method": "DELETE",
+   "path": "/social/system-component/del",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "componentId",
+      "type": "string",
+      "required": false,
+      "desc": "组件编号"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 2813,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_delete_social_task",
+   "operation_id_generated": true,
+   "summary": "批量删除任务",
+   "description": null,
+   "method": "DELETE",
+   "path": "/social/task",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "taskIds",
+      "type": "string []",
+      "required": false,
+      "desc": "任务id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 10419,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_delete_social_template_executionrecord_del_recordid",
+   "operation_id_generated": true,
+   "summary": "删除执行记录",
+   "description": null,
+   "method": "DELETE",
+   "path": "/social/template/executionRecord/del/{recordId}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 3300,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_get_social_analysis_setting_list",
+   "operation_id_generated": true,
+   "summary": "获取所有分析 Agent 设置列表",
+   "description": null,
+   "method": "GET",
+   "path": "/social/analysis/setting/list",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "settingName",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 23213,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_get_social_cache_query",
+   "operation_id_generated": true,
+   "summary": "查询缓存列表",
+   "description": null,
+   "method": "GET",
+   "path": "/social/cache/query",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "deviceNum",
+    "taskType",
+    "taskStatus",
+    "localDateTime",
+    "deviceId",
+    "taskId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 9599,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_get_social_postspread_detail",
+   "operation_id_generated": true,
+   "summary": "帖子推广详情",
+   "description": null,
+   "method": "GET",
+   "path": "/social/postSpread/detail",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "postTaskVO",
+    "id",
+    "appName",
+    "jobName",
+    "headline",
+    "intervalDuration",
+    "createTime",
+    "status",
+    "startTime",
+    "endTime",
+    "accountId",
+    "appAccount",
+    "rpaTaskId",
+    "postSpreadVO",
+    "id",
+    "postTaskId",
+    "postTaskName",
+    "comment",
+    "commentCandidate",
+    "thumbsUp",
+    "transpond",
+    "share",
+    "shareFriends",
+    "collect",
+    "addFriends",
+    "follow",
+    "accountId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 8349,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_get_social_posttask_posttaskid",
+   "operation_id_generated": true,
+   "summary": "发帖任务详情",
+   "description": null,
+   "method": "GET",
+   "path": "/social/postTask/{postTaskId}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "appName",
+    "jobName",
+    "status",
+    "headline",
+    "startTime",
+    "intervalDuration",
+    "createTime",
+    "accountCount",
+    "jobId",
+    "fileUrl",
+    "postLink",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 8271,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_get_social_script_flow_detail_id",
+   "operation_id_generated": true,
+   "summary": "获取脚本流程详情",
+   "description": null,
+   "method": "GET",
+   "path": "/social/script/flow/detail/{id}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "name",
+    "remark",
+    "type",
+    "flow",
+    "key",
+    "variables",
+    "key",
+    "code",
+    "scriptVersion",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 23558,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_get_social_script_flow_download_id",
+   "operation_id_generated": true,
+   "summary": "下载脚本文件",
+   "description": null,
+   "method": "GET",
+   "path": "/social/script/flow/download/{id}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 23384,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_get_social_system_component_detail_componentid",
+   "operation_id_generated": true,
+   "summary": "组件详情",
+   "description": null,
+   "method": "GET",
+   "path": "/social/system-component/detail/{componentId}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "componentId",
+    "componentName",
+    "componentType",
+    "templateType",
+    "engineType",
+    "componentJson",
+    "key",
+    "workflowId",
+    "componentParam",
+    "key",
+    "assembles",
+    "key",
+    "componentColor",
+    "componentFileName",
+    "workflowRequest",
+    "key",
+    "workflowResponse",
+    "key",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 2893,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_get_social_tag_list",
+   "operation_id_generated": true,
+   "summary": "查询任务标签集合",
+   "description": null,
+   "method": "GET",
+   "path": "/social/tag/list",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "parentId",
+    "tagName",
+    "children",
+    "id",
+    "parentId",
+    "tagName",
+    "children",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 11302,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_get_social_task_id",
+   "operation_id_generated": true,
+   "summary": "根据id查询任务",
+   "description": null,
+   "method": "GET",
+   "path": "/social/task/{id}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 10497,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_get_social_template_executionrecord_detail_recordid",
+   "operation_id_generated": true,
+   "summary": "获取执行记录详情",
+   "description": null,
+   "method": "GET",
+   "path": "/social/template/executionRecord/detail/{recordId}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "templateLibraryId",
+    "startTime",
+    "actualFinishTime",
+    "endTime",
+    "executionStatus",
+    "failureReason",
+    "bp",
+    "execDetail",
+    "id",
+    "componentId",
+    "componentName",
+    "componentResultFlag",
+    "componentResult",
+    "key",
+    "fileType",
+    "errorMsg",
+    "params",
+    "key",
+    "responseConfigs",
+    "key",
+    "componentType",
+    "aigcExecSource",
+    "engineType",
+    "source",
+    "target",
+    "taskId",
+    "recordId",
+    "tempId",
+    "textId",
+    "cacheKey",
+    "createTime",
+    "execTime",
+    "assembles",
+    "key",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 3410,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_get_social_template_executionrecord_now_tempid",
+   "operation_id_generated": true,
+   "summary": "获取当前模板执行情况",
+   "description": null,
+   "method": "GET",
+   "path": "/social/template/executionRecord/now/{tempId}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "templateLibraryId",
+    "startTime",
+    "actualFinishTime",
+    "endTime",
+    "executionStatus",
+    "failureReason",
+    "bp",
+    "execNowDetail",
+    "id",
+    "componentId",
+    "componentName",
+    "componentResultFlag",
+    "componentResult",
+    "key",
+    "fileType",
+    "errorMsg",
+    "params",
+    "key",
+    "responseConfigs",
+    "key",
+    "componentType",
+    "aigcExecSource",
+    "engineType",
+    "source",
+    "target",
+    "taskId",
+    "recordId",
+    "tempId",
+    "textId",
+    "cacheKey",
+    "createTime",
+    "execTime",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 3373,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_analysis_update",
+   "operation_id_generated": true,
+   "summary": "更新分析 Agent 设置",
+   "description": null,
+   "method": "POST",
+   "path": "/social/analysis/update",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "analysisId",
+      "type": "string",
+      "required": false,
+      "desc": "社群信息编号"
+     },
+     {
+      "name": "settingId",
+      "type": "string",
+      "required": false,
+      "desc": "agentId"
+     },
+     {
+      "name": "groupTag",
+      "type": "string",
+      "required": false,
+      "desc": "群标签"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 23174,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_add",
+   "operation_id_generated": true,
+   "summary": "新增项目",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/add",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "projectName",
+      "type": "string",
+      "required": false,
+      "desc": "项目名称"
+     },
+     {
+      "name": "business",
+      "type": "string",
+      "required": false,
+      "desc": "业务场景 直播间运维/社媒内容分发/聊天群聊维护"
+     },
+     {
+      "name": "appId",
+      "type": "string",
+      "required": false,
+      "desc": "应用ID"
+     },
+     {
+      "name": "appName",
+      "type": "string",
+      "required": false,
+      "desc": "平台名称"
+     },
+     {
+      "name": "targetUrl",
+      "type": "string",
+      "required": false,
+      "desc": "目标URL"
+     },
+     {
+      "name": "startTime",
+      "type": "string",
+      "required": false,
+      "desc": "开始时间"
+     },
+     {
+      "name": "endTime",
+      "type": "string",
+      "required": false,
+      "desc": "结束时间"
+     },
+     {
+      "name": "priority",
+      "type": "string",
+      "required": false,
+      "desc": "优先级 高/中/低"
+     },
+     {
+      "name": "deviceScope",
+      "type": "integer",
+      "required": false,
+      "desc": "设备范围(设备数量)"
+     },
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备ID集合"
+     },
+     {
+      "name": "anchorId",
+      "type": "string",
+      "required": false,
+      "desc": "主播号"
+     },
+     {
+      "name": "anchorName",
+      "type": "string",
+      "required": false,
+      "desc": "主播名称（传给 RPA 脚本作为变量）"
+     },
+     {
+      "name": "audienceListCapture",
+      "type": "boolean",
+      "required": false,
+      "desc": "直播间观众清单抓取开关：开启=true / 关闭=false（默认）。{@code ClueConvertDispatchJob} 在派单循环中读取，任一开关开启才触发脚本派单；默认两个开关都是关闭（false），与\"新增项目表单里默认全部为\"否\"\"对齐。"
+     },
+     {
+      "name": "commentUserCapture",
+      "type": "boolean",
+      "required": false,
+      "desc": "直播间评论用户抓取开关：开启=true / 关闭=false（默认）。"
+     },
+     {
+      "name": "liveRoomOverCountdownMinutes",
+      "type": "integer",
+      "required": false,
+      "desc": "直播间结束倒计时分钟数，默认 15。可空，null 时按 15 入库。"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 20366,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_addevent",
+   "operation_id_generated": true,
+   "summary": "新增事件",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/addEvent",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "projectId",
+      "type": "string",
+      "required": false,
+      "desc": "关联项目ID"
+     },
+     {
+      "name": "eventName",
+      "type": "string",
+      "required": false,
+      "desc": "事件名称"
+     },
+     {
+      "name": "deviceAssignMode",
+      "type": "string",
+      "required": false,
+      "desc": "设备指派模式 (对应下拉框，如：RANDOM_DEVICE, SPECIFIC_DEVICE)"
+     },
+     {
+      "name": "devices",
+      "type": "object []",
+      "required": false,
+      "desc": "设备列表（含 deviceId + deviceIp）"
+     },
+     {
+      "name": "deviceId",
+      "type": "string",
+      "required": false,
+      "desc": "设备ID"
+     },
+     {
+      "name": "deviceIp",
+      "type": "string",
+      "required": false,
+      "desc": "设备IP"
+     },
+     {
+      "name": "accountName",
+      "type": "string",
+      "required": false,
+      "desc": "账号名称"
+     },
+     {
+      "name": "executeCount",
+      "type": "integer",
+      "required": false,
+      "desc": "执行数量"
+     },
+     {
+      "name": "entryRhythm",
+      "type": "string",
+      "required": false,
+      "desc": "入场节奏"
+     },
+     {
+      "name": "exitRhythm",
+      "type": "string",
+      "required": false,
+      "desc": "离场节奏"
+     },
+     {
+      "name": "operationFrequency",
+      "type": "string",
+      "required": false,
+      "desc": "单台操作频率"
+     },
+     {
+      "name": "customOperationFrequency",
+      "type": "string",
+      "required": false,
+      "desc": "自定义单台操作频率"
+     },
+     {
+      "name": "actionFailureRate",
+      "type": "number",
+      "required": false,
+      "desc": "动作失败率阈值"
+     },
+     {
+      "name": "blockStrategy",
+      "type": "string",
+      "required": false,
+      "desc": "熔断策略 (可定义为 String 或对应的枚举)"
+     },
+     {
+      "name": "deviceExclusion",
+      "type": "boolean",
+      "required": false,
+      "desc": "设备排除 (开关)"
+     },
+     {
+      "name": "abnormalDeviceRecord",
+      "type": "boolean",
+      "required": false,
+      "desc": "异常设备记录 (开关)"
+     },
+     {
+      "name": "interactionMode",
+      "type": "string",
+      "required": false,
+      "desc": "互动模式"
+     },
+     {
+      "name": "interactionIntimacy",
+      "type": "integer",
+      "required": false,
+      "desc": "互动亲密(条/min)"
+     },
+     {
+      "name": "topicControl",
+      "type": "object",
+      "required": false,
+      "desc": "话题控制台"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "matchTag",
+      "type": "string",
+      "required": false,
+      "desc": "匹配标签"
+     },
+     {
+      "name": "topicDeviceType",
+      "type": "string",
+      "required": false,
+      "desc": "设备类型"
+     },
+     {
+      "name": "topicDeviceAssign",
+      "type": "string",
+      "required": false,
+      "desc": "设备指定"
+     },
+     {
+      "name": "expansionMode",
+      "type": "string",
+      "required": false,
+      "desc": "扩容模式"
+     },
+     {
+      "name": "topicPoolType",
+      "type": "string",
+      "required": false,
+      "desc": "预设话题池类型"
+     },
+     {
+      "name": "topicPool",
+      "type": "string []",
+      "required": false,
+      "desc": "预设话题池"
+     },
+     {
+      "name": "topics",
+      "type": "object []",
+      "required": false,
+      "desc": "话题配置列表（含权重、话术等）"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "executeCycle",
+      "type": "string",
+      "required": false,
+      "desc": "执行周期"
+     },
+     {
+      "name": "customCycle",
+      "type": "string",
+      "required": false,
+      "desc": "自定义周期"
+     },
+     {
+      "name": "startTime",
+      "type": "string",
+      "required": false,
+      "desc": "事件开始时间"
+     },
+     {
+      "name": "endTime",
+      "type": "string",
+      "required": false,
+      "desc": "事件结束时间"
+     },
+     {
+      "name": "appId",
+      "type": "string",
+      "required": false,
+      "desc": "应用ID"
+     },
+     {
+      "name": "programId",
+      "type": "string",
+      "required": false,
+      "desc": "任务功能id"
+     },
+     {
+      "name": "taskData",
+      "type": "object",
+      "required": false,
+      "desc": "任务数据"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "track",
+      "type": "string",
+      "required": false,
+      "desc": "事件轨道"
+     },
+     {
+      "name": "eventStatus",
+      "type": "string",
+      "required": false,
+      "desc": "事件状态"
+     },
+     {
+      "name": "totalDevices",
+      "type": "integer",
+      "required": false,
+      "desc": "设备总数"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "eventId",
+    "eventName",
+    "startTime",
+    "endTime",
+    "programId",
+    "track",
+    "eventMode",
+    "entryRhythm",
+    "exitRhythm",
+    "entryMode",
+    "operationFrequency",
+    "customOperationFrequency",
+    "simulationBehavior",
+    "executeCycle",
+    "customCycle",
+    "expansionMode",
+    "extractMode",
+    "totalDevices",
+    "actionFailureRate",
+    "blockStrategy",
+    "deviceExclusion",
+    "abnormalDeviceRecord",
+    "interactionMode",
+    "interactionIntimacy",
+    "topicControl",
+    "key",
+    "matchTag",
+    "topicDeviceType",
+    "topicDeviceAssign",
+    "topicPoolType",
+    "topicPool",
+    "executedDeviceCount",
+    "successCount",
+    "failureCount",
+    "devices",
+    "deviceId",
+    "deviceIp",
+    "accountName",
+    "eventStatus",
+    "eventStatusName",
+    "failReasonKey",
+    "failReasonName",
+    "taskData",
+    "key",
+    "topics",
+    "key",
+    "appId",
+    "taskCategory",
+    "programName",
+    "contentCount",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 20298,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_allocate",
+   "operation_id_generated": true,
+   "summary": "分配挂载",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/allocate",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "projectId",
+      "type": "string",
+      "required": false,
+      "desc": "项目id"
+     },
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 19927,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_batchupdateevent",
+   "operation_id_generated": true,
+   "summary": "批量编辑事件",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/batchUpdateEvent",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "projectId",
+      "type": "string",
+      "required": false,
+      "desc": "项目ID"
+     },
+     {
+      "name": "events",
+      "type": "object []",
+      "required": false,
+      "desc": "批量更新事件"
+     },
+     {
+      "name": "eventId",
+      "type": "string",
+      "required": false,
+      "desc": "事件ID"
+     },
+     {
+      "name": "eventName",
+      "type": "string",
+      "required": false,
+      "desc": "事件名称"
+     },
+     {
+      "name": "startTime",
+      "type": "string",
+      "required": false,
+      "desc": "开始 时间"
+     },
+     {
+      "name": "endTime",
+      "type": "string",
+      "required": false,
+      "desc": "结束 时间"
+     },
+     {
+      "name": "programId",
+      "type": "string",
+      "required": false,
+      "desc": "功能id"
+     },
+     {
+      "name": "executeCount",
+      "type": "integer",
+      "required": false,
+      "desc": "执行次数"
+     },
+     {
+      "name": "devices",
+      "type": "object []",
+      "required": false,
+      "desc": "设备列表（含 deviceId + deviceIp）"
+     },
+     {
+      "name": "deviceId",
+      "type": "string",
+      "required": false,
+      "desc": "设备ID"
+     },
+     {
+      "name": "deviceIp",
+      "type": "string",
+      "required": false,
+      "desc": "设备IP"
+     },
+     {
+      "name": "accountName",
+      "type": "string",
+      "required": false,
+      "desc": "账号名称"
+     },
+     {
+      "name": "taskData",
+      "type": "object",
+      "required": false,
+      "desc": "任务数据"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "track",
+      "type": "string",
+      "required": false,
+      "desc": "轨迹"
+     },
+     {
+      "name": "deviceAssignMode",
+      "type": "string",
+      "required": false,
+      "desc": "设备分配模式"
+     },
+     {
+      "name": "entryRhythm",
+      "type": "string",
+      "required": false,
+      "desc": "入口模式"
+     },
+     {
+      "name": "exitRhythm",
+      "type": "string",
+      "required": false,
+      "desc": "出口模式"
+     },
+     {
+      "name": "operationFrequency",
+      "type": "string",
+      "required": false,
+      "desc": "操作频率"
+     },
+     {
+      "name": "customOperationFrequency",
+      "type": "string",
+      "required": false,
+      "desc": "自定义操作频率"
+     },
+     {
+      "name": "actionFailureRate",
+      "type": "number",
+      "required": false,
+      "desc": "行为失败率"
+     },
+     {
+      "name": "blockStrategy",
+      "type": "string",
+      "required": false,
+      "desc": "屏蔽策略"
+     },
+     {
+      "name": "deviceExclusion",
+      "type": "boolean",
+      "required": false,
+      "desc": "设备排除"
+     },
+     {
+      "name": "abnormalDeviceRecord",
+      "type": "boolean",
+      "required": false,
+      "desc": "异常设备记录"
+     },
+     {
+      "name": "interactionMode",
+      "type": "string",
+      "required": false,
+      "desc": "互动模式"
+     },
+     {
+      "name": "interactionIntimacy",
+      "type": "integer",
+      "required": false,
+      "desc": "互动亲密度"
+     },
+     {
+      "name": "topicControl",
+      "type": "object",
+      "required": false,
+      "desc": "互动数量"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "matchTag",
+      "type": "string",
+      "required": false,
+      "desc": "匹配标签"
+     },
+     {
+      "name": "topicDeviceType",
+      "type": "string",
+      "required": false,
+      "desc": "匹配标签数量"
+     },
+     {
+      "name": "topicDeviceAssign",
+      "type": "string",
+      "required": false,
+      "desc": "设备分配"
+     },
+     {
+      "name": "expansionMode",
+      "type": "string",
+      "required": false,
+      "desc": "扩容模式"
+     },
+     {
+      "name": "topicPoolType",
+      "type": "string",
+      "required": false,
+      "desc": "扩容数量"
+     },
+     {
+      "name": "topicPool",
+      "type": "string []",
+      "required": false,
+      "desc": "扩容标签"
+     },
+     {
+      "name": "topics",
+      "type": "object []",
+      "required": false,
+      "desc": "话题配置列表（含权重、话术等）"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "executeCycle",
+      "type": "string",
+      "required": false,
+      "desc": "执行周期"
+     },
+     {
+      "name": "customCycle",
+      "type": "string",
+      "required": false,
+      "desc": "自定义执行周期"
+     },
+     {
+      "name": "eventStatus",
+      "type": "string",
+      "required": false,
+      "desc": "事件状态"
+     },
+     {
+      "name": "totalDevices",
+      "type": "integer",
+      "required": false,
+      "desc": "设备总数"
+     },
+     {
+      "name": "isScreenDominance",
+      "type": "boolean",
+      "required": false,
+      "desc": "是否霸屏"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 20168,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_checklabeldevice",
+   "operation_id_generated": true,
+   "summary": "校验标签设备",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/checkLabelDevice",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "tagIds",
+      "type": "string []",
+      "required": false,
+      "desc": "标签ID"
+     },
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 20695,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_clearevent",
+   "operation_id_generated": true,
+   "summary": "一键清空事件",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/clearEvent",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "projectId",
+      "type": "string",
+      "required": false,
+      "desc": "项目ID"
+     },
+     {
+      "name": "liveRoomOverCountdownMinutes",
+      "type": "integer",
+      "required": false,
+      "desc": "倒计时时间"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 19576,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_clearscreendominance",
+   "operation_id_generated": true,
+   "summary": "取消霸屏",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/clearScreenDominance",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "eventId",
+      "type": "string",
+      "required": false,
+      "desc": "事件ID"
+     },
+     {
+      "name": "topicId",
+      "type": "string",
+      "required": false,
+      "desc": "话题id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 20129,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_continue",
+   "operation_id_generated": true,
+   "summary": "事件继续",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/continue",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "eventId",
+      "type": "string",
+      "required": false,
+      "desc": "事件ID"
+     },
+     {
+      "name": "topicId",
+      "type": "string",
+      "required": false,
+      "desc": "话题id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 19732,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_continueproject",
+   "operation_id_generated": true,
+   "summary": "项目继续",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/continueProject",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "projectId",
+      "type": "string",
+      "required": false,
+      "desc": "项目ID"
+     },
+     {
+      "name": "liveRoomOverCountdownMinutes",
+      "type": "integer",
+      "required": false,
+      "desc": "倒计时时间"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 21479,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_datastatistics",
+   "operation_id_generated": true,
+   "summary": "数据统计",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/dataStatistics",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "projectId",
+      "type": "string",
+      "required": false,
+      "desc": "项目ID"
+     },
+     {
+      "name": "liveRoomOverCountdownMinutes",
+      "type": "integer",
+      "required": false,
+      "desc": "倒计时时间"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "metrics",
+    "fieldCode",
+    "fieldName",
+    "value",
+    "unit",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 20259,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_detail",
+   "operation_id_generated": true,
+   "summary": "项目详情",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/detail",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "projectId",
+      "type": "string",
+      "required": false,
+      "desc": "项目ID"
+     },
+     {
+      "name": "liveRoomOverCountdownMinutes",
+      "type": "integer",
+      "required": false,
+      "desc": "倒计时时间"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "projectId",
+    "projectName",
+    "business",
+    "businessName",
+    "appId",
+    "appName",
+    "targetUrl",
+    "startTime",
+    "endTime",
+    "priority",
+    "priorityName",
+    "projectStatus",
+    "projectStatusName",
+    "deviceScope",
+    "deviceIds",
+    "projectStartTime",
+    "waterLevel",
+    "crateTime",
+    "programId",
+    "slope",
+    "entryMode",
+    "anchorId",
+    "anchorName",
+    "audienceListCapture",
+    "commentUserCapture",
+    "waterLevelSteps",
+    "id",
+    "timePoint",
+    "waterLevel",
+    "peak",
+    "liveRoomOverCountdownMinutes",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 21518,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_device_disable",
+   "operation_id_generated": true,
+   "summary": "人工调度禁用设备（批量）。",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/device/disable",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "projectId",
+      "type": "integer",
+      "required": false,
+      "desc": "项目 ID（可选，决定禁用作用域）。 非空：项目级禁用，设备仅在该项目不可调度； 为空：全局禁用，设备在所有项目都不可调度（扇出全部项目池行 + 全局标记）。"
+     },
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备 ID 列表（必填，支持批量）"
+     },
+     {
+      "name": "reason",
+      "type": "string",
+      "required": false,
+      "desc": "禁用/启用原因（可选，用于日志记录）"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "successCount",
+    "failedDeviceIds",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 19771,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_device_enable",
+   "operation_id_generated": true,
+   "summary": "取消调度禁用设备（批量）。",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/device/enable",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "projectId",
+      "type": "integer",
+      "required": false,
+      "desc": "项目 ID（可选，决定禁用作用域）。 非空：项目级禁用，设备仅在该项目不可调度； 为空：全局禁用，设备在所有项目都不可调度（扇出全部项目池行 + 全局标记）。"
+     },
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备 ID 列表（必填，支持批量）"
+     },
+     {
+      "name": "reason",
+      "type": "string",
+      "required": false,
+      "desc": "禁用/启用原因（可选，用于日志记录）"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "successCount",
+    "failedDeviceIds",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 20083,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_eventterminated",
+   "operation_id_generated": true,
+   "summary": "事件终止",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/eventTerminated",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "eventId",
+      "type": "string",
+      "required": false,
+      "desc": "事件ID"
+     },
+     {
+      "name": "topicId",
+      "type": "string",
+      "required": false,
+      "desc": "话题id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 19693,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_exportbriefing",
+   "operation_id_generated": true,
+   "summary": "项目执行简报导出（5-sheet xlsx）。",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/exportBriefing",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "projectId",
+      "type": "integer",
+      "required": false,
+      "desc": "项目 ID（social_dispatch_project.id）"
+     }
+    ]
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 21396,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_exportscreenshot",
+   "operation_id_generated": true,
+   "summary": "项目截图记录导出（zip 包，按{@code 项目名/设备IP/任务名/logId_序号_原文件名} 目录组织）。",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/exportScreenshot",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "projectId",
+      "type": "integer",
+      "required": false,
+      "desc": "项目 ID（social_dispatch_project.id）"
+     }
+    ]
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 21358,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_getdevicepool",
+   "operation_id_generated": true,
+   "summary": "获取待命池设备",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/getDevicePool",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "records",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "creatorId",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updatorId",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "deleted",
+      "type": "boolean",
+      "required": false,
+      "desc": "删除标识，0未删 1已删"
+     },
+     {
+      "name": "version",
+      "type": "integer",
+      "required": false,
+      "desc": "版本"
+     },
+     {
+      "name": "deptId",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "key",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": "主键ID"
+     },
+     {
+      "name": "projectId",
+      "type": "integer",
+      "required": false,
+      "desc": "项目ID"
+     },
+     {
+      "name": "deviceId",
+      "type": "string",
+      "required": false,
+      "desc": "设备ID"
+     },
+     {
+      "name": "deviceIp",
+      "type": "string",
+      "required": false,
+      "desc": "设备IP"
+     },
+     {
+      "name": "accountId",
+      "type": "string",
+      "required": false,
+      "desc": "账号ID"
+     },
+     {
+      "name": "accountName",
+      "type": "string",
+      "required": false,
+      "desc": "账号名称"
+     },
+     {
+      "name": "accountStatus",
+      "type": "string",
+      "required": false,
+      "desc": "账号状态 空闲 蓝色/活动中 绿色/队列中 黄色/禁用 灰色/异常状态 红色"
+     },
+     {
+      "name": "operationNum",
+      "type": "integer",
+      "required": false,
+      "desc": "运行次数"
+     },
+     {
+      "name": "total",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "size",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "current",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "orders",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "column",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "asc",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "searchCount",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeJoinOfCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "maxLimit",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "countId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "projectId",
+      "type": "string",
+      "required": false,
+      "desc": "项目ID"
+     },
+     {
+      "name": "accountStatus",
+      "type": "string",
+      "required": false,
+      "desc": "账号状态 空闲 蓝色/活动中 绿色/队列中 黄色/禁用 灰色/异常状态 红色"
+     },
+     {
+      "name": "eventId",
+      "type": "string",
+      "required": false,
+      "desc": "事件ID"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "deviceId",
+    "deviceIp",
+    "accountId",
+    "accountName",
+    "deviceTagList",
+    "accountStatus",
+    "accountStatusName",
+    "operationNum",
+    "manuallyDisabled",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 21103,
+   "pagination": {
+    "possible": true,
+    "note": "该接口 Body 的 YApi 文档把 MyBatis-Plus Page 响应对象也写进了请求体（`asc`, `column`, `countId`, `maxLimit`, `optimizeCountSql`, `optimizeJoinOfCountSql`, `orders`, `records`, `searchCount`, `total`）。实际请求请只发送筛选条件 + 分页参数（`current`、`size`，或 `pageNum`/`pageSize` 视接口而定），不要发送响应侧字段。"
+   }
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_getdevicestatusnum",
+   "operation_id_generated": true,
+   "summary": "获取设备状态数量",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/getDeviceStatusNum",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "records",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "creatorId",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updatorId",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "deleted",
+      "type": "boolean",
+      "required": false,
+      "desc": "删除标识，0未删 1已删"
+     },
+     {
+      "name": "version",
+      "type": "integer",
+      "required": false,
+      "desc": "版本"
+     },
+     {
+      "name": "deptId",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "key",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": "主键ID"
+     },
+     {
+      "name": "projectId",
+      "type": "integer",
+      "required": false,
+      "desc": "项目ID"
+     },
+     {
+      "name": "deviceId",
+      "type": "string",
+      "required": false,
+      "desc": "设备ID"
+     },
+     {
+      "name": "deviceIp",
+      "type": "string",
+      "required": false,
+      "desc": "设备IP"
+     },
+     {
+      "name": "accountId",
+      "type": "string",
+      "required": false,
+      "desc": "账号ID"
+     },
+     {
+      "name": "accountName",
+      "type": "string",
+      "required": false,
+      "desc": "账号名称"
+     },
+     {
+      "name": "accountStatus",
+      "type": "string",
+      "required": false,
+      "desc": "账号状态 空闲 蓝色/活动中 绿色/队列中 黄色/禁用 灰色/异常状态 红色"
+     },
+     {
+      "name": "operationNum",
+      "type": "integer",
+      "required": false,
+      "desc": "运行次数"
+     },
+     {
+      "name": "total",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "size",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "current",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "orders",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "column",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "asc",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "searchCount",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeJoinOfCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "maxLimit",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "countId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "projectId",
+      "type": "string",
+      "required": false,
+      "desc": "项目ID"
+     },
+     {
+      "name": "accountStatus",
+      "type": "string",
+      "required": false,
+      "desc": "账号状态 空闲 蓝色/活动中 绿色/队列中 黄色/禁用 灰色/异常状态 红色"
+     },
+     {
+      "name": "eventId",
+      "type": "string",
+      "required": false,
+      "desc": "事件ID"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "activeNum",
+    "idleNum",
+    "exceptionNum",
+    "queueNum",
+    "disabledNum",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 21154,
+   "pagination": {
+    "possible": true,
+    "note": "该接口 Body 的 YApi 文档把 MyBatis-Plus Page 响应对象也写进了请求体（`asc`, `column`, `countId`, `maxLimit`, `optimizeCountSql`, `optimizeJoinOfCountSql`, `orders`, `records`, `searchCount`, `total`）。实际请求请只发送筛选条件 + 分页参数（`current`、`size`，或 `pageNum`/`pageSize` 视接口而定），不要发送响应侧字段。"
+   }
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_list",
+   "operation_id_generated": true,
+   "summary": "项目集合",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/list",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "projectName",
+      "type": "string",
+      "required": false,
+      "desc": "项目名称"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "projectId",
+    "projectName",
+    "business",
+    "businessName",
+    "appId",
+    "appName",
+    "targetUrl",
+    "startTime",
+    "endTime",
+    "priority",
+    "priorityName",
+    "projectStatus",
+    "projectStatusName",
+    "deviceScope",
+    "deviceIds",
+    "projectStartTime",
+    "waterLevel",
+    "crateTime",
+    "programId",
+    "slope",
+    "entryMode",
+    "anchorId",
+    "anchorName",
+    "audienceListCapture",
+    "commentUserCapture",
+    "waterLevelSteps",
+    "id",
+    "timePoint",
+    "waterLevel",
+    "peak",
+    "liveRoomOverCountdownMinutes",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 21580,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_liveovercontinue",
+   "operation_id_generated": true,
+   "summary": "直播间结束\"继续\"接口 —— 前端在收到 WS 推送的{@code isOver=true} 时弹框，",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/liveOverContinue",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "projectId",
+      "type": "string",
+      "required": false,
+      "desc": "项目ID"
+     },
+     {
+      "name": "liveRoomOverCountdownMinutes",
+      "type": "integer",
+      "required": false,
+      "desc": "倒计时时间"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 20827,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_page",
+   "operation_id_generated": true,
+   "summary": "项目分页",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/page",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "records",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "creatorId",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updatorId",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "deleted",
+      "type": "boolean",
+      "required": false,
+      "desc": "删除标识，0未删 1已删"
+     },
+     {
+      "name": "version",
+      "type": "integer",
+      "required": false,
+      "desc": "版本"
+     },
+     {
+      "name": "deptId",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "key",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": "主键id"
+     },
+     {
+      "name": "projectName",
+      "type": "string",
+      "required": false,
+      "desc": "项目名称"
+     },
+     {
+      "name": "business",
+      "type": "string",
+      "required": false,
+      "desc": "业务场景 直播间运维/社媒内容分发/聊天群聊维护"
+     },
+     {
+      "name": "appId",
+      "type": "string",
+      "required": false,
+      "desc": "应用ID"
+     },
+     {
+      "name": "appName",
+      "type": "string",
+      "required": false,
+      "desc": "平台名称"
+     },
+     {
+      "name": "targetUrl",
+      "type": "string",
+      "required": false,
+      "desc": "目标URL"
+     },
+     {
+      "name": "startTime",
+      "type": "string",
+      "required": false,
+      "desc": "开始时间"
+     },
+     {
+      "name": "endTime",
+      "type": "string",
+      "required": false,
+      "desc": "结束时间"
+     },
+     {
+      "name": "priority",
+      "type": "string",
+      "required": false,
+      "desc": "优先级 高/中/低"
+     },
+     {
+      "name": "projectStatus",
+      "type": "string",
+      "required": false,
+      "desc": "项目状态 配置中/执行中/已结束"
+     },
+     {
+      "name": "deviceScope",
+      "type": "integer",
+      "required": false,
+      "desc": "设备范围(设备数量)"
+     },
+     {
+      "name": "executionStartTime",
+      "type": "string",
+      "required": false,
+      "desc": "当前执行会话开始时间"
+     },
+     {
+      "name": "executedSeconds",
+      "type": "integer",
+      "required": false,
+      "desc": "累计已执行秒数"
+     },
+     {
+      "name": "anchorId",
+      "type": "string",
+      "required": false,
+      "desc": "主播号"
+     },
+     {
+      "name": "anchorName",
+      "type": "string",
+      "required": false,
+      "desc": "主播名称（传给 RPA 脚本作为变量）"
+     },
+     {
+      "name": "audienceListCapture",
+      "type": "boolean",
+      "required": false,
+      "desc": "直播间观众清单抓取开关：开启=1（true）/ 关闭=0（false）。由{@code ClueConvertDispatchJob} 在派单循环中读取 —— 任一开关开启才触发脚本派单。默认 false；新增项目入参为{@code null} 时按 false 处理。"
+     },
+     {
+      "name": "commentUserCapture",
+      "type": "boolean",
+      "required": false,
+      "desc": "直播间评论用户抓取开关：开启=1（true）/ 关闭=0（false）。语义同{@link #audienceListCapture}，与 CLUE 脚本的\"观众清单/评论用户抓取\"一一对应。"
+     },
+     {
+      "name": "liveRoomOverCountdownMinutes",
+      "type": "integer",
+      "required": false,
+      "desc": "直播间结束倒计时分钟数，默认 15。写入 addProject / editProject 时由前端表单传入；null 时{@code LiveRoomOverCountdownJob} 与{@code WaterLevelWebSocketHandler}均按 15 fallback（与历史硬编码行为一致）。 {@code LiveRoomOverCountdownJob#handleKey} 用此值计算 \"距首次触发多久后终止项目\" {@code WaterLevelWebSocketHandler#attachLiveRoomOverFlag} 用此值计算 \"点继续后多久内 isOver=false\""
+     },
+     {
+      "name": "monitorJobId",
+      "type": "integer",
+      "required": false,
+      "desc": "直播间人数监控 XXL-Job ID（每 10 秒一次，缓存与 currentLevel 偏差超 1 分钟触发入场脚本）"
+     },
+     {
+      "name": "clueConvertJobId",
+      "type": "integer",
+      "required": false,
+      "desc": "直播线索转化 XXL-Job ID（每分钟一次，按枚举 CLUE 查询脚本并行派发到手机）项目开始时由 ClueConvertJobLifecycleManager 注册；项目暂停/终止/删除时移除。"
+     },
+     {
+      "name": "total",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "size",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "current",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "orders",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "column",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "asc",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "searchCount",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeJoinOfCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "maxLimit",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "countId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "projectId",
+    "projectName",
+    "business",
+    "businessName",
+    "appId",
+    "appName",
+    "targetUrl",
+    "startTime",
+    "endTime",
+    "priority",
+    "priorityName",
+    "projectStatus",
+    "projectStatusName",
+    "deviceScope",
+    "deviceIds",
+    "projectStartTime",
+    "waterLevel",
+    "crateTime",
+    "programId",
+    "slope",
+    "entryMode",
+    "anchorId",
+    "anchorName",
+    "audienceListCapture",
+    "commentUserCapture",
+    "waterLevelSteps",
+    "id",
+    "timePoint",
+    "waterLevel",
+    "peak",
+    "liveRoomOverCountdownMinutes",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 21240,
+   "pagination": {
+    "possible": true,
+    "note": "该接口 Body 的 YApi 文档把 MyBatis-Plus Page 响应对象也写进了请求体（`asc`, `column`, `countId`, `maxLimit`, `optimizeCountSql`, `optimizeJoinOfCountSql`, `orders`, `records`, `searchCount`, `total`）。实际请求请只发送筛选条件 + 分页参数（`current`、`size`，或 `pageNum`/`pageSize` 视接口而定），不要发送响应侧字段。"
+   }
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_pauseproject",
+   "operation_id_generated": true,
+   "summary": "项目暂停",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/pauseProject",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "projectId",
+      "type": "string",
+      "required": false,
+      "desc": "项目ID"
+     },
+     {
+      "name": "liveRoomOverCountdownMinutes",
+      "type": "integer",
+      "required": false,
+      "desc": "倒计时时间"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 21436,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_pausetask",
+   "operation_id_generated": true,
+   "summary": "暂停任务",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/pauseTask",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "rapTaskId",
+      "type": "string",
+      "required": false,
+      "desc": "rpa执行id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 20410,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_querydevice",
+   "operation_id_generated": true,
+   "summary": "根据项目查询所绑定的设备",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/queryDevice",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "projectId",
+      "type": "string",
+      "required": false,
+      "desc": "项目ID"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "deviceId",
+    "deviceIp",
+    "deviceStatus",
+    "deviceStatusName",
+    "dispatchStatus",
+    "operationNum",
+    "eventTaskStatus",
+    "deviceTagList",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 20781,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_querydevicepool",
+   "operation_id_generated": true,
+   "summary": "查询设备",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/queryDevicePool",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "records",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "creatorId",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updatorId",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "deleted",
+      "type": "boolean",
+      "required": false,
+      "desc": "删除标识，0未删 1已删"
+     },
+     {
+      "name": "version",
+      "type": "integer",
+      "required": false,
+      "desc": "版本"
+     },
+     {
+      "name": "deptId",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "key",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": "主键ID"
+     },
+     {
+      "name": "projectId",
+      "type": "integer",
+      "required": false,
+      "desc": "项目ID"
+     },
+     {
+      "name": "deviceId",
+      "type": "string",
+      "required": false,
+      "desc": "设备ID"
+     },
+     {
+      "name": "deviceIp",
+      "type": "string",
+      "required": false,
+      "desc": "设备IP"
+     },
+     {
+      "name": "accountId",
+      "type": "string",
+      "required": false,
+      "desc": "账号ID"
+     },
+     {
+      "name": "accountName",
+      "type": "string",
+      "required": false,
+      "desc": "账号名称"
+     },
+     {
+      "name": "accountStatus",
+      "type": "string",
+      "required": false,
+      "desc": "账号状态 空闲 蓝色/活动中 绿色/队列中 黄色/禁用 灰色/异常状态 红色"
+     },
+     {
+      "name": "operationNum",
+      "type": "integer",
+      "required": false,
+      "desc": "运行次数"
+     },
+     {
+      "name": "total",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "size",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "current",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "orders",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "column",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "asc",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "searchCount",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeJoinOfCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "maxLimit",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "countId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "projectId",
+      "type": "string",
+      "required": false,
+      "desc": "项目id"
+     },
+     {
+      "name": "appId",
+      "type": "string",
+      "required": false,
+      "desc": "应用id"
+     },
+     {
+      "name": "condition",
+      "type": "string",
+      "required": false,
+      "desc": "条件(支持 设备编号,设备分组，设备ip，用户名称，用户昵称)"
+     },
+     {
+      "name": "deviceStatus",
+      "type": "string",
+      "required": false,
+      "desc": "设备状态"
+     },
+     {
+      "name": "eventTaskStatus",
+      "type": "string",
+      "required": false,
+      "desc": "任务状态"
+     },
+     {
+      "name": "tagId",
+      "type": "string []",
+      "required": false,
+      "desc": "标签id集合"
+     },
+     {
+      "name": "healthFilter",
+      "type": "boolean",
+      "required": false,
+      "desc": "健康过滤。默认关闭：开启后会 fork curl + adb 在 parallelStream 内做冷路径探测,重启后第一次查询因为 libc / ForkJoinPool / TLS 链路冷启动全 false → 0 条返回。默认 false 让列表页直接拿结果,需要时前端显式传 true。"
+     },
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备id集合"
+     },
+     {
+      "name": "eventProjectId",
+      "type": "string",
+      "required": false,
+      "desc": "事件关联项目id"
+     },
+     {
+      "name": "suiteIds",
+      "type": "string []",
+      "required": false,
+      "desc": "分组id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "projectId",
+    "deviceId",
+    "deviceIp",
+    "accountName",
+    "deviceStatus",
+    "deviceStatusName",
+    "operationNum",
+    "eventTaskStatus",
+    "deviceTagList",
+    "eventList",
+    "eventId",
+    "dispatchStatus",
+    "track",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 20502,
+   "pagination": {
+    "possible": true,
+    "note": "该接口 Body 的 YApi 文档把 MyBatis-Plus Page 响应对象也写进了请求体（`asc`, `column`, `countId`, `maxLimit`, `optimizeCountSql`, `optimizeJoinOfCountSql`, `orders`, `records`, `searchCount`, `total`）。实际请求请只发送筛选条件 + 分页参数（`current`、`size`，或 `pageNum`/`pageSize` 视接口而定），不要发送响应侧字段。"
+   }
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_querydevicepoolbyevent",
+   "operation_id_generated": true,
+   "summary": "根据事件查询设备待命池列表",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/queryDevicePoolByEvent",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "records",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "creatorId",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updatorId",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "deleted",
+      "type": "boolean",
+      "required": false,
+      "desc": "删除标识，0未删 1已删"
+     },
+     {
+      "name": "version",
+      "type": "integer",
+      "required": false,
+      "desc": "版本"
+     },
+     {
+      "name": "deptId",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "key",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": "主键ID"
+     },
+     {
+      "name": "projectId",
+      "type": "integer",
+      "required": false,
+      "desc": "项目ID"
+     },
+     {
+      "name": "deviceId",
+      "type": "string",
+      "required": false,
+      "desc": "设备ID"
+     },
+     {
+      "name": "deviceIp",
+      "type": "string",
+      "required": false,
+      "desc": "设备IP"
+     },
+     {
+      "name": "accountId",
+      "type": "string",
+      "required": false,
+      "desc": "账号ID"
+     },
+     {
+      "name": "accountName",
+      "type": "string",
+      "required": false,
+      "desc": "账号名称"
+     },
+     {
+      "name": "accountStatus",
+      "type": "string",
+      "required": false,
+      "desc": "账号状态 空闲 蓝色/活动中 绿色/队列中 黄色/禁用 灰色/异常状态 红色"
+     },
+     {
+      "name": "operationNum",
+      "type": "integer",
+      "required": false,
+      "desc": "运行次数"
+     },
+     {
+      "name": "total",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "size",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "current",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "orders",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "column",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "asc",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "searchCount",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeJoinOfCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "maxLimit",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "countId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "eventId",
+      "type": "string",
+      "required": false,
+      "desc": "事件id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "deviceId",
+    "deviceIp",
+    "accountId",
+    "accountName",
+    "deviceTagList",
+    "accountStatus",
+    "accountStatusName",
+    "operationNum",
+    "manuallyDisabled",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 20734,
+   "pagination": {
+    "possible": true,
+    "note": "该接口 Body 的 YApi 文档把 MyBatis-Plus Page 响应对象也写进了请求体（`asc`, `column`, `countId`, `maxLimit`, `optimizeCountSql`, `optimizeJoinOfCountSql`, `orders`, `records`, `searchCount`, `total`）。实际请求请只发送筛选条件 + 分页参数（`current`、`size`，或 `pageNum`/`pageSize` 视接口而定），不要发送响应侧字段。"
+   }
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_querydevicepoollabel",
+   "operation_id_generated": true,
+   "summary": "查询设备池标签",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/queryDevicePoolLabel",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "projectId",
+      "type": "string",
+      "required": false,
+      "desc": "项目ID"
+     },
+     {
+      "name": "liveRoomOverCountdownMinutes",
+      "type": "integer",
+      "required": false,
+      "desc": "倒计时时间"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "tagId",
+    "tagName",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 20566,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_queryeventlist",
+   "operation_id_generated": true,
+   "summary": "查询事件列表",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/queryEventList",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "projectId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "eventId",
+    "eventName",
+    "startTime",
+    "endTime",
+    "programId",
+    "track",
+    "eventMode",
+    "entryRhythm",
+    "exitRhythm",
+    "entryMode",
+    "operationFrequency",
+    "customOperationFrequency",
+    "simulationBehavior",
+    "executeCycle",
+    "customCycle",
+    "expansionMode",
+    "extractMode",
+    "totalDevices",
+    "actionFailureRate",
+    "blockStrategy",
+    "deviceExclusion",
+    "abnormalDeviceRecord",
+    "interactionMode",
+    "interactionIntimacy",
+    "topicControl",
+    "key",
+    "matchTag",
+    "topicDeviceType",
+    "topicDeviceAssign",
+    "topicPoolType",
+    "topicPool",
+    "executedDeviceCount",
+    "successCount",
+    "failureCount",
+    "devices",
+    "deviceId",
+    "deviceIp",
+    "accountName",
+    "eventStatus",
+    "eventStatusName",
+    "failReasonKey",
+    "failReasonName",
+    "taskData",
+    "key",
+    "topics",
+    "key",
+    "appId",
+    "taskCategory",
+    "programName",
+    "contentCount",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 20449,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_queryprojectconfig",
+   "operation_id_generated": true,
+   "summary": "查询项目配置字段",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/queryProjectConfig",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "projectId",
+      "type": "string",
+      "required": false,
+      "desc": "项目ID"
+     },
+     {
+      "name": "liveRoomOverCountdownMinutes",
+      "type": "integer",
+      "required": false,
+      "desc": "倒计时时间"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "projectType",
+    "fieldCode",
+    "fieldName",
+    "unit",
+    "showFlag",
+    "sortNum",
+    "color",
+    "isWater",
+    "extensionField",
+    "id",
+    "projectType",
+    "fieldCode",
+    "fieldName",
+    "unit",
+    "showFlag",
+    "sortNum",
+    "color",
+    "isWater",
+    "extensionField",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 20644,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_queryprojecttime",
+   "operation_id_generated": true,
+   "summary": "查询项目执行时间",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/queryProjectTime",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "projectId",
+      "type": "string",
+      "required": false,
+      "desc": "项目ID"
+     },
+     {
+      "name": "liveRoomOverCountdownMinutes",
+      "type": "integer",
+      "required": false,
+      "desc": "倒计时时间"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "projectId",
+    "projectName",
+    "startTime",
+    "endTime",
+    "projectStatus",
+    "executedHours",
+    "remainingMinutes",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 20605,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_refreshruncount",
+   "operation_id_generated": true,
+   "summary": "刷新运行次数",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/refreshRunCount",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "projectId",
+      "type": "string",
+      "required": false,
+      "desc": "项目id"
+     },
+     {
+      "name": "deviceId",
+      "type": "string",
+      "required": false,
+      "desc": "设备id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 20044,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_revokeevent",
+   "operation_id_generated": true,
+   "summary": "撤回最近一次操作",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/revokeEvent",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "projectId",
+      "type": "string",
+      "required": false,
+      "desc": "项目ID"
+     },
+     {
+      "name": "liveRoomOverCountdownMinutes",
+      "type": "integer",
+      "required": false,
+      "desc": "倒计时时间"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 20220,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_screendominance",
+   "operation_id_generated": true,
+   "summary": "霸屏操作",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/screenDominance",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "eventId",
+      "type": "string",
+      "required": false,
+      "desc": "事件ID"
+     },
+     {
+      "name": "topicId",
+      "type": "string",
+      "required": false,
+      "desc": "话题id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 21201,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_start",
+   "operation_id_generated": true,
+   "summary": "项目开始",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/start",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "projectId",
+      "type": "string",
+      "required": false,
+      "desc": "项目ID"
+     },
+     {
+      "name": "liveRoomOverCountdownMinutes",
+      "type": "integer",
+      "required": false,
+      "desc": "倒计时时间"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 21319,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_stop",
+   "operation_id_generated": true,
+   "summary": "事件暂停",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/stop",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "eventId",
+      "type": "string",
+      "required": false,
+      "desc": "事件ID"
+     },
+     {
+      "name": "topicId",
+      "type": "string",
+      "required": false,
+      "desc": "话题id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 19654,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_terminate",
+   "operation_id_generated": true,
+   "summary": "紧急终止",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/terminate",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "projectId",
+      "type": "string",
+      "required": false,
+      "desc": "项目ID"
+     },
+     {
+      "name": "liveRoomOverCountdownMinutes",
+      "type": "integer",
+      "required": false,
+      "desc": "倒计时时间"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 21017,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_unbind",
+   "operation_id_generated": true,
+   "summary": "事件和设备解绑",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/unbind",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "eventId",
+      "type": "string",
+      "required": false,
+      "desc": "事件id"
+     },
+     {
+      "name": "deviceId",
+      "type": "string",
+      "required": false,
+      "desc": "设备id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 19615,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_updateevent",
+   "operation_id_generated": true,
+   "summary": "修改事件",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/updateEvent",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "eventId",
+      "type": "string",
+      "required": false,
+      "desc": "事件ID"
+     },
+     {
+      "name": "eventName",
+      "type": "string",
+      "required": false,
+      "desc": "事件名称"
+     },
+     {
+      "name": "startTime",
+      "type": "string",
+      "required": false,
+      "desc": "开始 时间"
+     },
+     {
+      "name": "endTime",
+      "type": "string",
+      "required": false,
+      "desc": "结束 时间"
+     },
+     {
+      "name": "programId",
+      "type": "string",
+      "required": false,
+      "desc": "功能id"
+     },
+     {
+      "name": "executeCount",
+      "type": "integer",
+      "required": false,
+      "desc": "执行次数"
+     },
+     {
+      "name": "devices",
+      "type": "object []",
+      "required": false,
+      "desc": "设备列表（含 deviceId + deviceIp）"
+     },
+     {
+      "name": "deviceId",
+      "type": "string",
+      "required": false,
+      "desc": "设备ID"
+     },
+     {
+      "name": "deviceIp",
+      "type": "string",
+      "required": false,
+      "desc": "设备IP"
+     },
+     {
+      "name": "accountName",
+      "type": "string",
+      "required": false,
+      "desc": "账号名称"
+     },
+     {
+      "name": "taskData",
+      "type": "object",
+      "required": false,
+      "desc": "任务数据"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "track",
+      "type": "string",
+      "required": false,
+      "desc": "轨迹"
+     },
+     {
+      "name": "deviceAssignMode",
+      "type": "string",
+      "required": false,
+      "desc": "设备分配模式"
+     },
+     {
+      "name": "entryRhythm",
+      "type": "string",
+      "required": false,
+      "desc": "入口模式"
+     },
+     {
+      "name": "exitRhythm",
+      "type": "string",
+      "required": false,
+      "desc": "出口模式"
+     },
+     {
+      "name": "operationFrequency",
+      "type": "string",
+      "required": false,
+      "desc": "操作频率"
+     },
+     {
+      "name": "customOperationFrequency",
+      "type": "string",
+      "required": false,
+      "desc": "自定义操作频率"
+     },
+     {
+      "name": "actionFailureRate",
+      "type": "number",
+      "required": false,
+      "desc": "行为失败率"
+     },
+     {
+      "name": "blockStrategy",
+      "type": "string",
+      "required": false,
+      "desc": "屏蔽策略"
+     },
+     {
+      "name": "deviceExclusion",
+      "type": "boolean",
+      "required": false,
+      "desc": "设备排除"
+     },
+     {
+      "name": "abnormalDeviceRecord",
+      "type": "boolean",
+      "required": false,
+      "desc": "异常设备记录"
+     },
+     {
+      "name": "interactionMode",
+      "type": "string",
+      "required": false,
+      "desc": "互动模式"
+     },
+     {
+      "name": "interactionIntimacy",
+      "type": "integer",
+      "required": false,
+      "desc": "互动亲密度"
+     },
+     {
+      "name": "topicControl",
+      "type": "object",
+      "required": false,
+      "desc": "互动数量"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "matchTag",
+      "type": "string",
+      "required": false,
+      "desc": "匹配标签"
+     },
+     {
+      "name": "topicDeviceType",
+      "type": "string",
+      "required": false,
+      "desc": "匹配标签数量"
+     },
+     {
+      "name": "topicDeviceAssign",
+      "type": "string",
+      "required": false,
+      "desc": "设备分配"
+     },
+     {
+      "name": "expansionMode",
+      "type": "string",
+      "required": false,
+      "desc": "扩容模式"
+     },
+     {
+      "name": "topicPoolType",
+      "type": "string",
+      "required": false,
+      "desc": "扩容数量"
+     },
+     {
+      "name": "topicPool",
+      "type": "string []",
+      "required": false,
+      "desc": "扩容标签"
+     },
+     {
+      "name": "topics",
+      "type": "object []",
+      "required": false,
+      "desc": "话题配置列表（含权重、话术等）"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "executeCycle",
+      "type": "string",
+      "required": false,
+      "desc": "执行周期"
+     },
+     {
+      "name": "customCycle",
+      "type": "string",
+      "required": false,
+      "desc": "自定义执行周期"
+     },
+     {
+      "name": "eventStatus",
+      "type": "string",
+      "required": false,
+      "desc": "事件状态"
+     },
+     {
+      "name": "totalDevices",
+      "type": "integer",
+      "required": false,
+      "desc": "设备总数"
+     },
+     {
+      "name": "isScreenDominance",
+      "type": "boolean",
+      "required": false,
+      "desc": "是否霸屏"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 19818,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_dispatch_updatewaterlevel",
+   "operation_id_generated": true,
+   "summary": "修改水位",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dispatch/updateWaterLevel",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "projectId",
+      "type": "string",
+      "required": false,
+      "desc": "项目ID"
+     },
+     {
+      "name": "waterLevel",
+      "type": "integer",
+      "required": false,
+      "desc": "水位单值场景：{@link #waterLevelSteps} 为空时，本字段作为\"立即生效\"的单阶梯点水位写入 det 子表，{@code timePoint} 兜底为当前时间。"
+     },
+     {
+      "name": "slope",
+      "type": "integer",
+      "required": false,
+      "desc": "坡度"
+     },
+     {
+      "name": "programId",
+      "type": "string",
+      "required": false,
+      "desc": "功能id"
+     },
+     {
+      "name": "entryMode",
+      "type": "string",
+      "required": false,
+      "desc": "进入模式控制水位入场路径的来源策略：自然进入 / 直接进入 / 搜索进入 / 智能混合。缺省时由调用方回填为{@link EntryModeEnum#SMART_MIXED}。"
+     },
+     {
+      "name": "peak",
+      "type": "integer",
+      "required": false,
+      "desc": "水位峰值上限 —— 直播间当前人数达到该值后,水位入场自动停止触发。与{@link #slope} 同属项目级固定配置。{@code null} 表示不更新(保留主表现有值);显式传{@code 0} 表示清空峰值上限(回到无上限默认行为)。"
+     },
+     {
+      "name": "waterLevelSteps",
+      "type": "object []",
+      "required": false,
+      "desc": "多组水位子表数据 —— 可选。非空时作为阶梯点位列表写入 det 子表（timePoint + waterLevel），{@link #waterLevel} 字段被忽略。空时回退到{@link #waterLevel} 单值兼容路径。与{@link DispatchWaterLevelStepsUpdateDTO#getSteps()} 类型一致（共享{@link WaterLevelStep}），这样单值 DTO 与阶梯 DTO 可在同一调用方代码里通用。"
+     },
+     {
+      "name": "timePoint",
+      "type": "string",
+      "required": false,
+      "desc": "本阶梯点生效时间（绝对时间戳）。不能为空。"
+     },
+     {
+      "name": "waterLevel",
+      "type": "integer",
+      "required": false,
+      "desc": "本阶梯点水位阈值。不能为空，且必须 > 0。"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 19870,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_postspread_save",
+   "operation_id_generated": true,
+   "summary": "帖子推广参数保存",
+   "description": null,
+   "method": "POST",
+   "path": "/social/postSpread/save",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": "账号主键"
+     },
+     {
+      "name": "postTaskId",
+      "type": "integer",
+      "required": false,
+      "desc": "帖子发布任务 id"
+     },
+     {
+      "name": "postTaskName",
+      "type": "string",
+      "required": false,
+      "desc": "发布任务名称"
+     },
+     {
+      "name": "comment",
+      "type": "integer",
+      "required": false,
+      "desc": "评论生效原则"
+     },
+     {
+      "name": "commentCandidate",
+      "type": "string",
+      "required": false,
+      "desc": "评论候选语，多个"
+     },
+     {
+      "name": "thumbsUp",
+      "type": "integer",
+      "required": false,
+      "desc": "点赞生效原则"
+     },
+     {
+      "name": "transpond",
+      "type": "integer",
+      "required": false,
+      "desc": "转发生效原则"
+     },
+     {
+      "name": "share",
+      "type": "integer",
+      "required": false,
+      "desc": "分享生效原则"
+     },
+     {
+      "name": "shareFriends",
+      "type": "integer",
+      "required": false,
+      "desc": "分享好友原则"
+     },
+     {
+      "name": "collect",
+      "type": "integer",
+      "required": false,
+      "desc": "收藏生效原则"
+     },
+     {
+      "name": "addFriends",
+      "type": "integer",
+      "required": false,
+      "desc": "加好友生效原则"
+     },
+     {
+      "name": "follow",
+      "type": "integer",
+      "required": false,
+      "desc": "关注生效原则"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "postTaskVO",
+    "id",
+    "appName",
+    "jobName",
+    "headline",
+    "intervalDuration",
+    "createTime",
+    "status",
+    "startTime",
+    "endTime",
+    "accountId",
+    "appAccount",
+    "rpaTaskId",
+    "postSpreadVO",
+    "id",
+    "postTaskId",
+    "postTaskName",
+    "comment",
+    "commentCandidate",
+    "thumbsUp",
+    "transpond",
+    "share",
+    "shareFriends",
+    "collect",
+    "addFriends",
+    "follow",
+    "accountId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 8306,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_posttask_cancel",
+   "operation_id_generated": true,
+   "summary": "发帖任务取消",
+   "description": null,
+   "method": "POST",
+   "path": "/social/postTask/cancel",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "postTaskId",
+      "type": "string",
+      "required": false,
+      "desc": "发帖任务 id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 8180,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_posttask_deletebatch",
+   "operation_id_generated": true,
+   "summary": "发帖任务 - 删除",
+   "description": null,
+   "method": "POST",
+   "path": "/social/postTask/deleteBatch",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "postTaskIds",
+      "type": "integer []",
+      "required": false,
+      "desc": "发帖任务 id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 7932,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_posttask_list",
+   "operation_id_generated": true,
+   "summary": "发帖任务列表",
+   "description": null,
+   "method": "POST",
+   "path": "/social/postTask/list",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "records",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "creatorId",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updatorId",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "deleted",
+      "type": "boolean",
+      "required": false,
+      "desc": "删除标识，0未删 1已删"
+     },
+     {
+      "name": "version",
+      "type": "integer",
+      "required": false,
+      "desc": "版本"
+     },
+     {
+      "name": "deptId",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "key",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": "账号主键"
+     },
+     {
+      "name": "appName",
+      "type": "string",
+      "required": false,
+      "desc": "软件 app 名称"
+     },
+     {
+      "name": "jobName",
+      "type": "string",
+      "required": false,
+      "desc": "任务名称"
+     },
+     {
+      "name": "status",
+      "type": "string",
+      "required": false,
+      "desc": "发布状态"
+     },
+     {
+      "name": "headline",
+      "type": "string",
+      "required": false,
+      "desc": "文章标题"
+     },
+     {
+      "name": "startTime",
+      "type": "string",
+      "required": false,
+      "desc": "开始时间"
+     },
+     {
+      "name": "intervalDuration",
+      "type": "integer",
+      "required": false,
+      "desc": "间隔时长 单位 min"
+     },
+     {
+      "name": "fileUrl",
+      "type": "string",
+      "required": false,
+      "desc": "上传图片或者视频"
+     },
+     {
+      "name": "jobId",
+      "type": "string",
+      "required": false,
+      "desc": "RPA 任务 Id"
+     },
+     {
+      "name": "postLink",
+      "type": "string",
+      "required": false,
+      "desc": "帖子链接"
+     },
+     {
+      "name": "total",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "size",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "current",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "orders",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "column",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "asc",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "searchCount",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeJoinOfCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "maxLimit",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "countId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "keywords",
+      "type": "string",
+      "required": false,
+      "desc": "关键词搜索，支持任务名称或标题模糊查询"
+     },
+     {
+      "name": "appName",
+      "type": "string",
+      "required": false,
+      "desc": "软件 app 名称"
+     },
+     {
+      "name": "jobName",
+      "type": "string",
+      "required": false,
+      "desc": "任务名称"
+     },
+     {
+      "name": "status",
+      "type": "string []",
+      "required": false,
+      "desc": "发布状态，可多选"
+     },
+     {
+      "name": "headline",
+      "type": "string",
+      "required": false,
+      "desc": "文章标题"
+     },
+     {
+      "name": "startTime",
+      "type": "string",
+      "required": false,
+      "desc": "开始时间"
+     },
+     {
+      "name": "intervalDuration",
+      "type": "integer",
+      "required": false,
+      "desc": "间隔时长 单位 min"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 8137,
+   "pagination": {
+    "possible": true,
+    "note": "该接口 Body 的 YApi 文档把 MyBatis-Plus Page 响应对象也写进了请求体（`asc`, `column`, `countId`, `maxLimit`, `optimizeCountSql`, `optimizeJoinOfCountSql`, `orders`, `records`, `searchCount`, `total`）。实际请求请只发送筛选条件 + 分页参数（`current`、`size`，或 `pageNum`/`pageSize` 视接口而定），不要发送响应侧字段。"
+   }
+  },
+  {
+   "operation_id": "dispatch_post_social_posttask_posttaskid_det_list",
+   "operation_id_generated": true,
+   "summary": "发帖任务明细列表",
+   "description": null,
+   "method": "POST",
+   "path": "/social/postTask/{postTaskId}/det/list",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "records",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "creatorId",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updatorId",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "deleted",
+      "type": "boolean",
+      "required": false,
+      "desc": "删除标识，0未删 1已删"
+     },
+     {
+      "name": "version",
+      "type": "integer",
+      "required": false,
+      "desc": "版本"
+     },
+     {
+      "name": "deptId",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "key",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": "账号主键"
+     },
+     {
+      "name": "accountId",
+      "type": "integer",
+      "required": false,
+      "desc": "账号主键 id"
+     },
+     {
+      "name": "appAccount",
+      "type": "string",
+      "required": false,
+      "desc": "app内真实账号"
+     },
+     {
+      "name": "postTaskId",
+      "type": "integer",
+      "required": false,
+      "desc": "发布任务 id"
+     },
+     {
+      "name": "status",
+      "type": "string",
+      "required": false,
+      "desc": "发布状态"
+     },
+     {
+      "name": "startTime",
+      "type": "string",
+      "required": false,
+      "desc": "开始时间"
+     },
+     {
+      "name": "endTime",
+      "type": "string",
+      "required": false,
+      "desc": "结束时间"
+     },
+     {
+      "name": "rpaTaskId",
+      "type": "string",
+      "required": false,
+      "desc": "rpa 任务 id"
+     },
+     {
+      "name": "deviceIp",
+      "type": "string",
+      "required": false,
+      "desc": "设备 ip"
+     },
+     {
+      "name": "total",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "size",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "current",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "orders",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "column",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "asc",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "searchCount",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeJoinOfCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "maxLimit",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "countId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": "账号主键"
+     },
+     {
+      "name": "accountId",
+      "type": "integer",
+      "required": false,
+      "desc": "账号主键 id"
+     },
+     {
+      "name": "appAccount",
+      "type": "string",
+      "required": false,
+      "desc": "app内真实账号"
+     },
+     {
+      "name": "postTaskId",
+      "type": "string",
+      "required": false,
+      "desc": "发布任务 id"
+     },
+     {
+      "name": "status",
+      "type": "string",
+      "required": false,
+      "desc": "发布状态"
+     },
+     {
+      "name": "startTime",
+      "type": "string",
+      "required": false,
+      "desc": "开始时间"
+     },
+     {
+      "name": "endTime",
+      "type": "string",
+      "required": false,
+      "desc": "开始时间"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 8219,
+   "pagination": {
+    "possible": true,
+    "note": "该接口 Body 的 YApi 文档把 MyBatis-Plus Page 响应对象也写进了请求体（`asc`, `column`, `countId`, `maxLimit`, `optimizeCountSql`, `optimizeJoinOfCountSql`, `orders`, `records`, `searchCount`, `total`）。实际请求请只发送筛选条件 + 分页参数（`current`、`size`，或 `pageNum`/`pageSize` 视接口而定），不要发送响应侧字段。"
+   }
+  },
+  {
+   "operation_id": "dispatch_post_social_posttask_publish",
+   "operation_id_generated": true,
+   "summary": "发帖任务 - 发布",
+   "description": null,
+   "method": "POST",
+   "path": "/social/postTask/publish",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": "账号主键"
+     },
+     {
+      "name": "appName",
+      "type": "string",
+      "required": false,
+      "desc": "软件 app 名称"
+     },
+     {
+      "name": "jobName",
+      "type": "string",
+      "required": false,
+      "desc": "任务名称"
+     },
+     {
+      "name": "status",
+      "type": "string",
+      "required": false,
+      "desc": "发布状态"
+     },
+     {
+      "name": "headline",
+      "type": "string",
+      "required": false,
+      "desc": "文章标题"
+     },
+     {
+      "name": "startTime",
+      "type": "string",
+      "required": false,
+      "desc": "开始时间"
+     },
+     {
+      "name": "intervalDuration",
+      "type": "integer",
+      "required": false,
+      "desc": "间隔时长 单位 min"
+     },
+     {
+      "name": "fileUrl",
+      "type": "string",
+      "required": false,
+      "desc": "上传图片或者视频(多个用分号;隔开)"
+     },
+     {
+      "name": "accounts",
+      "type": "object []",
+      "required": false,
+      "desc": "账号列表"
+     },
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": "账号主键"
+     },
+     {
+      "name": "appAccount",
+      "type": "string",
+      "required": false,
+      "desc": "账号"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 7971,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_posttask_rerun",
+   "operation_id_generated": true,
+   "summary": "发帖任务 - 重新运行",
+   "description": null,
+   "method": "POST",
+   "path": "/social/postTask/rerun",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "postTaskId",
+      "type": "string",
+      "required": false,
+      "desc": "发帖任务 id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 8014,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_posttask_save",
+   "operation_id_generated": true,
+   "summary": "发帖任务保存",
+   "description": null,
+   "method": "POST",
+   "path": "/social/postTask/save",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": "账号主键"
+     },
+     {
+      "name": "appName",
+      "type": "string",
+      "required": false,
+      "desc": "软件 app 名称"
+     },
+     {
+      "name": "jobName",
+      "type": "string",
+      "required": false,
+      "desc": "任务名称"
+     },
+     {
+      "name": "status",
+      "type": "string",
+      "required": false,
+      "desc": "发布状态"
+     },
+     {
+      "name": "headline",
+      "type": "string",
+      "required": false,
+      "desc": "文章标题"
+     },
+     {
+      "name": "startTime",
+      "type": "string",
+      "required": false,
+      "desc": "开始时间"
+     },
+     {
+      "name": "intervalDuration",
+      "type": "integer",
+      "required": false,
+      "desc": "间隔时长 单位 min"
+     },
+     {
+      "name": "fileUrl",
+      "type": "string",
+      "required": false,
+      "desc": "上传图片或者视频(多个用分号;隔开)"
+     },
+     {
+      "name": "accounts",
+      "type": "object []",
+      "required": false,
+      "desc": "账号列表"
+     },
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": "账号主键"
+     },
+     {
+      "name": "appAccount",
+      "type": "string",
+      "required": false,
+      "desc": "账号"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 8094,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_posttask_upload_appname",
+   "operation_id_generated": true,
+   "summary": "发帖任务上传图片或者视频",
+   "description": null,
+   "method": "POST",
+   "path": "/social/postTask/upload/{appName}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "link",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 8053,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_script_flow_add",
+   "operation_id_generated": true,
+   "summary": "新增脚本流程",
+   "description": null,
+   "method": "POST",
+   "path": "/social/script/flow/add",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "name",
+      "type": "string",
+      "required": false,
+      "desc": "脚本名称"
+     },
+     {
+      "name": "scriptVersion",
+      "type": "string",
+      "required": false,
+      "desc": "脚本版本"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "脚本描述"
+     },
+     {
+      "name": "code",
+      "type": "string",
+      "required": false,
+      "desc": "脚本内容"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 23480,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_script_flow_edit",
+   "operation_id_generated": true,
+   "summary": "编辑脚本流程",
+   "description": null,
+   "method": "POST",
+   "path": "/social/script/flow/edit",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "脚本id"
+     },
+     {
+      "name": "code",
+      "type": "string",
+      "required": false,
+      "desc": "脚本内容"
+     },
+     {
+      "name": "scriptVersion",
+      "type": "string",
+      "required": false,
+      "desc": "脚本版本"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "脚本描述"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 23519,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_script_flow_page",
+   "operation_id_generated": true,
+   "summary": "分页脚本流程",
+   "description": null,
+   "method": "POST",
+   "path": "/social/script/flow/page",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "records",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "creatorId",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updatorId",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "deleted",
+      "type": "boolean",
+      "required": false,
+      "desc": "删除标识，0未删 1已删"
+     },
+     {
+      "name": "version",
+      "type": "integer",
+      "required": false,
+      "desc": "版本"
+     },
+     {
+      "name": "deptId",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "key",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": "主键ID"
+     },
+     {
+      "name": "name",
+      "type": "string",
+      "required": false,
+      "desc": "脚本名称"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "脚本描述"
+     },
+     {
+      "name": "type",
+      "type": "string",
+      "required": false,
+      "desc": "脚本类型"
+     },
+     {
+      "name": "code",
+      "type": "string",
+      "required": false,
+      "desc": "脚本内容"
+     },
+     {
+      "name": "scriptVersion",
+      "type": "string",
+      "required": false,
+      "desc": "脚本版本"
+     },
+     {
+      "name": "total",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "size",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "current",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "orders",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "column",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "asc",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "searchCount",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeJoinOfCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "maxLimit",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "countId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "name",
+      "type": "string",
+      "required": false,
+      "desc": "脚本名称"
+     },
+     {
+      "name": "startTime",
+      "type": "string",
+      "required": false,
+      "desc": "开始时间"
+     },
+     {
+      "name": "endTime",
+      "type": "string",
+      "required": false,
+      "desc": "结束时间"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "id",
+    "name",
+    "scriptVersion",
+    "createTime",
+    "updateTime",
+    "developer",
+    "remark",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 23402,
+   "pagination": {
+    "possible": true,
+    "note": "该接口 Body 的 YApi 文档把 MyBatis-Plus Page 响应对象也写进了请求体（`asc`, `column`, `countId`, `maxLimit`, `optimizeCountSql`, `optimizeJoinOfCountSql`, `orders`, `records`, `searchCount`, `total`）。实际请求请只发送筛选条件 + 分页参数（`current`、`size`，或 `pageNum`/`pageSize` 视接口而定），不要发送响应侧字段。"
+   }
+  },
+  {
+   "operation_id": "dispatch_post_social_script_flow_upload",
+   "operation_id_generated": true,
+   "summary": "上传脚本文件",
+   "description": null,
+   "method": "POST",
+   "path": "/social/script/flow/upload",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 23348,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_script_import",
+   "operation_id_generated": true,
+   "summary": "话术导入",
+   "description": null,
+   "method": "POST",
+   "path": "/social/script/import",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "content",
+    "fileUrl",
+    "scriptType",
+    "fileName",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 9005,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_system_component_list",
+   "operation_id_generated": true,
+   "summary": "获取系统组件列表",
+   "description": null,
+   "method": "POST",
+   "path": "/social/system-component/list",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "componentName",
+      "type": "string",
+      "required": false,
+      "desc": "组件名"
+     },
+     {
+      "name": "componentType",
+      "type": "string",
+      "required": false,
+      "desc": "组件类型"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "componentName",
+    "componentType",
+    "templateType",
+    "componentParam",
+    "key",
+    "assembles",
+    "key",
+    "componentColor",
+    "componentFileName",
+    "engineType",
+    "workflowId",
+    "workflowRequest",
+    "key",
+    "workflowResponse",
+    "key",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 2924,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_system_component_update",
+   "operation_id_generated": true,
+   "summary": "新增或编辑组件",
+   "description": null,
+   "method": "POST",
+   "path": "/social/system-component/update",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "componentId",
+      "type": "string",
+      "required": false,
+      "desc": "组件编号"
+     },
+     {
+      "name": "componentName",
+      "type": "string",
+      "required": "必须",
+      "desc": "组件名称"
+     },
+     {
+      "name": "componentType",
+      "type": "string",
+      "required": "必须",
+      "desc": "组件类型"
+     },
+     {
+      "name": "templateType",
+      "type": "string",
+      "required": false,
+      "desc": "组装类型（text:文本库、template:模板库）"
+     },
+     {
+      "name": "engineType",
+      "type": "string",
+      "required": "必须",
+      "desc": "引擎类型"
+     },
+     {
+      "name": "componentJson",
+      "type": "object",
+      "required": false,
+      "desc": "comfyuiJson文件信息"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "workflowId",
+      "type": "string",
+      "required": false,
+      "desc": "Workflow_ID"
+     },
+     {
+      "name": "componentParam",
+      "type": "object",
+      "required": false,
+      "desc": "组件参数"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "assembles",
+      "type": "object []",
+      "required": false,
+      "desc": "组件链接"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "componentColor",
+      "type": "string",
+      "required": false,
+      "desc": "组件相关颜色"
+     },
+     {
+      "name": "componentFileName",
+      "type": "string",
+      "required": false,
+      "desc": "组件英文名"
+     },
+     {
+      "name": "workflowRequest",
+      "type": "object []",
+      "required": false,
+      "desc": "工作流入参"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "workflowResponse",
+      "type": "object []",
+      "required": false,
+      "desc": "工作流响应"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 2852,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_task",
+   "operation_id_generated": true,
+   "summary": "保存任务并触发设备分发/执行。Plan B（修复 commit 72581136 引入的 401）：",
+   "description": null,
+   "method": "POST",
+   "path": "/social/task",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 10109,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_task_download",
+   "operation_id_generated": true,
+   "summary": "下载任务日志信息",
+   "description": null,
+   "method": "POST",
+   "path": "/social/task/download",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "taskIds",
+      "type": "string []",
+      "required": false,
+      "desc": "选中的任务id"
+     },
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "主键id"
+     },
+     {
+      "name": "appId",
+      "type": "string",
+      "required": false,
+      "desc": "应用ID"
+     },
+     {
+      "name": "title",
+      "type": "string",
+      "required": false,
+      "desc": "任务标题"
+     },
+     {
+      "name": "taskType",
+      "type": "string",
+      "required": false,
+      "desc": "任务类型"
+     },
+     {
+      "name": "groupId",
+      "type": "string",
+      "required": false,
+      "desc": "分组id"
+     },
+     {
+      "name": "accGroupId",
+      "type": "string",
+      "required": false,
+      "desc": "账号分组ID"
+     },
+     {
+      "name": "deviceIp",
+      "type": "string",
+      "required": false,
+      "desc": "设备ip"
+     },
+     {
+      "name": "taskStatus",
+      "type": "string",
+      "required": false,
+      "desc": "任务状态"
+     },
+     {
+      "name": "executionTimeRange",
+      "type": "string []",
+      "required": false,
+      "desc": "时间范围"
+     },
+     {
+      "name": "programId",
+      "type": "string",
+      "required": false,
+      "desc": "应用功能id"
+     },
+     {
+      "name": "accName",
+      "type": "string",
+      "required": false,
+      "desc": "账号"
+     },
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备id集合"
+     }
+    ]
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 10081,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_task_downloadtaskdocuments",
+   "operation_id_generated": true,
+   "summary": "汇总下载多个任务日志中的 taskDocuments 为单个 CSV 文件。",
+   "description": null,
+   "method": "POST",
+   "path": "/social/task/downloadTaskDocuments",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "taskIds",
+      "type": "string []",
+      "required": false,
+      "desc": "任务id集合"
+     }
+    ]
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 10526,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_task_log",
+   "operation_id_generated": true,
+   "summary": "根据id查询任务分页",
+   "description": null,
+   "method": "POST",
+   "path": "/social/task/log",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "records",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "creatorId",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updatorId",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "deleted",
+      "type": "boolean",
+      "required": false,
+      "desc": "删除标识，0未删 1已删"
+     },
+     {
+      "name": "version",
+      "type": "integer",
+      "required": false,
+      "desc": "版本"
+     },
+     {
+      "name": "deptId",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "key",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "主键id"
+     },
+     {
+      "name": "systemTaskId",
+      "type": "string",
+      "required": false,
+      "desc": "任务表id"
+     },
+     {
+      "name": "taskStatus",
+      "type": "string",
+      "required": false,
+      "desc": "任务状态"
+     },
+     {
+      "name": "deviceNum",
+      "type": "string",
+      "required": false,
+      "desc": "设备编号"
+     },
+     {
+      "name": "deviceAliases",
+      "type": "string",
+      "required": false,
+      "desc": "设备别名"
+     },
+     {
+      "name": "deviceIp",
+      "type": "string",
+      "required": false,
+      "desc": "设备ip"
+     },
+     {
+      "name": "deviceId",
+      "type": "string",
+      "required": false,
+      "desc": "设备id"
+     },
+     {
+      "name": "accId",
+      "type": "integer",
+      "required": false,
+      "desc": "账号编号"
+     },
+     {
+      "name": "suiteId",
+      "type": "integer",
+      "required": false,
+      "desc": "分组编号"
+     },
+     {
+      "name": "startTime",
+      "type": "string",
+      "required": false,
+      "desc": "开始时间"
+     },
+     {
+      "name": "endTime",
+      "type": "string",
+      "required": false,
+      "desc": "结束时间"
+     },
+     {
+      "name": "rpaJobId",
+      "type": "string",
+      "required": false,
+      "desc": "执行任务id"
+     },
+     {
+      "name": "rpaTaskId",
+      "type": "string",
+      "required": false,
+      "desc": "任务id"
+     },
+     {
+      "name": "postLink",
+      "type": "string",
+      "required": false,
+      "desc": "帖子链接"
+     },
+     {
+      "name": "taskPics",
+      "type": "object []",
+      "required": false,
+      "desc": "图片相关信息"
+     },
+     {
+      "name": "file",
+      "type": "string",
+      "required": false,
+      "desc": "文件信息"
+     },
+     {
+      "name": "fileName",
+      "type": "string",
+      "required": false,
+      "desc": "文件名字"
+     },
+     {
+      "name": "fileOriginalName",
+      "type": "string",
+      "required": false,
+      "desc": "minio文件名"
+     },
+     {
+      "name": "taskDocuments",
+      "type": "object []",
+      "required": false,
+      "desc": "文档相关信息"
+     },
+     {
+      "name": "file",
+      "type": "string",
+      "required": false,
+      "desc": "文件信息"
+     },
+     {
+      "name": "fileName",
+      "type": "string",
+      "required": false,
+      "desc": "文件名字"
+     },
+     {
+      "name": "fileOriginalName",
+      "type": "string",
+      "required": false,
+      "desc": "minio文件名"
+     },
+     {
+      "name": "aiLog",
+      "type": "string",
+      "required": false,
+      "desc": "ai日志相关信息"
+     },
+     {
+      "name": "aiPhotos",
+      "type": "object []",
+      "required": false,
+      "desc": "ai截图相关信息"
+     },
+     {
+      "name": "file",
+      "type": "string",
+      "required": false,
+      "desc": "文件信息"
+     },
+     {
+      "name": "fileName",
+      "type": "string",
+      "required": false,
+      "desc": "文件名字"
+     },
+     {
+      "name": "fileOriginalName",
+      "type": "string",
+      "required": false,
+      "desc": "minio文件名"
+     },
+     {
+      "name": "total",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "size",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "current",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "orders",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "column",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "asc",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "searchCount",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeJoinOfCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "maxLimit",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "countId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "systemTaskId",
+      "type": "string",
+      "required": false,
+      "desc": "任务执行id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "id",
+    "systemTaskId",
+    "deviceIp",
+    "deviceNum",
+    "deviceAliases",
+    "deviceId",
+    "deviceIdx",
+    "connIp",
+    "connPort",
+    "deviceStatus",
+    "startTime",
+    "endTime",
+    "taskStatus",
+    "rpaTaskId",
+    "accId",
+    "suiteId",
+    "account",
+    "suiteName",
+    "nickName",
+    "scheduleId",
+    "taskPics",
+    "file",
+    "fileName",
+    "fileOriginalName",
+    "taskDocuments",
+    "file",
+    "fileName",
+    "fileOriginalName",
+    "aiPhotos",
+    "file",
+    "fileName",
+    "fileOriginalName",
+    "aiLog",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 10653,
+   "pagination": {
+    "possible": true,
+    "note": "该接口 Body 的 YApi 文档把 MyBatis-Plus Page 响应对象也写进了请求体（`asc`, `column`, `countId`, `maxLimit`, `optimizeCountSql`, `optimizeJoinOfCountSql`, `orders`, `records`, `searchCount`, `total`）。实际请求请只发送筛选条件 + 分页参数（`current`、`size`，或 `pageNum`/`pageSize` 视接口而定），不要发送响应侧字段。"
+   }
+  },
+  {
+   "operation_id": "dispatch_post_social_task_log_cancel",
+   "operation_id_generated": true,
+   "summary": "取消任务",
+   "description": null,
+   "method": "POST",
+   "path": "/social/task/log/cancel",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "任务主键id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 10614,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_task_page",
+   "operation_id_generated": true,
+   "summary": "分页查询任务",
+   "description": null,
+   "method": "POST",
+   "path": "/social/task/page",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "records",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "creatorId",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updatorId",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "deleted",
+      "type": "boolean",
+      "required": false,
+      "desc": "删除标识，0未删 1已删"
+     },
+     {
+      "name": "version",
+      "type": "integer",
+      "required": false,
+      "desc": "版本"
+     },
+     {
+      "name": "deptId",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "key",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "主键id"
+     },
+     {
+      "name": "taskTag",
+      "type": "string",
+      "required": false,
+      "desc": "任务标签"
+     },
+     {
+      "name": "appName",
+      "type": "string",
+      "required": false,
+      "desc": "应用名称"
+     },
+     {
+      "name": "title",
+      "type": "string",
+      "required": false,
+      "desc": "任务标题"
+     },
+     {
+      "name": "taskData",
+      "type": "object",
+      "required": false,
+      "desc": "任务数据"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "appId",
+      "type": "string",
+      "required": false,
+      "desc": "应用id"
+     },
+     {
+      "name": "rpaJobId",
+      "type": "string",
+      "required": false,
+      "desc": "计划id"
+     },
+     {
+      "name": "taskStatus",
+      "type": "string",
+      "required": false,
+      "desc": "任务状态"
+     },
+     {
+      "name": "deviceNum",
+      "type": "string",
+      "required": false,
+      "desc": "设备编号"
+     },
+     {
+      "name": "executionTimeRange",
+      "type": "string",
+      "required": false,
+      "desc": "执行时间范围"
+     },
+     {
+      "name": "groupId",
+      "type": "string",
+      "required": false,
+      "desc": "分组id"
+     },
+     {
+      "name": "deviceId",
+      "type": "string",
+      "required": false,
+      "desc": "设备id"
+     },
+     {
+      "name": "deviceIp",
+      "type": "string",
+      "required": false,
+      "desc": "设备ip"
+     },
+     {
+      "name": "fileUrl",
+      "type": "string",
+      "required": false,
+      "desc": "文件地址"
+     },
+     {
+      "name": "cellGroup",
+      "type": "string",
+      "required": false,
+      "desc": "设备分组"
+     },
+     {
+      "name": "postingId",
+      "type": "string",
+      "required": false,
+      "desc": "上传话术id"
+     },
+     {
+      "name": "taskType",
+      "type": "string",
+      "required": false,
+      "desc": "任务类型"
+     },
+     {
+      "name": "taskTypeId",
+      "type": "integer",
+      "required": false,
+      "desc": "任务类型ID（对应 social_app_form.id）"
+     },
+     {
+      "name": "programCategory",
+      "type": "string",
+      "required": false,
+      "desc": "功能类别"
+     },
+     {
+      "name": "programId",
+      "type": "string",
+      "required": false,
+      "desc": "应用功能id"
+     },
+     {
+      "name": "raisingTime",
+      "type": "integer",
+      "required": false,
+      "desc": "养号时间长"
+     },
+     {
+      "name": "scheduleId",
+      "type": "integer",
+      "required": false,
+      "desc": "日程主键"
+     },
+     {
+      "name": "planId",
+      "type": "integer",
+      "required": false,
+      "desc": "计划编号"
+     },
+     {
+      "name": "projectId",
+      "type": "integer",
+      "required": false,
+      "desc": "项目编号"
+     },
+     {
+      "name": "projectName",
+      "type": "string",
+      "required": false,
+      "desc": "项目名称（调度中心发起的任务统一标记为\"调度中心\"，便于在任务管理页筛选）"
+     },
+     {
+      "name": "eventId",
+      "type": "integer",
+      "required": false,
+      "desc": "事件id"
+     },
+     {
+      "name": "total",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "size",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "current",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "orders",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "column",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "asc",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "searchCount",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeJoinOfCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "maxLimit",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "countId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "主键id"
+     },
+     {
+      "name": "appIds",
+      "type": "string []",
+      "required": false,
+      "desc": "应用ID"
+     },
+     {
+      "name": "title",
+      "type": "string",
+      "required": false,
+      "desc": "任务标题"
+     },
+     {
+      "name": "taskTypeIds",
+      "type": "integer []",
+      "required": false,
+      "desc": "任务类型"
+     },
+     {
+      "name": "groupId",
+      "type": "string",
+      "required": false,
+      "desc": "分组id"
+     },
+     {
+      "name": "accGroupId",
+      "type": "string",
+      "required": false,
+      "desc": "账号分组ID"
+     },
+     {
+      "name": "deviceIp",
+      "type": "string",
+      "required": false,
+      "desc": "设备ip"
+     },
+     {
+      "name": "taskStatus",
+      "type": "string",
+      "required": false,
+      "desc": "任务状态"
+     },
+     {
+      "name": "startTime",
+      "type": "string",
+      "required": false,
+      "desc": "开始时间"
+     },
+     {
+      "name": "endTime",
+      "type": "string",
+      "required": false,
+      "desc": "结束时间"
+     },
+     {
+      "name": "executionTimeRange",
+      "type": "string []",
+      "required": false,
+      "desc": "时间范围"
+     },
+     {
+      "name": "programId",
+      "type": "string",
+      "required": false,
+      "desc": "应用功能id"
+     },
+     {
+      "name": "accName",
+      "type": "string",
+      "required": false,
+      "desc": "账号"
+     },
+     {
+      "name": "userName",
+      "type": "string",
+      "required": false,
+      "desc": "用户名"
+     },
+     {
+      "name": "projectAffiliation",
+      "type": "integer",
+      "required": false,
+      "desc": "所属项目（用于筛选任务归属）： {@code null} —— 忽略该条件 {@code 0} —— 日常任务（{@code social_system_task.project_id} 为空） 非零 —— 调度中心项目 id（按{@code project_id = ?} 精确匹配）"
+     },
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备id"
+     },
+     {
+      "name": "taskIds",
+      "type": "string []",
+      "required": false,
+      "desc": "任务 id 多选。走{@code id IN (...)} 过滤;与其它筛选项{@code AND} 组合。三种语义: {@code null} / 空集合 —— 忽略该条件; 含至少 1 个非空字符串 —— IN 过滤,空串/纯空白串静默丢弃; 原始输入非空但全部是空串/纯空白 —— 视为\"用户明确指定过滤但无匹配\",返空分页 (与矩阵总览{@code chipNodeIds} 修复对称,避免\"条件不成立却返回全量\")。"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 10313,
+   "pagination": {
+    "possible": true,
+    "note": "该接口 Body 的 YApi 文档把 MyBatis-Plus Page 响应对象也写进了请求体（`asc`, `column`, `countId`, `maxLimit`, `optimizeCountSql`, `optimizeJoinOfCountSql`, `orders`, `records`, `searchCount`, `total`）。实际请求请只发送筛选条件 + 分页参数（`current`、`size`，或 `pageNum`/`pageSize` 视接口而定），不要发送响应侧字段。"
+   }
+  },
+  {
+   "operation_id": "dispatch_post_social_task_perform",
+   "operation_id_generated": true,
+   "summary": "执行任务",
+   "description": null,
+   "method": "POST",
+   "path": "/social/task/perform",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "任务id"
+     },
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备id集合"
+     },
+     {
+      "name": "child",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "deviceIp",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "deviceNum",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "endTime",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "startTime",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "taskStatus",
+      "type": "string",
+      "required": false,
+      "desc": null
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 10380,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_post_social_task_plan_page",
+   "operation_id_generated": true,
+   "summary": "计划任务查询应用和表单配置",
+   "description": null,
+   "method": "POST",
+   "path": "/social/task/plan/page",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "records",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "creatorId",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updatorId",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "deleted",
+      "type": "boolean",
+      "required": false,
+      "desc": "删除标识，0未删 1已删"
+     },
+     {
+      "name": "version",
+      "type": "integer",
+      "required": false,
+      "desc": "版本"
+     },
+     {
+      "name": "deptId",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "key",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "主键id"
+     },
+     {
+      "name": "taskTag",
+      "type": "string",
+      "required": false,
+      "desc": "任务标签"
+     },
+     {
+      "name": "appName",
+      "type": "string",
+      "required": false,
+      "desc": "应用名称"
+     },
+     {
+      "name": "title",
+      "type": "string",
+      "required": false,
+      "desc": "任务标题"
+     },
+     {
+      "name": "taskData",
+      "type": "object",
+      "required": false,
+      "desc": "任务数据"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "appId",
+      "type": "string",
+      "required": false,
+      "desc": "应用id"
+     },
+     {
+      "name": "rpaJobId",
+      "type": "string",
+      "required": false,
+      "desc": "计划id"
+     },
+     {
+      "name": "taskStatus",
+      "type": "string",
+      "required": false,
+      "desc": "任务状态"
+     },
+     {
+      "name": "deviceNum",
+      "type": "string",
+      "required": false,
+      "desc": "设备编号"
+     },
+     {
+      "name": "executionTimeRange",
+      "type": "string",
+      "required": false,
+      "desc": "执行时间范围"
+     },
+     {
+      "name": "groupId",
+      "type": "string",
+      "required": false,
+      "desc": "分组id"
+     },
+     {
+      "name": "deviceId",
+      "type": "string",
+      "required": false,
+      "desc": "设备id"
+     },
+     {
+      "name": "deviceIp",
+      "type": "string",
+      "required": false,
+      "desc": "设备ip"
+     },
+     {
+      "name": "fileUrl",
+      "type": "string",
+      "required": false,
+      "desc": "文件地址"
+     },
+     {
+      "name": "cellGroup",
+      "type": "string",
+      "required": false,
+      "desc": "设备分组"
+     },
+     {
+      "name": "postingId",
+      "type": "string",
+      "required": false,
+      "desc": "上传话术id"
+     },
+     {
+      "name": "taskType",
+      "type": "string",
+      "required": false,
+      "desc": "任务类型"
+     },
+     {
+      "name": "taskTypeId",
+      "type": "integer",
+      "required": false,
+      "desc": "任务类型ID（对应 social_app_form.id）"
+     },
+     {
+      "name": "programCategory",
+      "type": "string",
+      "required": false,
+      "desc": "功能类别"
+     },
+     {
+      "name": "programId",
+      "type": "string",
+      "required": false,
+      "desc": "应用功能id"
+     },
+     {
+      "name": "raisingTime",
+      "type": "integer",
+      "required": false,
+      "desc": "养号时间长"
+     },
+     {
+      "name": "scheduleId",
+      "type": "integer",
+      "required": false,
+      "desc": "日程主键"
+     },
+     {
+      "name": "planId",
+      "type": "integer",
+      "required": false,
+      "desc": "计划编号"
+     },
+     {
+      "name": "projectId",
+      "type": "integer",
+      "required": false,
+      "desc": "项目编号"
+     },
+     {
+      "name": "projectName",
+      "type": "string",
+      "required": false,
+      "desc": "项目名称（调度中心发起的任务统一标记为\"调度中心\"，便于在任务管理页筛选）"
+     },
+     {
+      "name": "eventId",
+      "type": "integer",
+      "required": false,
+      "desc": "事件id"
+     },
+     {
+      "name": "total",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "size",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "current",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "orders",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "column",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "asc",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "searchCount",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeJoinOfCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "maxLimit",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "countId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "title",
+      "type": "string",
+      "required": false,
+      "desc": "任务名称"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 10558,
+   "pagination": {
+    "possible": true,
+    "note": "该接口 Body 的 YApi 文档把 MyBatis-Plus Page 响应对象也写进了请求体（`asc`, `column`, `countId`, `maxLimit`, `optimizeCountSql`, `optimizeJoinOfCountSql`, `orders`, `records`, `searchCount`, `total`）。实际请求请只发送筛选条件 + 分页参数（`current`、`size`，或 `pageNum`/`pageSize` 视接口而定），不要发送响应侧字段。"
+   }
+  },
+  {
+   "operation_id": "dispatch_post_social_template_executionrecord_page",
+   "operation_id_generated": true,
+   "summary": "模板执行记录分页查询",
+   "description": null,
+   "method": "POST",
+   "path": "/social/template/executionRecord/page",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "records",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "creatorId",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updatorId",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "deleted",
+      "type": "boolean",
+      "required": false,
+      "desc": "删除标识，0未删 1已删"
+     },
+     {
+      "name": "version",
+      "type": "integer",
+      "required": false,
+      "desc": "版本"
+     },
+     {
+      "name": "deptId",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "key",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": "主键id"
+     },
+     {
+      "name": "templateLibraryId",
+      "type": "string",
+      "required": false,
+      "desc": "模板id"
+     },
+     {
+      "name": "startTime",
+      "type": "string",
+      "required": false,
+      "desc": "开始时间"
+     },
+     {
+      "name": "endTime",
+      "type": "string",
+      "required": false,
+      "desc": "结束时间"
+     },
+     {
+      "name": "executionStatus",
+      "type": "string",
+      "required": false,
+      "desc": "执行状态"
+     },
+     {
+      "name": "failureReason",
+      "type": "string",
+      "required": false,
+      "desc": "失败原因"
+     },
+     {
+      "name": "execSource",
+      "type": "string",
+      "required": false,
+      "desc": "触发来源"
+     },
+     {
+      "name": "execId",
+      "type": "string",
+      "required": false,
+      "desc": "触发编号（主键）"
+     },
+     {
+      "name": "engineType",
+      "type": "string",
+      "required": false,
+      "desc": "引擎类型"
+     },
+     {
+      "name": "workflowId",
+      "type": "string",
+      "required": false,
+      "desc": "Workflow_ID"
+     },
+     {
+      "name": "workflowRequest",
+      "type": "object []",
+      "required": false,
+      "desc": "工作流入参"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "workflowParam",
+      "type": "object []",
+      "required": false,
+      "desc": "请求入参"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "actualTime",
+      "type": "string",
+      "required": false,
+      "desc": "实际执行时间"
+     },
+     {
+      "name": "execDetail",
+      "type": "object []",
+      "required": false,
+      "desc": "执行结果"
+     },
+     {
+      "name": "bp",
+      "type": "string",
+      "required": false,
+      "desc": "批次号"
+     },
+     {
+      "name": "assembles",
+      "type": "object []",
+      "required": false,
+      "desc": "组件链接"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "total",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "size",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "current",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "orders",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "column",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "asc",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "searchCount",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeJoinOfCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "maxLimit",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "countId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "templateLibraryId",
+      "type": "string",
+      "required": "必须",
+      "desc": "模板库id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 3329,
+   "pagination": {
+    "possible": true,
+    "note": "该接口 Body 的 YApi 文档把 MyBatis-Plus Page 响应对象也写进了请求体（`asc`, `column`, `countId`, `maxLimit`, `optimizeCountSql`, `optimizeJoinOfCountSql`, `orders`, `records`, `searchCount`, `total`）。实际请求请只发送筛选条件 + 分页参数（`current`、`size`，或 `pageNum`/`pageSize` 视接口而定），不要发送响应侧字段。"
+   }
+  },
+  {
+   "operation_id": "dispatch_put_social_dispatch_edit",
+   "operation_id_generated": true,
+   "summary": "编辑项目",
+   "description": null,
+   "method": "PUT",
+   "path": "/social/dispatch/edit",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "projectId",
+      "type": "string",
+      "required": false,
+      "desc": "项目ID"
+     },
+     {
+      "name": "projectName",
+      "type": "string",
+      "required": false,
+      "desc": "项目名称"
+     },
+     {
+      "name": "business",
+      "type": "string",
+      "required": false,
+      "desc": "业务场景 直播间运维/社媒内容分发/聊天群聊维护"
+     },
+     {
+      "name": "appId",
+      "type": "string",
+      "required": false,
+      "desc": "应用ID"
+     },
+     {
+      "name": "appName",
+      "type": "string",
+      "required": false,
+      "desc": "平台名称"
+     },
+     {
+      "name": "targetUrl",
+      "type": "string",
+      "required": false,
+      "desc": "目标URL"
+     },
+     {
+      "name": "startTime",
+      "type": "string",
+      "required": false,
+      "desc": "开始时间"
+     },
+     {
+      "name": "endTime",
+      "type": "string",
+      "required": false,
+      "desc": "结束时间"
+     },
+     {
+      "name": "priority",
+      "type": "string",
+      "required": false,
+      "desc": "优先级 高/中/低"
+     },
+     {
+      "name": "projectStatus",
+      "type": "string",
+      "required": false,
+      "desc": "项目状态 配置中/执行中/已结束"
+     },
+     {
+      "name": "deviceScope",
+      "type": "integer",
+      "required": false,
+      "desc": "设备范围(设备数量)"
+     },
+     {
+      "name": "minStartBase",
+      "type": "integer",
+      "required": false,
+      "desc": "最小启动基数"
+     },
+     {
+      "name": "maxConcurrent",
+      "type": "integer",
+      "required": false,
+      "desc": "最大并发上线"
+     },
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备ID集合（新增设备）"
+     },
+     {
+      "name": "removeDeviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "待移除的设备ID集合"
+     },
+     {
+      "name": "anchorId",
+      "type": "string",
+      "required": false,
+      "desc": "主播号"
+     },
+     {
+      "name": "anchorName",
+      "type": "string",
+      "required": false,
+      "desc": "主播名称（传给 RPA 脚本作为变量）"
+     },
+     {
+      "name": "audienceListCapture",
+      "type": "boolean",
+      "required": false,
+      "desc": "直播间观众清单抓取开关：开启=true / 关闭=false。入参{@code null} 时沿用库中现值（与{@code ProjectEditDTO} 其它字段一致，由{@code BeanUtil.toBean} 跳过{@code null} 字段，仅在显式传 true/false 时覆盖）。"
+     },
+     {
+      "name": "commentUserCapture",
+      "type": "boolean",
+      "required": false,
+      "desc": "直播间评论用户抓取开关：开启=true / 关闭=false。"
+     },
+     {
+      "name": "liveRoomOverCountdownMinutes",
+      "type": "integer",
+      "required": false,
+      "desc": "直播间结束倒计时分钟数，默认 15。可空 —— null 时不更新（沿用库中现值）。"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 21056,
+   "pagination": null
+  },
+  {
+   "operation_id": "dispatch_put_social_task_update",
+   "operation_id_generated": true,
+   "summary": "更新任务",
+   "description": null,
+   "method": "PUT",
+   "path": "/social/task/update",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 10458,
+   "pagination": null
+  }
+ ]
+}

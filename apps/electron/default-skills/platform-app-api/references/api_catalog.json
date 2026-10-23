@@ -1,0 +1,3968 @@
+{
+ "_meta": {
+  "package": "platform-app-api",
+  "domain_label": "应用与AI插件管理",
+  "source_docs": [
+   "callfans-standard.md",
+   "callfans-platform.md"
+  ],
+  "operation_count": 51,
+  "login": {
+   "operation_id": "auth_post_login",
+   "method": "POST",
+   "path": "/auth/login",
+   "params": {
+    "username": "string",
+    "password": "string",
+    "code": "string(留空,验证码已关闭)",
+    "uuid": "string(留空)"
+   },
+   "token_field": "token",
+   "auth_header": "Authorization: Bearer <token>",
+   "note": "验证码已关闭：code/uuid 传空。401 时执行器自动重新登录并重试一次。"
+  },
+  "route_prefixes": {
+   "/social": 3,
+   "/platform": 14,
+   "?": 34
+  },
+  "route_prefix_note": "多服务网关部署：每个 operation 自带 route_prefix（来源文档对应服务前缀）。执行器按 operation 的 route_prefix 路由；单一服务包可用 API_PATH_PREFIX 兜底。"
+ },
+ "operations": [
+  {
+   "operation_id": "app_delete_ai_plugin_group_remove",
+   "operation_id_generated": true,
+   "summary": "移除插件分组",
+   "description": null,
+   "method": "DELETE",
+   "path": "/ai-plugin-group/remove",
+   "route_prefix": "/social",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "groupId",
+      "type": "string",
+      "required": false,
+      "desc": "分组id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 11598,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_delete_application_management",
+   "operation_id_generated": true,
+   "summary": "删除应用",
+   "description": null,
+   "method": "DELETE",
+   "path": "/application/management",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "checkIds",
+      "type": "string []",
+      "required": false,
+      "desc": "勾选的id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 2346,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_delete_social_ai_plugin_delete",
+   "operation_id_generated": true,
+   "summary": "移除插件",
+   "description": null,
+   "method": "DELETE",
+   "path": "/social/ai-plugin/delete",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "插件id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 23043,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_delete_social_ai_plugin_group_remove",
+   "operation_id_generated": true,
+   "summary": "移除插件分组",
+   "description": null,
+   "method": "DELETE",
+   "path": "/social/ai-plugin-group/remove",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "groupId",
+      "type": "string",
+      "required": false,
+      "desc": "分组id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 11637,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_delete_social_application_management",
+   "operation_id_generated": true,
+   "summary": "删除应用管理",
+   "description": null,
+   "method": "DELETE",
+   "path": "/social/application/management",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "checkIds",
+      "type": "integer []",
+      "required": false,
+      "desc": "勾选的id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 1131,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_get_application_management_id",
+   "operation_id_generated": true,
+   "summary": "根据id查询应用",
+   "description": null,
+   "method": "GET",
+   "path": "/application/management/{id}",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "applicationName",
+    "programType",
+    "id",
+    "logoPath",
+    "programName",
+    "scriptId",
+    "form",
+    "key",
+    "extendedColumn",
+    "key",
+    "systemConfig",
+    "applicationStatus",
+    "logoPath",
+    "programName",
+    "packageName",
+    "activityName",
+    "orderNum",
+    "appArea"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 2454,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_get_application_management_script",
+   "operation_id_generated": true,
+   "summary": "获取脚本列表",
+   "description": null,
+   "method": "GET",
+   "path": "/application/management/script",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "name"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 2561,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_get_dynamic_form_id",
+   "operation_id_generated": true,
+   "summary": "根据id查询动态表单",
+   "description": null,
+   "method": "GET",
+   "path": "/dynamic/form/{id}",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "programName",
+    "programCategory",
+    "schedulingEngine",
+    "logoPath",
+    "applicationManagementId",
+    "form",
+    "key",
+    "scriptId",
+    "extendedColumn",
+    "key",
+    "formTemplate",
+    "key"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 2728,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_get_social_ai_plugin_list",
+   "operation_id_generated": true,
+   "summary": "获取插件列表",
+   "description": null,
+   "method": "GET",
+   "path": "/social/ai-plugin/list",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "categories",
+    "aiGroupId",
+    "aiGroupName",
+    "groupIcon",
+    "groupIconUrl",
+    "ais",
+    "id",
+    "title",
+    "subtitle",
+    "link",
+    "iconUrl",
+    "aiGroupName",
+    "aiState",
+    "aiStateName",
+    "aiGroupId",
+    "groupIconUrl",
+    "unCategories",
+    "id",
+    "title",
+    "subtitle",
+    "link",
+    "iconUrl",
+    "aiState",
+    "aiStateName",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 23082,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_get_social_ai_plugin_list_offshelve",
+   "operation_id_generated": true,
+   "summary": "查询待上架的插件列表",
+   "description": null,
+   "method": "GET",
+   "path": "/social/ai-plugin/list/offshelve",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "title",
+    "subtitle",
+    "link",
+    "iconUrl",
+    "aiGroupId",
+    "aiGroupName",
+    "aiState",
+    "aiStateName",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 23018,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_get_social_ai_plugin_popular",
+   "operation_id_generated": true,
+   "summary": "获取热门插件列表",
+   "description": null,
+   "method": "GET",
+   "path": "/social/ai-plugin/popular",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "title",
+    "subtitle",
+    "link",
+    "iconUrl",
+    "aiGroupId",
+    "aiGroupName",
+    "aiState",
+    "aiStateName",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 23108,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_get_social_application_management_id",
+   "operation_id_generated": true,
+   "summary": "根据id查询应用管理",
+   "description": null,
+   "method": "GET",
+   "path": "/social/application/management/{id}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "creatorId",
+    "createTime",
+    "updatorId",
+    "updateTime",
+    "deleted",
+    "version",
+    "deptId",
+    "params",
+    "key",
+    "id",
+    "applicationName",
+    "programType",
+    "creatorId",
+    "createTime",
+    "updatorId",
+    "updateTime",
+    "deleted",
+    "version",
+    "deptId",
+    "params",
+    "key",
+    "id",
+    "logoPath",
+    "programName",
+    "scriptId",
+    "form",
+    "key",
+    "extendedColumn",
+    "key",
+    "systemConfig",
+    "applicationStatus",
+    "logoPath",
+    "programName",
+    "packageName",
+    "activityName",
+    "orderNum",
+    "appArea",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 1308,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_get_social_application_management_script",
+   "operation_id_generated": true,
+   "summary": "获取脚本列表",
+   "description": null,
+   "method": "GET",
+   "path": "/social/application/management/script",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "name",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 1451,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_get_social_application_management_user_menu",
+   "operation_id_generated": true,
+   "summary": "查询用户分配菜单的应用（分页）",
+   "description": null,
+   "method": "GET",
+   "path": "/social/application/management/user/menu",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "id",
+    "applicationName",
+    "logoPath",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 1278,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_get_social_dynamic_form_id",
+   "operation_id_generated": true,
+   "summary": "根据id查询动态表单",
+   "description": null,
+   "method": "GET",
+   "path": "/social/dynamic/form/{id}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "creatorId",
+    "createTime",
+    "updatorId",
+    "updateTime",
+    "deleted",
+    "version",
+    "deptId",
+    "params",
+    "key",
+    "id",
+    "programName",
+    "programCategory",
+    "schedulingEngine",
+    "logoPath",
+    "applicationManagementId",
+    "form",
+    "key",
+    "scriptId",
+    "extendedColumn",
+    "key",
+    "formTemplate",
+    "key",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 1060,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_get_social_oss_download",
+   "operation_id_generated": true,
+   "summary": "下载",
+   "description": null,
+   "method": "GET",
+   "path": "/social/oss/download",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 8925,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_get_social_oss_download_filename",
+   "operation_id_generated": true,
+   "summary": "下载",
+   "description": null,
+   "method": "GET",
+   "path": "/social/oss/download/{fileName}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 8907,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_get_social_oss_view_imgname",
+   "operation_id_generated": true,
+   "summary": "预览图片",
+   "description": null,
+   "method": "GET",
+   "path": "/social/oss/view/{imgName}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 8985,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_get_social_upload_records_download_id",
+   "operation_id_generated": true,
+   "summary": "文件下载（下载上传失败的错误文件）",
+   "description": null,
+   "method": "GET",
+   "path": "/social/upload-records/download/{id}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 9110,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_get_social_upload_records_download_temp",
+   "operation_id_generated": true,
+   "summary": "下载账号导入模板",
+   "description": null,
+   "method": "GET",
+   "path": "/social/upload-records/download/temp",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 9097,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_get_social_upload_records_page",
+   "operation_id_generated": true,
+   "summary": "上传记录分页查询",
+   "description": null,
+   "method": "GET",
+   "path": "/social/upload-records/page",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 9044,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_post_ai_plugin_group_list",
+   "operation_id_generated": true,
+   "summary": "查询插件分组列表",
+   "description": null,
+   "method": "POST",
+   "path": "/ai-plugin-group/list",
+   "route_prefix": "/social",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "groupName",
+      "type": "string",
+      "required": false,
+      "desc": "分组名称"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "groupId",
+    "groupName",
+    "groupIcon",
+    "groupIconUrl",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 11520,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_post_application_management",
+   "operation_id_generated": true,
+   "summary": "更新应用",
+   "description": null,
+   "method": "POST",
+   "path": "/application/management",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "应用id"
+     },
+     {
+      "name": "applicationName",
+      "type": "string",
+      "required": false,
+      "desc": "应用名称"
+     },
+     {
+      "name": "applicationStatus",
+      "type": "integer",
+      "required": false,
+      "desc": "状态 0启用，1禁用"
+     },
+     {
+      "name": "logoPath",
+      "type": "string",
+      "required": false,
+      "desc": "logo路径"
+     },
+     {
+      "name": "programName",
+      "type": "string",
+      "required": false,
+      "desc": "应用功能"
+     },
+     {
+      "name": "scriptId",
+      "type": "string",
+      "required": false,
+      "desc": "脚本id"
+     },
+     {
+      "name": "programIds",
+      "type": "string []",
+      "required": false,
+      "desc": "应用功能id集合"
+     },
+     {
+      "name": "programType",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "主键id"
+     },
+     {
+      "name": "logoPath",
+      "type": "string",
+      "required": false,
+      "desc": "logo路径"
+     },
+     {
+      "name": "programName",
+      "type": "string",
+      "required": false,
+      "desc": "功能名称"
+     },
+     {
+      "name": "scriptId",
+      "type": "string",
+      "required": false,
+      "desc": "脚本id"
+     },
+     {
+      "name": "form",
+      "type": "object []",
+      "required": false,
+      "desc": "表单"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "extendedColumn",
+      "type": "object []",
+      "required": false,
+      "desc": "扩展字段"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "systemConfig",
+      "type": "integer",
+      "required": false,
+      "desc": "系统配置"
+     },
+     {
+      "name": "packageName",
+      "type": "string",
+      "required": false,
+      "desc": "应用包名"
+     },
+     {
+      "name": "activityName",
+      "type": "string",
+      "required": false,
+      "desc": "应用类名"
+     },
+     {
+      "name": "orderNum",
+      "type": "integer",
+      "required": false,
+      "desc": "排序"
+     },
+     {
+      "name": "appArea",
+      "type": "string",
+      "required": false,
+      "desc": "应用地区"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 2385,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_post_application_management_duplicate",
+   "operation_id_generated": true,
+   "summary": "获取应用类型去重",
+   "description": null,
+   "method": "POST",
+   "path": "/application/management/duplicate",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "应用管理id"
+     },
+     {
+      "name": "applicationStatus",
+      "type": "integer",
+      "required": false,
+      "desc": "应用状态"
+     },
+     {
+      "name": "systemConfig",
+      "type": "integer",
+      "required": false,
+      "desc": "是否展示任务"
+     },
+     {
+      "name": "programCategory",
+      "type": "string",
+      "required": false,
+      "desc": "任务类型"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "applicationType",
+    "programCategory",
+    "systemConfig",
+    "logoPath"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 2522,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_post_application_management_id_status",
+   "operation_id_generated": true,
+   "summary": "更新应用状态",
+   "description": null,
+   "method": "POST",
+   "path": "/application/management/{id}/{status}",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 2424,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_post_application_management_page",
+   "operation_id_generated": true,
+   "summary": "分页查询应用",
+   "description": null,
+   "method": "POST",
+   "path": "/application/management/page",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "records",
+      "type": "object []",
+      "required": false,
+      "desc": "查询数据列表"
+     },
+     {
+      "name": "total",
+      "type": "integer",
+      "required": false,
+      "desc": "总数"
+     },
+     {
+      "name": "size",
+      "type": "integer",
+      "required": false,
+      "desc": "每页显示条数，默认 10"
+     },
+     {
+      "name": "current",
+      "type": "integer",
+      "required": false,
+      "desc": "当前页"
+     },
+     {
+      "name": "orders",
+      "type": "object []",
+      "required": false,
+      "desc": "排序字段信息"
+     },
+     {
+      "name": "column",
+      "type": "string",
+      "required": false,
+      "desc": "需要进行排序的字段"
+     },
+     {
+      "name": "asc",
+      "type": "boolean",
+      "required": false,
+      "desc": "是否正序排列，默认 true"
+     },
+     {
+      "name": "optimizeCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": "自动优化 COUNT SQL"
+     },
+     {
+      "name": "searchCount",
+      "type": "boolean",
+      "required": false,
+      "desc": "是否进行 count 查询"
+     },
+     {
+      "name": "optimizeJoinOfCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": "{@link #optimizeJoinOfCountSql()}"
+     },
+     {
+      "name": "maxLimit",
+      "type": "integer",
+      "required": false,
+      "desc": "单页分页条数限制"
+     },
+     {
+      "name": "countId",
+      "type": "string",
+      "required": false,
+      "desc": "countId"
+     },
+     {
+      "name": "applicationName",
+      "type": "string",
+      "required": false,
+      "desc": "应用名称"
+     },
+     {
+      "name": "applicationStatus",
+      "type": "integer",
+      "required": false,
+      "desc": "应用状态 0：启用 1：禁用"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "id",
+    "applicationName",
+    "programType",
+    "id",
+    "logoPath",
+    "programName",
+    "scriptId",
+    "form",
+    "key",
+    "extendedColumn",
+    "key",
+    "systemConfig",
+    "applicationStatus",
+    "logoPath",
+    "programName",
+    "packageName",
+    "activityName",
+    "orderNum",
+    "appArea",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 2307,
+   "pagination": {
+    "possible": true,
+    "note": "该接口 Body 的 YApi 文档把 MyBatis-Plus Page 响应对象也写进了请求体（`asc`, `column`, `countId`, `maxLimit`, `optimizeCountSql`, `optimizeJoinOfCountSql`, `orders`, `records`, `searchCount`, `total`）。实际请求请只发送筛选条件 + 分页参数（`current`、`size`，或 `pageNum`/`pageSize` 视接口而定），不要发送响应侧字段。"
+   }
+  },
+  {
+   "operation_id": "app_post_application_management_type",
+   "operation_id_generated": true,
+   "summary": "获取应用类型",
+   "description": null,
+   "method": "POST",
+   "path": "/application/management/type",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "应用管理id"
+     },
+     {
+      "name": "applicationStatus",
+      "type": "integer",
+      "required": false,
+      "desc": "应用状态"
+     },
+     {
+      "name": "systemConfig",
+      "type": "integer",
+      "required": false,
+      "desc": "是否展示任务"
+     },
+     {
+      "name": "programCategory",
+      "type": "string",
+      "required": false,
+      "desc": "任务类型"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "applicationType",
+    "programCategory",
+    "systemConfig",
+    "logoPath"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 2483,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_post_dynamic_form_column",
+   "operation_id_generated": true,
+   "summary": "查询动态表单列",
+   "description": null,
+   "method": "POST",
+   "path": "/dynamic/form/column",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "appId",
+      "type": "string",
+      "required": false,
+      "desc": "应用id"
+     },
+     {
+      "name": "taskType",
+      "type": "string",
+      "required": false,
+      "desc": "任务类型"
+     },
+     {
+      "name": "current",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "size",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "key"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 2665,
+   "pagination": {
+    "possible": true,
+    "note": null
+   }
+  },
+  {
+   "operation_id": "app_post_dynamic_form_column_table",
+   "operation_id_generated": true,
+   "summary": "查询动态表单动态列表",
+   "description": null,
+   "method": "POST",
+   "path": "/dynamic/form/column/table",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "tableName",
+    "field",
+    "type",
+    "comment",
+    "children",
+    "tableName",
+    "field",
+    "type",
+    "comment",
+    "children"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 2704,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_post_dynamic_form_page",
+   "operation_id_generated": true,
+   "summary": "分页查询动态表单",
+   "description": null,
+   "method": "POST",
+   "path": "/dynamic/form/page",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "appId",
+      "type": "string",
+      "required": false,
+      "desc": "应用id"
+     },
+     {
+      "name": "taskType",
+      "type": "string",
+      "required": false,
+      "desc": "任务类型"
+     },
+     {
+      "name": "current",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "size",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 2587,
+   "pagination": {
+    "possible": true,
+    "note": null
+   }
+  },
+  {
+   "operation_id": "app_post_social_ai_plugin_group_list",
+   "operation_id_generated": true,
+   "summary": "查询插件分组列表",
+   "description": null,
+   "method": "POST",
+   "path": "/social/ai-plugin-group/list",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "groupName",
+      "type": "string",
+      "required": false,
+      "desc": "分组名称"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "groupId",
+    "groupName",
+    "groupIcon",
+    "groupIconUrl",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 11559,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_post_social_ai_plugin_save",
+   "operation_id_generated": true,
+   "summary": "保存插件信息",
+   "description": null,
+   "method": "POST",
+   "path": "/social/ai-plugin/save",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "title",
+      "type": "string",
+      "required": false,
+      "desc": "标题"
+     },
+     {
+      "name": "subtitle",
+      "type": "string",
+      "required": false,
+      "desc": "副标题"
+     },
+     {
+      "name": "link",
+      "type": "string",
+      "required": false,
+      "desc": "链接"
+     },
+     {
+      "name": "iconUrl",
+      "type": "string",
+      "required": false,
+      "desc": "图标链接"
+     },
+     {
+      "name": "aiGroupId",
+      "type": "string",
+      "required": false,
+      "desc": "分组id"
+     },
+     {
+      "name": "aiGroupName",
+      "type": "string",
+      "required": false,
+      "desc": "分组名称"
+     },
+     {
+      "name": "groupIconUrl",
+      "type": "string",
+      "required": false,
+      "desc": "分组链接"
+     },
+     {
+      "name": "aiState",
+      "type": "boolean",
+      "required": false,
+      "desc": "ai状态(true 上架,false 待上架)"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 22901,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_post_social_application_management",
+   "operation_id_generated": true,
+   "summary": "更新应用管理",
+   "description": null,
+   "method": "POST",
+   "path": "/social/application/management",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "应用id"
+     },
+     {
+      "name": "applicationName",
+      "type": "string",
+      "required": false,
+      "desc": "应用名称"
+     },
+     {
+      "name": "applicationStatus",
+      "type": "integer",
+      "required": false,
+      "desc": "状态 0启用，1禁用"
+     },
+     {
+      "name": "logoPath",
+      "type": "string",
+      "required": false,
+      "desc": "logo路径"
+     },
+     {
+      "name": "programName",
+      "type": "string",
+      "required": false,
+      "desc": "应用功能"
+     },
+     {
+      "name": "scriptId",
+      "type": "string",
+      "required": false,
+      "desc": "脚本id"
+     },
+     {
+      "name": "programIds",
+      "type": "string []",
+      "required": false,
+      "desc": "应用功能id集合"
+     },
+     {
+      "name": "programType",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "creatorId",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updatorId",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "deleted",
+      "type": "boolean",
+      "required": false,
+      "desc": "删除标识，0未删 1已删"
+     },
+     {
+      "name": "version",
+      "type": "integer",
+      "required": false,
+      "desc": "版本"
+     },
+     {
+      "name": "deptId",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "key",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": "主键id"
+     },
+     {
+      "name": "logoPath",
+      "type": "string",
+      "required": false,
+      "desc": "logo路径"
+     },
+     {
+      "name": "programName",
+      "type": "string",
+      "required": false,
+      "desc": "功能名称"
+     },
+     {
+      "name": "scriptId",
+      "type": "string",
+      "required": false,
+      "desc": "脚本id"
+     },
+     {
+      "name": "form",
+      "type": "object []",
+      "required": false,
+      "desc": "表单"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "extendedColumn",
+      "type": "object []",
+      "required": false,
+      "desc": "扩展字段"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "systemConfig",
+      "type": "integer",
+      "required": false,
+      "desc": "系统配置"
+     },
+     {
+      "name": "packageName",
+      "type": "string",
+      "required": false,
+      "desc": "应用包名"
+     },
+     {
+      "name": "activityName",
+      "type": "string",
+      "required": false,
+      "desc": "应用类名"
+     },
+     {
+      "name": "orderNum",
+      "type": "integer",
+      "required": false,
+      "desc": "排序"
+     },
+     {
+      "name": "appArea",
+      "type": "string",
+      "required": false,
+      "desc": "应用地区"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 1170,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_post_social_application_management_duplicate",
+   "operation_id_generated": true,
+   "summary": "获取应用类型去重（按应用管理id分组返回）",
+   "description": null,
+   "method": "POST",
+   "path": "/social/application/management/duplicate",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": "应用管理id"
+     },
+     {
+      "name": "ids",
+      "type": "integer []",
+      "required": false,
+      "desc": "应用管理id集合（用于按多个应用管理id查询并分组返回的场景）"
+     },
+     {
+      "name": "applicationStatus",
+      "type": "integer",
+      "required": false,
+      "desc": "应用状态"
+     },
+     {
+      "name": "systemConfig",
+      "type": "integer",
+      "required": false,
+      "desc": "是否展示任务"
+     },
+     {
+      "name": "programCategory",
+      "type": "string",
+      "required": false,
+      "desc": "任务类型"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "0",
+    "id",
+    "applicationType",
+    "programCategory",
+    "systemConfig",
+    "logoPath",
+    "applicationManagementId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 1394,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_post_social_application_management_id_status",
+   "operation_id_generated": true,
+   "summary": "更新应用管理状态",
+   "description": null,
+   "method": "POST",
+   "path": "/social/application/management/{id}/{status}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 1209,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_post_social_application_management_page",
+   "operation_id_generated": true,
+   "summary": "查询应用管理分页",
+   "description": null,
+   "method": "POST",
+   "path": "/social/application/management/page",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "records",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "creatorId",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updatorId",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "deleted",
+      "type": "boolean",
+      "required": false,
+      "desc": "删除标识，0未删 1已删"
+     },
+     {
+      "name": "version",
+      "type": "integer",
+      "required": false,
+      "desc": "版本"
+     },
+     {
+      "name": "deptId",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "key",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": "主键"
+     },
+     {
+      "name": "applicationName",
+      "type": "string",
+      "required": false,
+      "desc": "应用名称"
+     },
+     {
+      "name": "programType",
+      "type": "object []",
+      "required": false,
+      "desc": "功能类型"
+     },
+     {
+      "name": "creatorId",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updatorId",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "deleted",
+      "type": "boolean",
+      "required": false,
+      "desc": "删除标识，0未删 1已删"
+     },
+     {
+      "name": "version",
+      "type": "integer",
+      "required": false,
+      "desc": "版本"
+     },
+     {
+      "name": "deptId",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "key",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": "主键id"
+     },
+     {
+      "name": "logoPath",
+      "type": "string",
+      "required": false,
+      "desc": "logo路径"
+     },
+     {
+      "name": "programName",
+      "type": "string",
+      "required": false,
+      "desc": "功能名称"
+     },
+     {
+      "name": "scriptId",
+      "type": "string",
+      "required": false,
+      "desc": "脚本id"
+     },
+     {
+      "name": "form",
+      "type": "object []",
+      "required": false,
+      "desc": "表单"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "extendedColumn",
+      "type": "object []",
+      "required": false,
+      "desc": "扩展字段"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "systemConfig",
+      "type": "integer",
+      "required": false,
+      "desc": "系统配置"
+     },
+     {
+      "name": "applicationStatus",
+      "type": "integer",
+      "required": false,
+      "desc": "状态 0启用，1禁用"
+     },
+     {
+      "name": "logoPath",
+      "type": "string",
+      "required": false,
+      "desc": "logo路径"
+     },
+     {
+      "name": "orderNum",
+      "type": "integer",
+      "required": false,
+      "desc": "排序"
+     },
+     {
+      "name": "programName",
+      "type": "string",
+      "required": false,
+      "desc": "应用功能"
+     },
+     {
+      "name": "packageName",
+      "type": "string",
+      "required": false,
+      "desc": "应用包名"
+     },
+     {
+      "name": "activityName",
+      "type": "string",
+      "required": false,
+      "desc": "应用类名"
+     },
+     {
+      "name": "appArea",
+      "type": "string",
+      "required": false,
+      "desc": "应用地区"
+     },
+     {
+      "name": "total",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "size",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "current",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "orders",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "column",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "asc",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "searchCount",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeJoinOfCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "maxLimit",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "countId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "applicationName",
+      "type": "string",
+      "required": false,
+      "desc": "应用名称"
+     },
+     {
+      "name": "applicationStatus",
+      "type": "integer",
+      "required": false,
+      "desc": "应用状态 0：启用 1：禁用"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "creatorId",
+    "createTime",
+    "updatorId",
+    "updateTime",
+    "deleted",
+    "version",
+    "deptId",
+    "params",
+    "key",
+    "id",
+    "applicationName",
+    "programType",
+    "creatorId",
+    "createTime",
+    "updatorId",
+    "updateTime",
+    "deleted",
+    "version",
+    "deptId",
+    "params",
+    "key",
+    "id",
+    "logoPath",
+    "programName",
+    "scriptId",
+    "form",
+    "key",
+    "extendedColumn",
+    "key",
+    "systemConfig",
+    "applicationStatus",
+    "logoPath",
+    "programName",
+    "packageName",
+    "activityName",
+    "orderNum",
+    "appArea",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 1239,
+   "pagination": {
+    "possible": true,
+    "note": "该接口 Body 的 YApi 文档把 MyBatis-Plus Page 响应对象也写进了请求体（`asc`, `column`, `countId`, `maxLimit`, `optimizeCountSql`, `optimizeJoinOfCountSql`, `orders`, `records`, `searchCount`, `total`）。实际请求请只发送筛选条件 + 分页参数（`current`、`size`，或 `pageNum`/`pageSize` 视接口而定），不要发送响应侧字段。"
+   }
+  },
+  {
+   "operation_id": "app_post_social_application_management_type",
+   "operation_id_generated": true,
+   "summary": "获取应用类型",
+   "description": null,
+   "method": "POST",
+   "path": "/social/application/management/type",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": "应用管理id"
+     },
+     {
+      "name": "ids",
+      "type": "integer []",
+      "required": false,
+      "desc": "应用管理id集合（用于按多个应用管理id查询并分组返回的场景）"
+     },
+     {
+      "name": "applicationStatus",
+      "type": "integer",
+      "required": false,
+      "desc": "应用状态"
+     },
+     {
+      "name": "systemConfig",
+      "type": "integer",
+      "required": false,
+      "desc": "是否展示任务"
+     },
+     {
+      "name": "programCategory",
+      "type": "string",
+      "required": false,
+      "desc": "任务类型"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "applicationType",
+    "programCategory",
+    "systemConfig",
+    "logoPath",
+    "applicationManagementId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 1337,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_post_social_dynamic_form_column",
+   "operation_id_generated": true,
+   "summary": "查询动态表单列",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dynamic/form/column",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "records",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "creatorId",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updatorId",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "deleted",
+      "type": "boolean",
+      "required": false,
+      "desc": "删除标识，0未删 1已删"
+     },
+     {
+      "name": "version",
+      "type": "integer",
+      "required": false,
+      "desc": "版本"
+     },
+     {
+      "name": "deptId",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "key",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": "主键id"
+     },
+     {
+      "name": "programName",
+      "type": "string",
+      "required": false,
+      "desc": "功能名称"
+     },
+     {
+      "name": "programCategory",
+      "type": "string",
+      "required": false,
+      "desc": "功能类型"
+     },
+     {
+      "name": "schedulingEngine",
+      "type": "string",
+      "required": false,
+      "desc": "调度引擎"
+     },
+     {
+      "name": "logoPath",
+      "type": "string",
+      "required": false,
+      "desc": "图片路径"
+     },
+     {
+      "name": "applicationManagementId",
+      "type": "string",
+      "required": false,
+      "desc": "应用id"
+     },
+     {
+      "name": "form",
+      "type": "object []",
+      "required": false,
+      "desc": "表单"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "scriptId",
+      "type": "string",
+      "required": false,
+      "desc": "脚本id"
+     },
+     {
+      "name": "extendedColumn",
+      "type": "object []",
+      "required": false,
+      "desc": "扩展字段"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "systemConfig",
+      "type": "integer",
+      "required": false,
+      "desc": "是否显示任务"
+     },
+     {
+      "name": "formTemplate",
+      "type": "object []",
+      "required": false,
+      "desc": "数据模板"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "total",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "size",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "current",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "orders",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "column",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "asc",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "searchCount",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeJoinOfCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "maxLimit",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "countId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "appId",
+      "type": "string",
+      "required": false,
+      "desc": "应用id"
+     },
+     {
+      "name": "taskType",
+      "type": "string",
+      "required": false,
+      "desc": "任务类型"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "key",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 987,
+   "pagination": {
+    "possible": true,
+    "note": "该接口 Body 的 YApi 文档把 MyBatis-Plus Page 响应对象也写进了请求体（`asc`, `column`, `countId`, `maxLimit`, `optimizeCountSql`, `optimizeJoinOfCountSql`, `orders`, `records`, `searchCount`, `total`）。实际请求请只发送筛选条件 + 分页参数（`current`、`size`，或 `pageNum`/`pageSize` 视接口而定），不要发送响应侧字段。"
+   }
+  },
+  {
+   "operation_id": "app_post_social_dynamic_form_column_table",
+   "operation_id_generated": true,
+   "summary": "查询动态表单动态列表",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dynamic/form/column/table",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "tableName",
+    "field",
+    "type",
+    "comment",
+    "children",
+    "tableName",
+    "field",
+    "type",
+    "comment",
+    "children",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 1036,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_post_social_dynamic_form_page",
+   "operation_id_generated": true,
+   "summary": "分页查询动态表单",
+   "description": null,
+   "method": "POST",
+   "path": "/social/dynamic/form/page",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "records",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "creatorId",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updatorId",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "deleted",
+      "type": "boolean",
+      "required": false,
+      "desc": "删除标识，0未删 1已删"
+     },
+     {
+      "name": "version",
+      "type": "integer",
+      "required": false,
+      "desc": "版本"
+     },
+     {
+      "name": "deptId",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "key",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": "主键id"
+     },
+     {
+      "name": "programName",
+      "type": "string",
+      "required": false,
+      "desc": "功能名称"
+     },
+     {
+      "name": "programCategory",
+      "type": "string",
+      "required": false,
+      "desc": "功能类型"
+     },
+     {
+      "name": "schedulingEngine",
+      "type": "string",
+      "required": false,
+      "desc": "调度引擎"
+     },
+     {
+      "name": "logoPath",
+      "type": "string",
+      "required": false,
+      "desc": "图片路径"
+     },
+     {
+      "name": "applicationManagementId",
+      "type": "string",
+      "required": false,
+      "desc": "应用id"
+     },
+     {
+      "name": "form",
+      "type": "object []",
+      "required": false,
+      "desc": "表单"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "scriptId",
+      "type": "string",
+      "required": false,
+      "desc": "脚本id"
+     },
+     {
+      "name": "extendedColumn",
+      "type": "object []",
+      "required": false,
+      "desc": "扩展字段"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "systemConfig",
+      "type": "integer",
+      "required": false,
+      "desc": "是否显示任务"
+     },
+     {
+      "name": "formTemplate",
+      "type": "object []",
+      "required": false,
+      "desc": "数据模板"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "total",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "size",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "current",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "orders",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "column",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "asc",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "searchCount",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeJoinOfCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "maxLimit",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "countId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "appId",
+      "type": "string",
+      "required": false,
+      "desc": "应用id"
+     },
+     {
+      "name": "taskType",
+      "type": "string",
+      "required": false,
+      "desc": "任务类型"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 889,
+   "pagination": {
+    "possible": true,
+    "note": "该接口 Body 的 YApi 文档把 MyBatis-Plus Page 响应对象也写进了请求体（`asc`, `column`, `countId`, `maxLimit`, `optimizeCountSql`, `optimizeJoinOfCountSql`, `orders`, `records`, `searchCount`, `total`）。实际请求请只发送筛选条件 + 分页参数（`current`、`size`，或 `pageNum`/`pageSize` 视接口而定），不要发送响应侧字段。"
+   }
+  },
+  {
+   "operation_id": "app_post_social_oss_upload",
+   "operation_id_generated": true,
+   "summary": "普通上传图片或视频",
+   "description": null,
+   "method": "POST",
+   "path": "/social/oss/upload",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "key",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 8949,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_post_social_oss_upload_file",
+   "operation_id_generated": true,
+   "summary": "上传文本或csv文件",
+   "description": null,
+   "method": "POST",
+   "path": "/social/oss/upload/file",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 8871,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_put_ai_plugin_group_update",
+   "operation_id_generated": true,
+   "summary": "修改插件分组名称",
+   "description": null,
+   "method": "PUT",
+   "path": "/ai-plugin-group/update",
+   "route_prefix": "/social",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "groupId",
+      "type": "string",
+      "required": false,
+      "desc": "插件组id"
+     },
+     {
+      "name": "groupName",
+      "type": "string",
+      "required": false,
+      "desc": "插件组名称"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 11442,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_put_application_management",
+   "operation_id_generated": true,
+   "summary": "保存应用",
+   "description": null,
+   "method": "PUT",
+   "path": "/application/management",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "应用id"
+     },
+     {
+      "name": "applicationName",
+      "type": "string",
+      "required": false,
+      "desc": "应用名称"
+     },
+     {
+      "name": "applicationStatus",
+      "type": "integer",
+      "required": false,
+      "desc": "状态 0启用，1禁用"
+     },
+     {
+      "name": "logoPath",
+      "type": "string",
+      "required": false,
+      "desc": "logo路径"
+     },
+     {
+      "name": "programName",
+      "type": "string",
+      "required": false,
+      "desc": "应用功能"
+     },
+     {
+      "name": "scriptId",
+      "type": "string",
+      "required": false,
+      "desc": "脚本id"
+     },
+     {
+      "name": "programIds",
+      "type": "string []",
+      "required": false,
+      "desc": "应用功能id集合"
+     },
+     {
+      "name": "programType",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "主键id"
+     },
+     {
+      "name": "logoPath",
+      "type": "string",
+      "required": false,
+      "desc": "logo路径"
+     },
+     {
+      "name": "programName",
+      "type": "string",
+      "required": false,
+      "desc": "功能名称"
+     },
+     {
+      "name": "scriptId",
+      "type": "string",
+      "required": false,
+      "desc": "脚本id"
+     },
+     {
+      "name": "form",
+      "type": "object []",
+      "required": false,
+      "desc": "表单"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "extendedColumn",
+      "type": "object []",
+      "required": false,
+      "desc": "扩展字段"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "systemConfig",
+      "type": "integer",
+      "required": false,
+      "desc": "系统配置"
+     },
+     {
+      "name": "packageName",
+      "type": "string",
+      "required": false,
+      "desc": "应用包名"
+     },
+     {
+      "name": "activityName",
+      "type": "string",
+      "required": false,
+      "desc": "应用类名"
+     },
+     {
+      "name": "orderNum",
+      "type": "integer",
+      "required": false,
+      "desc": "排序"
+     },
+     {
+      "name": "appArea",
+      "type": "string",
+      "required": false,
+      "desc": "应用地区"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 2268,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_put_dynamic_form",
+   "operation_id_generated": true,
+   "summary": "新增动态表单",
+   "description": null,
+   "method": "PUT",
+   "path": "/dynamic/form",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "主键id"
+     },
+     {
+      "name": "programCategory",
+      "type": "string",
+      "required": false,
+      "desc": "任务类型"
+     },
+     {
+      "name": "programName",
+      "type": "string",
+      "required": false,
+      "desc": "功能名称"
+     },
+     {
+      "name": "logoPath",
+      "type": "string",
+      "required": false,
+      "desc": "图片路径"
+     },
+     {
+      "name": "schedulingEngine",
+      "type": "string",
+      "required": false,
+      "desc": "引擎类型"
+     },
+     {
+      "name": "appId",
+      "type": "string",
+      "required": false,
+      "desc": "应用id"
+     },
+     {
+      "name": "form",
+      "type": "object []",
+      "required": false,
+      "desc": "表单"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "scriptId",
+      "type": "string",
+      "required": false,
+      "desc": "脚本id"
+     },
+     {
+      "name": "extendedColumn",
+      "type": "object []",
+      "required": false,
+      "desc": "扩展列"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "formTemplate",
+      "type": "object []",
+      "required": false,
+      "desc": "数据模板"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 2626,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_put_social_ai_plugin_group_update",
+   "operation_id_generated": true,
+   "summary": "修改插件分组名称",
+   "description": null,
+   "method": "PUT",
+   "path": "/social/ai-plugin-group/update",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "groupId",
+      "type": "string",
+      "required": false,
+      "desc": "插件组id"
+     },
+     {
+      "name": "groupName",
+      "type": "string",
+      "required": false,
+      "desc": "插件组名称"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 11481,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_put_social_ai_plugin_scoring",
+   "operation_id_generated": true,
+   "summary": "评分插件",
+   "description": null,
+   "method": "PUT",
+   "path": "/social/ai-plugin/scoring",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "插件id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 23133,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_put_social_ai_plugin_shelve",
+   "operation_id_generated": true,
+   "summary": "批量上架插件",
+   "description": null,
+   "method": "PUT",
+   "path": "/social/ai-plugin/shelve",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "ids",
+      "type": "string []",
+      "required": false,
+      "desc": "ai插件id集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 22979,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_put_social_ai_plugin_update",
+   "operation_id_generated": true,
+   "summary": "修改插件信息",
+   "description": null,
+   "method": "PUT",
+   "path": "/social/ai-plugin/update",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "id"
+     },
+     {
+      "name": "title",
+      "type": "string",
+      "required": false,
+      "desc": "标题"
+     },
+     {
+      "name": "subtitle",
+      "type": "string",
+      "required": false,
+      "desc": "副标题"
+     },
+     {
+      "name": "link",
+      "type": "string",
+      "required": false,
+      "desc": "链接"
+     },
+     {
+      "name": "iconUrl",
+      "type": "string",
+      "required": false,
+      "desc": "图标链接"
+     },
+     {
+      "name": "aiGroupId",
+      "type": "string",
+      "required": false,
+      "desc": "分组id"
+     },
+     {
+      "name": "aiGroupName",
+      "type": "string",
+      "required": false,
+      "desc": "分组名称"
+     },
+     {
+      "name": "groupIconUrl",
+      "type": "string",
+      "required": false,
+      "desc": "ai分组图标链接"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 22940,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_put_social_application_management",
+   "operation_id_generated": true,
+   "summary": "保存应用管理",
+   "description": null,
+   "method": "PUT",
+   "path": "/social/application/management",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "应用id"
+     },
+     {
+      "name": "applicationName",
+      "type": "string",
+      "required": false,
+      "desc": "应用名称"
+     },
+     {
+      "name": "applicationStatus",
+      "type": "integer",
+      "required": false,
+      "desc": "状态 0启用，1禁用"
+     },
+     {
+      "name": "logoPath",
+      "type": "string",
+      "required": false,
+      "desc": "logo路径"
+     },
+     {
+      "name": "programName",
+      "type": "string",
+      "required": false,
+      "desc": "应用功能"
+     },
+     {
+      "name": "scriptId",
+      "type": "string",
+      "required": false,
+      "desc": "脚本id"
+     },
+     {
+      "name": "programIds",
+      "type": "string []",
+      "required": false,
+      "desc": "应用功能id集合"
+     },
+     {
+      "name": "programType",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "creatorId",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updatorId",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "deleted",
+      "type": "boolean",
+      "required": false,
+      "desc": "删除标识，0未删 1已删"
+     },
+     {
+      "name": "version",
+      "type": "integer",
+      "required": false,
+      "desc": "版本"
+     },
+     {
+      "name": "deptId",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "key",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": "主键id"
+     },
+     {
+      "name": "logoPath",
+      "type": "string",
+      "required": false,
+      "desc": "logo路径"
+     },
+     {
+      "name": "programName",
+      "type": "string",
+      "required": false,
+      "desc": "功能名称"
+     },
+     {
+      "name": "scriptId",
+      "type": "string",
+      "required": false,
+      "desc": "脚本id"
+     },
+     {
+      "name": "form",
+      "type": "object []",
+      "required": false,
+      "desc": "表单"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "extendedColumn",
+      "type": "object []",
+      "required": false,
+      "desc": "扩展字段"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "systemConfig",
+      "type": "integer",
+      "required": false,
+      "desc": "系统配置"
+     },
+     {
+      "name": "packageName",
+      "type": "string",
+      "required": false,
+      "desc": "应用包名"
+     },
+     {
+      "name": "activityName",
+      "type": "string",
+      "required": false,
+      "desc": "应用类名"
+     },
+     {
+      "name": "orderNum",
+      "type": "integer",
+      "required": false,
+      "desc": "排序"
+     },
+     {
+      "name": "appArea",
+      "type": "string",
+      "required": false,
+      "desc": "应用地区"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 1092,
+   "pagination": null
+  },
+  {
+   "operation_id": "app_put_social_dynamic_form",
+   "operation_id_generated": true,
+   "summary": "新增动态表单",
+   "description": null,
+   "method": "PUT",
+   "path": "/social/dynamic/form",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "主键id"
+     },
+     {
+      "name": "programCategory",
+      "type": "string",
+      "required": false,
+      "desc": "任务类型"
+     },
+     {
+      "name": "schedulingEngine",
+      "type": "string",
+      "required": "必须",
+      "desc": "调度引擎"
+     },
+     {
+      "name": "programName",
+      "type": "string",
+      "required": false,
+      "desc": "功能名称"
+     },
+     {
+      "name": "logoPath",
+      "type": "string",
+      "required": false,
+      "desc": "图片路径"
+     },
+     {
+      "name": "appId",
+      "type": "string",
+      "required": false,
+      "desc": "应用id"
+     },
+     {
+      "name": "form",
+      "type": "object []",
+      "required": false,
+      "desc": "表单"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "scriptId",
+      "type": "string",
+      "required": false,
+      "desc": "脚本id"
+     },
+     {
+      "name": "extendedColumn",
+      "type": "object []",
+      "required": false,
+      "desc": "扩展列"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "formTemplate",
+      "type": "object []",
+      "required": false,
+      "desc": "数据模板"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 938,
+   "pagination": null
+  }
+ ]
+}

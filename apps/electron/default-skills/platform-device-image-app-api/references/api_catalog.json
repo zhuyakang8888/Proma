@@ -1,0 +1,1360 @@
+{
+ "_meta": {
+  "package": "platform-device-image-app-api",
+  "domain_label": "镜像与设备APP管理",
+  "source_docs": [
+   "callfans-standard.md",
+   "mobile-cloud-center.md"
+  ],
+  "operation_count": 27,
+  "login": {
+   "operation_id": "auth_post_login",
+   "method": "POST",
+   "path": "/auth/login",
+   "params": {
+    "username": "string",
+    "password": "string",
+    "code": "string(留空,验证码已关闭)",
+    "uuid": "string(留空)"
+   },
+   "token_field": "token",
+   "auth_header": "Authorization: Bearer <token>",
+   "note": "验证码已关闭：code/uuid 传空。401 时执行器自动重新登录并重试一次。"
+  },
+  "route_prefixes": {
+   "/mcc": 13,
+   "?": 14
+  },
+  "route_prefix_note": "多服务网关部署：每个 operation 自带 route_prefix（来源文档对应服务前缀）。执行器按 operation 的 route_prefix 路由；单一服务包可用 API_PATH_PREFIX 兜底。"
+ },
+ "operations": [
+  {
+   "operation_id": "device-image-app_delete_image_remove_imagename",
+   "operation_id_generated": true,
+   "summary": "删除镜像",
+   "description": null,
+   "method": "DELETE",
+   "path": "/image/remove/{imageName}",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1136,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-image-app_delete_mcc_api_image_remove_imagename",
+   "operation_id_generated": true,
+   "summary": "删除镜像",
+   "description": null,
+   "method": "DELETE",
+   "path": "/mcc/api/image/remove/{imageName}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 12951,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-image-app_get_app_page",
+   "operation_id_generated": true,
+   "summary": "常用应用程序分页查询",
+   "description": null,
+   "method": "GET",
+   "path": "/app/page",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 2150,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-image-app_get_app_record_page",
+   "operation_id_generated": true,
+   "summary": "设备应用程序安装记录分页查询",
+   "description": null,
+   "method": "GET",
+   "path": "/app/record/page",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 2197,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-image-app_get_image_detail_imgid",
+   "operation_id_generated": true,
+   "summary": "镜像详情信息",
+   "description": null,
+   "method": "GET",
+   "path": "/image/detail/{imgId}",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1239,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-image-app_get_image_page",
+   "operation_id_generated": true,
+   "summary": "镜像信息列表查询",
+   "description": null,
+   "method": "GET",
+   "path": "/image/page",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1160,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-image-app_get_mcc_api_app_page",
+   "operation_id_generated": true,
+   "summary": "常用应用程序分页查询",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/app/page",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "createBy",
+    "createTime",
+    "updateBy",
+    "updateTime",
+    "remark",
+    "params",
+    "key",
+    "appId",
+    "appName",
+    "packageName",
+    "appVersion",
+    "appIcon",
+    "packageSize",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 14171,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-image-app_get_mcc_api_app_record_page",
+   "operation_id_generated": true,
+   "summary": "设备应用程序安装记录查询（实时，全部返回）",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/app/record/page",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "createBy",
+    "createTime",
+    "updateBy",
+    "updateTime",
+    "remark",
+    "params",
+    "key",
+    "recordId",
+    "deviceId",
+    "appName",
+    "packageName",
+    "appVersion",
+    "appId",
+    "installResult",
+    "adbMsg",
+    "installType",
+    "installTime",
+    "unloadTime",
+    "packageSize",
+    "appIcon",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 14280,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-image-app_get_mcc_api_app_upload_page",
+   "operation_id_generated": true,
+   "summary": "应用程序分页查询",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/app/upload/page",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "createBy",
+    "createTime",
+    "updateBy",
+    "updateTime",
+    "remark",
+    "params",
+    "key",
+    "appId",
+    "appName",
+    "packageName",
+    "appVersion",
+    "appIcon",
+    "packageSize",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 14206,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-image-app_get_mcc_api_image_detail_imgid",
+   "operation_id_generated": true,
+   "summary": "镜像详情信息",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/image/detail/{imgId}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "createBy",
+    "createTime",
+    "updateBy",
+    "updateTime",
+    "remark",
+    "params",
+    "key",
+    "imgId",
+    "imgName",
+    "imgVersion",
+    "chipCode",
+    "brand",
+    "model",
+    "fileName",
+    "deviceNum",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 13109,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-image-app_get_mcc_api_image_page",
+   "operation_id_generated": true,
+   "summary": "镜像信息列表查询",
+   "description": null,
+   "method": "GET",
+   "path": "/mcc/api/image/page",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "createBy",
+    "createTime",
+    "updateBy",
+    "updateTime",
+    "remark",
+    "params",
+    "key",
+    "imgId",
+    "imgName",
+    "imgVersion",
+    "deviceNum",
+    "vagueSearchResult",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 12986,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-image-app_post_app_del",
+   "operation_id_generated": true,
+   "summary": "删除应用程序包（常用APP及直接上传APP）",
+   "description": null,
+   "method": "POST",
+   "path": "/app/del",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "appIds",
+      "type": "string []",
+      "required": false,
+      "desc": "常用APP唯一标识集合"
+     },
+     {
+      "name": "filePathIds",
+      "type": "string []",
+      "required": false,
+      "desc": "直接上传APP资源标识集合"
+     },
+     {
+      "name": "appFileType",
+      "type": "string",
+      "required": "必须",
+      "desc": "资源类别（often:常用，direct:直接安装）"
+     }
+    ]
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 2060,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-image-app_post_app_install",
+   "operation_id_generated": true,
+   "summary": "应用程序安装",
+   "description": null,
+   "method": "POST",
+   "path": "/app/install",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "appId",
+      "type": "string",
+      "required": false,
+      "desc": "appId(安装常用应用赋值，直接安装时为空)"
+     },
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": "必须",
+      "desc": "设备ID集合"
+     },
+     {
+      "name": "filePathId",
+      "type": "string",
+      "required": false,
+      "desc": "安装资源路径ID(直接安装时赋值)"
+     }
+    ]
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 2169,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-image-app_post_app_set_often",
+   "operation_id_generated": true,
+   "summary": "设置常用应用程序",
+   "description": null,
+   "method": "POST",
+   "path": "/app/set/often",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "filePathIds",
+      "type": "string []",
+      "required": "必须",
+      "desc": "软件包资源位置ID集合"
+     }
+    ]
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 2217,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-image-app_post_app_unload",
+   "operation_id_generated": true,
+   "summary": "卸载应用程序",
+   "description": null,
+   "method": "POST",
+   "path": "/app/unload",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": "必须",
+      "desc": "设备ID集合"
+     },
+     {
+      "name": "appName",
+      "type": "string",
+      "required": false,
+      "desc": "应用名称"
+     },
+     {
+      "name": "appId",
+      "type": "string",
+      "required": false,
+      "desc": "应用Id"
+     },
+     {
+      "name": "appFileType",
+      "type": "string",
+      "required": false,
+      "desc": "资源类别（often:常用，direct:直接安装）"
+     }
+    ]
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 2088,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-image-app_post_app_upload",
+   "operation_id_generated": true,
+   "summary": "安装包上传",
+   "description": null,
+   "method": "POST",
+   "path": "/app/upload",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 2116,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-image-app_post_image_del",
+   "operation_id_generated": true,
+   "summary": "镜像信息删除",
+   "description": null,
+   "method": "POST",
+   "path": "/image/del",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "imgIds",
+      "type": "string []",
+      "required": "必须",
+      "desc": "镜像ID集合"
+     }
+    ]
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1179,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-image-app_post_image_update",
+   "operation_id_generated": true,
+   "summary": "镜像信息新增或编辑",
+   "description": null,
+   "method": "POST",
+   "path": "/image/update",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1207,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-image-app_post_image_uploadimages",
+   "operation_id_generated": true,
+   "summary": "上传镜像",
+   "description": null,
+   "method": "POST",
+   "path": "/image/uploadImages",
+   "route_prefix": "/mcc",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "mobile-cloud-center.md",
+   "source_line": 1111,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-image-app_post_mcc_api_app_del",
+   "operation_id_generated": true,
+   "summary": "删除应用程序包（常用APP及直接上传APP）",
+   "description": null,
+   "method": "POST",
+   "path": "/mcc/api/app/del",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "createBy",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updateBy",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "备注"
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": "请求参数"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "appIds",
+      "type": "string []",
+      "required": false,
+      "desc": "常用APP唯一标识集合"
+     },
+     {
+      "name": "filePathIds",
+      "type": "string []",
+      "required": false,
+      "desc": "直接上传APP资源标识集合"
+     },
+     {
+      "name": "appFileType",
+      "type": "string",
+      "required": "必须",
+      "desc": "资源类别（often:常用，direct:直接安装）"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 14042,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-image-app_post_mcc_api_app_install",
+   "operation_id_generated": true,
+   "summary": "应用程序安装",
+   "description": null,
+   "method": "POST",
+   "path": "/mcc/api/app/install",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "createBy",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updateBy",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "备注"
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": "请求参数"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "appId",
+      "type": "string",
+      "required": false,
+      "desc": "appId(安装常用应用赋值，直接安装时为空)"
+     },
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": "必须",
+      "desc": "设备ID集合"
+     },
+     {
+      "name": "filePathId",
+      "type": "string",
+      "required": false,
+      "desc": "安装资源路径ID(直接安装时赋值)"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 14241,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-image-app_post_mcc_api_app_set_often",
+   "operation_id_generated": true,
+   "summary": "设置常用应用程序",
+   "description": null,
+   "method": "POST",
+   "path": "/mcc/api/app/set/often",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "createBy",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updateBy",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "备注"
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": "请求参数"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "filePathIds",
+      "type": "string []",
+      "required": "必须",
+      "desc": "软件包资源位置ID集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 14319,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-image-app_post_mcc_api_app_unload",
+   "operation_id_generated": true,
+   "summary": "卸载应用程序",
+   "description": null,
+   "method": "POST",
+   "path": "/mcc/api/app/unload",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "createBy",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updateBy",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "备注"
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": "请求参数"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": "必须",
+      "desc": "设备ID集合"
+     },
+     {
+      "name": "appName",
+      "type": "string",
+      "required": false,
+      "desc": "应用名称"
+     },
+     {
+      "name": "appId",
+      "type": "string",
+      "required": false,
+      "desc": "应用Id"
+     },
+     {
+      "name": "appFileType",
+      "type": "string",
+      "required": false,
+      "desc": "资源类别（often:常用，direct:直接安装）"
+     },
+     {
+      "name": "packageName",
+      "type": "string",
+      "required": false,
+      "desc": "应用包名（优先使用，传了 packageName 则不依赖 DB 安装记录表）"
+     },
+     {
+      "name": "recordId",
+      "type": "string",
+      "required": false,
+      "desc": "安装记录ID（实时列表中此字段存的是包名，兼容前端回传）"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 14081,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-image-app_post_mcc_api_app_upload",
+   "operation_id_generated": true,
+   "summary": "安装包上传",
+   "description": null,
+   "method": "POST",
+   "path": "/mcc/api/app/upload",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "createBy",
+    "createTime",
+    "updateBy",
+    "updateTime",
+    "remark",
+    "params",
+    "key",
+    "filePathId",
+    "appName",
+    "apkFilePath",
+    "packageName",
+    "installType",
+    "packageSize",
+    "apkVersion",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 14120,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-image-app_post_mcc_api_image_del",
+   "operation_id_generated": true,
+   "summary": "镜像信息删除",
+   "description": null,
+   "method": "POST",
+   "path": "/mcc/api/image/del",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "createBy",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updateBy",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "remark",
+      "type": "string",
+      "required": false,
+      "desc": "备注"
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": "请求参数"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "imgIds",
+      "type": "string []",
+      "required": "必须",
+      "desc": "镜像ID集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 13021,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-image-app_post_mcc_api_image_update",
+   "operation_id_generated": true,
+   "summary": "镜像信息新增或编辑",
+   "description": null,
+   "method": "POST",
+   "path": "/mcc/api/image/update",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 13060,
+   "pagination": null
+  },
+  {
+   "operation_id": "device-image-app_post_mcc_api_image_uploadimages",
+   "operation_id_generated": true,
+   "summary": "上传镜像",
+   "description": null,
+   "method": "POST",
+   "path": "/mcc/api/image/uploadImages",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 12915,
+   "pagination": null
+  }
+ ]
+}

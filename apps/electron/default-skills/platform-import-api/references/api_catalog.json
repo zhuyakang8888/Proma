@@ -1,0 +1,506 @@
+{
+ "_meta": {
+  "package": "platform-import-api",
+  "domain_label": "导入数据任务",
+  "source_docs": [
+   "callfans-standard.md",
+   "callfans-platform.md"
+  ],
+  "operation_count": 4,
+  "login": {
+   "operation_id": "auth_post_login",
+   "method": "POST",
+   "path": "/auth/login",
+   "params": {
+    "username": "string",
+    "password": "string",
+    "code": "string(留空,验证码已关闭)",
+    "uuid": "string(留空)"
+   },
+   "token_field": "token",
+   "auth_header": "Authorization: Bearer <token>",
+   "note": "验证码已关闭：code/uuid 传空。401 时执行器自动重新登录并重试一次。"
+  },
+  "route_prefixes": {
+   "/platform": 2,
+   "?": 2
+  },
+  "route_prefix_note": "多服务网关部署：每个 operation 自带 route_prefix（来源文档对应服务前缀）。执行器按 operation 的 route_prefix 路由；单一服务包可用 API_PATH_PREFIX 兜底。"
+ },
+ "operations": [
+  {
+   "operation_id": "import_get_import_task_download_taskid",
+   "operation_id_generated": true,
+   "summary": "下载分析报告",
+   "description": null,
+   "method": "GET",
+   "path": "/import-task/download/{taskId}",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 4646,
+   "pagination": null
+  },
+  {
+   "operation_id": "import_get_social_import_task_download_taskid",
+   "operation_id_generated": true,
+   "summary": "下载分析报告",
+   "description": null,
+   "method": "GET",
+   "path": "/social/import-task/download/{taskId}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 2746,
+   "pagination": null
+  },
+  {
+   "operation_id": "import_post_import_task_page",
+   "operation_id_generated": true,
+   "summary": "分页查询导入任务",
+   "description": null,
+   "method": "POST",
+   "path": "/import-task/page",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "records",
+      "type": "object []",
+      "required": false,
+      "desc": "查询数据列表"
+     },
+     {
+      "name": "total",
+      "type": "integer",
+      "required": false,
+      "desc": "总数"
+     },
+     {
+      "name": "size",
+      "type": "integer",
+      "required": false,
+      "desc": "每页显示条数，默认 10"
+     },
+     {
+      "name": "current",
+      "type": "integer",
+      "required": false,
+      "desc": "当前页"
+     },
+     {
+      "name": "orders",
+      "type": "object []",
+      "required": false,
+      "desc": "排序字段信息"
+     },
+     {
+      "name": "column",
+      "type": "string",
+      "required": false,
+      "desc": "需要进行排序的字段"
+     },
+     {
+      "name": "asc",
+      "type": "boolean",
+      "required": false,
+      "desc": "是否正序排列，默认 true"
+     },
+     {
+      "name": "optimizeCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": "自动优化 COUNT SQL"
+     },
+     {
+      "name": "searchCount",
+      "type": "boolean",
+      "required": false,
+      "desc": "是否进行 count 查询"
+     },
+     {
+      "name": "optimizeJoinOfCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": "{@link #optimizeJoinOfCountSql()}"
+     },
+     {
+      "name": "maxLimit",
+      "type": "integer",
+      "required": false,
+      "desc": "单页分页条数限制"
+     },
+     {
+      "name": "countId",
+      "type": "string",
+      "required": false,
+      "desc": "countId"
+     },
+     {
+      "name": "userName",
+      "type": "string",
+      "required": false,
+      "desc": "操作人"
+     },
+     {
+      "name": "businessType",
+      "type": "string",
+      "required": false,
+      "desc": "业务类型 网络导入/账号导入"
+     },
+     {
+      "name": "taskId",
+      "type": "string",
+      "required": false,
+      "desc": "任务ID"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "id",
+    "status",
+    "statusName",
+    "originalFileName",
+    "reportFileName",
+    "totalRecords",
+    "successRecords",
+    "failedRecords",
+    "failedReason",
+    "createTime",
+    "updateTime",
+    "userName",
+    "businessType",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 4664,
+   "pagination": {
+    "possible": true,
+    "note": "该接口 Body 的 YApi 文档把 MyBatis-Plus Page 响应对象也写进了请求体（`asc`, `column`, `countId`, `maxLimit`, `optimizeCountSql`, `optimizeJoinOfCountSql`, `orders`, `records`, `searchCount`, `total`）。实际请求请只发送筛选条件 + 分页参数（`current`、`size`，或 `pageNum`/`pageSize` 视接口而定），不要发送响应侧字段。"
+   }
+  },
+  {
+   "operation_id": "import_post_social_import_task_page",
+   "operation_id_generated": true,
+   "summary": "分页查询导入任务",
+   "description": null,
+   "method": "POST",
+   "path": "/social/import-task/page",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "records",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "creatorId",
+      "type": "string",
+      "required": false,
+      "desc": "创建者"
+     },
+     {
+      "name": "createTime",
+      "type": "string",
+      "required": false,
+      "desc": "创建时间"
+     },
+     {
+      "name": "updatorId",
+      "type": "string",
+      "required": false,
+      "desc": "更新者"
+     },
+     {
+      "name": "updateTime",
+      "type": "string",
+      "required": false,
+      "desc": "更新时间"
+     },
+     {
+      "name": "deleted",
+      "type": "boolean",
+      "required": false,
+      "desc": "删除标识，0未删 1已删"
+     },
+     {
+      "name": "version",
+      "type": "integer",
+      "required": false,
+      "desc": "版本"
+     },
+     {
+      "name": "deptId",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "key",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "id",
+      "type": "integer",
+      "required": false,
+      "desc": "主键ID"
+     },
+     {
+      "name": "status",
+      "type": "string",
+      "required": false,
+      "desc": "任务状态：PENDING-待处理，PROCESSING-处理中，SUCCESS-成功，FAILED-失败"
+     },
+     {
+      "name": "businessType",
+      "type": "string",
+      "required": false,
+      "desc": "业务类型 网络导入/账号导入"
+     },
+     {
+      "name": "originalFileName",
+      "type": "string",
+      "required": false,
+      "desc": "原始文件名"
+     },
+     {
+      "name": "filePath",
+      "type": "string",
+      "required": false,
+      "desc": "文件存储路径"
+     },
+     {
+      "name": "reportFilePath",
+      "type": "string",
+      "required": false,
+      "desc": "分析报告文件路径"
+     },
+     {
+      "name": "reportFileName",
+      "type": "string",
+      "required": false,
+      "desc": "分析报告文件名"
+     },
+     {
+      "name": "totalRecords",
+      "type": "integer",
+      "required": false,
+      "desc": "总记录数"
+     },
+     {
+      "name": "successRecords",
+      "type": "integer",
+      "required": false,
+      "desc": "成功记录数"
+     },
+     {
+      "name": "failedRecords",
+      "type": "integer",
+      "required": false,
+      "desc": "失败记录数"
+     },
+     {
+      "name": "failedReason",
+      "type": "string",
+      "required": false,
+      "desc": "失败原因"
+     },
+     {
+      "name": "total",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "size",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "current",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "orders",
+      "type": "object []",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "column",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "asc",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "searchCount",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "optimizeJoinOfCountSql",
+      "type": "boolean",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "maxLimit",
+      "type": "integer",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "countId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "userName",
+      "type": "string",
+      "required": false,
+      "desc": "操作人"
+     },
+     {
+      "name": "businessType",
+      "type": "string",
+      "required": false,
+      "desc": "业务类型 网络导入/账号导入"
+     },
+     {
+      "name": "taskId",
+      "type": "string",
+      "required": false,
+      "desc": "任务ID"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "id",
+    "status",
+    "statusName",
+    "originalFileName",
+    "reportFileName",
+    "totalRecords",
+    "successRecords",
+    "failedRecords",
+    "failedReason",
+    "createTime",
+    "updateTime",
+    "userName",
+    "businessType",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 2764,
+   "pagination": {
+    "possible": true,
+    "note": "该接口 Body 的 YApi 文档把 MyBatis-Plus Page 响应对象也写进了请求体（`asc`, `column`, `countId`, `maxLimit`, `optimizeCountSql`, `optimizeJoinOfCountSql`, `orders`, `records`, `searchCount`, `total`）。实际请求请只发送筛选条件 + 分页参数（`current`、`size`，或 `pageNum`/`pageSize` 视接口而定），不要发送响应侧字段。"
+   }
+  }
+ ]
+}

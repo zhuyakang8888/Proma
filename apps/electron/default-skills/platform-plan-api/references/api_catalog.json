@@ -1,0 +1,2781 @@
+{
+ "_meta": {
+  "package": "platform-plan-api",
+  "domain_label": "系统计划与日程",
+  "source_docs": [
+   "callfans-standard.md",
+   "callfans-platform.md"
+  ],
+  "operation_count": 36,
+  "login": {
+   "operation_id": "auth_post_login",
+   "method": "POST",
+   "path": "/auth/login",
+   "params": {
+    "username": "string",
+    "password": "string",
+    "code": "string(留空,验证码已关闭)",
+    "uuid": "string(留空)"
+   },
+   "token_field": "token",
+   "auth_header": "Authorization: Bearer <token>",
+   "note": "验证码已关闭：code/uuid 传空。401 时执行器自动重新登录并重试一次。"
+  },
+  "route_prefixes": {
+   "?": 25,
+   "/platform": 11
+  },
+  "route_prefix_note": "多服务网关部署：每个 operation 自带 route_prefix（来源文档对应服务前缀）。执行器按 operation 的 route_prefix 路由；单一服务包可用 API_PATH_PREFIX 兜底。"
+ },
+ "operations": [
+  {
+   "operation_id": "plan_delete_social_system_plan_del",
+   "operation_id_generated": true,
+   "summary": "删除任务计划",
+   "description": null,
+   "method": "DELETE",
+   "path": "/social/system-plan/del",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "planIds",
+      "type": "string []",
+      "required": false,
+      "desc": "计划编号集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 10740,
+   "pagination": null
+  },
+  {
+   "operation_id": "plan_delete_social_system_schedule_conflict",
+   "operation_id_generated": true,
+   "summary": "删除账号下冲突日程信息",
+   "description": null,
+   "method": "DELETE",
+   "path": "/social/system-schedule/conflict",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "threshold",
+      "type": "integer",
+      "required": false,
+      "desc": "The next size value at which to resize (capacity * load factor)."
+     },
+     {
+      "name": "loadFactor",
+      "type": "number",
+      "required": false,
+      "desc": "The load factor for the hash table."
+     },
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "主键id"
+     },
+     {
+      "name": "tagId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "programId",
+      "type": "string",
+      "required": false,
+      "desc": "应用功能id"
+     },
+     {
+      "name": "title",
+      "type": "string",
+      "required": false,
+      "desc": "任务标题"
+     },
+     {
+      "name": "groupId",
+      "type": "string",
+      "required": false,
+      "desc": "分组id"
+     },
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备id集合"
+     },
+     {
+      "name": "appId",
+      "type": "string",
+      "required": false,
+      "desc": "应用id"
+     },
+     {
+      "name": "taskId",
+      "type": "string",
+      "required": false,
+      "desc": "任务id"
+     },
+     {
+      "name": "planId",
+      "type": "integer",
+      "required": false,
+      "desc": "计划编号"
+     },
+     {
+      "name": "scheduleId",
+      "type": "string",
+      "required": false,
+      "desc": "日程编号"
+     },
+     {
+      "name": "creatorId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "scheduleName",
+      "type": "string",
+      "required": false,
+      "desc": "任务名称"
+     },
+     {
+      "name": "executionTime",
+      "type": "string",
+      "required": false,
+      "desc": "执行时间"
+     },
+     {
+      "name": "scheduleType",
+      "type": "string",
+      "required": false,
+      "desc": "日程类型"
+     },
+     {
+      "name": "endTime",
+      "type": "string",
+      "required": false,
+      "desc": "截至时间"
+     },
+     {
+      "name": "taskStatus",
+      "type": "string",
+      "required": false,
+      "desc": "任务状态"
+     },
+     {
+      "name": "taskColour",
+      "type": "string",
+      "required": false,
+      "desc": "卡片颜色"
+     },
+     {
+      "name": "repeatInterval",
+      "type": "integer",
+      "required": false,
+      "desc": "间隔时间"
+     },
+     {
+      "name": "delayTimeRange",
+      "type": "integer",
+      "required": false,
+      "desc": "延后执行时间范围（分钟），0=不延后"
+     },
+     {
+      "name": "accountId",
+      "type": "string",
+      "required": false,
+      "desc": "归属账号编号"
+     },
+     {
+      "name": "nickName",
+      "type": "string",
+      "required": false,
+      "desc": "用户昵称"
+     },
+     {
+      "name": "deviceIp",
+      "type": "string",
+      "required": false,
+      "desc": "设备IP"
+     },
+     {
+      "name": "appAccount",
+      "type": "string",
+      "required": false,
+      "desc": "用户账号"
+     },
+     {
+      "name": "deviceId",
+      "type": "integer",
+      "required": false,
+      "desc": "设备ID（用于设备重启任务）"
+     },
+     {
+      "name": "taskCategory",
+      "type": "string",
+      "required": false,
+      "desc": "任务分类（NORMAL-普通任务，DEVICE_RESTART-设备重启任务）"
+     },
+     {
+      "name": "durationTime",
+      "type": "integer",
+      "required": false,
+      "desc": "持续时间"
+     },
+     {
+      "name": "taskData",
+      "type": "object",
+      "required": false,
+      "desc": "任务数据"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 3540,
+   "pagination": null
+  },
+  {
+   "operation_id": "plan_delete_social_system_schedule_del",
+   "operation_id_generated": true,
+   "summary": "删除日程信息",
+   "description": null,
+   "method": "DELETE",
+   "path": "/social/system-schedule/del",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "scheduleIds",
+      "type": "string []",
+      "required": false,
+      "desc": "计划编号集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 3462,
+   "pagination": null
+  },
+  {
+   "operation_id": "plan_delete_social_system_schedule_del_cache_schedule",
+   "operation_id_generated": true,
+   "summary": "删除暂存区日程",
+   "description": null,
+   "method": "DELETE",
+   "path": "/social/system-schedule/del-cache-schedule",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "cacheId",
+      "type": "string",
+      "required": false,
+      "desc": "缓存ID"
+     },
+     {
+      "name": "accountId",
+      "type": "string",
+      "required": false,
+      "desc": "账号ID"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 3501,
+   "pagination": null
+  },
+  {
+   "operation_id": "plan_delete_system_plan_del",
+   "operation_id_generated": true,
+   "summary": "删除任务计划",
+   "description": null,
+   "method": "DELETE",
+   "path": "/system-plan/del",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "planIds",
+      "type": "string []",
+      "required": false,
+      "desc": "计划编号集合"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "destructive",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 2996,
+   "pagination": null
+  },
+  {
+   "operation_id": "plan_get_social_system_plan_account_page",
+   "operation_id_generated": true,
+   "summary": "计划维度账号信息分页列表",
+   "description": null,
+   "method": "GET",
+   "path": "/social/system-plan/account/page",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 10978,
+   "pagination": null
+  },
+  {
+   "operation_id": "plan_get_social_system_plan_detail",
+   "operation_id_generated": true,
+   "summary": "计划详情",
+   "description": null,
+   "method": "GET",
+   "path": "/social/system-plan/detail",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "planName",
+    "planScope",
+    "planState",
+    "createTime",
+    "planSchedules",
+    "threshold",
+    "loadFactor",
+    "id",
+    "tagId",
+    "programId",
+    "title",
+    "groupId",
+    "deviceIds",
+    "appId",
+    "taskId",
+    "planId",
+    "scheduleId",
+    "creatorId",
+    "scheduleName",
+    "executionTime",
+    "scheduleType",
+    "endTime",
+    "taskStatus",
+    "taskColour",
+    "repeatInterval",
+    "delayTimeRange",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 11130,
+   "pagination": null
+  },
+  {
+   "operation_id": "plan_get_social_system_plan_detail_planid",
+   "operation_id_generated": true,
+   "summary": "获取计划下账号信息主键集合",
+   "description": null,
+   "method": "GET",
+   "path": "/social/system-plan/detail/{planId}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "planId",
+    "accountIds",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 10855,
+   "pagination": null
+  },
+  {
+   "operation_id": "plan_get_social_system_plan_join_page",
+   "operation_id_generated": true,
+   "summary": "计划维度账号信息分页列表(计划相关)",
+   "description": null,
+   "method": "GET",
+   "path": "/social/system-plan/join/page",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 11074,
+   "pagination": null
+  },
+  {
+   "operation_id": "plan_get_social_system_plan_page",
+   "operation_id_generated": true,
+   "summary": "计划分页列表",
+   "description": null,
+   "method": "GET",
+   "path": "/social/system-plan/page",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 10923,
+   "pagination": null
+  },
+  {
+   "operation_id": "plan_get_social_system_schedule_conflict_accids",
+   "operation_id_generated": true,
+   "summary": "获取账号下冲突日程信息",
+   "description": null,
+   "method": "GET",
+   "path": "/social/system-schedule/conflict/{accIds}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "threshold",
+    "loadFactor",
+    "id",
+    "tagId",
+    "programId",
+    "title",
+    "groupId",
+    "deviceIds",
+    "appId",
+    "taskId",
+    "planId",
+    "scheduleId",
+    "creatorId",
+    "scheduleName",
+    "executionTime",
+    "scheduleType",
+    "endTime",
+    "taskStatus",
+    "taskColour",
+    "repeatInterval",
+    "accountId",
+    "nickName",
+    "deviceIp",
+    "appAccount",
+    "durationTime",
+    "taskData",
+    "key",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 3908,
+   "pagination": null
+  },
+  {
+   "operation_id": "plan_get_social_system_schedule_download_temp_csv",
+   "operation_id_generated": true,
+   "summary": "下载内容模板",
+   "description": null,
+   "method": "GET",
+   "path": "/social/system-schedule/download/temp/csv",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": null,
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 3449,
+   "pagination": null
+  },
+  {
+   "operation_id": "plan_get_system_plan_account_page",
+   "operation_id_generated": true,
+   "summary": "计划维度账号信息分页列表",
+   "description": null,
+   "method": "GET",
+   "path": "/system-plan/account/page",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "id",
+    "accountId",
+    "appAccount",
+    "deviceIp",
+    "appName",
+    "state",
+    "deviceAliases",
+    "isLock",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 3237,
+   "pagination": null
+  },
+  {
+   "operation_id": "plan_get_system_plan_detail",
+   "operation_id_generated": true,
+   "summary": "计划详情",
+   "description": null,
+   "method": "GET",
+   "path": "/system-plan/detail",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "id",
+    "planName",
+    "planScope",
+    "planState",
+    "createTime",
+    "planSchedules",
+    "threshold",
+    "loadFactor",
+    "id",
+    "tagId",
+    "programId",
+    "title",
+    "groupId",
+    "deviceIds",
+    "appId",
+    "taskId",
+    "planId",
+    "scheduleId",
+    "creatorId",
+    "scheduleName",
+    "executionTime",
+    "scheduleType",
+    "endTime",
+    "taskStatus",
+    "taskColour",
+    "repeatInterval",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 3384,
+   "pagination": null
+  },
+  {
+   "operation_id": "plan_get_system_plan_detail_planid",
+   "operation_id_generated": true,
+   "summary": "获取计划下账号信息主键集合",
+   "description": null,
+   "method": "GET",
+   "path": "/system-plan/detail/{planId}",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "planId",
+    "accountIds",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 3111,
+   "pagination": null
+  },
+  {
+   "operation_id": "plan_get_system_plan_join_page",
+   "operation_id_generated": true,
+   "summary": "计划维度账号信息分页列表(计划相关)",
+   "description": null,
+   "method": "GET",
+   "path": "/system-plan/join/page",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 3328,
+   "pagination": null
+  },
+  {
+   "operation_id": "plan_get_system_plan_page",
+   "operation_id_generated": true,
+   "summary": "计划分页列表",
+   "description": null,
+   "method": "GET",
+   "path": "/system-plan/page",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "records",
+    "id",
+    "planName",
+    "planScope",
+    "relationships",
+    "id",
+    "planId",
+    "targetId",
+    "targetValue",
+    "state",
+    "appName",
+    "planState",
+    "rltState",
+    "creatorId",
+    "createUserName",
+    "createTime",
+    "total",
+    "size",
+    "current",
+    "orders",
+    "column",
+    "asc",
+    "optimizeCountSql",
+    "searchCount",
+    "optimizeJoinOfCountSql",
+    "maxLimit",
+    "countId",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 3179,
+   "pagination": null
+  },
+  {
+   "operation_id": "plan_post_social_system_plan_join",
+   "operation_id_generated": true,
+   "summary": "账号加入计划",
+   "description": null,
+   "method": "POST",
+   "path": "/social/system-plan/join",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "accountId",
+      "type": "string",
+      "required": false,
+      "desc": "账号id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 11175,
+   "pagination": null
+  },
+  {
+   "operation_id": "plan_post_social_system_plan_update",
+   "operation_id_generated": true,
+   "summary": "更新计划信息",
+   "description": null,
+   "method": "POST",
+   "path": "/social/system-plan/update",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "planId",
+      "type": "string",
+      "required": false,
+      "desc": "计划主键编号"
+     },
+     {
+      "name": "planName",
+      "type": "string",
+      "required": false,
+      "desc": "计划名称"
+     },
+     {
+      "name": "accountId",
+      "type": "string",
+      "required": false,
+      "desc": "账号编号"
+     },
+     {
+      "name": "planScope",
+      "type": "string",
+      "required": false,
+      "desc": "作用域"
+     },
+     {
+      "name": "planState",
+      "type": "string",
+      "required": false,
+      "desc": "状态"
+     },
+     {
+      "name": "accIds",
+      "type": "string []",
+      "required": false,
+      "desc": "账号下创建日程绑定"
+     },
+     {
+      "name": "delScheduleIds",
+      "type": "string []",
+      "required": false,
+      "desc": "删除的日程编号集合"
+     },
+     {
+      "name": "taskSchedules",
+      "type": "object []",
+      "required": false,
+      "desc": "任务日程信息"
+     },
+     {
+      "name": "threshold",
+      "type": "integer",
+      "required": false,
+      "desc": "The next size value at which to resize (capacity * load factor)."
+     },
+     {
+      "name": "loadFactor",
+      "type": "number",
+      "required": false,
+      "desc": "The load factor for the hash table."
+     },
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "主键id"
+     },
+     {
+      "name": "tagId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "programId",
+      "type": "string",
+      "required": false,
+      "desc": "应用功能id"
+     },
+     {
+      "name": "title",
+      "type": "string",
+      "required": false,
+      "desc": "任务标题"
+     },
+     {
+      "name": "groupId",
+      "type": "string",
+      "required": false,
+      "desc": "分组id"
+     },
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备id集合"
+     },
+     {
+      "name": "appId",
+      "type": "string",
+      "required": false,
+      "desc": "应用id"
+     },
+     {
+      "name": "taskId",
+      "type": "string",
+      "required": false,
+      "desc": "任务id"
+     },
+     {
+      "name": "planId",
+      "type": "integer",
+      "required": false,
+      "desc": "计划编号"
+     },
+     {
+      "name": "scheduleId",
+      "type": "string",
+      "required": false,
+      "desc": "日程编号"
+     },
+     {
+      "name": "creatorId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "scheduleName",
+      "type": "string",
+      "required": false,
+      "desc": "日程名称"
+     },
+     {
+      "name": "executionTime",
+      "type": "string",
+      "required": false,
+      "desc": "执行时间"
+     },
+     {
+      "name": "endTime",
+      "type": "string",
+      "required": false,
+      "desc": "截至日期"
+     },
+     {
+      "name": "scheduleType",
+      "type": "string",
+      "required": false,
+      "desc": "重复类型"
+     },
+     {
+      "name": "repeatInterval",
+      "type": "integer",
+      "required": false,
+      "desc": "间隔时长"
+     },
+     {
+      "name": "taskColour",
+      "type": "string",
+      "required": false,
+      "desc": "色块"
+     },
+     {
+      "name": "durationTime",
+      "type": "integer",
+      "required": false,
+      "desc": "持续时间"
+     },
+     {
+      "name": "delayTimeRange",
+      "type": "integer",
+      "required": false,
+      "desc": "延迟时间"
+     },
+     {
+      "name": "taskData",
+      "type": "object",
+      "required": false,
+      "desc": "任务数据"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 10808,
+   "pagination": null
+  },
+  {
+   "operation_id": "plan_post_social_system_schedule_acc_schedule",
+   "operation_id_generated": true,
+   "summary": "获取账号下日程信息",
+   "description": null,
+   "method": "POST",
+   "path": "/social/system-schedule/acc/schedule",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "accountIds",
+      "type": "string []",
+      "required": "必须",
+      "desc": "账号信息"
+     },
+     {
+      "name": "startTime",
+      "type": "string",
+      "required": false,
+      "desc": "执行开始时间"
+     },
+     {
+      "name": "endTime",
+      "type": "string",
+      "required": false,
+      "desc": "执行结束时间"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "threshold",
+    "loadFactor",
+    "id",
+    "tagId",
+    "programId",
+    "title",
+    "groupId",
+    "deviceIds",
+    "appId",
+    "taskId",
+    "planId",
+    "scheduleId",
+    "creatorId",
+    "scheduleName",
+    "executionTime",
+    "scheduleType",
+    "endTime",
+    "taskStatus",
+    "taskColour",
+    "repeatInterval",
+    "delayTimeRange",
+    "accountId",
+    "nickName",
+    "deviceIp",
+    "appAccount",
+    "deviceId",
+    "taskCategory",
+    "durationTime",
+    "taskData",
+    "key",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 3996,
+   "pagination": null
+  },
+  {
+   "operation_id": "plan_post_social_system_schedule_batch_operate",
+   "operation_id_generated": true,
+   "summary": "批量操作日程",
+   "description": null,
+   "method": "POST",
+   "path": "/social/system-schedule/batch/operate",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "threshold",
+      "type": "integer",
+      "required": false,
+      "desc": "The next size value at which to resize (capacity * load factor)."
+     },
+     {
+      "name": "loadFactor",
+      "type": "number",
+      "required": false,
+      "desc": "The load factor for the hash table."
+     },
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "主键id"
+     },
+     {
+      "name": "tagId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "programId",
+      "type": "string",
+      "required": false,
+      "desc": "应用功能id"
+     },
+     {
+      "name": "title",
+      "type": "string",
+      "required": false,
+      "desc": "任务标题"
+     },
+     {
+      "name": "groupId",
+      "type": "string",
+      "required": false,
+      "desc": "分组id"
+     },
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备id集合"
+     },
+     {
+      "name": "appId",
+      "type": "string",
+      "required": false,
+      "desc": "应用id"
+     },
+     {
+      "name": "taskId",
+      "type": "string",
+      "required": false,
+      "desc": "任务id"
+     },
+     {
+      "name": "planId",
+      "type": "integer",
+      "required": false,
+      "desc": "计划编号"
+     },
+     {
+      "name": "scheduleId",
+      "type": "string",
+      "required": false,
+      "desc": "日程编号"
+     },
+     {
+      "name": "creatorId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "scheduleParams",
+      "type": "object []",
+      "required": false,
+      "desc": "多模态参数列表"
+     },
+     {
+      "name": "accountId",
+      "type": "string",
+      "required": false,
+      "desc": "账号ID（每个元素对应一个独立账号）"
+     },
+     {
+      "name": "executeCount",
+      "type": "integer",
+      "required": false,
+      "desc": "执行次数"
+     },
+     {
+      "name": "items",
+      "type": "object []",
+      "required": false,
+      "desc": "*执行参数列表"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "accountIds",
+      "type": "string []",
+      "required": false,
+      "desc": "账号ID列表（当scheduleParams为空时使用）"
+     },
+     {
+      "name": "scheduleType",
+      "type": "string",
+      "required": false,
+      "desc": "重复类型"
+     },
+     {
+      "name": "globalExecuteCount",
+      "type": "integer",
+      "required": false,
+      "desc": "全局执行次数"
+     },
+     {
+      "name": "windowStartTime",
+      "type": "object",
+      "required": false,
+      "desc": "窗口开始时间"
+     },
+     {
+      "name": "hour",
+      "type": "number",
+      "required": false,
+      "desc": "The hour."
+     },
+     {
+      "name": "minute",
+      "type": "number",
+      "required": false,
+      "desc": "The minute."
+     },
+     {
+      "name": "second",
+      "type": "number",
+      "required": false,
+      "desc": "The second."
+     },
+     {
+      "name": "nano",
+      "type": "integer",
+      "required": false,
+      "desc": "The nanosecond."
+     },
+     {
+      "name": "windowEndTime",
+      "type": "object",
+      "required": false,
+      "desc": "窗口结束时间"
+     },
+     {
+      "name": "hour",
+      "type": "number",
+      "required": false,
+      "desc": "The hour."
+     },
+     {
+      "name": "minute",
+      "type": "number",
+      "required": false,
+      "desc": "The minute."
+     },
+     {
+      "name": "second",
+      "type": "number",
+      "required": false,
+      "desc": "The second."
+     },
+     {
+      "name": "nano",
+      "type": "integer",
+      "required": false,
+      "desc": "The nanosecond."
+     },
+     {
+      "name": "startDate",
+      "type": "string",
+      "required": false,
+      "desc": "开始日期"
+     },
+     {
+      "name": "timeZone",
+      "type": "string",
+      "required": false,
+      "desc": "时区"
+     },
+     {
+      "name": "delayTimeRange",
+      "type": "integer",
+      "required": false,
+      "desc": "延后执行时间范围（分钟）。 0 = 不延后 >0 = 触发时从 [1, delayTimeRange] 随机出延迟分钟数， 任务入{@code TaskServiceJobDelayQueue}（Redis ZSet）等待触发默认 0。"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 3687,
+   "pagination": null
+  },
+  {
+   "operation_id": "plan_post_social_system_schedule_batch_update_time",
+   "operation_id_generated": true,
+   "summary": "批量修改日程执行时间（REQ-2609-113）。",
+   "description": null,
+   "method": "POST",
+   "path": "/social/system-schedule/batch/update-time",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "scheduleIds",
+      "type": "string []",
+      "required": "必须",
+      "desc": "日程 ID 列表（必填，上限 200）"
+     },
+     {
+      "name": "mode",
+      "type": "string",
+      "required": "必须",
+      "desc": "修改模式：SHIFT 平移 / SET 设定（必填）"
+     },
+     {
+      "name": "deltaMinutes",
+      "type": "integer",
+      "required": false,
+      "desc": "SHIFT 模式：偏移分钟数，正=延后，负=提前（SHIFT 模式必填，不能为 0）"
+     },
+     {
+      "name": "targetExecutionTime",
+      "type": "string",
+      "required": false,
+      "desc": "SET 模式：目标执行时间（SET 模式必填，格式 yyyy-MM-dd HH:mm:ss）"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "total",
+    "successCount",
+    "failures",
+    "scheduleId",
+    "code",
+    "message",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 3640,
+   "pagination": null
+  },
+  {
+   "operation_id": "plan_post_social_system_schedule_cache_hold_schedule",
+   "operation_id_generated": true,
+   "summary": "查询暂存区",
+   "description": null,
+   "method": "POST",
+   "path": "/social/system-schedule/cache-hold-schedule",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "accountIds",
+      "type": "string []",
+      "required": false,
+      "desc": "账号ID列表"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "threshold",
+    "loadFactor",
+    "id",
+    "tagId",
+    "programId",
+    "title",
+    "groupId",
+    "deviceIds",
+    "appId",
+    "taskId",
+    "planId",
+    "scheduleId",
+    "creatorId",
+    "scheduleName",
+    "executionTime",
+    "scheduleType",
+    "endTime",
+    "taskStatus",
+    "taskColour",
+    "repeatInterval",
+    "delayTimeRange",
+    "accountId",
+    "nickName",
+    "deviceIp",
+    "appAccount",
+    "deviceId",
+    "taskCategory",
+    "durationTime",
+    "taskData",
+    "key",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 3859,
+   "pagination": null
+  },
+  {
+   "operation_id": "plan_post_social_system_schedule_cache_schedule",
+   "operation_id_generated": true,
+   "summary": "日程进入暂存区",
+   "description": null,
+   "method": "POST",
+   "path": "/social/system-schedule/cache-schedule",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "scheduleIds",
+      "type": "string []",
+      "required": false,
+      "desc": "日程id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 3777,
+   "pagination": null
+  },
+  {
+   "operation_id": "plan_post_social_system_schedule_cache_task",
+   "operation_id_generated": true,
+   "summary": "新增缓存任务",
+   "description": null,
+   "method": "POST",
+   "path": "/social/system-schedule/cache/task",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "_nodeFactory",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "_cfgBigDecimalExact",
+      "type": "boolean",
+      "required": false,
+      "desc": "「已废弃」「已废弃」"
+     },
+     {
+      "name": "_children",
+      "type": "object",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "key",
+      "type": "array []",
+      "required": false,
+      "desc": null
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 3737,
+   "pagination": null
+  },
+  {
+   "operation_id": "plan_post_social_system_schedule_conflict",
+   "operation_id_generated": true,
+   "summary": "获取账号下冲突日程信息",
+   "description": null,
+   "method": "POST",
+   "path": "/social/system-schedule/conflict",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "accountIds",
+      "type": "string []",
+      "required": false,
+      "desc": "账号ID列表"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "threshold",
+    "loadFactor",
+    "id",
+    "tagId",
+    "programId",
+    "title",
+    "groupId",
+    "deviceIds",
+    "appId",
+    "taskId",
+    "planId",
+    "scheduleId",
+    "creatorId",
+    "scheduleName",
+    "executionTime",
+    "scheduleType",
+    "endTime",
+    "taskStatus",
+    "taskColour",
+    "repeatInterval",
+    "delayTimeRange",
+    "accountId",
+    "nickName",
+    "deviceIp",
+    "appAccount",
+    "deviceId",
+    "taskCategory",
+    "durationTime",
+    "taskData",
+    "key",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "read",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 3947,
+   "pagination": null
+  },
+  {
+   "operation_id": "plan_post_social_system_schedule_savebatch",
+   "operation_id_generated": true,
+   "summary": "批量保存日程信息",
+   "description": null,
+   "method": "POST",
+   "path": "/social/system-schedule/saveBatch",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "threshold",
+      "type": "integer",
+      "required": false,
+      "desc": "The next size value at which to resize (capacity * load factor)."
+     },
+     {
+      "name": "loadFactor",
+      "type": "number",
+      "required": false,
+      "desc": "The load factor for the hash table."
+     },
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "主键id"
+     },
+     {
+      "name": "tagId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "programId",
+      "type": "string",
+      "required": false,
+      "desc": "应用功能id"
+     },
+     {
+      "name": "title",
+      "type": "string",
+      "required": false,
+      "desc": "任务标题"
+     },
+     {
+      "name": "groupId",
+      "type": "string",
+      "required": false,
+      "desc": "分组id"
+     },
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备id集合"
+     },
+     {
+      "name": "appId",
+      "type": "string",
+      "required": false,
+      "desc": "应用id"
+     },
+     {
+      "name": "taskId",
+      "type": "string",
+      "required": false,
+      "desc": "任务id"
+     },
+     {
+      "name": "planId",
+      "type": "integer",
+      "required": false,
+      "desc": "计划编号"
+     },
+     {
+      "name": "scheduleId",
+      "type": "string",
+      "required": false,
+      "desc": "日程编号"
+     },
+     {
+      "name": "creatorId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "accountId",
+      "type": "string",
+      "required": false,
+      "desc": "账号id"
+     },
+     {
+      "name": "scheduleType",
+      "type": "string",
+      "required": false,
+      "desc": "重复类型"
+     },
+     {
+      "name": "putCount",
+      "type": "integer",
+      "required": false,
+      "desc": "放入数量"
+     },
+     {
+      "name": "postOrderEnum",
+      "type": "string",
+      "required": false,
+      "desc": "发布方式"
+     },
+     {
+      "name": "windowStartTime",
+      "type": "object",
+      "required": false,
+      "desc": "窗口开始时间"
+     },
+     {
+      "name": "hour",
+      "type": "number",
+      "required": false,
+      "desc": "The hour."
+     },
+     {
+      "name": "minute",
+      "type": "number",
+      "required": false,
+      "desc": "The minute."
+     },
+     {
+      "name": "second",
+      "type": "number",
+      "required": false,
+      "desc": "The second."
+     },
+     {
+      "name": "nano",
+      "type": "integer",
+      "required": false,
+      "desc": "The nanosecond."
+     },
+     {
+      "name": "windowEndTime",
+      "type": "object",
+      "required": false,
+      "desc": "窗口结束时间"
+     },
+     {
+      "name": "hour",
+      "type": "number",
+      "required": false,
+      "desc": "The hour."
+     },
+     {
+      "name": "minute",
+      "type": "number",
+      "required": false,
+      "desc": "The minute."
+     },
+     {
+      "name": "second",
+      "type": "number",
+      "required": false,
+      "desc": "The second."
+     },
+     {
+      "name": "nano",
+      "type": "integer",
+      "required": false,
+      "desc": "The nanosecond."
+     },
+     {
+      "name": "publishCount",
+      "type": "integer",
+      "required": false,
+      "desc": "发布数量"
+     },
+     {
+      "name": "intervalTime",
+      "type": "integer",
+      "required": false,
+      "desc": "间隔时间"
+     },
+     {
+      "name": "offsetTime",
+      "type": "integer",
+      "required": false,
+      "desc": "偏移量"
+     },
+     {
+      "name": "conflict",
+      "type": "boolean",
+      "required": false,
+      "desc": "是否冲突 true 规避冲突 false 不规避不冲突"
+     },
+     {
+      "name": "startDate",
+      "type": "string",
+      "required": false,
+      "desc": "日程开始时间"
+     },
+     {
+      "name": "timeZone",
+      "type": "string",
+      "required": false,
+      "desc": "时区"
+     },
+     {
+      "name": "delayTimeRange",
+      "type": "integer",
+      "required": false,
+      "desc": "延后执行时间范围（分钟）。 0 = 不延后 >0 = 触发时从 [1, delayTimeRange] 随机出延迟分钟数， 任务入{@code TaskServiceJobDelayQueue}（Redis ZSet）等待触发默认 0。"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 3589,
+   "pagination": null
+  },
+  {
+   "operation_id": "plan_post_social_system_schedule_update",
+   "operation_id_generated": true,
+   "summary": "更新日程信息",
+   "description": null,
+   "method": "POST",
+   "path": "/social/system-schedule/update",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "accountId",
+      "type": "string",
+      "required": false,
+      "desc": "账号编号"
+     },
+     {
+      "name": "accIds",
+      "type": "string []",
+      "required": false,
+      "desc": "账号下创建日程绑定"
+     },
+     {
+      "name": "taskSchedule",
+      "type": "object",
+      "required": false,
+      "desc": "日程信息"
+     },
+     {
+      "name": "threshold",
+      "type": "integer",
+      "required": false,
+      "desc": "The next size value at which to resize (capacity * load factor)."
+     },
+     {
+      "name": "loadFactor",
+      "type": "number",
+      "required": false,
+      "desc": "The load factor for the hash table."
+     },
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "主键id"
+     },
+     {
+      "name": "tagId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "programId",
+      "type": "string",
+      "required": false,
+      "desc": "应用功能id"
+     },
+     {
+      "name": "title",
+      "type": "string",
+      "required": false,
+      "desc": "任务标题"
+     },
+     {
+      "name": "groupId",
+      "type": "string",
+      "required": false,
+      "desc": "分组id"
+     },
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备id集合"
+     },
+     {
+      "name": "appId",
+      "type": "string",
+      "required": false,
+      "desc": "应用id"
+     },
+     {
+      "name": "taskId",
+      "type": "string",
+      "required": false,
+      "desc": "任务id"
+     },
+     {
+      "name": "planId",
+      "type": "integer",
+      "required": false,
+      "desc": "计划编号"
+     },
+     {
+      "name": "scheduleId",
+      "type": "string",
+      "required": false,
+      "desc": "日程编号"
+     },
+     {
+      "name": "creatorId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "scheduleName",
+      "type": "string",
+      "required": false,
+      "desc": "日程名称"
+     },
+     {
+      "name": "executionTime",
+      "type": "string",
+      "required": false,
+      "desc": "执行时间"
+     },
+     {
+      "name": "endTime",
+      "type": "string",
+      "required": false,
+      "desc": "截至日期"
+     },
+     {
+      "name": "scheduleType",
+      "type": "string",
+      "required": false,
+      "desc": "重复类型"
+     },
+     {
+      "name": "repeatInterval",
+      "type": "integer",
+      "required": false,
+      "desc": "间隔时长"
+     },
+     {
+      "name": "taskColour",
+      "type": "string",
+      "required": false,
+      "desc": "色块"
+     },
+     {
+      "name": "durationTime",
+      "type": "integer",
+      "required": false,
+      "desc": "持续时间"
+     },
+     {
+      "name": "delayTimeRange",
+      "type": "integer",
+      "required": false,
+      "desc": "延迟时间"
+     },
+     {
+      "name": "taskData",
+      "type": "object",
+      "required": false,
+      "desc": "任务数据"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 3816,
+   "pagination": null
+  },
+  {
+   "operation_id": "plan_post_system_plan_join",
+   "operation_id_generated": true,
+   "summary": "账号加入计划",
+   "description": null,
+   "method": "POST",
+   "path": "/system-plan/join",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "accountId",
+      "type": "string",
+      "required": false,
+      "desc": "账号id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 3429,
+   "pagination": null
+  },
+  {
+   "operation_id": "plan_post_system_plan_update",
+   "operation_id_generated": true,
+   "summary": "更新计划信息",
+   "description": null,
+   "method": "POST",
+   "path": "/system-plan/update",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "planId",
+      "type": "string",
+      "required": false,
+      "desc": "计划主键编号"
+     },
+     {
+      "name": "planName",
+      "type": "string",
+      "required": false,
+      "desc": "计划名称"
+     },
+     {
+      "name": "accountId",
+      "type": "string",
+      "required": false,
+      "desc": "账号编号"
+     },
+     {
+      "name": "planScope",
+      "type": "string",
+      "required": false,
+      "desc": "作用域"
+     },
+     {
+      "name": "planState",
+      "type": "string",
+      "required": false,
+      "desc": "状态"
+     },
+     {
+      "name": "accIds",
+      "type": "string []",
+      "required": false,
+      "desc": "账号下创建日程绑定"
+     },
+     {
+      "name": "delScheduleIds",
+      "type": "string []",
+      "required": false,
+      "desc": "删除的日程编号集合"
+     },
+     {
+      "name": "taskSchedules",
+      "type": "object []",
+      "required": false,
+      "desc": "任务日程信息"
+     },
+     {
+      "name": "threshold",
+      "type": "integer",
+      "required": false,
+      "desc": "The next size value at which to resize (capacity * load factor)."
+     },
+     {
+      "name": "loadFactor",
+      "type": "number",
+      "required": false,
+      "desc": "The load factor for the hash table."
+     },
+     {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "desc": "主键id"
+     },
+     {
+      "name": "tagId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "programId",
+      "type": "string",
+      "required": false,
+      "desc": "应用功能id"
+     },
+     {
+      "name": "title",
+      "type": "string",
+      "required": false,
+      "desc": "任务标题"
+     },
+     {
+      "name": "groupId",
+      "type": "string",
+      "required": false,
+      "desc": "分组id"
+     },
+     {
+      "name": "deviceIds",
+      "type": "string []",
+      "required": false,
+      "desc": "设备id集合"
+     },
+     {
+      "name": "appId",
+      "type": "string",
+      "required": false,
+      "desc": "应用id"
+     },
+     {
+      "name": "taskId",
+      "type": "string",
+      "required": false,
+      "desc": "任务id"
+     },
+     {
+      "name": "planId",
+      "type": "integer",
+      "required": false,
+      "desc": "计划编号"
+     },
+     {
+      "name": "scheduleId",
+      "type": "string",
+      "required": false,
+      "desc": "日程编号"
+     },
+     {
+      "name": "creatorId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "scheduleName",
+      "type": "string",
+      "required": false,
+      "desc": "日程名称"
+     },
+     {
+      "name": "executionTime",
+      "type": "string",
+      "required": false,
+      "desc": "执行时间"
+     },
+     {
+      "name": "endTime",
+      "type": "string",
+      "required": false,
+      "desc": "截至日期"
+     },
+     {
+      "name": "scheduleType",
+      "type": "string",
+      "required": false,
+      "desc": "重复类型"
+     },
+     {
+      "name": "repeatInterval",
+      "type": "integer",
+      "required": false,
+      "desc": "间隔时长"
+     },
+     {
+      "name": "taskColour",
+      "type": "string",
+      "required": false,
+      "desc": "色块"
+     },
+     {
+      "name": "durationTime",
+      "type": "integer",
+      "required": false,
+      "desc": "持续时间"
+     },
+     {
+      "name": "taskData",
+      "type": "object",
+      "required": false,
+      "desc": "任务数据"
+     },
+     {
+      "name": "key",
+      "type": "object",
+      "required": false,
+      "desc": null
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 3064,
+   "pagination": null
+  },
+  {
+   "operation_id": "plan_put_social_system_plan_copy_planid",
+   "operation_id_generated": true,
+   "summary": "复制计划",
+   "description": null,
+   "method": "PUT",
+   "path": "/social/system-plan/copy/{planId}",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 10779,
+   "pagination": null
+  },
+  {
+   "operation_id": "plan_put_social_system_plan_publish",
+   "operation_id_generated": true,
+   "summary": "一键启停用账号计划",
+   "description": null,
+   "method": "PUT",
+   "path": "/social/system-plan/publish",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "planAccountState",
+      "type": "string",
+      "required": false,
+      "desc": "启用/停用"
+     },
+     {
+      "name": "rlts",
+      "type": "object []",
+      "required": false,
+      "desc": "计划下关联关系主键集合"
+     },
+     {
+      "name": "rltId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "accountId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "planId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 10700,
+   "pagination": null
+  },
+  {
+   "operation_id": "plan_put_social_system_plan_quit",
+   "operation_id_generated": true,
+   "summary": "解除账号加入计划",
+   "description": null,
+   "method": "PUT",
+   "path": "/social/system-plan/quit",
+   "route_prefix": "",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "accountId",
+      "type": "string",
+      "required": false,
+      "desc": "账号id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-standard.md",
+   "source_line": 10884,
+   "pagination": null
+  },
+  {
+   "operation_id": "plan_put_system_plan_copy_planid",
+   "operation_id_generated": true,
+   "summary": "复制计划",
+   "description": null,
+   "method": "PUT",
+   "path": "/system-plan/copy/{planId}",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": []
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 3035,
+   "pagination": null
+  },
+  {
+   "operation_id": "plan_put_system_plan_publish",
+   "operation_id_generated": true,
+   "summary": "一键启停用账号计划",
+   "description": null,
+   "method": "PUT",
+   "path": "/system-plan/publish",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "planAccountState",
+      "type": "string",
+      "required": false,
+      "desc": "启用/停用"
+     },
+     {
+      "name": "rlts",
+      "type": "object []",
+      "required": false,
+      "desc": "计划下关联关系主键集合"
+     },
+     {
+      "name": "rltId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "accountId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     },
+     {
+      "name": "planId",
+      "type": "string",
+      "required": false,
+      "desc": null
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 2956,
+   "pagination": null
+  },
+  {
+   "operation_id": "plan_put_system_plan_quit",
+   "operation_id_generated": true,
+   "summary": "解除账号加入计划",
+   "description": null,
+   "method": "PUT",
+   "path": "/system-plan/quit",
+   "route_prefix": "/platform",
+   "params": {
+    "path": [],
+    "query": [],
+    "header": [
+     {
+      "name": "Content-Type",
+      "type": null,
+      "required": true,
+      "desc": null
+     }
+    ],
+    "body": [
+     {
+      "name": "accountId",
+      "type": "string",
+      "required": false,
+      "desc": "账号id"
+     }
+    ]
+   },
+   "response_fields": [
+    "code",
+    "msg",
+    "data",
+    "licenseState",
+    "licenseExpireDate"
+   ],
+   "auth": "required",
+   "risk": "write",
+   "scopes": null,
+   "examples": null,
+   "source_file": "callfans-platform.md",
+   "source_line": 3140,
+   "pagination": null
+  }
+ ]
+}
